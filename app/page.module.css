@@ -1,14 +1,68 @@
 @keyframes blink {
   0% { opacity: 1; }
-  50% { opacity: 0.5; }
+  50% { opacity: 0.3; }
   100% { opacity: 1; }
 }
 
 .main {
   min-height: 100vh;
+  background: #1a1a1a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.gameSign {
+  position: relative;
+  background: #fff;
   padding: 2rem;
-  background-color: #1a1a1a;
-  color: #fff;
+  border-radius: 30px;
+  text-align: center;
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.lightBorder {
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  right: -15px;
+  bottom: -15px;
+  border-radius: 40px;
+  background: #D35400;
+  z-index: -1;
+}
+
+.lightBorder::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, #fff 0%, #fff 30%, transparent 40%);
+  background-size: 30px 30px;
+  background-position: 0 0;
+  border-radius: 40px;
+  animation: blink 1s infinite;
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: bold;
+  color: #D35400;
+  font-family: 'Impact', sans-serif;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  color: #8B4513;
+  font-family: 'Helvetica', sans-serif;
 }
 
 .header {
@@ -160,4 +214,22 @@
 
 .subImage:hover {
   transform: translateY(-5px);
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  .gameSign {
+    padding: 1.5rem;
+  }
+  
+  .lightBorder {
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+  }
+
+  .lightBorder::before {
+    background-size: 20px 20px;
+  }
 } 
