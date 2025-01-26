@@ -1,23 +1,82 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 
 export default function Home() {
-  const router = useRouter()
+  const chapters = [
+    {
+      id: 1,
+      title: "The Bike Shop",
+      available: true,
+    },
+    {
+      id: 2,
+      title: "The Park",
+      available: true,
+    },
+    ...Array(8).fill(null).map((_, index) => ({
+      id: index + 3,
+      title: `Chapter ${index + 3}`,
+      available: false,
+    }))
+  ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-purple-100">
-      <div className="container mx-auto px-4 py-16 flex flex-col items-center justify-center min-h-screen">
-        <h1 className="text-4xl md:text-6xl font-bold text-purple-800 text-center mb-12 leading-tight">
-          Are You Smarter Than<br />Mr. Fluffbutt?
-        </h1>
-        <button 
-          onClick={() => router.push('/quiz')}
-          className="bg-purple-600 hover:bg-purple-700 text-white text-xl md:text-2xl font-semibold px-12 py-4 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200"
-        >
-          Take the Quiz!
-        </button>
+    <main className="max-w-4xl mx-auto p-8">
+      {/* Main Title */}
+      <h1 className="text-4xl font-bold mb-4 text-center">
+        Are You Smarter Than Mr. Fluffbutt?
+      </h1>
+
+      {/* Subtitle */}
+      <h2 className="text-xl mb-12 text-center text-gray-600">
+        A Game Show Based on &quot;Help Me Get This Bike!&quot;
+      </h2>
+
+      {/* Chapter Selection */}
+      <div className="mt-8">
+        <h3 className="text-xl mb-4 text-center">Select a Chapter:</h3>
+        <div className="grid gap-4">
+          {chapters.map((chapter) => (
+            <div 
+              key={chapter.id}
+              className={`p-4 border rounded-lg ${
+                chapter.available 
+                  ? 'bg-white hover:bg-gray-50 cursor-pointer' 
+                  : 'bg-gray-100 cursor-not-allowed'
+              }`}
+            >
+              <a 
+                href={chapter.available ? `/chapters/${chapter.id}` : '#'}
+                className={`block ${!chapter.available && 'pointer-events-none'}`}
+              >
+                <span className="font-medium">
+                  Chapter {chapter.id}: {chapter.title}
+                </span>
+                {!chapter.available && (
+                  <span className="ml-2 text-sm text-gray-500">Coming Soon</span>
+                )}
+              </a>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
-  )
+
+      {/* Substack Link */}
+      <a 
+        href="https://learnthroughstories.substack.com" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="fixed top-4 right-4"
+      >
+        <Image 
+          src="/images/substack.jpg" 
+          alt="Subscribe to Learn Through Stories" 
+          width={48}
+          height={48}
+          className="rounded-lg shadow-md"
+        />
+      </a>
+    </main>
+  );
 }
