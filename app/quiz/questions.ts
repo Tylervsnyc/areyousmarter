@@ -9,6 +9,84 @@ interface ChapterQuestions {
   older: Question[];
 }
 
+interface ChapterResponses {
+  correctResponses: string[];
+  incorrectResponses: string[];
+  scoreMessages: {
+    low: string[];
+    medium: string[];
+    high: string[];
+    perfect: string[];
+  };
+}
+
+const responses: Record<string, ChapterResponses> = {
+  '2': {
+    correctResponses: [
+      "Purrfectly calculated!",
+      "Almost as smart as a cat!",
+      "You've earned a royal head bump!",
+      "My whiskers are tingling with approval!",
+      "Not bad for a two-legged creature!",
+      "You're making this cat purr with pride!",
+      "Finally, a human who can count!",
+      "My royal mathematician!",
+      "Better than chasing laser dots!",
+      "You've pleased His Majesty!",
+      "Worthy of sharing my cushion!",
+      "A treat for your brain!",
+      "My apprentice taught you well!",
+      "Almost as clever as me... almost.",
+      "Royal paw of approval!",
+      "You've earned a whisker twitch!",
+      "Meow-velous calculation!",
+      "You're thinking like a cat!",
+      "Royal court mathematician!",
+      "You've earned your catnip!"
+    ],
+    incorrectResponses: [
+      "Licks paw dismissively Try again!",
+      "Even a sleeping cat counts better!",
+      "Did you count on your toes?",
+      "Rolls eyes Is that your final answer?",
+      "My litterbox math is better than that!",
+      "Swats playfully Wrong!",
+      "Were you distracted by a red dot?",
+      "Did a dog help you with that?",
+      "Tail swish No, no, no!",
+      "Back to math class with you!",
+      "Not worthy of my royal approval... yet.",
+      "Yawns Is that your best attempt?",
+      "Even my naps are more accurate!",
+      "Time for remedial counting lessons!",
+      "Hisses at calculator Try again!",
+      "Did you forget how to count treats?",
+      "My whiskers say that's wrong!",
+      "Back to kitten school!",
+      "Flops dramatically Oh, the horror!",
+      "The royal court is not impressed!"
+    ],
+    scoreMessages: {
+      low: [
+        "Sighs dramatically Well, at least you didn't try to bark your answers.",
+        "Perhaps we should start with counting kibble pieces?"
+      ],
+      medium: [
+        "You're showing potential, tiny human. Keep practicing!",
+        "Not completely hopeless. My training is working... slowly."
+      ],
+      high: [
+        "Now you're thinking with your whiskers! Almost purr-fect!",
+        "You're earning your place in the royal court of mathematics!"
+      ],
+      perfect: [
+        "Purrs loudly I hereby grant you the title of Royal Mathematical Scholar!",
+        "You've proven yourself worthy of the Golden Whisker Award!"
+      ]
+    }
+  }
+}
+
 const questions: Record<string, ChapterQuestions> = {
   '1': {
     younger: [
@@ -119,109 +197,110 @@ const questions: Record<string, ChapterQuestions> = {
   '2': {
     younger: [
       {
-        question: "Where did Mr. Fluffbutt go first in the park?",
-        options: ["Playground", "Lake", "Basketball court", "Picnic area"],
+        question: "How much money does Hudson have at the beginning of the chapter?",
+        options: ["$5", "$10", "$15", "$20"],
         correctAnswer: 1
       },
       {
-        question: "What did Mr. Fluffbutt bring to feed the ducks?",
-        options: ["Bread", "Seeds", "Crackers", "Nothing"],
-        correctAnswer: 1
-      },
-      {
-        question: "Who did Mr. Fluffbutt meet at the park?",
-        options: ["His teacher", "His cousin", "A new friend", "An old friend"],
+        question: "How much do humans pay for the honor of having ME watch their homes each day?",
+        options: ["$5", "$8", "$10", "$12"],
         correctAnswer: 2
       },
       {
-        question: "What game did Mr. Fluffbutt play at the playground?",
-        options: ["Tag", "Hide and seek", "Simon says", "Red light, green light"],
-        correctAnswer: 1
-      },
-      {
-        question: "What did Mr. Fluffbutt find under a tree?",
-        options: ["A toy car", "A coin", "A key", "A marble"],
-        correctAnswer: 3
-      },
-      {
-        question: "What color was the slide at the playground?",
-        options: ["Red", "Blue", "Yellow", "Green"],
+        question: "And what do those tiny ants pay per day? Obviously less than ME.",
+        options: ["$3", "$4", "$5", "$6"],
         correctAnswer: 2
       },
       {
-        question: "What did Mr. Fluffbutt have for lunch?",
-        options: ["Sandwich", "Pizza", "Hot dog", "Salad"],
-        correctAnswer: 0
+        question: "How many days am I gracing Hudson with my royal presence this week?",
+        options: ["3", "4", "5", "6"],
+        correctAnswer: 2
       },
       {
-        question: "What animal did Mr. Fluffbutt see in a tree?",
-        options: ["Bird", "Squirrel", "Butterfly", "Bee"],
+        question: "And how many days is he watching those boring ants?",
+        options: ["2", "3", "4", "5"],
         correctAnswer: 1
       },
       {
-        question: "What did Mr. Fluffbutt ride in the park?",
-        options: ["Swing", "Merry-go-round", "Seesaw", "Zip line"],
-        correctAnswer: 3
+        question: "If I earn Hudson $10 each day for 5 days, how much is that? Use your counting skills, tiny human!",
+        options: ["$40", "$45", "$50", "$55"],
+        correctAnswer: 2
       },
       {
-        question: "What time did Mr. Fluffbutt leave the park?",
-        options: ["Noon", "2 PM", "4 PM", "6 PM"],
+        question: "Now for the grand total! Add up my royal payments ($50) and those ant wages ($15). What's Hudson's total revenue?",
+        options: ["$55", "$60", "$65", "$70"],
+        correctAnswer: 2
+      },
+      {
+        question: "Expense time! How much did Hudson spend on those paper things?",
+        options: ["$1", "$2", "$3", "$4"],
+        correctAnswer: 2
+      },
+      {
+        question: "Hudson made $65 in total but spent $3 on flyers. What's his profit?",
+        options: ["$57", "$62", "$67", "$72"],
+        correctAnswer: 1
+      },
+      {
+        question: "Final question! Hudson started with $10 and made $62 in profit. How much does my apprentice have now?",
+        options: ["$52", "$62", "$72", "$82"],
         correctAnswer: 2
       }
     ],
     older: [
       {
-        question: "What type of birds did Mr. Fluffbutt see at the lake?",
-        options: ["Mallards", "Swans", "Canadian Geese", "Wood Ducks"],
+        question: "How much money does Hudson have at the beginning of the chapter?",
+        options: ["$5", "$10", "$15", "$20"],
         correctAnswer: 1
       },
       {
-        question: "How many laps did Mr. Fluffbutt walk around the lake?",
-        options: ["One", "Two", "Three", "Four"],
+        question: "If watching ME earns $10 per day and those ants pay $5, what's the difference?",
+        options: ["$3", "$4", "$5", "$6"],
         correctAnswer: 2
       },
       {
-        question: "What type of tree provided shade for Mr. Fluffbutt's picnic?",
-        options: ["Oak", "Maple", "Pine", "Willow"],
-        correctAnswer: 3
-      },
-      {
-        question: "What temperature was it at the park?",
-        options: ["65°F", "70°F", "75°F", "80°F"],
-        correctAnswer: 2
-      },
-      {
-        question: "How many other families were having picnics?",
-        options: ["Three", "Four", "Five", "Six"],
+        question: "How much would Hudson earn in 2 days of watching ME?",
+        options: ["$15", "$20", "$25", "$30"],
         correctAnswer: 1
       },
       {
-        question: "What sport were people playing on the field?",
-        options: ["Soccer", "Football", "Frisbee", "Baseball"],
-        correctAnswer: 2
-      },
-      {
-        question: "What kind of flowers were blooming near the lake?",
-        options: ["Tulips", "Daisies", "Roses", "Lilies"],
-        correctAnswer: 3
-      },
-      {
-        question: "How long did Mr. Fluffbutt stay at the park?",
-        options: ["2 hours", "3 hours", "4 hours", "5 hours"],
+        question: "If the ant farm pays $5 per day for 3 days, what's the total?",
+        options: ["$12", "$15", "$18", "$20"],
         correctAnswer: 1
       },
       {
-        question: "What musical instrument was someone playing in the park?",
-        options: ["Guitar", "Violin", "Saxophone", "Drums"],
+        question: "How much do I earn Hudson in 3 days?",
+        options: ["$20", "$25", "$30", "$35"],
         correctAnswer: 2
       },
       {
-        question: "What was the name of the park's main trail?",
-        options: ["Sunset Trail", "Lake Loop", "Forest Path", "Meadow Walk"],
+        question: "If Hudson makes $10 watching ME and $5 watching ants in one day, what's his daily total?",
+        options: ["$12", "$15", "$18", "$20"],
         correctAnswer: 1
+      },
+      {
+        question: "Add my royal payments ($50) to the ant income ($15). What's Hudson's total revenue?",
+        options: ["$55", "$60", "$65", "$70"],
+        correctAnswer: 2
+      },
+      {
+        question: "How much did Hudson spend on those flyers?",
+        options: ["$1", "$2", "$3", "$4"],
+        correctAnswer: 2
+      },
+      {
+        question: "Hudson's revenue is $65 and expenses are $3 for flyers. What's his profit?",
+        options: ["$57", "$62", "$67", "$72"],
+        correctAnswer: 1
+      },
+      {
+        question: "If Hudson had $10 at the start and made $62 in profit, what's his total now?",
+        options: ["$52", "$62", "$72", "$82"],
+        correctAnswer: 2
       }
     ]
   }
 }
 
-export default questions; 
+export { questions, responses }
+export type { Question, ChapterQuestions, ChapterResponses } 
