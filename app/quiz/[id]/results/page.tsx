@@ -89,7 +89,7 @@ export default function QuizResults() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white" />
       </div>
       
-      <div className="max-w-4xl mx-auto pt-40 p-8">
+      <div className="max-w-4xl mx-auto pt-48 p-8">
         <div className="bg-white rounded-lg shadow-lg p-8 text-center">
           <h1 className="text-3xl font-bold mb-6">Quiz Results</h1>
           

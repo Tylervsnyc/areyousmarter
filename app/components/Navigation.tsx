@@ -17,7 +17,7 @@ export default function Navigation() {
           alt="Learn Through Stories"
           width={128}
           height={128}
-          className="rounded-lg shadow-md"
+          priority
         />
       </a>
 

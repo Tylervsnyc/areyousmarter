@@ -66,7 +66,7 @@ export default function AgeSelection() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white" />
       </div>
       
-      <div className="max-w-4xl mx-auto pt-40 p-8">
+      <div className="max-w-4xl mx-auto pt-48 p-8">
         <div className="bg-white rounded-lg shadow-lg p-4 sm:p-8">
           <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-center">
             {chapterId === '2' ? (
