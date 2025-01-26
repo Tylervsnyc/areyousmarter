@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Home() {
   const chapters = [
@@ -49,22 +50,33 @@ export default function Home() {
                   : 'bg-gray-100 cursor-not-allowed'
               }`}
             >
-              <a 
-                href={chapter.available ? `/chapters/${chapter.id}` : '#'}
-                className={`block ${!chapter.available && 'pointer-events-none'}`}
-              >
-                <div className="flex justify-between items-center">
-                  <span className="font-medium">
-                    Chapter {chapter.id}: {chapter.title}
-                  </span>
-                  <span className="text-gray-600">
-                    Host: {chapter.host}
-                  </span>
-                </div>
-                {!chapter.available && (
+              {chapter.available ? (
+                <Link 
+                  href={`/chapters/${chapter.id}`}
+                  className="block"
+                >
+                  <div className="flex justify-between items-center">
+                    <span className="font-medium">
+                      Chapter {chapter.id}: {chapter.title}
+                    </span>
+                    <span className="text-gray-600">
+                      Host: {chapter.host}
+                    </span>
+                  </div>
+                </Link>
+              ) : (
+                <div className="block pointer-events-none">
+                  <div className="flex justify-between items-center">
+                    <span className="font-medium">
+                      Chapter {chapter.id}: {chapter.title}
+                    </span>
+                    <span className="text-gray-600">
+                      Host: {chapter.host}
+                    </span>
+                  </div>
                   <span className="text-sm text-gray-500">Coming Soon</span>
-                )}
-              </a>
+                </div>
+              )}
             </div>
           ))}
         </div>

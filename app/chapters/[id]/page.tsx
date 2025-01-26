@@ -2,6 +2,7 @@
 
 import { useParams, useRouter } from 'next/navigation'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export default function ChapterIntro() {
   const router = useRouter()
@@ -12,13 +13,13 @@ export default function ChapterIntro() {
     '1': {
       host: "Mr. Whiskers",
       title: "The Bike Shop",
-      intro: "Hey there! I'm Mr. Whiskers, and I'll be your host for this quiz about Mr. Fluffbutt's adventure at the bike shop! I was there when it all happened, and let me tell you, it was quite a day! Are you ready to test your knowledge about what went down at the shop?",
+      intro: "Hey there! I&apos;m Mr. Whiskers, and I&apos;ll be your host for this quiz about Mr. Fluffbutt&apos;s adventure at the bike shop! I was there when it all happened, and let me tell you, it was quite a day! Are you ready to test your knowledge about what went down at the shop?",
       image: "/images/mr-whiskers.jpg" // You'll need to add these host character images
     },
     '2': {
       host: "Ms. Paws",
       title: "The Park",
-      intro: "Well hello! I'm Ms. Paws, and I'm so excited to quiz you about Mr. Fluffbutt's day at the park! I was enjoying my afternoon nap on my favorite bench when all the excitement happened. Think you can remember all the details?",
+      intro: "Well hello! I&apos;m Ms. Paws, and I&apos;m so excited to quiz you about Mr. Fluffbutt&apos;s day at the park! I was enjoying my afternoon nap on my favorite bench when all the excitement happened. Think you can remember all the details?",
       image: "/images/ms-paws.jpg"
     }
   }
@@ -30,8 +31,8 @@ export default function ChapterIntro() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">Chapter Not Found</h1>
-          <p className="mb-4">This chapter isn't available yet. Check back soon!</p>
-          <a href="/" className="text-blue-500 hover:underline">Return Home</a>
+          <p className="mb-4">This chapter isn&apos;t available yet. Check back soon!</p>
+          <Link href="/" className="text-blue-500 hover:underline">Return Home</Link>
         </div>
       </div>
     )
