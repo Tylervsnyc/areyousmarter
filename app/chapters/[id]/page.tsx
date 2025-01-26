@@ -23,10 +23,12 @@ export default function ChapterIntro() {
 
   const chapters: ChapterData = {
     '1': {
-      host: "Mr. Whiskers",
-      title: "The Bike Shop",
-      intro: "Hey there! I&apos;m Mr. Whiskers, and I&apos;ll be your host for this quiz about Mr. Fluffbutt&apos;s adventure at the bike shop! I was there when it all happened, and let me tell you, it was quite a day! Are you ready to test your knowledge about what went down at the shop?",
-      image: "/images/mr-whiskers.jpg"
+      host: "Mr. Fluffbutt",
+      title: "Cat-Sitting Adventures",
+      intro: "*Settles on special perch with disdain* So, you want to test your mathematical abilities against mine? Ha! I suppose I can grace you with my genius while Hudson attempts to earn money for that ridiculous bike. *Flicks tail dismissively* Let's see if your human brain can handle even the simplest calculations about his... progress. *yawns*",
+      image: "/images/mrfb.jpg",
+      style: "imperial",
+      description: "A grumpy but genius white cat, perched regally on his throne while judging your mathematical abilities with his superior feline intellect."
     },
     '2': {
       host: "Mr. Fluffbutt",

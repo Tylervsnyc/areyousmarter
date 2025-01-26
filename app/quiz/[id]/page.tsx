@@ -5,6 +5,36 @@ import { useParams, useRouter } from 'next/navigation'
 import Image from 'next/image'
 import Navigation from '../../components/Navigation'
 
+interface BaseChapter {
+  host: string;
+  title: string;
+  intro: string;
+  image: string;
+  style: string;
+  description: string;
+}
+
+type ChapterData = Record<string, BaseChapter>;
+
+const chapters: ChapterData = {
+  '1': {
+    host: "Ms. Paws",
+    title: "Hudson's Bike Goal",
+    intro: "Meet Hudson, a determined young human who dreams of owning a shiny new bike. But bikes aren't cheap - this one costs $500! Hudson has decided to start a cat-sitting business to earn money. Let's help him track his progress and solve some money math problems along the way!",
+    image: "/images/ms-paws.jpg",
+    style: "friendly",
+    description: "Ms. Paws is a wise and encouraging tabby cat who loves helping young entrepreneurs understand money and math. She's excited to guide Hudson on his journey to earn enough for his dream bike!"
+  },
+  '2': {
+    host: "Mr. Fluffbutt",
+    title: "Pet-Sitting Business",
+    intro: "Greetings, tiny humans! I am Mr. Fluffbutt, the most distinguished Persian cat in all the land. *adjusts crown* I've been informed that you wish to test your mathematical prowess against my superior feline intellect. Very well, let us see if you're worthy of my attention!",
+    image: "/images/mr-fluffbutt.jpg",
+    style: "imperial",
+    description: "Mr. Fluffbutt is a regal Persian cat who considers himself royalty. Despite his sassy attitude, he secretly enjoys helping children learn math - though he'd never admit it!"
+  }
+}
+
 export default function QuizStart() {
   const [name, setName] = useState('')
   const router = useRouter()

@@ -21,6 +21,40 @@ interface ChapterResponses {
 }
 
 export const responses: Record<string, ChapterResponses> = {
+  '1': {
+    correctResponses: [
+      "Purrfectly calculated, tiny human!",
+      "Well, well... maybe you're not as hopeless as you look.",
+      "Hmph! You got lucky with that one.",
+      "Almost as smart as a cat... almost.",
+      "I suppose I'll have to make these harder next time."
+    ],
+    incorrectResponses: [
+      "Ha! Just as I suspected - no match for feline intelligence!",
+      "Even a sleeping cat could do better than that!",
+      "Try again, and this time use your human brain cells!",
+      "Meow-ch! That answer was painful!",
+      "Is that the best you can do? My litterbox has better numbers!"
+    ],
+    scoreMessages: {
+      low: [
+        "Oh dear, oh dear. Even a sleeping cat could do better!",
+        "Well, at least you tried. Unlike Hudson's chances of getting that bike."
+      ],
+      medium: [
+        "Mediocre, just like most humans. Keep practicing.",
+        "You're about as sharp as a ball of yarn. Try harder next time."
+      ],
+      high: [
+        "Not bad for a human. You might be worthy of petting me someday.",
+        "I suppose you've earned a small nod of approval. *nods regally from perch*"
+      ],
+      perfect: [
+        "Well, well... I must admit, you've impressed even this genius cat. *licks paw dismissively*",
+        "Hmph! You might be almost as smart as a cat. Almost."
+      ]
+    }
+  },
   '2': {
     correctResponses: [
       "Purrfectly calculated!",
@@ -91,106 +125,106 @@ export const questions: Record<string, ChapterQuestions> = {
   '1': {
     younger: [
       {
-        question: "What color bike did Mr. Fluffbutt want to buy?",
-        options: ["Red", "Blue", "Green", "Yellow"],
+        question: "How much money does Hudson have at the beginning of the chapter?",
+        options: ["$0", "$5", "$10", "$15"],
         correctAnswer: 0
       },
       {
-        question: "How did Mr. Fluffbutt get to the bike shop?",
-        options: ["Walked", "Took the bus", "Rode a skateboard", "Got a ride"],
+        question: "If Hudson earns $10 per day cat-sitting, how much will he earn in 2 days?",
+        options: ["$10", "$15", "$20", "$25"],
+        correctAnswer: 2
+      },
+      {
+        question: "How much does Hudson earn per hour of cat-sitting?",
+        options: ["$5", "$8", "$10", "$12"],
+        correctAnswer: 2
+      },
+      {
+        question: "If Hudson cat-sits Monday through Friday, how many days is that?",
+        options: ["3 days", "4 days", "5 days", "6 days"],
+        correctAnswer: 2
+      },
+      {
+        question: "How much could Hudson earn in one week of cat-sitting?",
+        options: ["$30", "$40", "$50", "$60"],
+        correctAnswer: 2
+      },
+      {
+        question: "If the bike costs $500, and Hudson has $10, how much more does he need?",
+        options: ["$470", "$480", "$490", "$500"],
+        correctAnswer: 2
+      },
+      {
+        question: "What percentage of his goal has Hudson reached?",
+        options: ["1%", "2%", "3%", "4%"],
         correctAnswer: 1
       },
       {
-        question: "What was the name of the bike shop owner?",
-        options: ["Mr. Whiskers", "Mr. Barks", "Mr. Paws", "Mr. Meow"],
+        question: "If Hudson saves $10 per day, how many days would it take to reach $500?",
+        options: ["40 days", "45 days", "50 days", "55 days"],
+        correctAnswer: 2
+      },
+      {
+        question: "How much would Hudson earn in 2 weeks of cat-sitting 5 days each week?",
+        options: ["$80", "$90", "$100", "$110"],
+        correctAnswer: 2
+      },
+      {
+        question: "If Hudson has $10 now, what percentage of his $500 goal does he still need to earn?",
+        options: ["95%", "96%", "97%", "98%"],
         correctAnswer: 3
-      },
-      {
-        question: "What did Mr. Fluffbutt bring to carry his new bike home?",
-        options: ["A wagon", "His dad's truck", "A rope", "Nothing"],
-        correctAnswer: 2
-      },
-      {
-        question: "What color was the bike shop's door?",
-        options: ["Blue", "Red", "Green", "Brown"],
-        correctAnswer: 1
-      },
-      {
-        question: "What was playing on the radio in the bike shop?",
-        options: ["Jazz", "Rock", "Classical", "Country"],
-        correctAnswer: 0
-      },
-      {
-        question: "What did Mr. Fluffbutt forget to bring?",
-        options: ["His wallet", "His keys", "His helmet", "His shoes"],
-        correctAnswer: 2
-      },
-      {
-        question: "Who helped Mr. Fluffbutt pick out his bike?",
-        options: ["His mom", "His dad", "His sister", "The shop owner"],
-        correctAnswer: 3
-      },
-      {
-        question: "What time did the bike shop close?",
-        options: ["5 PM", "6 PM", "7 PM", "8 PM"],
-        correctAnswer: 1
-      },
-      {
-        question: "What was special about the bike Mr. Fluffbutt chose?",
-        options: ["It had a bell", "It had a basket", "It had flames painted on it", "It had training wheels"],
-        correctAnswer: 2
       }
     ],
     older: [
       {
-        question: "How much did the red bike cost?",
-        options: ["$100", "$150", "$200", "$250"],
+        question: "If Hudson starts with $0 and earns $10 from cat-sitting, what percentage of his $500 goal has he reached?",
+        options: ["1%", "2%", "3%", "4%"],
         correctAnswer: 1
       },
       {
-        question: "What was the bike's brand name?",
-        options: ["SpeedMaster", "VeloKing", "RushRider", "SwiftCycle"],
-        correctAnswer: 2
-      },
-      {
-        question: "How many gears did the bike have?",
-        options: ["3", "5", "7", "10"],
-        correctAnswer: 3
-      },
-      {
-        question: "What size were the bike's wheels?",
-        options: ["20 inch", "24 inch", "26 inch", "28 inch"],
-        correctAnswer: 1
-      },
-      {
-        question: "What type of brakes did the bike have?",
-        options: ["Disc brakes", "Rim brakes", "Coaster brakes", "Drum brakes"],
+        question: "If Hudson cat-sits for 5 days at $10 per day, what fraction of his $500 goal will he have earned?",
+        options: ["1/10", "1/8", "1/5", "1/4"],
         correctAnswer: 0
       },
       {
-        question: "What material was the bike frame made of?",
-        options: ["Steel", "Aluminum", "Carbon fiber", "Titanium"],
+        question: "How many weeks of cat-sitting 5 days per week would it take Hudson to earn $500?",
+        options: ["8 weeks", "9 weeks", "10 weeks", "11 weeks"],
+        correctAnswer: 2
+      },
+      {
+        question: "If Hudson has earned $10 so far, what decimal represents his progress toward the $500 goal?",
+        options: ["0.01", "0.02", "0.03", "0.04"],
         correctAnswer: 1
       },
       {
-        question: "How long was the bike's warranty?",
-        options: ["6 months", "1 year", "2 years", "3 years"],
-        correctAnswer: 2
-      },
-      {
-        question: "What extra feature came free with the bike?",
-        options: ["Water bottle holder", "Bike lock", "LED lights", "Phone mount"],
-        correctAnswer: 2
-      },
-      {
-        question: "What was the bike's weight in pounds?",
-        options: ["15", "20", "25", "30"],
+        question: "If Hudson earns $10 per day for 30 days, how much more would he need to reach $500?",
+        options: ["$150", "$200", "$250", "$300"],
         correctAnswer: 1
       },
       {
-        question: "What type of handlebars did the bike have?",
-        options: ["Flat bars", "Drop bars", "Riser bars", "Bullhorn bars"],
+        question: "What is Hudson's hourly rate if he earns $10 for 2 hours of cat-sitting?",
+        options: ["$3", "$4", "$5", "$6"],
         correctAnswer: 2
+      },
+      {
+        question: "If Hudson saves 100% of his cat-sitting money, how many $10 days would it take to reach $500?",
+        options: ["40 days", "45 days", "50 days", "55 days"],
+        correctAnswer: 2
+      },
+      {
+        question: "If Hudson has $10 now, what fraction of his goal does he still need to earn?",
+        options: ["48/50", "49/50", "98/100", "99/100"],
+        correctAnswer: 1
+      },
+      {
+        question: "If Hudson earns $50 per week, how many complete weeks would it take to reach $500?",
+        options: ["8 weeks", "9 weeks", "10 weeks", "11 weeks"],
+        correctAnswer: 2
+      },
+      {
+        question: "What percentage of Hudson's $500 goal would $100 represent?",
+        options: ["15%", "20%", "25%", "30%"],
+        correctAnswer: 1
       }
     ]
   },
