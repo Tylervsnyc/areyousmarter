@@ -45,13 +45,15 @@ export default function QuizProgress({
         <div className="relative h-6 bg-gray-200 rounded-lg overflow-hidden">
           <div 
             className={`absolute h-full bg-gradient-to-r from-yellow-400 to-yellow-500 transition-all duration-500 ease-out ${
-              isCorrectAnimation ? 'animate-pulse' : ''
+              isCorrectAnimation ? 'animate-pulse scale-105 shadow-[0_0_20px_rgba(250,204,21,0.5)]' : ''
             }`}
             style={{ width: `${correctProgress}%` }}
           >
             {/* Glow Effect */}
             <div className="absolute inset-0 bg-gradient-to-t from-transparent to-white opacity-30" />
-            <div className="absolute right-0 h-full w-8 bg-gradient-to-r from-yellow-500 to-white opacity-50 blur-sm" />
+            <div className={`absolute right-0 h-full w-8 bg-gradient-to-r from-yellow-500 to-white opacity-50 blur-sm ${
+              isCorrectAnimation ? 'animate-ping' : ''
+            }`} />
           </div>
         </div>
       </div>
@@ -64,7 +66,9 @@ export default function QuizProgress({
             className={`w-2 h-2 rounded-full transition-all duration-300 ${
               index < currentQuestion - 1
                 ? index < correctAnswers 
-                  ? 'bg-yellow-400 shadow-[0_0_8px_rgba(250,204,21,0.5)]' 
+                  ? `bg-yellow-400 shadow-[0_0_8px_rgba(250,204,21,0.5)] ${
+                      isCorrectAnimation && index === correctAnswers - 1 ? 'scale-150 animate-ping' : ''
+                    }` 
                   : 'bg-blue-500'
                 : 'bg-gray-300'
             }`}
