@@ -12,266 +12,41 @@
 
 .main {
   min-height: 100vh;
-  background: #d0021b;
+  background: #F3E8FF;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: 2rem;
 }
 
-.gameTitle {
-  position: relative;
-  background: #fff;
-  padding: 3rem 4rem;
-  text-align: center;
-  width: 90%;
-  max-width: 900px;
-  border-radius: 15px;
-  border: 10px solid #FFD700;
-  box-shadow: 
-    0 0 0 10px #8B4513,
-    0 0 0 20px #FF8C00,
-    0 0 30px rgba(0,0,0,0.3);
-  animation: float 3s ease-in-out infinite;
-}
-
-.blinkingLights {
-  position: absolute;
-  top: -20px;
-  left: -20px;
-  right: -20px;
-  bottom: -20px;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.light {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background: radial-gradient(circle at center, #fff 0%, #FFD700 60%, transparent 70%);
-  border-radius: 50%;
-  animation: blink 1s infinite;
-}
-
-.gameTitle h1 {
-  font-family: 'Luckiest Guy', Impact, sans-serif;
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  line-height: 1.2;
-  text-transform: uppercase;
-  color: #FF4500;
-  text-shadow: 
-    3px 3px 0 #FFD700,
-    -1px -1px 0 #FFD700,
-    1px -1px 0 #FFD700,
-    -1px 1px 0 #FFD700,
-    1px 1px 0 #FFD700,
-    4px 4px 0px rgba(0,0,0,0.2);
-  margin: 0;
-  padding: 0;
-}
-
-.gameSign {
-  position: relative;
-  background: #fff;
-  padding: 2rem;
-  border-radius: 30px;
-  text-align: center;
-  width: 90%;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.lightBorder {
-  position: absolute;
-  top: -15px;
-  left: -15px;
-  right: -15px;
-  bottom: -15px;
-  border-radius: 40px;
-  background: #D35400;
-  z-index: -1;
-}
-
-.lightBorder::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at center, #fff 0%, #fff 30%, transparent 40%);
-  background-size: 30px 30px;
-  background-position: 0 0;
-  border-radius: 40px;
-  animation: blink 1s infinite;
-}
-
-.title {
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: bold;
-  color: #D35400;
-  font-family: 'Impact', sans-serif;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-  line-height: 1.2;
-}
-
-.subtitle {
-  font-size: clamp(1rem, 3vw, 1.5rem);
-  color: #8B4513;
-  font-family: 'Helvetica', sans-serif;
-}
-
-.header {
-  width: 100%;
-  height: 200px;
-  overflow: hidden;
-  position: relative;
-}
-
-.headerImage {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-
-.hero {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 80vh;
-  position: relative;
-}
-
-.gameShowFrame {
-  position: relative;
-  background: #fff;
-  padding: 4rem;
-  border-radius: 40px;
-}
-
-.gameShowFrame::before {
-  content: '';
-  position: absolute;
-  top: -60px;
-  left: -60px;
-  right: -60px;
-  bottom: -60px;
-  background: #8B4513;
-  border-radius: 40px;
-  z-index: -1;
-}
-
-.gameShowFrame::after {
-  content: '';
-  position: absolute;
-  top: -30px;
-  left: -30px;
-  right: -30px;
-  bottom: -30px;
-  background: #FF8C00;
-  border-radius: 40px;
-  z-index: -2;
-}
-
-.marqueeLight {
-  position: absolute;
-  width: calc(100% + 120px);
-  height: calc(100% + 120px);
-  top: -60px;
-  left: -60px;
-  pointer-events: none;
-}
-
-.marqueeLight::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at center, #fff 0%, #fff 30%, transparent 40%);
-  background-size: 40px 40px;
-  background-position: 0 0;
-  animation: blink 1s infinite;
-  opacity: 0.8;
-}
-
-.catGreeting {
+.content {
   text-align: center;
   max-width: 800px;
-  margin: 0 auto;
-  background: #fff;
-  padding: 2rem;
-  border-radius: 20px;
 }
 
-.catGreeting h1 {
-  margin-top: 1.5rem;
-  font-size: 3.5rem;
+.content h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: bold;
-  color: #D35400;
-  text-shadow: 2px 2px 0 #FFD700;
-  font-family: 'Impact', sans-serif;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+  color: #7E22CE;
+  margin-bottom: 2rem;
+  line-height: 1.2;
 }
 
-.catGreeting p {
-  margin-top: 1rem;
-  font-size: 1.5rem;
-  color: #8B4513;
-  font-family: 'Helvetica', sans-serif;
-  font-weight: bold;
-}
-
-.startButton {
-  margin-top: 2rem;
-  padding: 1rem 3rem;
-  font-size: 1.5rem;
-  background: #4CAF50;
-  border: none;
-  border-radius: 50px;
+.quizButton {
+  background: #7E22CE;
   color: white;
+  font-size: 1.5rem;
+  padding: 1rem 3rem;
+  border-radius: 9999px;
+  border: none;
   cursor: pointer;
-  font-family: 'Luckiest Guy', cursive;
-  text-transform: uppercase;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 0 #2E7D32;
+  transition: all 0.2s ease;
 }
 
-.startButton:hover {
-  transform: translateY(2px);
-  box-shadow: 0 2px 0 #2E7D32;
-  background: #43A047;
-}
-
-.hostImage {
-  border-radius: 50%;
-  border: 8px solid #D35400;
-  background-color: #fff;
-  margin-bottom: 1rem;
-  transition: transform 0.3s ease;
-}
-
-.hostImage:hover {
-  transform: scale(1.05);
-}
-
-.subImages {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.subImage {
-  border: 4px solid #FFD700;
-  border-radius: 15px;
-  transition: transform 0.3s ease;
-}
-
-.subImage:hover {
-  transform: translateY(-5px);
+.quizButton:hover {
+  background: #6B21A8;
+  transform: translateY(-2px);
 }
 
 .substackLink {
@@ -295,15 +70,6 @@
 @media (max-width: 480px) {
   .main {
     padding: 1rem;
-  }
-  
-  .gameTitle {
-    padding: 2rem;
-  }
-  
-  .light {
-    width: 15px;
-    height: 15px;
   }
   
   .substackLink {
