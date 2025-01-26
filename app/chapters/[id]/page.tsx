@@ -32,7 +32,7 @@ export default function ChapterIntro() {
       host: "Mr. Fluffbutt",
       title: "Pet-Sitting Business",
       intro: "*Settles regally on velvet throne* Welcome, tiny humans, to my kingdom of knowledge! I, the great Mr. Fluffbutt, shall test your understanding of basic mathematics and business acumen. After all, I am the star attraction of Hudson&apos;s pet-sitting enterprise. *Adjusts crown with paw* Do you dare to challenge the greatest feline mind of our time?",
-      image: "/images/mr-fluffbutt.jpg",
+      image: "/images/mrfb.jpg",
       style: "imperial",
       description: "A grumpy Persian cat who considers himself royalty, sitting on a velvet throne and judging your math skills with imperial flair."
     }

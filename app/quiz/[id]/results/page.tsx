@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
+import Image from 'next/image'
+import Navigation from '../../../components/Navigation'
 
 export default function QuizResults() {
   const [userName, setUserName] = useState('')
@@ -73,51 +75,68 @@ export default function QuizResults() {
   }
 
   return (
-    <main className="max-w-4xl mx-auto p-8">
-      <div className="bg-white rounded-lg shadow-lg p-8 text-center">
-        <h1 className="text-3xl font-bold mb-6">Quiz Results</h1>
-        
-        <p className="text-xl mb-4">
-          Hi {userName}! You scored:
-        </p>
-        
-        <div className="text-4xl font-bold mb-8">
-          {score} out of 10
+    <main className="relative min-h-screen bg-gradient-to-b from-purple-50 to-white">
+      <Navigation />
+      
+      {chapterId === '2' && (
+        <div className="absolute top-0 left-0 w-full h-48">
+          <Image
+            src="/images/header.jpg"
+            alt="Royal Header"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white" />
         </div>
+      )}
+      
+      <div className="max-w-4xl mx-auto pt-24 p-8">
+        <div className="bg-white rounded-lg shadow-lg p-8 text-center">
+          <h1 className="text-3xl font-bold mb-6">Quiz Results</h1>
+          
+          <p className="text-xl mb-4">
+            Hi {userName}! You scored:
+          </p>
+          
+          <div className="text-4xl font-bold mb-8">
+            {score} out of 10
+          </div>
 
-        {score === 10 ? (
-          <div className="space-y-6">
-            <p className="text-green-600 text-xl">
-              🎉 Perfect Score! You&apos;ve earned a certificate! 🎉
+          {score === 10 ? (
+            <div className="space-y-6">
+              <p className="text-green-600 text-xl">
+                🎉 Perfect Score! You&apos;ve earned a certificate! 🎉
+              </p>
+              
+              <button
+                onClick={generateCertificate}
+                className="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition-colors"
+              >
+                Download Certificate
+              </button>
+            </div>
+          ) : (
+            <p className="text-gray-600">
+              Keep practicing! You need all 10 correct answers to earn a certificate.
             </p>
+          )}
+
+          <div className="mt-8 space-x-4">
+            <button
+              onClick={() => router.push(`/quiz/${chapterId}`)}
+              className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors"
+            >
+              Try Again
+            </button>
             
             <button
-              onClick={generateCertificate}
-              className="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition-colors"
+              onClick={() => router.push('/')}
+              className="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition-colors"
             >
-              Download Certificate
+              Back to Home
             </button>
           </div>
-        ) : (
-          <p className="text-gray-600">
-            Keep practicing! You need all 10 correct answers to earn a certificate.
-          </p>
-        )}
-
-        <div className="mt-8 space-x-4">
-          <button
-            onClick={() => router.push(`/quiz/${chapterId}`)}
-            className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors"
-          >
-            Try Again
-          </button>
-          
-          <button
-            onClick={() => router.push('/')}
-            className="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition-colors"
-          >
-            Back to Home
-          </button>
         </div>
       </div>
     </main>

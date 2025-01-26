@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
+import Image from 'next/image'
 import Navigation from '../../../components/Navigation'
 
 export default function AgeSelection() {
@@ -21,10 +22,10 @@ export default function AgeSelection() {
       ]
     },
     '2': {
-      host: "Ms. Paws",
+      host: "Mr. Fluffbutt",
       sassyResponses: [
-        "*adjusts reading glasses* My my, we've got quite the comedian here! But darling, I've napped through better jokes at the park. Your actual age, please?",
-        "Oh sweetie, I may be old, but I wasn't born yesterday! Let's be serious now, shall we?"
+        "*Flicks tail dismissively* A jester in my royal court? How... amusing. Now, tiny human, shall we try again with your ACTUAL age?",
+        "*Rolls eyes regally* Even my afternoon naps are more serious than this. Your real age, if you please, before I summon the royal guard!"
       ]
     }
   }
@@ -54,23 +55,55 @@ export default function AgeSelection() {
     <main className="relative min-h-screen bg-gradient-to-b from-purple-50 to-white">
       <Navigation />
       
+      {chapterId === '2' && (
+        <div className="absolute top-0 left-0 w-full h-48">
+          <Image
+            src="/images/header.jpg"
+            alt="Royal Header"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white" />
+        </div>
+      )}
+      
       <div className="max-w-4xl mx-auto pt-24 p-8">
         <div className="bg-white rounded-lg shadow-lg p-8">
-          <h1 className="text-3xl font-bold mb-6 text-center">Hi {userName}!</h1>
+          <h1 className="text-3xl font-bold mb-6 text-center">
+            {chapterId === '2' ? (
+              <>Greetings, {userName}! <span className="text-yellow-600">*adjusts crown*</span></>
+            ) : (
+              <>Hi {userName}!</>
+            )}
+          </h1>
           
           {sassyMessage && (
-            <div className="mb-8 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+            <div className={`mb-8 p-4 rounded-lg ${
+              chapterId === '2' 
+                ? 'bg-yellow-50 border border-yellow-200' 
+                : 'bg-blue-50 border border-blue-200'
+            }`}>
               <p className="text-lg text-center italic">{sassyMessage}</p>
             </div>
           )}
 
-          <p className="text-xl mb-8 text-center">What age group are you in?</p>
+          <p className="text-xl mb-8 text-center">
+            {chapterId === '2' 
+              ? "State your age bracket, tiny subject of my mathematical kingdom!"
+              : "What age group are you in?"
+            }
+          </p>
 
           <div className="space-y-4">
             {goofAttempts < 2 && (
               <button
                 onClick={() => handleAgeSelection('baby')}
-                className="w-full p-4 text-left border rounded-lg hover:bg-gray-50 transition-colors"
+                className={`w-full p-4 text-left border rounded-lg transition-colors ${
+                  chapterId === '2'
+                    ? 'hover:bg-yellow-50 hover:border-yellow-300'
+                    : 'hover:bg-gray-50'
+                }`}
               >
                 I&apos;m a Little-Biddy-Baby WAH-WAH
               </button>
@@ -78,14 +111,22 @@ export default function AgeSelection() {
 
             <button
               onClick={() => handleAgeSelection('5-7')}
-              className="w-full p-4 text-left border rounded-lg hover:bg-gray-50 transition-colors"
+              className={`w-full p-4 text-left border rounded-lg transition-colors ${
+                chapterId === '2'
+                  ? 'hover:bg-yellow-50 hover:border-yellow-300'
+                  : 'hover:bg-gray-50'
+              }`}
             >
               5-7 years old
             </button>
             
             <button
               onClick={() => handleAgeSelection('8-9')}
-              className="w-full p-4 text-left border rounded-lg hover:bg-gray-50 transition-colors"
+              className={`w-full p-4 text-left border rounded-lg transition-colors ${
+                chapterId === '2'
+                  ? 'hover:bg-yellow-50 hover:border-yellow-300'
+                  : 'hover:bg-gray-50'
+              }`}
             >
               8-9 years old
             </button>
@@ -93,7 +134,11 @@ export default function AgeSelection() {
             {goofAttempts < 2 && (
               <button
                 onClick={() => handleAgeSelection('ship')}
-                className="w-full p-4 text-left border rounded-lg hover:bg-gray-50 transition-colors"
+                className={`w-full p-4 text-left border rounded-lg transition-colors ${
+                  chapterId === '2'
+                    ? 'hover:bg-yellow-50 hover:border-yellow-300'
+                    : 'hover:bg-gray-50'
+                }`}
               >
                 I&apos;m an Old, Old Wooden Ship
               </button>
@@ -102,7 +147,10 @@ export default function AgeSelection() {
 
           {goofAttempts >= 2 && (
             <p className="mt-6 text-sm text-center text-gray-500">
-              Okay, okay! Let&apos;s be serious now. Pick your real age group!
+              {chapterId === '2'
+                ? "*Sighs dramatically* Very well, let's proceed with your ACTUAL age group, shall we?"
+                : "Okay, okay! Let's be serious now. Pick your real age group!"
+              }
             </p>
           )}
         </div>
