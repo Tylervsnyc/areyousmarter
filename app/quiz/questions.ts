@@ -20,7 +20,7 @@ interface ChapterResponses {
   };
 }
 
-const responses: Record<string, ChapterResponses> = {
+export const responses: Record<string, ChapterResponses> = {
   '2': {
     correctResponses: [
       "Purrfectly calculated!",
@@ -87,7 +87,7 @@ const responses: Record<string, ChapterResponses> = {
   }
 }
 
-const questions: Record<string, ChapterQuestions> = {
+export const questions: Record<string, ChapterQuestions> = {
   '1': {
     younger: [
       {
@@ -302,5 +302,4 @@ const questions: Record<string, ChapterQuestions> = {
   }
 }
 
-export { questions, responses }
 export type { Question, ChapterQuestions, ChapterResponses } 
