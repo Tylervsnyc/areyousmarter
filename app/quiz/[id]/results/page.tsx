@@ -44,18 +44,11 @@ export default function QuizResults() {
       ctx.fillStyle = '#000'
       ctx.textAlign = 'center'
 
-      // Add name
+      // Add all text on one line
       ctx.font = 'bold 48px Arial'
-      ctx.fillText(userName, canvas.width / 2, canvas.height / 2)
-
-      // Add chapter
-      ctx.font = '36px Arial'
-      ctx.fillText(`Chapter ${chapterId}`, canvas.width / 2, canvas.height / 2 + 60)
-
-      // Add date
       const date = new Date().toLocaleDateString()
-      ctx.font = '24px Arial'
-      ctx.fillText(date, canvas.width / 2, canvas.height / 2 + 120)
+      const certificateText = `${userName}, Chapter ${chapterId}, ${date}`
+      ctx.fillText(certificateText, canvas.width / 2, canvas.height / 2)
 
       // Download certificate
       const link = document.createElement('a')
@@ -99,24 +92,19 @@ export default function QuizResults() {
             {score} out of 10
           </div>
 
-          {score === 10 ? (
-            <div className="space-y-6">
-              <p className="text-green-600 text-xl">
-                🎉 Perfect Score! You&apos;ve earned a certificate! 🎉
-              </p>
-              
-              <button
-                onClick={generateCertificate}
-                className="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition-colors"
-              >
-                Download Certificate
-              </button>
-            </div>
-          ) : (
-            <p className="text-gray-600">
-              Keep practicing! You need all 10 correct answers to earn a certificate.
+          {/* Temporarily show certificate option always for testing */}
+          <div className="space-y-6">
+            <p className="text-green-600 text-xl">
+              Testing Certificate Generation
             </p>
-          )}
+            
+            <button
+              onClick={generateCertificate}
+              className="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition-colors"
+            >
+              Download Test Certificate
+            </button>
+          </div>
 
           <div className="mt-8 space-x-4">
             <button
