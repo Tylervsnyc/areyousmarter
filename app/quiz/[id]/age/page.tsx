@@ -55,18 +55,16 @@ export default function AgeSelection() {
     <main className="relative min-h-screen bg-gradient-to-b from-purple-50 to-white">
       <Navigation />
       
-      {chapterId === '2' && (
-        <div className="absolute top-0 left-0 w-full h-48">
-          <Image
-            src="/images/header.jpg"
-            alt="Royal Header"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white" />
-        </div>
-      )}
+      <div className="absolute top-0 left-0 w-full h-48">
+        <Image
+          src="/images/header.jpg"
+          alt="Chapter Header"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white" />
+      </div>
       
       <div className="max-w-4xl mx-auto pt-24 p-8">
         <div className="bg-white rounded-lg shadow-lg p-8">
