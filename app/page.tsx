@@ -10,14 +10,14 @@ export default function Home() {
   const chapters = [
     {
       id: 1,
-      title: "The Bike Shop",
-      host: "Mr. Whiskers",
+      title: "Help Me Get This Bike!",
+      host: "Mr. Fluffbutt",
       available: true,
     },
     {
       id: 2,
-      title: "The Park",
-      host: "Ms. Paws",
+      title: "A Big Three Dollar Gamble",
+      host: "Mr. Fluffbutt",
       available: true,
     },
     ...Array(8).fill(null).map((_, index) => ({

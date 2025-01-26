@@ -101,7 +101,7 @@ export default function QuizQuestions() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white" />
       </div>
       
-      <div className="max-w-4xl mx-auto pt-48 p-4 sm:p-8">
+      <div className="max-w-4xl mx-auto pt-56 p-4 sm:p-8">
         <div className="bg-white rounded-lg shadow-lg p-4 sm:p-8">
           <div className="flex justify-between items-center mb-4 sm:mb-6">
             <h2 className="text-lg sm:text-xl font-semibold">Chapter {chapterId}</h2>
