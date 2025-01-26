@@ -15,8 +15,8 @@ export default function Navigation() {
         <Image 
           src="/images/logo.png"
           alt="Learn Through Stories"
-          width={64}
-          height={64}
+          width={128}
+          height={128}
           className="rounded-lg shadow-md"
         />
       </a>
@@ -31,8 +31,8 @@ export default function Navigation() {
         <Image 
           src="/images/substack.jpg" 
           alt="Subscribe to Learn Through Stories" 
-          width={64}
-          height={64}
+          width={80}
+          height={80}
           className="rounded-lg shadow-md"
         />
       </a>

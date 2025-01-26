@@ -59,7 +59,7 @@ export default function ChapterIntro() {
     <main className="relative min-h-screen bg-gradient-to-b from-purple-50 to-white">
       <Navigation />
       
-      <div className="absolute top-0 left-0 w-full h-48">
+      <div className="absolute top-0 left-0 w-full h-32">
         <Image
           src="/images/header.jpg"
           alt="Chapter Header"
@@ -70,7 +70,7 @@ export default function ChapterIntro() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white" />
       </div>
       
-      <div className="max-w-4xl mx-auto pt-24 p-8">
+      <div className="max-w-4xl mx-auto pt-36 p-8">
         <div className="bg-white rounded-lg shadow-lg p-8">
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold mb-2 px-4">Chapter {chapterId}: {chapter.title}</h1>
