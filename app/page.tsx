@@ -2,47 +2,18 @@ import Image from 'next/image'
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-purple-100 flex flex-col items-center justify-center p-4">
-      {/* Substack Link */}
-      <a 
-        href="https://substack.com/@tylervschwartz" 
-        className="fixed top-4 right-4 transition-transform hover:scale-105"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Image
-          src="/images/substack.jpg"
-          alt="Follow on Substack"
-          width={50}
-          height={50}
-          className="rounded-lg shadow-md"
-        />
-      </a>
-
-      <div className="max-w-4xl mx-auto text-center">
-        {/* Profile Image */}
-        <div className="mb-8">
-          <Image
-            src="/images/mrfb.jpg"
-            alt="Mr. Fluffbutt"
-            width={200}
-            height={200}
-            className="rounded-full border-4 border-purple-600 mx-auto"
-            priority
-          />
-        </div>
-
-        <h1 className="text-4xl md:text-5xl font-bold text-purple-800 mb-8">
-          So You Think You&apos;re Smarter Than Mr. Fluffbutt?
+    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-purple-100">
+      <div className="container mx-auto px-4 py-16 flex flex-col items-center justify-center min-h-screen">
+        <h1 className="text-4xl md:text-6xl font-bold text-purple-800 text-center mb-12 leading-tight">
+          Are You Smarter Than<br />Mr. Fluffbutt?
         </h1>
-        
         <button 
-          className="bg-purple-600 text-white px-8 py-4 rounded-full text-xl font-semibold hover:bg-purple-700 transition-all hover:-translate-y-1"
           onClick={() => window.location.href = '/quiz'}
+          className="bg-purple-600 hover:bg-purple-700 text-white text-xl md:text-2xl font-semibold px-12 py-4 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200"
         >
           Take the Quiz!
         </button>
       </div>
-    </main>
+    </div>
   )
 }
