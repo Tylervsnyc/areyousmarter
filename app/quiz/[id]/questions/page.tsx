@@ -9,8 +9,10 @@ import QuizProgress from '../../../components/QuizProgress'
 export default function QuizQuestions() {
   const [userName, setUserName] = useState('')
   const [ageGroup, setAgeGroup] = useState<'5-7' | '8-9' | null>(null)
-  const [currentQuestion, setCurrentQuestion] = useState(0)
+  const [currentQuestion, setCurrentQuestion] = useState(1)
   const [answers, setAnswers] = useState<number[]>([])
+  const [correctAnswers, setCorrectAnswers] = useState(0)
+  const [showCorrectAnimation, setShowCorrectAnimation] = useState(false)
   const router = useRouter()
   const params = useParams()
   const chapterId = params.id as string
@@ -33,22 +35,29 @@ export default function QuizQuestions() {
   }
 
   const chapterQuestions = questions[chapterId][ageGroup === '5-7' ? 'younger' : 'older']
-  const currentQuestionData = chapterQuestions[currentQuestion]
+  const currentQuestionData = chapterQuestions[currentQuestion - 1]
 
   const handleAnswer = (answerIndex: number) => {
     const newAnswers = [...answers, answerIndex]
     setAnswers(newAnswers)
 
-    if (currentQuestion + 1 < chapterQuestions.length) {
+    // Check if answer is correct
+    if (answerIndex === currentQuestionData.correctAnswer) {
+      setCorrectAnswers(prev => prev + 1)
+      setShowCorrectAnimation(true)
+      setTimeout(() => setShowCorrectAnimation(false), 1000)
+    }
+
+    if (currentQuestion < chapterQuestions.length) {
       setCurrentQuestion(currentQuestion + 1)
     } else {
-      // Calculate score
-      const score = newAnswers.reduce((total, answer, index) => {
+      // Calculate final score
+      const finalScore = newAnswers.reduce((total, answer, index) => {
         return total + (answer === chapterQuestions[index].correctAnswer ? 1 : 0)
       }, 0)
 
       // Store score and redirect to results
-      sessionStorage.setItem('quizScore', score.toString())
+      sessionStorage.setItem('quizScore', finalScore.toString())
       router.push(`/quiz/${chapterId}/results`)
     }
   }
@@ -65,8 +74,10 @@ export default function QuizQuestions() {
           </div>
 
           <QuizProgress 
-            currentQuestion={currentQuestion + 1} 
-            totalQuestions={chapterQuestions.length} 
+            currentQuestion={currentQuestion} 
+            correctAnswers={correctAnswers}
+            totalQuestions={chapterQuestions.length}
+            isCorrectAnimation={showCorrectAnimation}
           />
 
           <div className="mb-8">

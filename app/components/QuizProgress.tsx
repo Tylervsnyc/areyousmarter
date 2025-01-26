@@ -2,45 +2,70 @@
 
 interface QuizProgressProps {
   currentQuestion: number;
+  correctAnswers: number;
   totalQuestions: number;
+  isCorrectAnimation?: boolean;
 }
 
-export default function QuizProgress({ currentQuestion, totalQuestions }: QuizProgressProps) {
-  const progress = (currentQuestion / totalQuestions) * 100
+export default function QuizProgress({ 
+  currentQuestion, 
+  correctAnswers,
+  totalQuestions,
+  isCorrectAnimation 
+}: QuizProgressProps) {
+  const questionProgress = ((currentQuestion - 1) / totalQuestions) * 100
+  const correctProgress = (correctAnswers / totalQuestions) * 100
 
   return (
     <div className="w-full mb-8">
-      {/* Progress Container */}
-      <div className="relative h-8 bg-gray-200 rounded-lg overflow-hidden transform rotate-[-4deg] shadow-[0_4px_0_0_rgba(0,0,0,0.1)]">
-        {/* 3D Effect Bottom Layer */}
-        <div className="absolute inset-0 bg-gray-300 transform translate-y-[2px]" />
-        
-        {/* Progress Bar */}
-        <div 
-          className="absolute h-full bg-gradient-to-r from-blue-500 to-blue-600 transition-all duration-500 ease-out"
-          style={{ width: `${progress}%` }}
-        >
-          {/* Glow Effect */}
-          <div className="absolute inset-0 bg-gradient-to-t from-transparent to-white opacity-30" />
-          <div className="absolute right-0 h-full w-8 bg-gradient-to-r from-blue-600 to-white opacity-50 blur-sm" />
+      {/* Questions Progress */}
+      <div className="mb-4">
+        <div className="flex justify-between text-sm text-gray-600 mb-1">
+          <span>Questions Answered</span>
+          <span>{currentQuestion - 1} of {totalQuestions}</span>
         </div>
+        <div className="relative h-6 bg-gray-200 rounded-lg overflow-hidden">
+          <div 
+            className="absolute h-full bg-gradient-to-r from-blue-500 to-blue-600 transition-all duration-500 ease-out"
+            style={{ width: `${questionProgress}%` }}
+          >
+            {/* Glow Effect */}
+            <div className="absolute inset-0 bg-gradient-to-t from-transparent to-white opacity-30" />
+            <div className="absolute right-0 h-full w-8 bg-gradient-to-r from-blue-600 to-white opacity-50 blur-sm" />
+          </div>
+        </div>
+      </div>
 
-        {/* Question Counter */}
-        <div className="absolute inset-0 flex items-center justify-center transform rotate-[4deg]">
-          <span className="text-sm font-bold text-gray-700">
-            Question {currentQuestion} of {totalQuestions}
-          </span>
+      {/* Correct Answers Progress */}
+      <div>
+        <div className="flex justify-between text-sm text-gray-600 mb-1">
+          <span>Correct Answers</span>
+          <span>{correctAnswers} of {totalQuestions}</span>
+        </div>
+        <div className="relative h-6 bg-gray-200 rounded-lg overflow-hidden">
+          <div 
+            className={`absolute h-full bg-gradient-to-r from-yellow-400 to-yellow-500 transition-all duration-500 ease-out ${
+              isCorrectAnimation ? 'animate-pulse' : ''
+            }`}
+            style={{ width: `${correctProgress}%` }}
+          >
+            {/* Glow Effect */}
+            <div className="absolute inset-0 bg-gradient-to-t from-transparent to-white opacity-30" />
+            <div className="absolute right-0 h-full w-8 bg-gradient-to-r from-yellow-500 to-white opacity-50 blur-sm" />
+          </div>
         </div>
       </div>
 
       {/* Progress Markers */}
-      <div className="flex justify-between px-2 mt-2">
+      <div className="flex justify-between px-2 mt-4">
         {Array.from({ length: totalQuestions }).map((_, index) => (
           <div 
             key={index}
-            className={`w-3 h-3 rounded-full transform translate-y-[-4px] ${
-              index < currentQuestion 
-                ? 'bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]' 
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              index < currentQuestion - 1
+                ? index < correctAnswers 
+                  ? 'bg-yellow-400 shadow-[0_0_8px_rgba(250,204,21,0.5)]' 
+                  : 'bg-blue-500'
                 : 'bg-gray-300'
             }`}
           />
