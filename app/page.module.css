@@ -1,12 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+
 @keyframes blink {
-  0% { opacity: 1; }
+  0%, 100% { opacity: 1; }
   50% { opacity: 0.2; }
-  100% { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
 }
 
 .main {
   min-height: 100vh;
-  background: #1a1a1a;
+  background: #d0021b;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,83 +27,46 @@
   width: 90%;
   max-width: 900px;
   border-radius: 15px;
+  border: 10px solid #FFD700;
+  box-shadow: 
+    0 0 0 10px #8B4513,
+    0 0 0 20px #FF8C00,
+    0 0 30px rgba(0,0,0,0.3);
+  animation: float 3s ease-in-out infinite;
 }
 
-/* Innermost yellow border */
-.gameTitle::before {
-  content: '';
+.blinkingLights {
   position: absolute;
-  top: -15px;
-  left: -15px;
-  right: -15px;
-  bottom: -15px;
-  background: #FFD700;
-  border-radius: 20px;
-  z-index: -1;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+  pointer-events: none;
+  z-index: 1;
 }
 
-/* Brown border */
-.gameTitle::after {
-  content: '';
+.light {
   position: absolute;
-  top: -30px;
-  left: -30px;
-  right: -30px;
-  bottom: -30px;
-  background: #8B4513;
-  border-radius: 25px;
-  z-index: -2;
-}
-
-/* Orange border */
-.gameTitle {
-  --orange-border: #FF8C00;
-}
-
-.gameTitle::before, 
-.gameTitle::after {
-  content: '';
-  position: absolute;
-  z-index: -3;
-}
-
-/* Create multiple borders using multiple elements */
-.gameTitle::before {
-  top: -45px;
-  left: -45px;
-  right: -45px;
-  bottom: -45px;
-  background: var(--orange-border);
-  border-radius: 30px;
-}
-
-/* Outer gray border with lights */
-.gameTitle::after {
-  top: -60px;
-  left: -60px;
-  right: -60px;
-  bottom: -60px;
-  background: 
-    radial-gradient(circle at center, #fff 0%, #fff 35%, transparent 45%) 0 0 / 25px 25px,
-    #808080;
-  border-radius: 35px;
-  animation: blink 0.8s infinite;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle at center, #fff 0%, #FFD700 60%, transparent 70%);
+  border-radius: 50%;
+  animation: blink 1s infinite;
 }
 
 .gameTitle h1 {
-  font-family: Impact, sans-serif;
-  font-size: clamp(2.5rem, 8vw, 5rem);
-  line-height: 1.1;
+  font-family: 'Luckiest Guy', Impact, sans-serif;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  line-height: 1.2;
   text-transform: uppercase;
-  background: linear-gradient(to bottom, #FF4500 50%, #8B4513 50%);
-  -webkit-background-clip: text;
-  color: transparent;
+  color: #FF4500;
   text-shadow: 
-    2px 2px 0 #FFD700,
-    -2px -2px 0 #FFD700,
-    2px -2px 0 #FFD700,
-    -2px 2px 0 #FFD700;
-  letter-spacing: 3px;
+    3px 3px 0 #FFD700,
+    -1px -1px 0 #FFD700,
+    1px -1px 0 #FFD700,
+    -1px 1px 0 #FFD700,
+    1px 1px 0 #FFD700,
+    4px 4px 0px rgba(0,0,0,0.2);
   margin: 0;
   padding: 0;
 }
@@ -259,21 +228,21 @@
   margin-top: 2rem;
   padding: 1rem 3rem;
   font-size: 1.5rem;
-  background: #FFD700;
-  border: 4px solid #D35400;
-  border-radius: 15px;
-  color: #8B4513;
+  background: #4CAF50;
+  border: none;
+  border-radius: 50px;
+  color: white;
   cursor: pointer;
-  font-weight: bold;
-  transition: all 0.3s ease;
+  font-family: 'Luckiest Guy', cursive;
   text-transform: uppercase;
-  box-shadow: 0 6px 0 #8B4513;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 0 #2E7D32;
 }
 
 .startButton:hover {
-  transform: translateY(3px);
-  box-shadow: 0 3px 0 #8B4513;
-  background: #FFA500;
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #2E7D32;
+  background: #43A047;
 }
 
 .hostImage {
@@ -332,36 +301,11 @@
     padding: 2rem;
   }
   
-  .gameTitle::before {
-    top: -30px;
-    left: -30px;
-    right: -30px;
-    bottom: -30px;
+  .light {
+    width: 15px;
+    height: 15px;
   }
   
-  .gameTitle::after {
-    top: -45px;
-    left: -45px;
-    right: -45px;
-    bottom: -45px;
-    background-size: 20px 20px;
-  }
-  
-  .gameSign {
-    padding: 1.5rem;
-  }
-  
-  .lightBorder {
-    top: -10px;
-    left: -10px;
-    right: -10px;
-    bottom: -10px;
-  }
-
-  .lightBorder::before {
-    background-size: 20px 20px;
-  }
-
   .substackLink {
     top: 10px;
     right: 10px;

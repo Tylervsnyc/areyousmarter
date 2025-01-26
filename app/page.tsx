@@ -13,8 +13,25 @@ export default function Home() {
           className={styles.substackIcon}
         />
       </a>
+      
       <div className={styles.gameTitle}>
+        <div className={styles.blinkingLights}>
+          {[...Array(30)].map((_, i) => (
+            <div
+              key={i}
+              className={styles.light}
+              style={{
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 1.5}s`,
+              }}
+            />
+          ))}
+        </div>
         <h1>Are You Smarter<br />Than Mr. Fluffbutt?</h1>
+        <button className={styles.startButton}>
+          Start The Challenge!
+        </button>
       </div>
     </main>
   )
