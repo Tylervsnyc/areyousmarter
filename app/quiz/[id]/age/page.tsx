@@ -7,9 +7,27 @@ import Navigation from '../../../components/Navigation'
 export default function AgeSelection() {
   const [userName, setUserName] = useState('')
   const [goofAttempts, setGoofAttempts] = useState(0)
+  const [sassyMessage, setSassyMessage] = useState('')
   const router = useRouter()
   const params = useParams()
-  const chapterId = params.id
+  const chapterId = params.id as string
+
+  const chapters = {
+    '1': {
+      host: "Mr. Whiskers",
+      sassyResponses: [
+        "Oh, aren't you just HILARIOUS! Almost as funny as that time Mr. Fluffbutt tried to pay for his bike with belly rubs. Now, how about your REAL age?",
+        "Listen here, you little jokester! Even Mr. Fluffbutt knows when to be serious... sometimes. Let's try this ONE more time!"
+      ]
+    },
+    '2': {
+      host: "Ms. Paws",
+      sassyResponses: [
+        "*adjusts reading glasses* My my, we've got quite the comedian here! But darling, I've napped through better jokes at the park. Your actual age, please?",
+        "Oh sweetie, I may be old, but I wasn't born yesterday! Let's be serious now, shall we?"
+      ]
+    }
+  }
 
   useEffect(() => {
     const name = sessionStorage.getItem('userName')
@@ -20,30 +38,11 @@ export default function AgeSelection() {
     setUserName(name)
   }, [chapterId, router])
 
-  const chapters = {
-    '1': {
-      host: "Mr. Whiskers",
-      sassyResponses: [
-        "Oh, come on now! I may be a cat, but even I can tell you're pulling my whiskers! Let's try this again...",
-        "Alright, you little jokester! Time to get serious - I've got quiz questions waiting!"
-      ]
-    },
-    '2': {
-      host: "Ms. Paws",
-      sassyResponses: [
-        "*adjusts reading glasses* My my, aren't we feeling silly today? Let's try picking your real age this time!",
-        "As much as I enjoy a good laugh during my afternoon nap, we should probably get to the actual quiz!"
-      ]
-    }
-  }
-
-  const chapter = chapters[chapterId as keyof typeof chapters]
-
   const handleAgeSelection = (selection: string) => {
     if (selection === 'baby' || selection === 'ship') {
-      if (goofAttempts < 2) {
-        setGoofAttempts(prev => prev + 1)
-      }
+      const chapter = chapters[chapterId as keyof typeof chapters]
+      setSassyMessage(chapter.sassyResponses[Math.min(goofAttempts, 1)])
+      setGoofAttempts(prev => prev + 1)
       return
     }
 
@@ -59,15 +58,13 @@ export default function AgeSelection() {
         <div className="bg-white rounded-lg shadow-lg p-8">
           <h1 className="text-3xl font-bold mb-6 text-center">Hi {userName}!</h1>
           
-          {goofAttempts > 0 && (
-            <div className="mb-8 p-4 bg-yellow-50 rounded-lg">
-              <p className="text-lg text-center italic">
-                {chapter.sassyResponses[Math.min(goofAttempts - 1, 1)]}
-              </p>
+          {sassyMessage && (
+            <div className="mb-8 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+              <p className="text-lg text-center italic">{sassyMessage}</p>
             </div>
           )}
 
-          <p className="text-lg mb-6 text-center">What age group are you in?</p>
+          <p className="text-xl mb-8 text-center">What age group are you in?</p>
 
           <div className="space-y-4">
             {goofAttempts < 2 && (
@@ -102,6 +99,12 @@ export default function AgeSelection() {
               </button>
             )}
           </div>
+
+          {goofAttempts >= 2 && (
+            <p className="mt-6 text-sm text-center text-gray-500">
+              Okay, okay! Let&apos;s be serious now. Pick your real age group!
+            </p>
+          )}
         </div>
       </div>
     </main>
