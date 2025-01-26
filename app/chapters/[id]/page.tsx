@@ -3,6 +3,7 @@
 import { useParams, useRouter } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
+import Navigation from '../../components/Navigation'
 
 export default function ChapterIntro() {
   const router = useRouter()
@@ -29,6 +30,7 @@ export default function ChapterIntro() {
   if (!chapter) {
     return (
       <div className="min-h-screen flex items-center justify-center">
+        <Navigation />
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">Chapter Not Found</h1>
           <p className="mb-4">This chapter isn&apos;t available yet. Check back soon!</p>
@@ -39,37 +41,41 @@ export default function ChapterIntro() {
   }
 
   return (
-    <main className="max-w-4xl mx-auto p-8">
-      <div className="bg-white rounded-lg shadow-lg p-8">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold mb-2">Chapter {chapterId}: {chapter.title}</h1>
-          <h2 className="text-xl text-gray-600">with {chapter.host}</h2>
-        </div>
-
-        <div className="flex flex-col items-center mb-8">
-          <div className="relative w-48 h-48 mb-6">
-            <Image
-              src={chapter.image}
-              alt={chapter.host}
-              fill
-              className="object-cover rounded-full"
-            />
+    <main className="relative min-h-screen bg-gradient-to-b from-purple-50 to-white">
+      <Navigation />
+      
+      <div className="max-w-4xl mx-auto pt-24 p-8">
+        <div className="bg-white rounded-lg shadow-lg p-8">
+          <div className="text-center mb-8">
+            <h1 className="text-3xl font-bold mb-2">Chapter {chapterId}: {chapter.title}</h1>
+            <h2 className="text-xl text-gray-600">with {chapter.host}</h2>
           </div>
 
-          <div className="max-w-2xl mx-auto">
-            <p className="text-lg mb-8 text-center">
-              {chapter.intro}
-            </p>
-          </div>
-        </div>
+          <div className="flex flex-col items-center mb-8">
+            <div className="relative w-48 h-48 mb-6">
+              <Image
+                src={chapter.image}
+                alt={chapter.host}
+                fill
+                className="object-cover rounded-full"
+              />
+            </div>
 
-        <div className="flex justify-center">
-          <button
-            onClick={() => router.push(`/quiz/${chapterId}`)}
-            className="bg-blue-500 text-white px-8 py-3 rounded-lg text-lg hover:bg-blue-600 transition-colors"
-          >
-            Begin the Quiz!
-          </button>
+            <div className="max-w-2xl mx-auto">
+              <p className="text-lg mb-8 text-center">
+                {chapter.intro}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex justify-center">
+            <button
+              onClick={() => router.push(`/quiz/${chapterId}`)}
+              className="bg-blue-500 text-white px-8 py-3 rounded-lg text-lg hover:bg-blue-600 transition-all hover:scale-105"
+            >
+              Begin the Quiz!
+            </button>
+          </div>
         </div>
       </div>
     </main>
