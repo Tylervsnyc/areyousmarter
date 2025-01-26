@@ -17,39 +17,71 @@
   position: relative;
   background: #fff;
   padding: 3rem 4rem;
-  border-radius: 40px;
   text-align: center;
   width: 90%;
-  max-width: 800px;
+  max-width: 900px;
+  border-radius: 15px;
 }
 
-/* Brown border with lights */
+/* Innermost yellow border */
 .gameTitle::before {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  right: -15px;
+  bottom: -15px;
+  background: #FFD700;
+  border-radius: 20px;
+  z-index: -1;
+}
+
+/* Brown border */
+.gameTitle::after {
   content: '';
   position: absolute;
   top: -30px;
   left: -30px;
   right: -30px;
   bottom: -30px;
-  background: 
-    radial-gradient(circle at center, #fff 0%, #fff 35%, transparent 45%) 0 0 / 35px 35px,
-    #8B4513;
-  border-radius: 45px;
-  z-index: -1;
-  animation: blink 0.8s infinite;
+  background: #8B4513;
+  border-radius: 25px;
+  z-index: -2;
 }
 
 /* Orange border */
+.gameTitle {
+  --orange-border: #FF8C00;
+}
+
+.gameTitle::before, 
 .gameTitle::after {
   content: '';
   position: absolute;
-  top: -55px;
-  left: -55px;
-  right: -55px;
-  bottom: -55px;
-  background: #FF8C00;
-  border-radius: 50px;
-  z-index: -2;
+  z-index: -3;
+}
+
+/* Create multiple borders using multiple elements */
+.gameTitle::before {
+  top: -45px;
+  left: -45px;
+  right: -45px;
+  bottom: -45px;
+  background: var(--orange-border);
+  border-radius: 30px;
+}
+
+/* Outer gray border with lights */
+.gameTitle::after {
+  top: -60px;
+  left: -60px;
+  right: -60px;
+  bottom: -60px;
+  background: 
+    radial-gradient(circle at center, #fff 0%, #fff 35%, transparent 45%) 0 0 / 25px 25px,
+    #808080;
+  border-radius: 35px;
+  animation: blink 0.8s infinite;
 }
 
 .gameTitle h1 {
@@ -57,13 +89,14 @@
   font-size: clamp(2.5rem, 8vw, 5rem);
   line-height: 1.1;
   text-transform: uppercase;
-  color: #FF4500;
+  background: linear-gradient(to bottom, #FF4500 50%, #8B4513 50%);
+  -webkit-background-clip: text;
+  color: transparent;
   text-shadow: 
-    -3px -3px 0 #FFD700,
-    3px -3px 0 #FFD700,
-    -3px 3px 0 #FFD700,
-    3px 3px 0 #FFD700,
-    6px 6px 0px rgba(0,0,0,0.2);
+    2px 2px 0 #FFD700,
+    -2px -2px 0 #FFD700,
+    2px -2px 0 #FFD700,
+    -2px 2px 0 #FFD700;
   letter-spacing: 3px;
   margin: 0;
   padding: 0;
@@ -272,6 +305,23 @@
   transform: translateY(-5px);
 }
 
+.substackLink {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  transition: transform 0.3s ease;
+}
+
+.substackLink:hover {
+  transform: scale(1.1);
+}
+
+.substackIcon {
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
 /* Mobile adjustments */
 @media (max-width: 480px) {
   .main {
@@ -283,18 +333,18 @@
   }
   
   .gameTitle::before {
-    top: -20px;
-    left: -20px;
-    right: -20px;
-    bottom: -20px;
-    background-size: 25px 25px;
+    top: -30px;
+    left: -30px;
+    right: -30px;
+    bottom: -30px;
   }
   
   .gameTitle::after {
-    top: -35px;
-    left: -35px;
-    right: -35px;
-    bottom: -35px;
+    top: -45px;
+    left: -45px;
+    right: -45px;
+    bottom: -45px;
+    background-size: 20px 20px;
   }
   
   .gameSign {
@@ -310,5 +360,10 @@
 
   .lightBorder::before {
     background-size: 20px 20px;
+  }
+
+  .substackLink {
+    top: 10px;
+    right: 10px;
   }
 } 
