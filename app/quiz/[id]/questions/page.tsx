@@ -101,10 +101,10 @@ export default function QuizQuestions() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white" />
       </div>
       
-      <div className="max-w-4xl mx-auto pt-24 p-8">
-        <div className="bg-white rounded-lg shadow-lg p-8">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-xl font-semibold">Chapter {chapterId}</h2>
+      <div className="max-w-4xl mx-auto pt-32 sm:pt-24 p-4 sm:p-8">
+        <div className="bg-white rounded-lg shadow-lg p-4 sm:p-8">
+          <div className="flex justify-between items-center mb-4 sm:mb-6">
+            <h2 className="text-lg sm:text-xl font-semibold">Chapter {chapterId}</h2>
             <span className="text-gray-600">Hi {userName}!</span>
           </div>
 
@@ -116,7 +116,7 @@ export default function QuizQuestions() {
           />
 
           {responseMessage && (
-            <div className={`mb-6 p-4 rounded-lg text-center text-lg ${
+            <div className={`mb-4 sm:mb-6 p-3 sm:p-4 rounded-lg text-center text-base sm:text-lg ${
               showCorrectAnimation 
                 ? 'bg-green-50 text-green-700 border border-green-200' 
                 : 'bg-red-50 text-red-700 border border-red-200'
@@ -125,15 +125,15 @@ export default function QuizQuestions() {
             </div>
           )}
 
-          <div className="mb-8">
-            <h3 className="text-2xl mb-6">{currentQuestionData.question}</h3>
+          <div className="mb-6 sm:mb-8">
+            <h3 className="text-xl sm:text-2xl mb-4 sm:mb-6">{currentQuestionData.question}</h3>
             
-            <div className="space-y-4">
+            <div className="space-y-3">
               {currentQuestionData.options.map((option: string, index: number) => (
                 <button
                   key={index}
                   onClick={() => handleAnswer(index)}
-                  className="w-full p-4 text-left border rounded-lg hover:bg-blue-50 hover:border-blue-300 transition-all transform hover:scale-[1.01]"
+                  className="w-full p-3 sm:p-4 text-left border rounded-lg hover:bg-blue-50 hover:border-blue-300 transition-all transform hover:scale-[1.01] text-sm sm:text-base"
                 >
                   {option}
                 </button>
