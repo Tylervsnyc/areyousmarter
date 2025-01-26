@@ -30,44 +30,42 @@ export default function QuizResults() {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
 
-    // Set canvas size
-    canvas.width = 800
-    canvas.height = 600
+    // Create a new image for the certificate template
+    const img = new window.Image()
+    img.onload = () => {
+      // Set canvas size to match template
+      canvas.width = img.width
+      canvas.height = img.height
 
-    // Background
-    ctx.fillStyle = '#fff'
-    ctx.fillRect(0, 0, canvas.width, canvas.height)
+      // Draw the certificate template
+      ctx.drawImage(img, 0, 0)
 
-    // Border
-    ctx.strokeStyle = '#000'
-    ctx.lineWidth = 10
-    ctx.strokeRect(10, 10, canvas.width - 20, canvas.height - 20)
+      // Configure text style
+      ctx.fillStyle = '#000'
+      ctx.textAlign = 'center'
 
-    // Title
-    ctx.fillStyle = '#000'
-    ctx.font = 'bold 48px Arial'
-    ctx.textAlign = 'center'
-    ctx.fillText('Certificate of Achievement', canvas.width / 2, 100)
+      // Add name
+      ctx.font = 'bold 48px Arial'
+      ctx.fillText(userName, canvas.width / 2, canvas.height / 2)
 
-    // Name
-    ctx.font = 'bold 36px Arial'
-    ctx.fillText(`${userName}`, canvas.width / 2, 250)
+      // Add chapter
+      ctx.font = '36px Arial'
+      ctx.fillText(`Chapter ${chapterId}`, canvas.width / 2, canvas.height / 2 + 60)
 
-    // Description
-    ctx.font = '24px Arial'
-    ctx.fillText(`has successfully completed Chapter ${chapterId}`, canvas.width / 2, 300)
-    ctx.fillText('with a perfect score!', canvas.width / 2, 340)
+      // Add date
+      const date = new Date().toLocaleDateString()
+      ctx.font = '24px Arial'
+      ctx.fillText(date, canvas.width / 2, canvas.height / 2 + 120)
 
-    // Date
-    const date = new Date().toLocaleDateString()
-    ctx.font = '20px Arial'
-    ctx.fillText(date, canvas.width / 2, 500)
+      // Download certificate
+      const link = document.createElement('a')
+      link.download = `certificate-chapter-${chapterId}.png`
+      link.href = canvas.toDataURL()
+      link.click()
+    }
 
-    // Download certificate
-    const link = document.createElement('a')
-    link.download = `certificate-chapter-${chapterId}.png`
-    link.href = canvas.toDataURL()
-    link.click()
+    // Load the certificate template
+    img.src = '/images/cert.jpg'
   }
 
   if (score === null) {
