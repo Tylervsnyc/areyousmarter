@@ -31,7 +31,7 @@ export default function ChapterIntro() {
     '2': {
       host: "Mr. Fluffbutt",
       title: "Pet-Sitting Business",
-      intro: "*Settles regally on velvet throne* Welcome, tiny humans, to my kingdom of knowledge! I, the great Mr. Fluffbutt, shall test your understanding of basic mathematics and business acumen. After all, I am the star attraction of Hudson&apos;s pet-sitting enterprise. *Adjusts crown with paw* Do you dare to challenge the greatest feline mind of our time?",
+      intro: "*Settles on velvet throne* Welcome to my kingdom of knowledge, tiny humans! I shall test your mathematical prowess in Hudson&apos;s pet-sitting enterprise. *Adjusts crown* Dare to challenge the greatest feline mind?",
       image: "/images/mrfb.jpg",
       style: "imperial",
       description: "A grumpy Persian cat who considers himself royalty, sitting on a velvet throne and judging your math skills with imperial flair."
@@ -71,10 +71,10 @@ export default function ChapterIntro() {
       <div className="max-w-4xl mx-auto pt-24 p-8">
         <div className="bg-white rounded-lg shadow-lg p-8">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold mb-2">Chapter {chapterId}: {chapter.title}</h1>
+            <h1 className="text-3xl font-bold mb-2 px-4">Chapter {chapterId}: {chapter.title}</h1>
             <h2 className="text-xl text-gray-600">with {chapter.host}</h2>
             {chapter.description && (
-              <p className="text-sm text-gray-500 mt-2 italic">{chapter.description}</p>
+              <p className="text-sm text-gray-500 mt-2 italic px-4">{chapter.description}</p>
             )}
           </div>
 
@@ -89,7 +89,7 @@ export default function ChapterIntro() {
             </div>
 
             <div className="max-w-2xl mx-auto">
-              <p className="text-lg mb-8 text-center">
+              <p className="text-lg mb-8 text-center px-4 sm:px-0">
                 {chapter.intro}
               </p>
             </div>
