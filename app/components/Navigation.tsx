@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 export default function Navigation() {
   return (
-    <div className="fixed top-0 w-full z-50 flex justify-between items-center p-4">
+    <div className="fixed top-0 w-full z-50 flex justify-between items-center p-6">
       {/* Logo/Home Link */}
       <a 
         href="https://www.learnthroughstories.com/"
@@ -15,8 +15,8 @@ export default function Navigation() {
         <Image 
           src="/images/logo.png"
           alt="Learn Through Stories"
-          width={48}
-          height={48}
+          width={64}
+          height={64}
           className="rounded-lg shadow-md"
         />
       </a>
@@ -31,8 +31,8 @@ export default function Navigation() {
         <Image 
           src="/images/substack.jpg" 
           alt="Subscribe to Learn Through Stories" 
-          width={48}
-          height={48}
+          width={64}
+          height={64}
           className="rounded-lg shadow-md"
         />
       </a>
