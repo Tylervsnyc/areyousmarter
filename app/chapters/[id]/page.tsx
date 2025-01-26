@@ -3,21 +3,23 @@
 import { useParams, useRouter } from 'next/navigation'
 import Image from 'next/image'
 
-export default function ChapterPage() {
-  const params = useParams()
+export default function ChapterIntro() {
   const router = useRouter()
-  const chapterId = params.id
+  const params = useParams()
+  const chapterId = params.id as string
 
   const chapters = {
     '1': {
+      host: "Mr. Whiskers",
       title: "The Bike Shop",
-      description: "Join Mr. Fluffbutt on his adventure at the bike shop and test your knowledge!",
-      image: "/images/chapter1.jpg", // You'll need to add these images
+      intro: "Hey there! I'm Mr. Whiskers, and I'll be your host for this quiz about Mr. Fluffbutt's adventure at the bike shop! I was there when it all happened, and let me tell you, it was quite a day! Are you ready to test your knowledge about what went down at the shop?",
+      image: "/images/mr-whiskers.jpg" // You'll need to add these host character images
     },
     '2': {
+      host: "Ms. Paws",
       title: "The Park",
-      description: "Follow along as Mr. Fluffbutt explores the park and answer questions about his journey!",
-      image: "/images/chapter2.jpg",
+      intro: "Well hello! I'm Ms. Paws, and I'm so excited to quiz you about Mr. Fluffbutt's day at the park! I was enjoying my afternoon nap on my favorite bench when all the excitement happened. Think you can remember all the details?",
+      image: "/images/ms-paws.jpg"
     }
   }
 
@@ -38,57 +40,35 @@ export default function ChapterPage() {
   return (
     <main className="max-w-4xl mx-auto p-8">
       <div className="bg-white rounded-lg shadow-lg p-8">
-        <h1 className="text-3xl font-bold mb-2">Chapter {chapterId}: {chapter.title}</h1>
-        
-        <div className="relative w-full h-64 mb-6">
-          <Image
-            src={chapter.image}
-            alt={`Chapter ${chapterId} - ${chapter.title}`}
-            fill
-            className="object-cover rounded-lg"
-          />
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold mb-2">Chapter {chapterId}: {chapter.title}</h1>
+          <h2 className="text-xl text-gray-600">with {chapter.host}</h2>
         </div>
 
-        <p className="text-gray-600 mb-8">{chapter.description}</p>
-
-        <div className="space-y-6">
-          <div className="border-t pt-6">
-            <h2 className="text-xl font-semibold mb-4">Ready to Begin?</h2>
-            <p className="mb-4">Before we start the quiz, make sure you've read the story on Substack!</p>
-            
-            <div className="flex space-x-4">
-              <a 
-                href={`https://learnthroughstories.substack.com`} 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition-colors"
-              >
-                Read the Story
-              </a>
-              
-              <button 
-                onClick={() => router.push(`/quiz/${chapterId}`)}
-                className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors"
-              >
-                Start the Quiz
-              </button>
-            </div>
+        <div className="flex flex-col items-center mb-8">
+          <div className="relative w-48 h-48 mb-6">
+            <Image
+              src={chapter.image}
+              alt={chapter.host}
+              fill
+              className="object-cover rounded-full"
+            />
           </div>
 
-          <div className="border-t pt-6">
-            <h2 className="text-xl font-semibold mb-4">Need Help?</h2>
-            <p>
-              If you're having trouble or need assistance, feel free to reach out on 
-              <a 
-                href="https://learnthroughstories.substack.com" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-500 hover:underline ml-1"
-              >
-                Substack
-              </a>.
+          <div className="max-w-2xl mx-auto">
+            <p className="text-lg mb-8 text-center">
+              {chapter.intro}
             </p>
           </div>
+        </div>
+
+        <div className="flex justify-center">
+          <button
+            onClick={() => router.push(`/quiz/${chapterId}`)}
+            className="bg-blue-500 text-white px-8 py-3 rounded-lg text-lg hover:bg-blue-600 transition-colors"
+          >
+            Begin the Quiz!
+          </button>
         </div>
       </div>
     </main>

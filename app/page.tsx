@@ -7,16 +7,19 @@ export default function Home() {
     {
       id: 1,
       title: "The Bike Shop",
+      host: "Mr. Whiskers",
       available: true,
     },
     {
       id: 2,
       title: "The Park",
+      host: "Ms. Paws",
       available: true,
     },
     ...Array(8).fill(null).map((_, index) => ({
       id: index + 3,
       title: `Chapter ${index + 3}`,
+      host: "???",
       available: false,
     }))
   ];
@@ -50,11 +53,16 @@ export default function Home() {
                 href={chapter.available ? `/chapters/${chapter.id}` : '#'}
                 className={`block ${!chapter.available && 'pointer-events-none'}`}
               >
-                <span className="font-medium">
-                  Chapter {chapter.id}: {chapter.title}
-                </span>
+                <div className="flex justify-between items-center">
+                  <span className="font-medium">
+                    Chapter {chapter.id}: {chapter.title}
+                  </span>
+                  <span className="text-gray-600">
+                    Host: {chapter.host}
+                  </span>
+                </div>
                 {!chapter.available && (
-                  <span className="ml-2 text-sm text-gray-500">Coming Soon</span>
+                  <span className="text-sm text-gray-500">Coming Soon</span>
                 )}
               </a>
             </div>
