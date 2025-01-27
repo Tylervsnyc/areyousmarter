@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Navigation from '../../components/Navigation'
 import { getBackgroundForPath } from '../../utils/backgrounds'
+import { useParams } from 'next/navigation'
 
 interface BaseChapter {
   host: string;
@@ -35,8 +36,10 @@ const chapters: ChapterData = {
   }
 }
 
-export default function ChapterHome({ params }: { params: { id: string } }) {
-  const chapter = chapters[params.id]
+export default function ChapterHome() {
+  const params = useParams()
+  const id = params?.id as string
+  const chapter = chapters[id]
   
   if (!chapter) {
     return <div>Chapter not found</div>
@@ -48,7 +51,7 @@ export default function ChapterHome({ params }: { params: { id: string } }) {
       
       <div className="absolute top-0 left-0 w-full h-full">
         <Image
-          src={getBackgroundForPath(`/quiz/${params.id}`)}
+          src={getBackgroundForPath(`/quiz/${id}`)}
           alt="Page Background"
           fill
           className="object-cover"
@@ -73,7 +76,7 @@ export default function ChapterHome({ params }: { params: { id: string } }) {
           <div className="text-center mb-8">
             <h1 className="mb-4">Are You Smarter Than Mr. Fluffbutt?</h1>
             <p className="text-xl text-gray-600">
-              Welcome to Chapter {params.id} of {chapter.title}
+              Welcome to Chapter {id} of {chapter.title}
             </p>
           </div>
 
@@ -84,8 +87,11 @@ export default function ChapterHome({ params }: { params: { id: string } }) {
 
           <div className="flex justify-center">
             <Link 
-              href={`/quiz/${params.id}/name`}
+              href={`/quiz/${id}/name`}
               className="inline-flex items-center px-6 py-3 text-lg font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors"
+              role="button"
+              tabIndex={0}
+              aria-label="Begin your adventure"
             >
               Begin Your Adventure
             </Link>
