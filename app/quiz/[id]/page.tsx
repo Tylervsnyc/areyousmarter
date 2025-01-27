@@ -5,6 +5,7 @@ import { useParams, useRouter } from 'next/navigation'
 import Image from 'next/image'
 import Navigation from '../../components/Navigation'
 import Link from 'next/link'
+import { getBackgroundForPath } from '@/app/utils/backgrounds'
 
 interface BaseChapter {
   host: string;
@@ -38,9 +39,11 @@ const chapters: ChapterData = {
 
 export default function QuizStart() {
   const [name, setName] = useState('')
+  const [error, setError] = useState('')
   const router = useRouter()
   const params = useParams()
   const chapterId = params.id as string
+  const backgroundImage = getBackgroundForPath(`/quiz/${chapterId}`)
 
   const chapter = chapters[chapterId as keyof typeof chapters]
 
@@ -70,19 +73,19 @@ export default function QuizStart() {
     <main className="relative min-h-screen bg-gradient-to-b from-purple-50 to-white">
       <Navigation />
       
-      <div className="absolute top-0 left-0 w-full h-32">
+      <div className="absolute top-0 left-0 w-full h-full">
         <Image
-          src="/images/header.jpg"
-          alt="Chapter Header"
+          src={backgroundImage}
+          alt="Page Background"
           fill
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/70 to-white" />
       </div>
       
-      <div className="max-w-4xl mx-auto pt-48 p-8">
-        <div className="bg-white rounded-lg shadow-lg p-8">
+      <div className="relative max-w-4xl mx-auto pt-48 p-8">
+        <div className="bg-white rounded-lg shadow-lg p-4 sm:p-8">
           <h1 className="text-3xl font-bold mb-6 text-center px-4">
             {chapter.style === 'imperial' ? (
               "State Your Name, Tiny Subject!"
