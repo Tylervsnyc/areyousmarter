@@ -25,18 +25,18 @@ export default function ChapterIntro() {
     '1': {
       host: "Mr. Fluffbutt",
       title: "Cat-Sitting Adventures",
-      intro: "*Settles on special perch with disdain* So, you want to test your mathematical abilities against mine? Ha! I suppose I can grace you with my genius while Hudson attempts to earn money for that ridiculous bike. *Flicks tail dismissively* Let's see if your human brain can handle even the simplest calculations about his... progress. *yawns*",
+      intro: "So, you want to test your mathematical abilities against mine? Ha! I suppose I can grace you with my genius while Hudson attempts to earn money for that ridiculous bike. Let's see if your human brain can handle even the simplest calculations about his... progress.",
       image: "/images/mrfb.jpg",
       style: "imperial",
-      description: "A grumpy but genius white cat, perched regally on his throne while judging your mathematical abilities with his superior feline intellect."
+      description: "A grumpy but genius white cat who judges your mathematical abilities with his superior feline intellect."
     },
     '2': {
       host: "Mr. Fluffbutt",
       title: "Pet-Sitting Business",
-      intro: "*Settles on velvet throne* Welcome to my kingdom of knowledge, tiny humans! I shall test your mathematical prowess in Hudson&apos;s pet-sitting enterprise. *Adjusts crown* Dare to challenge the greatest feline mind?",
+      intro: "Welcome to my kingdom of knowledge, tiny humans! I shall test your mathematical prowess in Hudson's pet-sitting enterprise. Dare to challenge the greatest feline mind?",
       image: "/images/mrfb.jpg",
       style: "imperial",
-      description: "A grumpy Persian cat who considers himself royalty, sitting on a velvet throne and judging your math skills with imperial flair."
+      description: "A grumpy Persian cat who considers himself royalty, testing your math skills with imperial flair."
     }
   }
 
@@ -75,10 +75,10 @@ export default function ChapterIntro() {
           chapter.style === 'imperial' ? 'prose-imperial' : ''
         } max-w-none`}>
           <div className="text-center mb-8">
-            <h1 className="mb-2 px-4">Chapter {chapterId}: {chapter.title}</h1>
+            <h1 className="mb-2">Chapter {chapterId}: {chapter.title}</h1>
             <h2 className="text-gray-600">with {chapter.host}</h2>
             {chapter.description && (
-              <p className="text-sm text-gray-500 mt-2 italic px-4">{chapter.description}</p>
+              <p className="text-sm text-gray-500 mt-2 italic">{chapter.description}</p>
             )}
           </div>
 
@@ -93,7 +93,7 @@ export default function ChapterIntro() {
             </div>
 
             <div className="max-w-2xl mx-auto">
-              <p className="text-center px-4 sm:px-0">
+              <p className="text-center">
                 {chapter.intro}
               </p>
             </div>

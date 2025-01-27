@@ -103,9 +103,9 @@ export default function QuizQuestions() {
       
       <div className="max-w-4xl mx-auto pt-56 sm:pt-64 p-4 sm:p-8">
         <div className="bg-white rounded-lg shadow-lg p-4 sm:p-8 prose prose-lg max-w-none">
-          <div className="flex justify-between items-center mb-4 sm:mb-6">
+          <div className="flex justify-between items-center mb-6">
             <h2 className="m-0">Chapter {chapterId}</h2>
-            <span className="text-gray-600">Hi {userName}!</span>
+            <span className="text-gray-600 not-prose">Hi {userName}!</span>
           </div>
 
           <QuizProgress 
@@ -116,7 +116,7 @@ export default function QuizQuestions() {
           />
 
           {responseMessage && (
-            <div className={`mb-4 sm:mb-6 p-3 sm:p-4 rounded-lg text-center text-base sm:text-lg ${
+            <div className={`mb-6 p-4 rounded-lg text-center not-prose ${
               showCorrectAnimation 
                 ? 'bg-green-50 text-green-700 border border-green-200' 
                 : 'bg-red-50 text-red-700 border border-red-200'
@@ -125,15 +125,15 @@ export default function QuizQuestions() {
             </div>
           )}
 
-          <div className="mb-6 sm:mb-8">
-            <h3 className="mb-4 sm:mb-6">{currentQuestionData.question}</h3>
+          <div className="mb-8">
+            <h3 className="mb-6">{currentQuestionData.question}</h3>
             
-            <div className="space-y-3">
+            <div className="space-y-3 not-prose">
               {currentQuestionData.options.map((option: string, index: number) => (
                 <button
                   key={index}
                   onClick={() => handleAnswer(index)}
-                  className="w-full p-3 sm:p-4 text-left border rounded-lg hover:bg-blue-50 hover:border-blue-300 transition-all transform hover:scale-[1.01] text-sm sm:text-base"
+                  className="w-full p-4 text-left border rounded-lg hover:bg-blue-50 hover:border-blue-300 transition-all transform hover:scale-[1.01]"
                 >
                   {option}
                 </button>

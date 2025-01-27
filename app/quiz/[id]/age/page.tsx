@@ -24,9 +24,22 @@ export default function AgeSelection() {
     '2': {
       host: "Mr. Fluffbutt",
       sassyResponses: [
-        "*Flicks tail dismissively* A jester in my royal court? How... amusing. Now, tiny human, shall we try again with your ACTUAL age?",
-        "*Rolls eyes regally* Even my afternoon naps are more serious than this. Your real age, if you please, before I summon the royal guard!"
+        "A jester in my royal court? How... amusing. Now, tiny human, shall we try again with your ACTUAL age?",
+        "Even my afternoon naps are more serious than this. Your real age, if you please, before I summon the royal guard!"
       ]
+    }
+  }
+
+  const greetings = {
+    '1': {
+      title: "Welcome to the Quiz!",
+      message: "What age group are you in?",
+      buttonText: "Continue"
+    },
+    '2': {
+      title: "Welcome to My Royal Quiz!",
+      message: "State your age bracket, tiny subject of my mathematical kingdom!",
+      buttonText: "Enter My Kingdom"
     }
   }
 
@@ -70,7 +83,7 @@ export default function AgeSelection() {
         <div className="bg-white rounded-lg shadow-lg p-4 sm:p-8">
           <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-center">
             {chapterId === '2' ? (
-              <>Greetings, {userName}! <span className="text-yellow-600">*adjusts crown*</span></>
+              <>Greetings, {userName}!</>
             ) : (
               <>Hi {userName}!</>
             )}
@@ -87,10 +100,7 @@ export default function AgeSelection() {
           )}
 
           <p className="text-xl mb-8 text-center">
-            {chapterId === '2' 
-              ? "State your age bracket, tiny subject of my mathematical kingdom!"
-              : "What age group are you in?"
-            }
+            {greetings[chapterId as keyof typeof greetings].message}
           </p>
 
           <div className="space-y-4">
@@ -128,31 +138,9 @@ export default function AgeSelection() {
             >
               8-9 years old
             </button>
-
-            {goofAttempts < 2 && (
-              <button
-                onClick={() => handleAgeSelection('ship')}
-                className={`w-full p-4 text-left border rounded-lg transition-colors ${
-                  chapterId === '2'
-                    ? 'hover:bg-yellow-50 hover:border-yellow-300'
-                    : 'hover:bg-gray-50'
-                }`}
-              >
-                I&apos;m an Old, Old Wooden Ship
-              </button>
-            )}
           </div>
-
-          {goofAttempts >= 2 && (
-            <p className="mt-6 text-sm text-center text-gray-500">
-              {chapterId === '2'
-                ? "*Sighs dramatically* Very well, let's proceed with your ACTUAL age group, shall we?"
-                : "Okay, okay! Let's be serious now. Pick your real age group!"
-              }
-            </p>
-          )}
         </div>
       </div>
     </main>
   )
-} 
+}
