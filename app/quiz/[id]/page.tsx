@@ -1,9 +1,9 @@
 'use client'
 
 import Image from 'next/image'
-import Navigation from '../../components/Navigation'
 import Link from 'next/link'
-import { getBackgroundForPath } from '@/app/utils/backgrounds'
+import Navigation from '../../components/Navigation'
+import { getBackgroundForPath } from '../../utils/backgrounds'
 
 interface BaseChapter {
   host: string;
