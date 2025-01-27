@@ -75,6 +75,15 @@ export default function Home() {
 
             {/* The Garden of Growing Hearts */}
             <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 border-2 border-green-100 hover:border-green-300">
+              <div className="relative w-full h-48 mb-4">
+                <Image
+                  src="/images/goghcover.jpg"
+                  alt="The Garden of Growing Hearts Cover"
+                  fill
+                  className="object-cover rounded-lg"
+                  priority
+                />
+              </div>
               <h2 className="text-xl font-semibold mb-2">The Garden of Growing Hearts</h2>
               <p className="text-gray-600 mb-4">Explore the magic of growing and sharing in this heartwarming tale!</p>
               <div className="flex items-center justify-between">
