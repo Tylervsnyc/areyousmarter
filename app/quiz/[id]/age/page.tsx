@@ -92,78 +92,36 @@ export default function AgeSelection() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white" />
       </div>
       
-      <div className="relative max-w-4xl mx-auto pt-48 p-8">
+      <div className="relative max-w-4xl mx-auto pt-24 sm:pt-48 p-4 sm:p-8">
         <div className="bg-white rounded-lg shadow-lg p-4 sm:p-8">
-          <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-center">
-            {chapterId === '2' ? (
-              <>Greetings, {userName}!</>
-            ) : (
-              <>Hi {userName}!</>
-            )}
-          </h1>
-          
-          {sassyMessage && (
-            <div className={`mb-8 p-4 rounded-lg ${
-              chapterId === '2' 
-                ? 'bg-yellow-50 border border-yellow-200' 
-                : 'bg-blue-50 border border-blue-200'
-            }`}>
-              <p className="text-lg text-center italic">{sassyMessage}</p>
-            </div>
-          )}
-
-          <p className="text-xl mb-8 text-center">
-            {greetings[chapterId as keyof typeof greetings].message}
-          </p>
-
-          <div className="space-y-4">
-            {goofAttempts < 2 && (
-              <button
-                onClick={() => handleAgeSelection('baby')}
-                className={`w-full p-4 text-left border rounded-lg transition-colors ${
-                  chapterId === '2'
-                    ? 'hover:bg-yellow-50 hover:border-yellow-300'
-                    : 'hover:bg-gray-50'
-                }`}
-              >
-                I&apos;m a Little-Biddy-Baby WAH-WAH
-              </button>
-            )}
-
-            <button
-              onClick={() => handleAgeSelection('6-7')}
-              className={`w-full p-4 text-left border rounded-lg transition-colors ${
-                chapterId === '2'
-                  ? 'hover:bg-yellow-50 hover:border-yellow-300'
-                  : 'hover:bg-gray-50'
-              }`}
-            >
-              6-7 years old
-            </button>
-            
-            <button
-              onClick={() => handleAgeSelection('8-9')}
-              className={`w-full p-4 text-left border rounded-lg transition-colors ${
-                chapterId === '2'
-                  ? 'hover:bg-yellow-50 hover:border-yellow-300'
-                  : 'hover:bg-gray-50'
-              }`}
-            >
-              8-9 years old
-            </button>
-
-            {goofAttempts < 2 && (
+          <div className="space-y-3 sm:space-y-4">
+            <h2 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-4">How old are you?</h2>
+            <div className="space-y-2 sm:space-y-3">
               <button
                 onClick={() => handleAgeSelection('ship')}
-                className={`w-full p-4 text-left border rounded-lg transition-colors ${
-                  chapterId === '2'
-                    ? 'hover:bg-yellow-50 hover:border-yellow-300'
-                    : 'hover:bg-gray-50'
-                }`}
+                className="w-full text-left p-2 sm:p-3 rounded-lg border-2 hover:border-blue-500 transition-colors"
               >
                 I&apos;m a Giant Cargo Ship HONK-HONK
               </button>
-            )}
+              <button
+                onClick={() => handleAgeSelection('6-7')}
+                className="w-full text-left p-2 sm:p-3 rounded-lg border-2 hover:border-blue-500 transition-colors"
+              >
+                6-7 years old
+              </button>
+              <button
+                onClick={() => handleAgeSelection('8-9')}
+                className="w-full text-left p-2 sm:p-3 rounded-lg border-2 hover:border-blue-500 transition-colors"
+              >
+                8-9 years old
+              </button>
+              <button
+                onClick={() => handleAgeSelection('goof')}
+                className="w-full text-left p-2 sm:p-3 rounded-lg border-2 hover:border-blue-500 transition-colors"
+              >
+                I&apos;m actually a talking potato
+              </button>
+            </div>
           </div>
         </div>
       </div>

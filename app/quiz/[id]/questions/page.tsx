@@ -103,39 +103,17 @@ export default function QuizQuestions() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/70 to-white" />
       </div>
       
-      <div className="relative max-w-4xl mx-auto pt-56 sm:pt-64 p-4 sm:p-8">
-        <div className="bg-white rounded-lg shadow-lg p-4 sm:p-8 prose prose-lg max-w-none">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="m-0">Chapter {chapterId}</h2>
-            <span className="text-gray-600 not-prose">Hi {userName}!</span>
-          </div>
-
-          <QuizProgress 
-            currentQuestion={currentQuestion} 
-            correctAnswers={correctAnswers}
-            totalQuestions={chapterQuestions.length}
-            isCorrectAnimation={showCorrectAnimation}
-          />
-
-          {responseMessage && (
-            <div className={`mb-6 p-4 rounded-lg text-center not-prose ${
-              showCorrectAnimation 
-                ? 'bg-green-50 text-green-700 border border-green-200' 
-                : 'bg-red-50 text-red-700 border border-red-200'
-            }`}>
-              {responseMessage}
-            </div>
-          )}
-
-          <div className="mb-8">
-            <h3 className="mb-6">{currentQuestionData.question}</h3>
-            
-            <div className="space-y-3 not-prose">
-              {currentQuestionData.options.map((option: string, index: number) => (
+      <div className="relative max-w-4xl mx-auto pt-24 sm:pt-48 p-4 sm:p-8">
+        <div className="bg-white rounded-lg shadow-lg p-4 sm:p-8">
+          <QuizProgress currentQuestion={currentQuestion} totalQuestions={chapterQuestions.length} correctAnswers={correctAnswers} />
+          <div className="space-y-3 sm:space-y-4">
+            <h2 className="text-lg sm:text-xl font-semibold">{currentQuestionData.question}</h2>
+            <div className="space-y-2 sm:space-y-3">
+              {currentQuestionData.options.map((option, index) => (
                 <button
                   key={index}
                   onClick={() => handleAnswer(index)}
-                  className="w-full p-4 text-left border rounded-lg hover:bg-blue-50 hover:border-blue-300 transition-all transform hover:scale-[1.01]"
+                  className="w-full text-left p-2 sm:p-3 rounded-lg border-2 hover:border-blue-500 transition-colors"
                 >
                   {option}
                 </button>
