@@ -8,6 +8,6 @@ export function generateStaticParams() {
   return [{ id: "1" }, { id: "2" }]
 }
 
-export default function NamePage({ params }: PageProps) {
+export default async function NamePage({ params }: PageProps) {
   return <NameForm chapterId={params.id} />
 } 
