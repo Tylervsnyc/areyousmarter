@@ -99,13 +99,22 @@ export default function ChapterIntro() {
             </div>
           </div>
 
-          <div className="flex justify-center">
+          <div className="flex flex-col items-center gap-4">
+            <a
+              href="https://learnthroughstories.substack.com/p/help-me-get-this-bike-chapter-2"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`text-white px-8 py-3 rounded-lg text-lg transition-all hover:scale-105 bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 animate-pulse shadow-[0_0_15px_rgba(168,85,247,0.5)] hover:shadow-[0_0_20px_rgba(168,85,247,0.7)]`}
+            >
+              Read the Story
+            </a>
+
             <button
               onClick={() => router.push(`/quiz/${chapterId}`)}
               className={`text-white px-8 py-3 rounded-lg text-lg transition-all hover:scale-105 ${
                 chapter.style === 'imperial' 
-                  ? 'bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700' 
-                  : 'bg-blue-500 hover:bg-blue-600'
+                  ? 'bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 shadow-[0_0_15px_rgba(234,179,8,0.5)] hover:shadow-[0_0_20px_rgba(234,179,8,0.7)]' 
+                  : 'bg-blue-500 hover:bg-blue-600 shadow-[0_0_15px_rgba(59,130,246,0.5)] hover:shadow-[0_0_20px_rgba(59,130,246,0.7)]'
               }`}
             >
               Begin the Quiz!
