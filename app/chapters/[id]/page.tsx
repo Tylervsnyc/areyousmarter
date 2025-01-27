@@ -101,7 +101,10 @@ export default function ChapterIntro() {
 
           <div className="flex flex-col items-center gap-4">
             <a
-              href="https://learnthroughstories.substack.com/p/help-me-get-this-bike-chapter-2"
+              href={chapterId === '1' 
+                ? "https://learnthroughstories.substack.com/p/help-me-get-this-bike-chapter-1"
+                : "https://learnthroughstories.substack.com/p/help-me-get-this-bike-chapter-2"
+              }
               target="_blank"
               rel="noopener noreferrer"
               className={`text-white px-8 py-3 rounded-lg text-lg transition-all hover:scale-105 bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 animate-pulse shadow-[0_0_15px_rgba(168,85,247,0.5)] hover:shadow-[0_0_20px_rgba(168,85,247,0.7)]`}
