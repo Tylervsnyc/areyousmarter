@@ -10,29 +10,28 @@ import { playCorrectSound, playIncorrectSound } from '../../../components/SoundE
 import { getBackgroundForPath } from '@/app/utils/backgrounds'
 
 export default function QuizQuestions() {
-  const [userName, setUserName] = useState('')
-  const [ageGroup, setAgeGroup] = useState<'5-7' | '8-9' | null>(null)
-  const [currentQuestion, setCurrentQuestion] = useState(1)
-  const [answers, setAnswers] = useState<number[]>([])
+  const [currentQuestion, setCurrentQuestion] = useState(0)
+  const [score, setScore] = useState(0)
   const [correctAnswers, setCorrectAnswers] = useState(0)
-  const [showCorrectAnimation, setShowCorrectAnimation] = useState(false)
-  const [responseMessage, setResponseMessage] = useState('')
+  const [showResults, setShowResults] = useState(false)
+  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null)
+  const [isAnswered, setIsAnswered] = useState(false)
+  const [isCorrect, setIsCorrect] = useState(false)
+  const [quizComplete, setQuizComplete] = useState(false)
+  const [ageGroup, setAgeGroup] = useState<'5-7' | '8-9' | null>(null)
+  const [answers, setAnswers] = useState<number[]>([])
   const router = useRouter()
   const params = useParams()
   const chapterId = params.id as string
   const backgroundImage = getBackgroundForPath(`/quiz/${chapterId}/questions`)
 
   useEffect(() => {
-    const name = sessionStorage.getItem('userName')
-    const age = sessionStorage.getItem('ageGroup') as '5-7' | '8-9'
-    
-    if (!name || !age) {
-      router.push(`/quiz/${chapterId}`)
+    const age = sessionStorage.getItem('age')
+    if (!age) {
+      router.push(`/quiz/${chapterId}/age`)
       return
     }
-    
-    setUserName(name)
-    setAgeGroup(age)
+    setAgeGroup(age as '5-7' | '8-9')
   }, [chapterId, router])
 
   if (!ageGroup || !questions[chapterId]) {
@@ -40,7 +39,7 @@ export default function QuizQuestions() {
   }
 
   const chapterQuestions = questions[chapterId][ageGroup === '5-7' ? 'younger' : 'older']
-  const currentQuestionData = chapterQuestions[currentQuestion - 1]
+  const currentQuestionData = chapterQuestions[currentQuestion]
   const chapterResponses = responses[chapterId]
 
   const handleAnswer = (answerIndex: number) => {
@@ -52,28 +51,27 @@ export default function QuizQuestions() {
     
     if (isCorrect) {
       setCorrectAnswers(prev => prev + 1)
-      setShowCorrectAnimation(true)
+      setIsCorrect(true)
       playCorrectSound()
       if (chapterResponses) {
-        const randomIndex = Math.floor(Math.random() * chapterResponses.correctResponses.length)
-        setResponseMessage(chapterResponses.correctResponses[randomIndex])
+        // Handle correct response
       }
       setTimeout(() => {
-        setShowCorrectAnimation(false)
-        setResponseMessage('')
+        setIsCorrect(false)
       }, 1500)
     } else {
       playIncorrectSound()
       if (chapterResponses) {
-        const randomIndex = Math.floor(Math.random() * chapterResponses.incorrectResponses.length)
-        setResponseMessage(chapterResponses.incorrectResponses[randomIndex])
+        // Handle incorrect response
       }
-      setTimeout(() => setResponseMessage(''), 1500)
+      setTimeout(() => {
+        // Handle incorrect response
+      }, 1500)
     }
 
     // Wait for animation and sound to finish before moving to next question
     setTimeout(() => {
-      if (currentQuestion < chapterQuestions.length) {
+      if (currentQuestion < chapterQuestions.length - 1) {
         setCurrentQuestion(currentQuestion + 1)
       } else {
         // Calculate final score
@@ -105,7 +103,7 @@ export default function QuizQuestions() {
       
       <div className="relative max-w-4xl mx-auto pt-24 sm:pt-48 p-4 sm:p-8">
         <div className="bg-white rounded-lg shadow-lg p-4 sm:p-8">
-          <QuizProgress currentQuestion={currentQuestion} totalQuestions={chapterQuestions.length} correctAnswers={correctAnswers} />
+          <QuizProgress currentQuestion={currentQuestion + 1} totalQuestions={chapterQuestions.length} correctAnswers={correctAnswers} />
           <div className="space-y-3 sm:space-y-4">
             <h2 className="text-lg sm:text-xl font-semibold">{currentQuestionData.question}</h2>
             <div className="space-y-2 sm:space-y-3">

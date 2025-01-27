@@ -32,19 +32,6 @@ export default function AgeSelection() {
     }
   }
 
-  const greetings = {
-    '1': {
-      title: "Welcome to the Quiz!",
-      message: "What age group are you in?",
-      buttonText: "Continue"
-    },
-    '2': {
-      title: "Welcome to My Royal Quiz!",
-      message: "State your age bracket, tiny subject of my mathematical kingdom!",
-      buttonText: "Enter My Kingdom"
-    }
-  }
-
   useEffect(() => {
     const name = sessionStorage.getItem('userName')
     if (!name) {
