@@ -24,24 +24,24 @@ export default function Home() {
       <div className="relative max-w-4xl mx-auto pt-48 p-8">
         <div className="bg-white rounded-lg shadow-lg p-8 prose prose-lg max-w-none">
           <div className="text-center mb-8">
-            <h1 className="mb-4">Help Me Get This Bike!</h1>
+            <h1 className="mb-4">Are You Smarter Than Mr. Fluffbutt?</h1>
             <p className="text-xl text-gray-600">
-              Join Hudson on his journey to earn money for his dream bike!
+              Test your math skills against the world&apos;s most distinguished feline!
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <Link href="/quiz/1" className="block">
               <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 border-2 border-blue-100 hover:border-blue-300">
-                <h2 className="text-xl font-semibold mb-2">Chapter 1</h2>
-                <p className="text-gray-600">Cat-Sitting Adventures with Mr. Fluffbutt</p>
+                <h2 className="text-xl font-semibold mb-2">Help Me Get This Bike!</h2>
+                <p className="text-gray-600">Join Hudson on his journey to earn money for his dream bike!</p>
               </div>
             </Link>
             
             <Link href="/quiz/2" className="block">
               <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 border-2 border-yellow-100 hover:border-yellow-300">
-                <h2 className="text-xl font-semibold mb-2">Chapter 2</h2>
-                <p className="text-gray-600">Pet-Sitting Business with Mr. Fluffbutt</p>
+                <h2 className="text-xl font-semibold mb-2">A Big Three Dollar Gamble</h2>
+                <p className="text-gray-600">Test your math skills in Mr. Fluffbutt&apos;s royal kingdom!</p>
               </div>
             </Link>
           </div>
