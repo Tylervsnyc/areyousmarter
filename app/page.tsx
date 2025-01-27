@@ -34,7 +34,7 @@ export default function Home() {
           <div className="text-center mb-12">
             <h1 className="mb-4">Welcome to Learn Through Stories!</h1>
             <p className="text-xl text-gray-600">
-              What do you want to learn about today?
+              Choose a story and start your learning adventure!
             </p>
           </div>
           
