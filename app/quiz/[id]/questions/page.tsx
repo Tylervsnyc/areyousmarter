@@ -102,9 +102,9 @@ export default function QuizQuestions() {
       </div>
       
       <div className="max-w-4xl mx-auto pt-56 sm:pt-64 p-4 sm:p-8">
-        <div className="bg-white rounded-lg shadow-lg p-4 sm:p-8">
+        <div className="bg-white rounded-lg shadow-lg p-4 sm:p-8 prose prose-lg max-w-none">
           <div className="flex justify-between items-center mb-4 sm:mb-6">
-            <h2 className="text-lg sm:text-xl font-semibold">Chapter {chapterId}</h2>
+            <h2 className="m-0">Chapter {chapterId}</h2>
             <span className="text-gray-600">Hi {userName}!</span>
           </div>
 
@@ -126,7 +126,7 @@ export default function QuizQuestions() {
           )}
 
           <div className="mb-6 sm:mb-8">
-            <h3 className="text-xl sm:text-2xl mb-4 sm:mb-6">{currentQuestionData.question}</h3>
+            <h3 className="mb-4 sm:mb-6">{currentQuestionData.question}</h3>
             
             <div className="space-y-3">
               {currentQuestionData.options.map((option: string, index: number) => (

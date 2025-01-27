@@ -71,10 +71,12 @@ export default function ChapterIntro() {
       </div>
       
       <div className="max-w-4xl mx-auto pt-36 p-8">
-        <div className="bg-white rounded-lg shadow-lg p-8">
+        <div className={`bg-white rounded-lg shadow-lg p-8 prose prose-lg ${
+          chapter.style === 'imperial' ? 'prose-imperial' : ''
+        } max-w-none`}>
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold mb-2 px-4">Chapter {chapterId}: {chapter.title}</h1>
-            <h2 className="text-xl text-gray-600">with {chapter.host}</h2>
+            <h1 className="mb-2 px-4">Chapter {chapterId}: {chapter.title}</h1>
+            <h2 className="text-gray-600">with {chapter.host}</h2>
             {chapter.description && (
               <p className="text-sm text-gray-500 mt-2 italic px-4">{chapter.description}</p>
             )}
@@ -91,7 +93,7 @@ export default function ChapterIntro() {
             </div>
 
             <div className="max-w-2xl mx-auto">
-              <p className="text-lg mb-8 text-center px-4 sm:px-0">
+              <p className="text-center px-4 sm:px-0">
                 {chapter.intro}
               </p>
             </div>

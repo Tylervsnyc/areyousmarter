@@ -81,10 +81,10 @@ export default function QuizResults() {
       </div>
       
       <div className="max-w-4xl mx-auto pt-48 p-8">
-        <div className="bg-white rounded-lg shadow-lg p-8 text-center">
-          <h1 className="text-3xl font-bold mb-6">Quiz Results</h1>
+        <div className="bg-white rounded-lg shadow-lg p-8 text-center prose prose-lg max-w-none">
+          <h1 className="mb-6">Quiz Results</h1>
           
-          <p className="text-xl mb-4">
+          <p className="mb-4">
             Hi {userName}! You scored:
           </p>
           
@@ -101,7 +101,7 @@ export default function QuizResults() {
                 <div className="absolute top-0 left-1/2 w-2 h-2 bg-yellow-400 animate-firework-3"></div>
               </div>
               
-              <p className="text-yellow-600 text-xl animate-golden-pulse">
+              <p className="text-yellow-600 animate-golden-pulse">
                 🎉 Perfect Score! You&apos;ve earned a certificate! 🎉
               </p>
               
