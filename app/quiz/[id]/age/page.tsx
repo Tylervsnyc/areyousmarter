@@ -78,28 +78,34 @@ export default function AgeSelection() {
   const handleAgeSelection = (selection: string) => {
     const chapter = chapters[chapterId as keyof typeof chapters]
     
+    // Handle goof answers (baby or ship)
     if (selection === 'baby' || selection === 'ship') {
       if (goofAttempts >= 2) {
-        // Show final warning on third goof attempt
+        // On third attempt, force them to choose a real age
         setSassyMessage(chapter.finalWarning)
         return
       }
       
+      // Show appropriate sassy response for first or second goof attempt
       setSassyMessage(chapter.sassyResponses[goofAttempts])
       setGoofAttempts(prev => prev + 1)
       return
     }
 
-    // Only allow real age selection after two goof attempts
-    if (goofAttempts < 2) {
-      setSassyMessage(chapter.sassyResponses[goofAttempts])
-      setGoofAttempts(prev => prev + 1)
+    // Handle real age selections (5-7 or 8-9)
+    if (selection === '5-7' || selection === '8-9') {
+      if (goofAttempts < 2) {
+        // If they haven't done two goof attempts yet, encourage them to be silly first
+        setSassyMessage(chapter.sassyResponses[goofAttempts])
+        setGoofAttempts(prev => prev + 1)
+        return
+      }
+      
+      // After two goof attempts, allow proceeding with real age
+      sessionStorage.setItem('ageGroup', selection)
+      router.push(`/quiz/${chapterId}/questions`)
       return
     }
-
-    // Store age group and proceed to questions
-    sessionStorage.setItem('ageGroup', selection)
-    router.push(`/quiz/${chapterId}/questions`)
   }
 
   const chapter = chapters[chapterId as keyof typeof chapters]
@@ -136,6 +142,7 @@ export default function AgeSelection() {
               )}
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {/* Real age options - highlighted after two goof attempts */}
                 <button
                   onClick={() => handleAgeSelection('5-7')}
                   className={`p-4 text-lg font-medium text-center rounded-lg border-2 
@@ -156,6 +163,8 @@ export default function AgeSelection() {
                 >
                   {chapter.ageGroups.older}
                 </button>
+
+                {/* Goof options - highlighted before two goof attempts */}
                 <button
                   onClick={() => handleAgeSelection('baby')}
                   className={`p-4 text-lg font-medium text-center rounded-lg border-2 
