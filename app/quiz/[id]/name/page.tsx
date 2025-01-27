@@ -8,6 +8,12 @@ interface ChapterData {
   style: string;
 }
 
+interface PageProps {
+  params: {
+    id: string;
+  };
+}
+
 const chapters: Record<string, ChapterData> = {
   '1': {
     style: 'friendly'
@@ -22,11 +28,18 @@ export const metadata: Metadata = {
   description: 'Tell us your name to begin the quiz!'
 }
 
+export function generateStaticParams() {
+  return [
+    { id: '1' },
+    { id: '2' }
+  ]
+}
+
 /**
  * Name selection page component for the quiz
  * @param {{ params: { id: string } }} props - Next.js dynamic route params
  */
-export default function NamePage({ params }: { params: { id: string } }) {
+export default function NamePage({ params }: PageProps) {
   const chapterId = params.id
   const chapter = chapters[chapterId]
 
