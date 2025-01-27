@@ -1,19 +1,10 @@
-'use client'
-
 import Link from 'next/link'
 import Navigation from './components/Navigation'
 import Image from 'next/image'
 import { getBackgroundForPath } from './utils/backgrounds'
-import { useState, MouseEvent } from 'react'
+import StoryCard from './components/StoryCard'
 
 export default function Home() {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-
-  const handleDropdownToggle = (e: MouseEvent<HTMLDivElement>) => {
-    e.preventDefault()
-    setIsDropdownOpen(!isDropdownOpen)
-  }
-
   return (
     <main className="relative min-h-screen bg-gradient-to-b from-purple-50 to-white">
       <Navigation />
@@ -39,46 +30,26 @@ export default function Home() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Help Me Get This Bike */}
-            <div className="relative">
-              <div 
-                className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow cursor-pointer"
-                onClick={handleDropdownToggle}
-              >
-                <div className="relative w-full h-48 mb-4">
-                  <Image
-                    src="/images/hmgtbcover.jpg"
-                    alt="Help Me Get This Bike Cover"
-                    fill
-                    className="object-cover rounded-lg"
-                    priority
-                  />
-                </div>
-                <h2 className="text-2xl font-bold mb-2">Help Me Get This Bike</h2>
-                <p className="text-sm text-blue-600 mb-2">Subject: Math and Entrepreneurship</p>
-                <p className="text-sm text-gray-600 mb-2">Age Range: 5-10 years</p>
-                <p className="text-sm text-gray-600 mb-4">Content: Stories and Interactive Game Show</p>
-                <div className="flex items-center justify-between">
-                  <span className="text-blue-600">2 Chapters Available</span>
-                  <svg className={`w-5 h-5 transform transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </div>
-              </div>
-              
-              {isDropdownOpen && (
-                <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-100 z-10">
-                  <Link href="/quiz/1" className="block p-4 hover:bg-blue-50 border-b">
-                    <h3 className="font-semibold">Chapter 1: Help Me Get This Bike!</h3>
-                    <p className="text-sm text-gray-600">Join Hudson on his journey to earn money for his dream bike!</p>
-                  </Link>
-                  <Link href="/quiz/2" className="block p-4 hover:bg-blue-50">
-                    <h3 className="font-semibold">Chapter 2: A Big Three Dollar Gamble</h3>
-                    <p className="text-sm text-gray-600">Test your math skills in Mr. Fluffbutt&apos;s royal kingdom!</p>
-                  </Link>
-                </div>
-              )}
-            </div>
+            <StoryCard 
+              title="Help Me Get This Bike"
+              coverImage="/images/hmgtbcover.jpg"
+              subject="Math and Entrepreneurship"
+              ageRange="5-10 years"
+              content="Stories and Interactive Game Show"
+              chaptersAvailable={2}
+              chapters={[
+                {
+                  title: "Chapter 1: Help Me Get This Bike!",
+                  description: "Join Hudson on his journey to earn money for his dream bike!",
+                  href: "/quiz/1"
+                },
+                {
+                  title: "Chapter 2: A Big Three Dollar Gamble",
+                  description: "Test your math skills in Mr. Fluffbutt's royal kingdom!",
+                  href: "/quiz/2"
+                }
+              ]}
+            />
 
             {/* The Garden of Growing Hearts */}
             <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
