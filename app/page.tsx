@@ -3,9 +3,12 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import Navigation from './components/Navigation'
+import Image from 'next/image'
+import { getBackgroundForPath } from './utils/backgrounds'
 
 export default function Home() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const backgroundImage = getBackgroundForPath('/')
 
   const chapters = [
     {
@@ -29,80 +32,44 @@ export default function Home() {
   ];
 
   return (
-    <main className="relative">
+    <main className="relative min-h-screen bg-gradient-to-b from-purple-50 to-white">
       <Navigation />
       
-      {/* Hero Section */}
-      <div className="min-h-screen flex flex-col items-center justify-center p-8 bg-gradient-to-b from-purple-50 to-white">
-        <h1 className="text-6xl font-bold mb-6 text-center">
-          Are You Smarter Than Mr. Fluffbutt?
-        </h1>
+      <div className="absolute top-0 left-0 w-full h-full">
+        <Image
+          src={backgroundImage}
+          alt="Page Background"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/70 to-white" />
+      </div>
+      
+      <div className="relative max-w-4xl mx-auto pt-36 p-8">
+        <div className="bg-white rounded-lg shadow-lg p-8 prose prose-lg max-w-none">
+          <div className="text-center mb-8">
+            <h1 className="mb-4">Help Me Get This Bike!</h1>
+            <p className="text-xl text-gray-600">
+              Join Hudson on his journey to earn money for his dream bike!
+            </p>
+          </div>
 
-        <h2 className="text-2xl mb-12 text-center text-gray-600">
-          A Game Show Based on &quot;Help Me Get This Bike!&quot;
-        </h2>
-
-        <div className="relative">
-          <button
-            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className="bg-blue-500 text-white px-8 py-4 rounded-lg text-xl hover:bg-blue-600 transition-all hover:scale-105 flex items-center space-x-2"
-          >
-            <span>Choose Your Chapter</span>
-            <svg 
-              className={`w-6 h-6 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-
-          {isDropdownOpen && (
-            <div className="absolute top-full mt-2 w-96 bg-white rounded-lg shadow-lg border overflow-hidden">
-              <div className="max-h-96 overflow-y-auto">
-                {chapters.map((chapter) => (
-                  <div 
-                    key={chapter.id}
-                    className={`p-4 border-b last:border-b-0 ${
-                      chapter.available 
-                        ? 'hover:bg-gray-50 cursor-pointer' 
-                        : 'bg-gray-50 cursor-not-allowed'
-                    }`}
-                  >
-                    {chapter.available ? (
-                      <Link 
-                        href={`/chapters/${chapter.id}`}
-                        className="block"
-                        onClick={() => setIsDropdownOpen(false)}
-                      >
-                        <div className="flex justify-between items-center">
-                          <span className="font-medium">
-                            Chapter {chapter.id}: {chapter.title}
-                          </span>
-                          <span className="text-gray-600 text-sm">
-                            Host: {chapter.host}
-                          </span>
-                        </div>
-                      </Link>
-                    ) : (
-                      <div className="block pointer-events-none">
-                        <div className="flex justify-between items-center">
-                          <span className="font-medium">
-                            Chapter {chapter.id}: {chapter.title}
-                          </span>
-                          <span className="text-gray-600 text-sm">
-                            Host: {chapter.host}
-                          </span>
-                        </div>
-                        <span className="text-sm text-gray-500">Coming Soon</span>
-                      </div>
-                    )}
-                  </div>
-                ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <Link href="/chapters/1" className="block">
+              <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 border-2 border-blue-100 hover:border-blue-300">
+                <h2 className="text-xl font-semibold mb-2">Chapter 1</h2>
+                <p className="text-gray-600">Cat-Sitting Adventures with Mr. Fluffbutt</p>
               </div>
-            </div>
-          )}
+            </Link>
+
+            <Link href="/chapters/2" className="block">
+              <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 border-2 border-yellow-100 hover:border-yellow-300">
+                <h2 className="text-xl font-semibold mb-2">Chapter 2</h2>
+                <p className="text-gray-600">Pet-Sitting Business with Mr. Fluffbutt</p>
+              </div>
+            </Link>
+          </div>
         </div>
       </div>
     </main>
