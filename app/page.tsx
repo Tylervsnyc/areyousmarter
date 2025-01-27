@@ -27,9 +27,9 @@ export default function Home() {
       <div className="relative max-w-6xl mx-auto pt-48 p-8">
         <div className="bg-white rounded-lg shadow-lg p-8 prose prose-lg max-w-none">
           <div className="text-center mb-12">
-            <h1 className="mb-4">Welcome to Mr. Fluffbutt&apos;s Learning Adventures!</h1>
+            <h1 className="mb-4">Welcome to Learn Through Stories!</h1>
             <p className="text-xl text-gray-600">
-              Choose your story and begin your journey!
+              What do you want to learn about today?
             </p>
           </div>
           
