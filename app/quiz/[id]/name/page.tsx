@@ -6,12 +6,35 @@ import Image from 'next/image'
 import Navigation from '../../../components/Navigation'
 import { getBackgroundForPath } from '@/app/utils/backgrounds'
 
+interface ChapterData {
+  title: string;
+  greeting: string;
+  namePrompt: string;
+  buttonText: string;
+}
+
+const chapters: Record<string, ChapterData> = {
+  '1': {
+    title: "State Your Name, Tiny Human!",
+    greeting: "Ah, a new challenger approaches my mathematical domain!",
+    namePrompt: "By what name shall I address you in my kingdom of numbers?",
+    buttonText: "Present Thyself"
+  },
+  '2': {
+    title: "Declare Your Identity, Mathematical Apprentice!",
+    greeting: "Back for more wisdom from your feline overlord?",
+    namePrompt: "What shall I call you in my grand mathematical court?",
+    buttonText: "Enter My Domain"
+  }
+}
+
 export default function NamePage() {
   const router = useRouter()
   const params = useParams()
   const chapterId = params?.id as string
   const [name, setName] = useState('')
   const backgroundImage = getBackgroundForPath(`/quiz/${chapterId}/name`)
+  const chapter = chapters[chapterId]
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -19,6 +42,10 @@ export default function NamePage() {
       sessionStorage.setItem('userName', name)
       router.push(`/quiz/${chapterId}/age`)
     }
+  }
+
+  if (!chapter) {
+    return <div>Chapter not found</div>
   }
 
   return (
@@ -50,23 +77,30 @@ export default function NamePage() {
       <div className="relative max-w-4xl mx-auto pt-24 sm:pt-48 p-4 sm:p-8">
         <div className="bg-white rounded-lg shadow-lg p-4 sm:p-8">
           <div className="space-y-3 sm:space-y-4">
-            <h2 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-4">What&apos;s your name?</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-2">{chapter.title}</h2>
+            <p className="text-lg text-center text-gray-700 mb-6">{chapter.greeting}</p>
             <form onSubmit={handleSubmit} className="space-y-4">
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Enter your name"
-                className="w-full p-2 sm:p-3 border-2 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
-                required
-                aria-label="Enter your name"
-              />
+              <div className="space-y-2">
+                <label htmlFor="name" className="block text-lg text-center font-medium">
+                  {chapter.namePrompt}
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Your name, dear subject"
+                  className="w-full p-2 sm:p-3 border-2 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
+                  required
+                  aria-label="Enter your name"
+                />
+              </div>
               <button
                 type="submit"
-                className="w-full text-center p-2 sm:p-3 rounded-lg bg-blue-500 text-white hover:bg-blue-600 transition-colors"
+                className="w-full text-center p-2 sm:p-3 rounded-lg bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white font-semibold transition-colors"
                 aria-label="Continue to next step"
               >
-                Continue
+                {chapter.buttonText}
               </button>
             </form>
           </div>

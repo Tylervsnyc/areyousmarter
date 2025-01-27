@@ -17,18 +17,32 @@ export default function AgeSelection() {
 
   const chapters = {
     '1': {
-      host: "Mr. Whiskers",
+      title: "Reveal Your Years of Wisdom!",
+      greeting: "Now then, how many years have you spent studying the art of mathematics?",
       sassyResponses: [
-        "Oh, aren't you just HILARIOUS! Almost as funny as that time Mr. Fluffbutt tried to pay for his bike with belly rubs. Now, how about your REAL age?",
-        "Listen here, you little jokester! Even Mr. Fluffbutt knows when to be serious... sometimes. Let's try this ONE more time!"
-      ]
+        "Oh my whiskers! Are you trying to be funny? Even my afternoon naps are more serious than this. Your REAL age, if you please!",
+        "*sigh* I see we have a jester in my mathematical court. Let's try this ONE more time, tiny human!"
+      ],
+      ageGroups: {
+        younger: "5-7 years of mathematical experience",
+        older: "8-9 years of numerical wisdom",
+        baby: "I'm just a tiny kitten",
+        ship: "I'm as old as Mr. Fluffbutt's royal lineage"
+      }
     },
     '2': {
-      host: "Mr. Fluffbutt",
+      title: "Declare Your Years of Experience!",
+      greeting: "Ah yes, how many years have you spent preparing for my mathematical challenges?",
       sassyResponses: [
-        "A jester in my royal court? How... amusing. Now, tiny human, shall we try again with your ACTUAL age?",
-        "Even my afternoon naps are more serious than this. Your real age, if you please, before I summon the royal guard!"
-      ]
+        "A jester dares to mock the royal mathematician? How... amusing. Now, your ACTUAL age, before I summon the palace guards!",
+        "Even my royal naps are more serious than this! Your true age, or it's off to the dungeon with you!"
+      ],
+      ageGroups: {
+        younger: "5-7 years in the mathematical arts",
+        older: "8-9 years of number mastery",
+        baby: "I just hatched from an egg",
+        ship: "I'm older than Mr. Fluffbutt's crown"
+      }
     }
   }
 
@@ -52,6 +66,9 @@ export default function AgeSelection() {
     sessionStorage.setItem('ageGroup', selection)
     router.push(`/quiz/${chapterId}/questions`)
   }
+
+  const chapter = chapters[chapterId as keyof typeof chapters]
+  if (!chapter) return <div>Chapter not found</div>
 
   return (
     <main className="relative min-h-screen bg-gradient-to-b from-purple-50 to-white">
@@ -82,31 +99,41 @@ export default function AgeSelection() {
       <div className="relative max-w-4xl mx-auto pt-24 sm:pt-48 p-4 sm:p-8">
         <div className="bg-white rounded-lg shadow-lg p-4 sm:p-8">
           <div className="space-y-3 sm:space-y-4">
-            <h2 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-4">How old are you?</h2>
-            <div className="space-y-2 sm:space-y-3">
+            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-2">{chapter.title}</h2>
+            <p className="text-lg text-center text-gray-700 mb-6">
+              {userName ? `Ah, ${userName}! ${chapter.greeting}` : chapter.greeting}
+            </p>
+            
+            {sassyMessage && (
+              <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 mb-6">
+                <p className="text-lg text-yellow-800 italic">{sassyMessage}</p>
+              </div>
+            )}
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <button
-                onClick={() => handleAgeSelection('ship')}
-                className="w-full text-left p-2 sm:p-3 rounded-lg border-2 hover:border-blue-500 transition-colors"
+                onClick={() => handleAgeSelection('5-7')}
+                className="p-4 text-lg font-medium text-center rounded-lg border-2 border-blue-200 hover:border-blue-500 hover:bg-blue-50 transition-all"
               >
-                I&apos;m a Giant Cargo Ship HONK-HONK
-              </button>
-              <button
-                onClick={() => handleAgeSelection('6-7')}
-                className="w-full text-left p-2 sm:p-3 rounded-lg border-2 hover:border-blue-500 transition-colors"
-              >
-                6-7 years old
+                {chapter.ageGroups.younger}
               </button>
               <button
                 onClick={() => handleAgeSelection('8-9')}
-                className="w-full text-left p-2 sm:p-3 rounded-lg border-2 hover:border-blue-500 transition-colors"
+                className="p-4 text-lg font-medium text-center rounded-lg border-2 border-blue-200 hover:border-blue-500 hover:bg-blue-50 transition-all"
               >
-                8-9 years old
+                {chapter.ageGroups.older}
               </button>
               <button
-                onClick={() => handleAgeSelection('goof')}
-                className="w-full text-left p-2 sm:p-3 rounded-lg border-2 hover:border-blue-500 transition-colors"
+                onClick={() => handleAgeSelection('baby')}
+                className="p-4 text-lg font-medium text-center rounded-lg border-2 border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all"
               >
-                I&apos;m actually a talking potato
+                {chapter.ageGroups.baby}
+              </button>
+              <button
+                onClick={() => handleAgeSelection('ship')}
+                className="p-4 text-lg font-medium text-center rounded-lg border-2 border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all"
+              >
+                {chapter.ageGroups.ship}
               </button>
             </div>
           </div>
