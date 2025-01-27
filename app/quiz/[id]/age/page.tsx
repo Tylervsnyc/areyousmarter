@@ -10,6 +10,7 @@ interface ChapterData {
   title: string;
   greeting: string;
   sassyResponses: string[];
+  finalWarning: string;
   ageGroups: {
     younger: string;
     older: string;
@@ -36,6 +37,7 @@ export default function AgeSelection() {
         "Oh my whiskers! Are you trying to be funny? Even my afternoon naps are more serious than this. Your REAL age, if you please!",
         "*sigh* I see we have a jester in my mathematical court. Let's try this ONE more time, tiny human!"
       ],
+      finalWarning: "Enough games! Choose your true age now, or it's back to mathematical kindergarten with you!",
       ageGroups: {
         younger: "5-7 years of mathematical experience",
         older: "8-9 years of numerical wisdom",
@@ -52,6 +54,7 @@ export default function AgeSelection() {
         "A jester dares to mock the royal mathematician? How... amusing. Now, your ACTUAL age, before I summon the palace guards!",
         "Even my royal naps are more serious than this! Your true age, or it's off to the dungeon with you!"
       ],
+      finalWarning: "The royal court has lost its patience! Choose your true age now, or face mathematical exile!",
       ageGroups: {
         younger: "5-7 years in the mathematical arts",
         older: "8-9 years of number mastery",
@@ -73,13 +76,28 @@ export default function AgeSelection() {
   }, [chapterId, router])
 
   const handleAgeSelection = (selection: string) => {
+    const chapter = chapters[chapterId as keyof typeof chapters]
+    
     if (selection === 'baby' || selection === 'ship') {
-      const chapter = chapters[chapterId as keyof typeof chapters]
-      setSassyMessage(chapter.sassyResponses[Math.min(goofAttempts, 1)])
+      if (goofAttempts >= 2) {
+        // Show final warning on third goof attempt
+        setSassyMessage(chapter.finalWarning)
+        return
+      }
+      
+      setSassyMessage(chapter.sassyResponses[goofAttempts])
       setGoofAttempts(prev => prev + 1)
       return
     }
 
+    // Only allow real age selection after two goof attempts
+    if (goofAttempts < 2) {
+      setSassyMessage(chapter.sassyResponses[goofAttempts])
+      setGoofAttempts(prev => prev + 1)
+      return
+    }
+
+    // Store age group and proceed to questions
     sessionStorage.setItem('ageGroup', selection)
     router.push(`/quiz/${chapterId}/questions`)
   }
@@ -120,25 +138,43 @@ export default function AgeSelection() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <button
                   onClick={() => handleAgeSelection('5-7')}
-                  className="p-4 text-lg font-medium text-center rounded-lg border-2 border-blue-200 hover:border-blue-500 hover:bg-blue-50 transition-all"
+                  className={`p-4 text-lg font-medium text-center rounded-lg border-2 
+                    ${goofAttempts >= 2 
+                      ? 'border-blue-200 hover:border-blue-500 hover:bg-blue-50' 
+                      : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'} 
+                    transition-all`}
                 >
                   {chapter.ageGroups.younger}
                 </button>
                 <button
                   onClick={() => handleAgeSelection('8-9')}
-                  className="p-4 text-lg font-medium text-center rounded-lg border-2 border-blue-200 hover:border-blue-500 hover:bg-blue-50 transition-all"
+                  className={`p-4 text-lg font-medium text-center rounded-lg border-2 
+                    ${goofAttempts >= 2 
+                      ? 'border-blue-200 hover:border-blue-500 hover:bg-blue-50' 
+                      : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'} 
+                    transition-all`}
                 >
                   {chapter.ageGroups.older}
                 </button>
                 <button
                   onClick={() => handleAgeSelection('baby')}
-                  className="p-4 text-lg font-medium text-center rounded-lg border-2 border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all"
+                  className={`p-4 text-lg font-medium text-center rounded-lg border-2 
+                    ${goofAttempts < 2 
+                      ? 'border-blue-200 hover:border-blue-500 hover:bg-blue-50' 
+                      : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'} 
+                    transition-all`}
+                  disabled={goofAttempts >= 2}
                 >
                   {chapter.ageGroups.baby}
                 </button>
                 <button
                   onClick={() => handleAgeSelection('ship')}
-                  className="p-4 text-lg font-medium text-center rounded-lg border-2 border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all"
+                  className={`p-4 text-lg font-medium text-center rounded-lg border-2 
+                    ${goofAttempts < 2 
+                      ? 'border-blue-200 hover:border-blue-500 hover:bg-blue-50' 
+                      : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'} 
+                    transition-all`}
+                  disabled={goofAttempts >= 2}
                 >
                   {chapter.ageGroups.ship}
                 </button>
