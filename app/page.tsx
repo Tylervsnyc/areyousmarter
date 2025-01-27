@@ -52,16 +52,14 @@ export default function Home() {
 
             {/* The Garden of Growing Hearts */}
             <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 hover:shadow-xl transition-shadow">
-              <div className="relative w-full h-36 sm:h-48 mb-3 sm:mb-4">
+              <div className="relative w-full aspect-[4/3] mb-3 sm:mb-4">
                 <Image
                   src="/images/goghcover.jpg"
                   alt="The Garden of Growing Hearts Cover"
                   fill
-                  className="object-cover rounded-lg"
+                  className="object-contain rounded-lg"
                   priority
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  width={1080}
-                  height={1080}
                 />
               </div>
               <h2 className="text-xl sm:text-2xl font-bold mb-2">The Garden of Growing Hearts</h2>

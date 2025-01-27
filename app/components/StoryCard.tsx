@@ -55,12 +55,12 @@ export default function StoryCard({
         aria-controls="chapters-dropdown"
         aria-label={`${title} story card`}
       >
-        <div className="relative w-full h-48 mb-4">
+        <div className="relative w-full aspect-[4/3] mb-4">
           <Image
             src={coverImage}
             alt={`${title} Cover`}
             fill
-            className="object-cover rounded-lg"
+            className="object-contain rounded-lg"
             priority
             onError={(e) => {
               console.error('Error loading image:', e)
