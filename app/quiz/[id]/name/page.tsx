@@ -19,7 +19,14 @@ const chapters: Record<string, ChapterData> = {
   }
 }
 
-export default function NameSelection({ params }: { params: { id: string } }) {
+interface PageProps {
+  params: {
+    id: string;
+  };
+  searchParams?: { [key: string]: string | string[] | undefined };
+}
+
+export default function NameSelection({ params }: PageProps) {
   const [name, setName] = useState('')
   const router = useRouter()
   const chapterId = params.id
