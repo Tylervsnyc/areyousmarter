@@ -29,7 +29,7 @@ const chapters: ChapterData = {
   '2': {
     host: "Mr. Fluffbutt",
     title: "A Big Three Dollar Gamble",
-    intro: "Greetings, tiny humans! I am Mr. Fluffbutt, the most distinguished Persian cat in all the land. *adjusts crown* I've been informed that you wish to test your mathematical prowess against my superior feline intellect. Very well, let us see if you're worthy of my attention!",
+    intro: "Welcome to my kingdom of knowledge, tiny humans! I shall test your mathematical prowess in Hudson's pet-sitting enterprise. Dare to challenge the greatest feline mind?",
     image: "/images/mrfb.jpg",
     style: "imperial",
     description: "Mr. Fluffbutt is a regal Persian cat who considers himself royalty. Despite his sassy attitude, he secretly enjoys helping children learn math - though he'd never admit it!"
@@ -95,7 +95,7 @@ export default function QuizStart() {
             <div>
               <label htmlFor="name" className="block text-lg mb-2 text-center px-4">
                 {chapter.style === 'imperial' ? (
-                  "*Adjusts crown while waiting regally* By what name shall I address you in my mathematical kingdom?"
+                  "By what name shall I address you in my mathematical kingdom?"
                 ) : (
                   "What's your first name?"
                 )}

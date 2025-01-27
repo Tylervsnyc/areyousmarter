@@ -92,31 +92,43 @@ export default function QuizResults() {
             {score} out of 10
           </div>
 
-          {/* Temporarily show certificate option always for testing */}
-          <div className="space-y-6">
-            <p className="text-green-600 text-xl">
-              Testing Certificate Generation
+          {score === 10 ? (
+            <div className="space-y-6 relative">
+              {/* Fireworks effect */}
+              <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-0 left-1/4 w-2 h-2 bg-yellow-400 animate-firework-1"></div>
+                <div className="absolute top-0 right-1/4 w-2 h-2 bg-yellow-400 animate-firework-2"></div>
+                <div className="absolute top-0 left-1/2 w-2 h-2 bg-yellow-400 animate-firework-3"></div>
+              </div>
+              
+              <p className="text-yellow-600 text-xl animate-golden-pulse">
+                🎉 Perfect Score! You&apos;ve earned a certificate! 🎉
+              </p>
+              
+              <button
+                onClick={generateCertificate}
+                className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-white px-6 py-2 rounded-lg hover:from-yellow-500 hover:to-yellow-700 transition-all transform hover:scale-105 animate-golden-glow"
+              >
+                Download Certificate
+              </button>
+            </div>
+          ) : (
+            <p className="text-gray-600 mb-8">
+              Keep practicing! You need all 10 correct answers to earn a certificate.
             </p>
-            
-            <button
-              onClick={generateCertificate}
-              className="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition-colors"
-            >
-              Download Test Certificate
-            </button>
-          </div>
+          )}
 
-          <div className="mt-8 space-x-4">
+          <div className="flex flex-col items-center space-y-4">
             <button
               onClick={() => router.push(`/quiz/${chapterId}`)}
-              className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors"
+              className="bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600 transition-colors w-48"
             >
               Try Again
             </button>
             
             <button
               onClick={() => router.push('/')}
-              className="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition-colors"
+              className="bg-gray-500 text-white px-8 py-3 rounded-lg hover:bg-gray-600 transition-colors w-48"
             >
               Back to Home
             </button>

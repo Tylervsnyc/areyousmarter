@@ -10,7 +10,7 @@ export default function Navigation() {
         href="https://www.learnthroughstories.com/"
         target="_blank"
         rel="noopener noreferrer"
-        className="transform transition-all hover:scale-105"
+        className="transform transition-all hover:scale-105 ml-4"
       >
         <Image 
           src="/images/logo.png"
