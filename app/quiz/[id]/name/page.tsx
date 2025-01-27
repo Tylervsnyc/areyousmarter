@@ -1,13 +1,18 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { useParams, useRouter } from 'next/navigation'
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import Navigation from '../../../components/Navigation'
 import { getBackgroundForPath } from '@/app/utils/backgrounds'
 
 interface PageProps {
   params: { id: string }  // Normal object, not a Promise
+}
+
+// Define available quiz chapters
+export function generateStaticParams() {
+  return [{ id: "1" }, { id: "2" }]  // Simple array, no Promise
 }
 
 export default function NamePage({ params }: PageProps) {  // Removed async
