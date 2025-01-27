@@ -4,10 +4,15 @@ import Link from 'next/link'
 import Navigation from './components/Navigation'
 import Image from 'next/image'
 import { getBackgroundForPath } from './utils/backgrounds'
-import { useState } from 'react'
+import { useState, MouseEvent } from 'react'
 
 export default function Home() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+
+  const handleDropdownToggle = (e: MouseEvent<HTMLDivElement>) => {
+    e.preventDefault()
+    setIsDropdownOpen(!isDropdownOpen)
+  }
 
   return (
     <main className="relative min-h-screen bg-gradient-to-b from-purple-50 to-white">
@@ -38,7 +43,7 @@ export default function Home() {
             <div className="relative">
               <div 
                 className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow cursor-pointer"
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                onClick={handleDropdownToggle}
               >
                 <div className="relative w-full h-48 mb-4">
                   <Image
