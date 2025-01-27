@@ -35,40 +35,45 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Help Me Get This Bike */}
-            <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
-              <div className="relative w-full h-48 mb-4">
-                <Image
-                  src="/images/hmgtbcover.jpg"
-                  alt="Help Me Get This Bike Cover"
-                  fill
-                  className="object-cover rounded-lg"
-                  priority
-                />
+            <div className="relative">
+              <div 
+                className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow cursor-pointer"
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              >
+                <div className="relative w-full h-48 mb-4">
+                  <Image
+                    src="/images/hmgtbcover.jpg"
+                    alt="Help Me Get This Bike Cover"
+                    fill
+                    className="object-cover rounded-lg"
+                    priority
+                  />
+                </div>
+                <h2 className="text-2xl font-bold mb-2">Help Me Get This Bike</h2>
+                <p className="text-sm text-blue-600 mb-2">Subject: Math and Entrepreneurship</p>
+                <p className="text-sm text-gray-600 mb-2">Age Range: 5-10 years</p>
+                <p className="text-sm text-gray-600 mb-4">Content: Stories and Interactive Game Show</p>
+                <div className="flex items-center justify-between">
+                  <span className="text-blue-600">2 Chapters Available</span>
+                  <svg className={`w-5 h-5 transform transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
               </div>
-              <h2 className="text-2xl font-bold mb-2">Help Me Get This Bike</h2>
-              <p className="text-sm text-blue-600 mb-2">Subject: Math and Entrepreneurship</p>
-              <p className="text-sm text-gray-600 mb-2">Age Range: 5-10 years</p>
-              <p className="text-sm text-gray-600 mb-4">Content: Stories and Interactive Game Show</p>
-              <div className="flex items-center justify-between">
-                <span className="text-blue-600">2 Chapters Available</span>
-                <svg className={`w-5 h-5 transform transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </div>
+              
+              {isDropdownOpen && (
+                <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-100 z-10">
+                  <Link href="/quiz/1" className="block p-4 hover:bg-blue-50 border-b">
+                    <h3 className="font-semibold">Chapter 1: Help Me Get This Bike!</h3>
+                    <p className="text-sm text-gray-600">Join Hudson on his journey to earn money for his dream bike!</p>
+                  </Link>
+                  <Link href="/quiz/2" className="block p-4 hover:bg-blue-50">
+                    <h3 className="font-semibold">Chapter 2: A Big Three Dollar Gamble</h3>
+                    <p className="text-sm text-gray-600">Test your math skills in Mr. Fluffbutt&apos;s royal kingdom!</p>
+                  </Link>
+                </div>
+              )}
             </div>
-            
-            {isDropdownOpen && (
-              <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-100 z-10">
-                <Link href="/quiz/1" className="block p-4 hover:bg-blue-50 border-b">
-                  <h3 className="font-semibold">Chapter 1: Help Me Get This Bike!</h3>
-                  <p className="text-sm text-gray-600">Join Hudson on his journey to earn money for his dream bike!</p>
-                </Link>
-                <Link href="/quiz/2" className="block p-4 hover:bg-blue-50">
-                  <h3 className="font-semibold">Chapter 2: A Big Three Dollar Gamble</h3>
-                  <p className="text-sm text-gray-600">Test your math skills in Mr. Fluffbutt&apos;s royal kingdom!</p>
-                </Link>
-              </div>
-            )}
 
             {/* The Garden of Growing Hearts */}
             <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow">
