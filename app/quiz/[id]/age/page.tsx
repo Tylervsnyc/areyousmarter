@@ -118,16 +118,29 @@ export default function AgeSelection() {
 
           <div className="space-y-4">
             {goofAttempts < 2 && (
-              <button
-                onClick={() => handleAgeSelection('baby')}
-                className={`w-full p-4 text-left border rounded-lg transition-colors ${
-                  chapterId === '2'
-                    ? 'hover:bg-yellow-50 hover:border-yellow-300'
-                    : 'hover:bg-gray-50'
-                }`}
-              >
-                I&apos;m a Little-Biddy-Baby WAH-WAH
-              </button>
+              <>
+                <button
+                  onClick={() => handleAgeSelection('baby')}
+                  className={`w-full p-4 text-left border rounded-lg transition-colors ${
+                    chapterId === '2'
+                      ? 'hover:bg-yellow-50 hover:border-yellow-300'
+                      : 'hover:bg-gray-50'
+                  }`}
+                >
+                  I&apos;m a Little-Biddy-Baby WAH-WAH
+                </button>
+
+                <button
+                  onClick={() => handleAgeSelection('ship')}
+                  className={`w-full p-4 text-left border rounded-lg transition-colors ${
+                    chapterId === '2'
+                      ? 'hover:bg-yellow-50 hover:border-yellow-300'
+                      : 'hover:bg-gray-50'
+                  }`}
+                >
+                  I&apos;m a Giant Cargo Ship HONK-HONK
+                </button>
+              </>
             )}
 
             <button
