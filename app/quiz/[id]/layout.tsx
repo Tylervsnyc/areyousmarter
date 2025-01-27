@@ -9,6 +9,6 @@ export function generateStaticParams() {
   return [{ id: "1" }, { id: "2" }]
 }
 
-export default function QuizLayout({ children, params }: LayoutProps) {
+export default async function QuizLayout({ children, params }: LayoutProps) {
   return <>{children}</>
 } 
