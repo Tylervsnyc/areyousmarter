@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import Navigation from './components/Navigation'
 import Image from 'next/image'
 import { getBackgroundForPath } from './utils/backgrounds'
