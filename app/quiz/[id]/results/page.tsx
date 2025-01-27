@@ -97,7 +97,7 @@ export default function QuizResults() {
                 <div className="absolute right-1/3 top-3/4 w-4 h-4 bg-blue-400 rounded-full animate-firework-2 delay-500"></div>
               </div>
               <h3 className="text-3xl font-bold mb-4 animate-golden-pulse">
-                🎉 Perfect Score! You've earned a certificate! 🎉
+                🎉 Perfect Score! You&apos;ve earned a certificate! 🎉
               </h3>
               <button
                 onClick={generateCertificate}
@@ -115,7 +115,7 @@ export default function QuizResults() {
           <div className="flex flex-col items-center space-y-4 mt-8">
             {score < 10 && (
               <p className="text-center text-lg mb-4">
-                Keep practicing! You're getting better every time.
+                Keep practicing! You&apos;re getting better every time.
               </p>
             )}
             
