@@ -10,11 +10,6 @@ interface PageProps {
   params: { id: string }  // Normal object, not a Promise
 }
 
-// Define available quiz chapters
-export function generateStaticParams() {
-  return [{ id: "1" }, { id: "2" }]  // Simple array, no Promise
-}
-
 export default function NamePage({ params }: PageProps) {  // Removed async
   const router = useRouter()
   const chapterId = params.id
