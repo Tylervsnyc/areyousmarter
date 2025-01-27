@@ -7,6 +7,7 @@ import { questions, responses } from '../../questions'
 import Navigation from '../../../components/Navigation'
 import QuizProgress from '../../../components/QuizProgress'
 import { playCorrectSound, playIncorrectSound } from '../../../components/SoundEffects'
+import { getBackgroundForPath } from '@/app/utils/backgrounds'
 
 export default function QuizQuestions() {
   const [userName, setUserName] = useState('')
@@ -19,6 +20,7 @@ export default function QuizQuestions() {
   const router = useRouter()
   const params = useParams()
   const chapterId = params.id as string
+  const backgroundImage = getBackgroundForPath(`/quiz/${chapterId}/questions`)
 
   useEffect(() => {
     const name = sessionStorage.getItem('userName')
@@ -90,18 +92,18 @@ export default function QuizQuestions() {
     <main className="relative min-h-screen bg-gradient-to-b from-purple-50 to-white">
       <Navigation />
       
-      <div className="absolute top-0 left-0 w-full h-32">
+      <div className="absolute top-0 left-0 w-full h-full">
         <Image
-          src="/images/header.jpg"
-          alt="Chapter Header"
+          src={backgroundImage}
+          alt="Page Background"
           fill
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/70 to-white" />
       </div>
       
-      <div className="max-w-4xl mx-auto pt-56 sm:pt-64 p-4 sm:p-8">
+      <div className="relative max-w-4xl mx-auto pt-56 sm:pt-64 p-4 sm:p-8">
         <div className="bg-white rounded-lg shadow-lg p-4 sm:p-8 prose prose-lg max-w-none">
           <div className="flex justify-between items-center mb-6">
             <h2 className="m-0">Chapter {chapterId}</h2>

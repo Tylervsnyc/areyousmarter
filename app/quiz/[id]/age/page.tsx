@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import Image from 'next/image'
 import Navigation from '../../../components/Navigation'
+import { getBackgroundForPath } from '@/app/utils/backgrounds'
 
 export default function AgeSelection() {
   const [userName, setUserName] = useState('')
@@ -12,6 +13,7 @@ export default function AgeSelection() {
   const router = useRouter()
   const params = useParams()
   const chapterId = params.id as string
+  const backgroundImage = getBackgroundForPath(`/quiz/${chapterId}/age`)
 
   const chapters = {
     '1': {
@@ -68,18 +70,18 @@ export default function AgeSelection() {
     <main className="relative min-h-screen bg-gradient-to-b from-purple-50 to-white">
       <Navigation />
       
-      <div className="absolute top-0 left-0 w-full h-32">
+      <div className="absolute top-0 left-0 w-full h-full">
         <Image
-          src="/images/header.jpg"
-          alt="Chapter Header"
+          src={backgroundImage}
+          alt="Page Background"
           fill
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/70 to-white" />
       </div>
       
-      <div className="max-w-4xl mx-auto pt-48 p-8">
+      <div className="relative max-w-4xl mx-auto pt-48 p-8">
         <div className="bg-white rounded-lg shadow-lg p-4 sm:p-8">
           <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-center">
             {chapterId === '2' ? (
