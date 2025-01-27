@@ -37,34 +37,11 @@ const chapters: ChapterData = {
   }
 }
 
-export default function QuizStart() {
-  const [name, setName] = useState('')
-  const router = useRouter()
-  const params = useParams()
-  const chapterId = params.id as string
-  const backgroundImage = getBackgroundForPath(`/quiz/${chapterId}`)
-
-  const chapter = chapters[chapterId as keyof typeof chapters]
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (name.trim()) {
-      sessionStorage.setItem('userName', name.trim())
-      router.push(`/quiz/${chapterId}/age`)
-    }
-  }
-
+export default function ChapterHome({ params }: { params: { id: string } }) {
+  const chapter = chapters[params.id]
+  
   if (!chapter) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Navigation />
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">Chapter Not Found</h1>
-          <p className="mb-4">This chapter isn&apos;t available yet. Check back soon!</p>
-          <Link href="/" className="text-blue-500 hover:underline">Return Home</Link>
-        </div>
-      </div>
-    )
+    return <div>Chapter not found</div>
   }
 
   return (
@@ -73,7 +50,7 @@ export default function QuizStart() {
       
       <div className="absolute top-0 left-0 w-full h-full">
         <Image
-          src={backgroundImage}
+          src={getBackgroundForPath(`/quiz/${params.id}`)}
           alt="Page Background"
           fill
           className="object-cover"
@@ -94,47 +71,27 @@ export default function QuizStart() {
       </div>
       
       <div className="relative max-w-4xl mx-auto pt-48 p-8">
-        <div className="bg-white rounded-lg shadow-lg p-4 sm:p-8">
-          <h1 className="text-3xl font-bold mb-6 text-center px-4">
-            {chapter.style === 'imperial' ? (
-              "State Your Name, Tiny Subject!"
-            ) : (
-              `Welcome to Chapter ${chapterId}!`
-            )}
-          </h1>
-          
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label htmlFor="name" className="block text-lg mb-2 text-center px-4">
-                {chapter.style === 'imperial' ? (
-                  "By what name shall I address you in my mathematical kingdom?"
-                ) : (
-                  "What's your first name?"
-                )}
-              </label>
-              <input
-                type="text"
-                id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="w-full p-2 border rounded-lg"
-                required
-              />
-            </div>
-            
-            <div className="flex justify-center">
-              <button
-                type="submit"
-                className={`px-6 py-2 rounded-lg text-white transition-colors ${
-                  chapter.style === 'imperial'
-                    ? 'bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700'
-                    : 'bg-blue-500 hover:bg-blue-600'
-                }`}
-              >
-                {chapter.style === 'imperial' ? "Present Thyself" : "Next"}
-              </button>
-            </div>
-          </form>
+        <div className="bg-white rounded-lg shadow-lg p-8 prose prose-lg max-w-none">
+          <div className="text-center mb-8">
+            <h1 className="mb-4">Are You Smarter Than Mr. Fluffbutt?</h1>
+            <p className="text-xl text-gray-600">
+              Welcome to Chapter {params.id} of {chapter.title}
+            </p>
+          </div>
+
+          <div className="mb-8">
+            <h2 className="text-2xl font-semibold mb-4">Meet Your Host: {chapter.host}</h2>
+            <p className="text-gray-600 mb-4">{chapter.description}</p>
+          </div>
+
+          <div className="flex justify-center">
+            <Link 
+              href={`/quiz/${params.id}/name`}
+              className="inline-flex items-center px-6 py-3 text-lg font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              Begin Your Adventure
+            </Link>
+          </div>
         </div>
       </div>
     </main>

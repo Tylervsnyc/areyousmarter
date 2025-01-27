@@ -40,6 +40,15 @@ export default function Home() {
                 className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 border-2 border-blue-100 hover:border-blue-300 cursor-pointer"
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               >
+                <div className="relative w-full h-48 mb-4">
+                  <Image
+                    src="/images/hmgtbcover.jpg"
+                    alt="Help Me Get This Bike Cover"
+                    fill
+                    className="object-cover rounded-lg"
+                    priority
+                  />
+                </div>
                 <h2 className="text-xl font-semibold mb-2">Help Me Get This Bike!</h2>
                 <p className="text-gray-600 mb-4">Join Hudson on his journey to earn money for his dream bike!</p>
                 <div className="flex items-center justify-between">
@@ -54,7 +63,7 @@ export default function Home() {
                 <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-100 z-10">
                   <Link href="/quiz/1" className="block p-4 hover:bg-blue-50 border-b">
                     <h3 className="font-semibold">Chapter 1: Help Me Get This Bike!</h3>
-                    <p className="text-sm text-gray-600">Cat-Sitting Adventures with Mr. Fluffbutt</p>
+                    <p className="text-sm text-gray-600">Join Hudson on his journey to earn money for his dream bike!</p>
                   </Link>
                   <Link href="/quiz/2" className="block p-4 hover:bg-blue-50">
                     <h3 className="font-semibold">Chapter 2: A Big Three Dollar Gamble</h3>
