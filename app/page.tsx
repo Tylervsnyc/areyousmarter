@@ -49,7 +49,12 @@ export default function Home() {
                     priority
                   />
                 </div>
-                <h2 className="text-xl font-semibold mb-2">Help Me Get This Bike!</h2>
+                <h2 className="text-xl font-semibold mb-2">Help Me Get This Bike</h2>
+                <div className="space-y-2 mb-4">
+                  <p className="text-sm text-blue-600">Subject: Math and Entrepreneurship</p>
+                  <p className="text-sm text-blue-600">Age Range: 5-10 years</p>
+                  <p className="text-sm text-blue-600">Content: Stories and Interactive Game Show</p>
+                </div>
                 <p className="text-gray-600 mb-4">Join Hudson on his journey to earn money for his dream bike!</p>
                 <div className="flex items-center justify-between">
                   <span className="text-blue-600">2 Chapters Available</span>
@@ -85,6 +90,11 @@ export default function Home() {
                 />
               </div>
               <h2 className="text-xl font-semibold mb-2">The Garden of Growing Hearts</h2>
+              <div className="space-y-2 mb-4">
+                <p className="text-sm text-green-600">Subject: Empathy, Inclusion, and Overcoming Your Own Strengths</p>
+                <p className="text-sm text-green-600">Age Range: 3-7 years</p>
+                <p className="text-sm text-green-600">Content: Stories and Exercises</p>
+              </div>
               <p className="text-gray-600 mb-4">Explore the magic of growing and sharing in this heartwarming tale!</p>
               <div className="flex items-center justify-between">
                 <span className="text-green-600">4 Chapters Available</span>
@@ -95,6 +105,11 @@ export default function Home() {
             {/* Junk's Adventures */}
             <div className="bg-white rounded-lg shadow-md transition-shadow p-6 border-2 border-gray-100 opacity-75">
               <h2 className="text-xl font-semibold mb-2">Junk&apos;s Adventures</h2>
+              <div className="space-y-2 mb-4">
+                <p className="text-sm text-gray-600">Subject: Addition & Subtraction</p>
+                <p className="text-sm text-gray-600">Age Range: Coming Soon</p>
+                <p className="text-sm text-gray-600">Content: Interactive Stories</p>
+              </div>
               <p className="text-gray-600 mb-4">Join Junk on exciting mathematical journeys!</p>
               <div className="flex items-center justify-between">
                 <span className="text-gray-600">Coming Soon</span>
@@ -105,6 +120,11 @@ export default function Home() {
             {/* A Coding Adventure */}
             <div className="bg-white rounded-lg shadow-md transition-shadow p-6 border-2 border-gray-100 opacity-75">
               <h2 className="text-xl font-semibold mb-2">A Coding Adventure</h2>
+              <div className="space-y-2 mb-4">
+                <p className="text-sm text-gray-600">Subject: Basic Programming</p>
+                <p className="text-sm text-gray-600">Age Range: Coming Soon</p>
+                <p className="text-sm text-gray-600">Content: Interactive Coding Lessons</p>
+              </div>
               <p className="text-gray-600 mb-4">Learn to code with Mr. Fluffbutt as your guide!</p>
               <div className="flex items-center justify-between">
                 <span className="text-gray-600">Coming Soon</span>
