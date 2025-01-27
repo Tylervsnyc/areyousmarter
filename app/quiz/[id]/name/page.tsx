@@ -2,9 +2,8 @@
 
 import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
-import { Metadata } from 'next'
 import Image from 'next/image'
-import Navigation from '@/app/components/Navigation'
+import Navigation from '../../../components/Navigation'
 import { getBackgroundForPath } from '@/app/utils/backgrounds'
 
 interface ChapterData {
@@ -18,11 +17,6 @@ const chapters: Record<string, ChapterData> = {
   '2': {
     style: 'imperial'
   }
-}
-
-export const metadata: Metadata = {
-  title: 'Enter Your Name',
-  description: 'Tell us your name to begin the quiz!'
 }
 
 interface PageProps {
