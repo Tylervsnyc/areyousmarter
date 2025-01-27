@@ -80,6 +80,17 @@ export default function AgeSelection() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/70 to-white" />
       </div>
+
+      <div className="absolute top-0 left-0 w-full h-32">
+        <Image
+          src="/images/header.jpg"
+          alt="Chapter Header"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white" />
+      </div>
       
       <div className="relative max-w-4xl mx-auto pt-48 p-8">
         <div className="bg-white rounded-lg shadow-lg p-4 sm:p-8">
