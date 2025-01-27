@@ -6,30 +6,11 @@ import Image from 'next/image'
 import Navigation from '../../../components/Navigation'
 import { getBackgroundForPath } from '@/app/utils/backgrounds'
 
-interface ChapterData {
-  style: string;
-}
-
-const chapters: Record<string, ChapterData> = {
-  '1': {
-    style: 'friendly'
-  },
-  '2': {
-    style: 'imperial'
-  }
-}
-
 interface PageProps {
-  params: {
-    id: string;
-  };
+  params: { id: string }  // Normal object, not a Promise
 }
 
-/**
- * Name selection page component for the quiz
- * @param {{ params: { id: string } }} props - Next.js dynamic route params
- */
-export default function NamePage({ params }: PageProps) {
+export default function NamePage({ params }: PageProps) {  // Removed async
   const router = useRouter()
   const chapterId = params.id
   const backgroundImage = getBackgroundForPath(`/quiz/${chapterId}/name`)
