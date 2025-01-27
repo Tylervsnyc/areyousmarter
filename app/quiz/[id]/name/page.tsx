@@ -1,11 +1,11 @@
 'use client'
 
 import NameForm from '@/app/components/NameForm'
+import { useParams } from 'next/navigation'
 
-interface PageProps {
-  params: { id: string }
-}
+export default function NamePage() {
+  const params = useParams()
+  const id = params?.id as string
 
-export default function NamePage({ params }: PageProps) {
-  return <NameForm chapterId={params.id} />
+  return <NameForm chapterId={id} />
 } 
