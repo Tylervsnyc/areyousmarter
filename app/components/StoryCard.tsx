@@ -36,11 +36,24 @@ export default function StoryCard({
     setIsDropdownOpen(!isDropdownOpen)
   }
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      setIsDropdownOpen(!isDropdownOpen)
+    }
+  }
+
   return (
     <div className="relative">
       <div 
         className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow cursor-pointer"
         onClick={handleDropdownToggle}
+        onKeyDown={handleKeyDown}
+        role="button"
+        tabIndex={0}
+        aria-expanded={isDropdownOpen}
+        aria-controls="chapters-dropdown"
+        aria-label={`${title} story card`}
       >
         <div className="relative w-full h-48 mb-4">
           <Image
@@ -50,9 +63,8 @@ export default function StoryCard({
             className="object-cover rounded-lg"
             priority
             onError={(e) => {
-              console.error('Error loading image:', e);
-              // Fallback to a placeholder or show error state
-              e.currentTarget.style.display = 'none';
+              console.error('Error loading image:', e)
+              e.currentTarget.style.display = 'none'
             }}
             sizes="(max-width: 768px) 100vw, 50vw"
           />
@@ -68,6 +80,7 @@ export default function StoryCard({
             fill="none" 
             stroke="currentColor" 
             viewBox="0 0 24 24"
+            aria-hidden="true"
           >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
           </svg>
@@ -75,7 +88,11 @@ export default function StoryCard({
       </div>
       
       {isDropdownOpen && (
-        <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-100 z-10">
+        <div 
+          id="chapters-dropdown"
+          className="absolute top-full left-0 right-0 mt-2 bg-white rounded-lg shadow-lg border border-gray-100 z-10"
+          role="menu"
+        >
           {chapters.map((chapter, index) => (
             <Link 
               key={chapter.href}
@@ -83,6 +100,9 @@ export default function StoryCard({
               className={`block p-4 hover:bg-blue-50 ${
                 index < chapters.length - 1 ? 'border-b' : ''
               }`}
+              role="menuitem"
+              tabIndex={0}
+              aria-label={`Start ${chapter.title}`}
             >
               <h3 className="font-semibold">{chapter.title}</h3>
               <p className="text-sm text-gray-600">{chapter.description}</p>
