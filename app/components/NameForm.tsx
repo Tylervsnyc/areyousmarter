@@ -4,67 +4,55 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 interface NameFormProps {
-  chapterId: string;
+  chapterId: string
 }
 
-const chapters = {
-  '1': {
-    style: 'standard',
-    title: "What's your name?",
-    buttonText: "Let's Begin!"
-  },
-  '2': {
-    style: 'imperial',
-    title: "State Your Name, Tiny Subject!",
-    buttonText: "Enter the Kingdom"
-  }
-} as const;
-
 export default function NameForm({ chapterId }: NameFormProps) {
-  const [name, setName] = useState('')
   const router = useRouter()
-  const chapter = chapters[chapterId as keyof typeof chapters]
-
-  if (!chapter) {
-    return <div>Chapter not found</div>
-  }
+  const [name, setName] = useState('')
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    const trimmedName = name.trim()
-    if (trimmedName) {
-      sessionStorage.setItem('userName', trimmedName)
-      router.push(`/quiz/${chapterId}/age`)
+    if (name.trim()) {
+      sessionStorage.setItem('userName', name)
+      router.push(`/quiz/${chapterId}/questions`)
     }
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-center">
-        {chapter.title}
-      </h1>
-      
-      <div>
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="w-full p-2 border-2 rounded-lg focus:border-blue-500 focus:outline-none"
-          placeholder="Enter your name"
-          required
-        />
+    <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
+      <div className="max-w-md w-full space-y-8">
+        <div>
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            Enter Your Name
+          </h2>
+        </div>
+        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="name" className="sr-only">
+              Name
+            </label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              required
+              className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              placeholder="Your name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          <div>
+            <button
+              type="submit"
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+              Start Quiz
+            </button>
+          </div>
+        </form>
       </div>
-
-      <button
-        type="submit"
-        className={`w-full p-3 rounded-lg text-white font-semibold transition-colors ${
-          chapter.style === 'imperial'
-            ? 'bg-gradient-to-r from-yellow-400 to-yellow-600 hover:from-yellow-500 hover:to-yellow-700'
-            : 'bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700'
-        }`}
-      >
-        {chapter.buttonText}
-      </button>
-    </form>
+    </div>
   )
 } 
