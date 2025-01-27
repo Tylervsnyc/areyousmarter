@@ -59,6 +59,9 @@ export default function Home() {
                   fill
                   className="object-cover rounded-lg"
                   priority
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  width={1080}
+                  height={1080}
                 />
               </div>
               <h2 className="text-xl sm:text-2xl font-bold mb-2">The Garden of Growing Hearts</h2>

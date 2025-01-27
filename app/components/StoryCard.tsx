@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, MouseEvent } from 'react'
-import Image from 'next/image'
+import Image, { StaticImageData } from 'next/image'
 import Link from 'next/link'
 
 interface Chapter {
@@ -12,7 +12,7 @@ interface Chapter {
 
 interface StoryCardProps {
   title: string
-  coverImage: string
+  coverImage: string | StaticImageData
   subject: string
   ageRange: string
   content: string
@@ -49,6 +49,12 @@ export default function StoryCard({
             fill
             className="object-cover rounded-lg"
             priority
+            onError={(e) => {
+              console.error('Error loading image:', e);
+              // Fallback to a placeholder or show error state
+              e.currentTarget.style.display = 'none';
+            }}
+            sizes="(max-width: 768px) 100vw, 50vw"
           />
         </div>
         <h2 className="text-2xl font-bold mb-2">{title}</h2>
