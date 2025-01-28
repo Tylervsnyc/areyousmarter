@@ -54,7 +54,26 @@ export default function QuizQuestions() {
       setIsCorrect(true)
       playCorrectSound()
       if (chapterResponses) {
-        // Handle correct response
+        // Show fireworks for correct answer
+        const fireworksContainer = document.createElement('div')
+        fireworksContainer.className = 'fixed inset-0 pointer-events-none z-50'
+        document.body.appendChild(fireworksContainer)
+
+        // Create multiple fireworks
+        for (let i = 0; i < 3; i++) {
+          const firework = document.createElement('div')
+          firework.className = `absolute w-4 h-4 rounded-full animate-firework-${i + 1}`
+          firework.style.left = `${Math.random() * 100}%`
+          firework.style.top = `${Math.random() * 100}%`
+          firework.style.backgroundColor = ['#FFD700', '#FF69B4', '#4169E1'][i]
+          firework.style.animationDelay = `${i * 0.2}s`
+          fireworksContainer.appendChild(firework)
+        }
+
+        // Remove fireworks after animation
+        setTimeout(() => {
+          document.body.removeChild(fireworksContainer)
+        }, 1500)
       }
       setTimeout(() => {
         setIsCorrect(false)
@@ -102,8 +121,8 @@ export default function QuizQuestions() {
       </div>
       
       <div className="relative max-w-4xl mx-auto pt-24 sm:pt-48 p-4 sm:p-8">
-        <div className="bg-white rounded-lg shadow-lg p-4 sm:p-8">
-          <QuizProgress currentQuestion={currentQuestion + 1} totalQuestions={chapterQuestions.length} correctAnswers={correctAnswers} />
+        <div className="bg-white/90 backdrop-blur-sm rounded-lg shadow-lg p-4 sm:p-8">
+          <QuizProgress currentQuestion={currentQuestion + 1} totalQuestions={chapterQuestions.length} correctAnswers={correctAnswers} isCorrectAnimation={isCorrect} />
           <div className="space-y-3 sm:space-y-4">
             <h2 className="text-lg sm:text-xl font-semibold">{currentQuestionData.question}</h2>
             <div className="space-y-2 sm:space-y-3">
@@ -120,6 +139,34 @@ export default function QuizQuestions() {
           </div>
         </div>
       </div>
+
+      {/* Fireworks animations */}
+      <style jsx global>{`
+        @keyframes firework-1 {
+          0% { transform: scale(0); opacity: 1; }
+          50% { transform: scale(1.5); opacity: 0.8; }
+          100% { transform: scale(2); opacity: 0; }
+        }
+        @keyframes firework-2 {
+          0% { transform: scale(0) rotate(45deg); opacity: 1; }
+          50% { transform: scale(1.5) rotate(45deg); opacity: 0.8; }
+          100% { transform: scale(2) rotate(45deg); opacity: 0; }
+        }
+        @keyframes firework-3 {
+          0% { transform: scale(0) rotate(-45deg); opacity: 1; }
+          50% { transform: scale(1.5) rotate(-45deg); opacity: 0.8; }
+          100% { transform: scale(2) rotate(-45deg); opacity: 0; }
+        }
+        .animate-firework-1 {
+          animation: firework-1 1s ease-out forwards;
+        }
+        .animate-firework-2 {
+          animation: firework-2 1s ease-out forwards;
+        }
+        .animate-firework-3 {
+          animation: firework-3 1s ease-out forwards;
+        }
+      `}</style>
     </main>
   )
 } 

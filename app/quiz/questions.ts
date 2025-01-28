@@ -118,6 +118,31 @@ export const questions: Record<string, ChapterQuestions> = {
         question: "If Hudson earns $50 per week in my royal service, how many complete weeks until $500?",
         options: ["8 weeks", "9 weeks", "10 weeks", "11 weeks"],
         correctAnswer: 2
+      },
+      {
+        question: "Hudson earned $20 today and spent $5 on cat treats for me. How much did he save?",
+        options: ["$10", "$15", "$20", "$25"],
+        correctAnswer: 1
+      },
+      {
+        question: "If Hudson saves $25 each week, how many weeks to save $100?",
+        options: ["2 weeks", "3 weeks", "4 weeks", "5 weeks"],
+        correctAnswer: 3
+      },
+      {
+        question: "Hudson has saved $150 so far. How much more does he need for the $500 bike?",
+        options: ["$250", "$300", "$350", "$400"],
+        correctAnswer: 2
+      },
+      {
+        question: "If Hudson earns $15 per day, how many days to earn $75?",
+        options: ["3 days", "4 days", "5 days", "6 days"],
+        correctAnswer: 2
+      },
+      {
+        question: "Hudson found $5 on the ground! If he had $45 before, how much does he have now?",
+        options: ["$45", "$50", "$55", "$60"],
+        correctAnswer: 1
       }
     ],
     older: [
@@ -134,6 +159,41 @@ export const questions: Record<string, ChapterQuestions> = {
       {
         question: "A royal math puzzle: If Hudson saves $75 per week, how many weeks until $500?",
         options: ["6 weeks", "7 weeks", "8 weeks", "9 weeks"],
+        correctAnswer: 1
+      },
+      {
+        question: "If Hudson earns $12 per hour and works 4 hours, what percentage of $100 has he earned?",
+        options: ["38%", "48%", "58%", "68%"],
+        correctAnswer: 1
+      },
+      {
+        question: "Hudson spent 15% of his $200 savings on new cat toys for me. How much does he have left?",
+        options: ["$150", "$160", "$170", "$180"],
+        correctAnswer: 2
+      },
+      {
+        question: "If Hudson saves 40% of his $50 weekly allowance, how much does he save in a month?",
+        options: ["$60", "$70", "$80", "$90"],
+        correctAnswer: 2
+      },
+      {
+        question: "Hudson has saved $300. What fraction of his $500 goal remains?",
+        options: ["2/5", "3/5", "3/8", "5/8"],
+        correctAnswer: 0
+      },
+      {
+        question: "If Hudson earns $8 per hour, how many hours to earn 25% of his $500 goal?",
+        options: ["12.5 hours", "15.5 hours", "15.625 hours", "16.5 hours"],
+        correctAnswer: 2
+      },
+      {
+        question: "Hudson's earnings increased by 20% from $50 to what amount?",
+        options: ["$55", "$60", "$65", "$70"],
+        correctAnswer: 1
+      },
+      {
+        question: "If Hudson saves $450, what percentage of his $500 goal has he achieved?",
+        options: ["85%", "90%", "95%", "98%"],
         correctAnswer: 1
       }
     ]
@@ -164,6 +224,31 @@ export const questions: Record<string, ChapterQuestions> = {
         question: "And how many days is he watching those boring ants?",
         options: ["2", "3", "4", "5"],
         correctAnswer: 1
+      },
+      {
+        question: "If I pay Hudson $10 for treats and he spends $4, how much remains in the royal treasury?",
+        options: ["$4", "$6", "$8", "$10"],
+        correctAnswer: 1
+      },
+      {
+        question: "Hudson bought 3 royal cat toys at $2 each. How much did he spend on my happiness?",
+        options: ["$4", "$6", "$8", "$10"],
+        correctAnswer: 1
+      },
+      {
+        question: "If Hudson saves $5 each day, how many days until he has $25?",
+        options: ["3 days", "4 days", "5 days", "6 days"],
+        correctAnswer: 2
+      },
+      {
+        question: "Hudson spent half of his $30 on premium cat food. How much money does he have left?",
+        options: ["$10", "$15", "$20", "$25"],
+        correctAnswer: 1
+      },
+      {
+        question: "If Hudson earns $8 today and $7 tomorrow, how much will he have earned in total?",
+        options: ["$13", "$14", "$15", "$16"],
+        correctAnswer: 2
       }
     ],
     older: [
@@ -191,6 +276,31 @@ export const questions: Record<string, ChapterQuestions> = {
         question: "Final challenge! Hudson started with $10 and made $62 in profit. What's his total now?",
         options: ["$52", "$62", "$72", "$82"],
         correctAnswer: 2
+      },
+      {
+        question: "If Hudson's earnings increase by 25% from $40, what's his new total?",
+        options: ["$45", "$50", "$55", "$60"],
+        correctAnswer: 1
+      },
+      {
+        question: "Hudson spends 20% of his $100 savings on premium cat food. How much remains?",
+        options: ["$70", "$75", "$80", "$85"],
+        correctAnswer: 2
+      },
+      {
+        question: "If Hudson saves $15 per day, how many days to save $90?",
+        options: ["4 days", "5 days", "6 days", "7 days"],
+        correctAnswer: 2
+      },
+      {
+        question: "Hudson's weekly earnings: $30 from me, $20 from ants. What's his monthly total?",
+        options: ["$180", "$200", "$220", "$240"],
+        correctAnswer: 1
+      },
+      {
+        question: "If Hudson has $85 and spends 40% on cat supplies, how much does he have left?",
+        options: ["$45", "$51", "$55", "$59"],
+        correctAnswer: 1
       }
     ]
   }
