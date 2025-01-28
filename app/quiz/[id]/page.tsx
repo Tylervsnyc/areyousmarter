@@ -5,41 +5,110 @@ import Link from 'next/link'
 import Navigation from '../../components/Navigation'
 import BackgroundPattern from '../../components/BackgroundPattern'
 import { useParams } from 'next/navigation'
+import chapter1Data from '../../data/chapter1.json'
+import chapter2Data from '../../data/chapter2.json'
 
-interface BaseChapter {
-  host: string;
-  title: string;
-  intro: string;
-  image: string;
-  style: string;
-  description: string;
-  pattern: 'grid' | 'paper' | 'dots' | 'brush' | 'waves';
-  tone: 'light' | 'warm' | 'cool';
+type Pattern = 'dots' | 'grid' | 'paper' | 'brush' | 'waves'
+type Tone = 'light' | 'warm' | 'cool'
+
+interface ChapterData {
+  id: string
+  metadata: {
+    title: string
+    host: {
+      name: string
+      type: string
+      traits: string[]
+      description: string
+    }
+    financial_tracker: {
+      bike_goal: number
+      starting_balance: number
+      money_earned: number
+      current_balance: number
+      remaining_goal: number
+    }
+    theme: {
+      pattern: Pattern
+      tone: Tone
+    }
+  }
+  screens: {
+    intro: {
+      title: string
+      subtitle: string
+      opening_greeting: string
+      description: string
+      progress_message: string
+      host_image: string
+      button_text: string
+    }
+    name_selection: {
+      title: string
+      greeting: string
+      button_text: string
+      theme: {
+        pattern: Pattern
+        tone: Tone
+      }
+    }
+    age_selection: {
+      title: string
+      greeting: string
+      age_responses: {
+        "5-7": string
+        "8-10": string
+        too_young: string
+        too_old: string
+        silly: string
+      }
+      sassy_responses: string[]
+      final_warning: string
+      age_groups: {
+        younger: string
+        older: string
+        goof_options: {
+          baby: string
+          ship: string
+        }
+      }
+      theme: {
+        pattern: Pattern
+        tone: Tone
+      }
+    }
+    quiz: {
+      younger: {
+        questions: Array<{
+          id: number
+          question: string
+          options: string[]
+          correct_answer: string
+          host_reactions: {
+            correct: string
+            incorrect: string
+          }
+        }>
+      }
+      older: {
+        questions: Array<{
+          id: number
+          question: string
+          options: string[]
+          correct_answer: string
+          host_reactions: {
+            correct: string
+            incorrect: string
+          }
+        }>
+      }
+    }
+  }
 }
 
-type ChapterData = Record<string, BaseChapter>;
-
-const chapters: ChapterData = {
-  '1': {
-    host: "Mr. Fluffbutt",
-    title: "Help Me Get This Bike!",
-    intro: "Meet Hudson, a determined young human who dreams of owning a shiny new bike. But bikes aren't cheap - this one costs $500! Hudson has decided to start a cat-sitting business to earn money. Let's help him track his progress and solve some money math problems along the way!",
-    image: "/images/mrfb.jpg",
-    style: "imperial",
-    description: "Mr. Fluffbutt is a regal Persian cat who considers himself royalty. Despite his sassy attitude, he secretly enjoys helping children learn math - though he'd never admit it!",
-    pattern: "dots",
-    tone: "warm"
-  },
-  '2': {
-    host: "Mr. Fluffbutt",
-    title: "A Big Three Dollar Gamble",
-    intro: "Welcome to my kingdom of knowledge, tiny humans! I shall test your mathematical prowess in Hudson's pet-sitting enterprise. Dare to challenge the greatest feline mind?",
-    image: "/images/mrfb.jpg",
-    style: "imperial",
-    description: "Mr. Fluffbutt is a regal Persian cat who considers himself royalty. Despite his sassy attitude, he secretly enjoys helping children learn math - though he'd never admit it!",
-    pattern: "waves",
-    tone: "cool"
-  }
+const chapters: Record<string, ChapterData> = {
+  '1': chapter1Data as ChapterData,
+  '2': chapter2Data as ChapterData
 }
 
 export default function ChapterHome() {
@@ -51,8 +120,11 @@ export default function ChapterHome() {
     return <div>Chapter not found</div>
   }
 
+  const { metadata, screens } = chapter
+  const { intro } = screens
+
   return (
-    <BackgroundPattern pattern={chapter.pattern} tone={chapter.tone}>
+    <BackgroundPattern pattern={metadata.theme.pattern} tone={metadata.theme.tone}>
       <main className="relative min-h-screen">
         <Navigation />
         
@@ -70,15 +142,18 @@ export default function ChapterHome() {
         <div className="relative max-w-4xl mx-auto pt-48 p-8">
           <div className="bg-white/90 backdrop-blur-sm rounded-lg shadow-lg p-8 prose prose-lg max-w-none">
             <div className="text-center mb-8">
-              <h1 className="mb-4">Are You Smarter Than Mr. Fluffbutt?</h1>
+              <h1 className="mb-4">{intro.title}</h1>
               <p className="text-xl text-gray-600">
-                Welcome to Chapter {id} of {chapter.title}
+                {intro.subtitle}
               </p>
             </div>
 
             <div className="mb-8">
-              <h2 className="text-2xl font-semibold mb-4">Meet Your Host: {chapter.host}</h2>
-              <p className="text-gray-600 mb-4">{chapter.description}</p>
+              <h2 className="text-2xl font-semibold mb-4">Meet Your Host: {metadata.host.name}</h2>
+              <p className="text-gray-600 mb-4">{metadata.host.description}</p>
+              <p className="text-gray-600 mb-4">{intro.opening_greeting}</p>
+              <p className="text-gray-600 mb-4">{intro.description}</p>
+              <p className="text-gray-600 mb-4 italic">{intro.progress_message}</p>
             </div>
 
             <div className="flex justify-center">
@@ -87,9 +162,9 @@ export default function ChapterHome() {
                 className="inline-flex items-center px-6 py-3 text-lg font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors"
                 role="button"
                 tabIndex={0}
-                aria-label="Begin your adventure"
+                aria-label={intro.button_text}
               >
-                Begin Your Adventure
+                {intro.button_text}
               </Link>
             </div>
           </div>

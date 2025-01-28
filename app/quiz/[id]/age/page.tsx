@@ -1,107 +1,151 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import Image from 'next/image'
 import Navigation from '../../../components/Navigation'
 import BackgroundPattern from '../../../components/BackgroundPattern'
+import chapter1Data from '../../../data/chapter1.json'
+import chapter2Data from '../../../data/chapter2.json'
+
+type Pattern = 'dots' | 'grid' | 'paper' | 'brush' | 'waves'
+type Tone = 'light' | 'warm' | 'cool'
 
 interface ChapterData {
-  title: string;
-  greeting: string;
-  sassyResponses: string[];
-  finalWarning: string;
-  ageGroups: {
-    younger: string;
-    older: string;
-    baby: string;
-    ship: string;
-  };
-  pattern: 'grid' | 'paper' | 'dots' | 'brush' | 'waves';
-  tone: 'light' | 'warm' | 'cool';
+  id: string
+  metadata: {
+    title: string
+    host: {
+      name: string
+      type: string
+      traits: string[]
+      description: string
+    }
+    financial_tracker: {
+      bike_goal: number
+      starting_balance: number
+      money_earned: number
+      current_balance: number
+      remaining_goal: number
+    }
+    theme: {
+      pattern: Pattern
+      tone: Tone
+    }
+  }
+  screens: {
+    intro: {
+      title: string
+      subtitle: string
+      opening_greeting: string
+      description: string
+      progress_message: string
+      host_image: string
+      button_text: string
+    }
+    name_selection: {
+      title: string
+      greeting: string
+      button_text: string
+      theme: {
+        pattern: Pattern
+        tone: Tone
+      }
+    }
+    age_selection: {
+      title: string
+      greeting: string
+      age_responses: {
+        "5-7": string
+        "8-10": string
+        too_young: string
+        too_old: string
+        silly: string
+      }
+      sassy_responses: string[]
+      final_warning: string
+      age_groups: {
+        younger: string
+        older: string
+        goof_options: {
+          baby: string
+          ship: string
+        }
+      }
+      theme: {
+        pattern: Pattern
+        tone: Tone
+      }
+    }
+    quiz: {
+      younger: {
+        questions: Array<{
+          id: number
+          question: string
+          options: string[]
+          correct_answer: string
+          host_reactions: {
+            correct: string
+            incorrect: string
+          }
+        }>
+      }
+      older: {
+        questions: Array<{
+          id: number
+          question: string
+          options: string[]
+          correct_answer: string
+          host_reactions: {
+            correct: string
+            incorrect: string
+          }
+        }>
+      }
+    }
+  }
 }
 
-export default function AgeSelection() {
-  const [userName, setUserName] = useState('')
+const chapters: Record<string, ChapterData> = {
+  '1': chapter1Data as ChapterData,
+  '2': chapter2Data as ChapterData
+}
+
+export default function AgePage() {
   const [goofAttempts, setGoofAttempts] = useState(0)
-  const [sassyMessage, setSassyMessage] = useState('')
+  const [message, setMessage] = useState('')
   const router = useRouter()
   const params = useParams()
   const chapterId = params.id as string
 
-  const chapters: Record<string, ChapterData> = {
-    '1': {
-      title: "Reveal Your Years of Wisdom!",
-      greeting: "Now then, how many years have you spent studying the art of mathematics?",
-      sassyResponses: [
-        "Oh my whiskers! Are you trying to be funny? Even my afternoon naps are more serious than this. Your REAL age, if you please!",
-        "*sigh* I see we have a jester in my mathematical court. Let's try this ONE more time, tiny human!"
-      ],
-      finalWarning: "Enough games! Choose your true age now, or it's back to mathematical kindergarten with you!",
-      ageGroups: {
-        younger: "5-7 years of mathematical experience",
-        older: "8-9 years of numerical wisdom",
-        baby: "I'm just a tiny kitten",
-        ship: "I'm as old as Mr. Fluffbutt's royal lineage"
-      },
-      pattern: "paper",
-      tone: "warm"
-    },
-    '2': {
-      title: "Declare Your Years of Experience!",
-      greeting: "Ah yes, how many years have you spent preparing for my mathematical challenges?",
-      sassyResponses: [
-        "A jester dares to mock the royal mathematician? How... amusing. Now, your ACTUAL age, before I summon the palace guards!",
-        "Even my royal naps are more serious than this! Your true age, or it's off to the dungeon with you!"
-      ],
-      finalWarning: "The royal court has lost its patience! Choose your true age now, or face mathematical exile!",
-      ageGroups: {
-        younger: "5-7 years in the mathematical arts",
-        older: "8-9 years of number mastery",
-        baby: "I just hatched from an egg",
-        ship: "I'm older than Mr. Fluffbutt's crown"
-      },
-      pattern: "waves",
-      tone: "cool"
-    }
-  }
-
-  useEffect(() => {
-    const name = sessionStorage.getItem('userName')
-    if (!name) {
-      router.push(`/quiz/${chapterId}`)
-      return
-    }
-    setUserName(name)
-  }, [chapterId, router])
-
-  const handleAgeSelection = (selection: string) => {
-    const chapter = chapters[chapterId as keyof typeof chapters]
-    
-    // Handle goof answers (baby or ship)
-    if (selection === 'baby' || selection === 'ship') {
-      if (goofAttempts >= 2) return // Shouldn't happen due to hidden buttons
-      
-      // Show appropriate sassy response for first or second goof attempt
-      setSassyMessage(chapter.sassyResponses[goofAttempts])
-      setGoofAttempts(prev => prev + 1)
-      return
-    }
-
-    // Handle real age selections (5-7 or 8-9)
-    if (selection === '5-7' || selection === '8-9') {
-      // Store age group with the correct key 'age' instead of 'ageGroup'
-      sessionStorage.setItem('age', selection)
-      // Ensure we stay on the same chapter's questions
-      router.push(`/quiz/${chapterId}/questions`)
-    }
-  }
-
-  const chapter = chapters[chapterId as keyof typeof chapters]
+  const chapter = chapters[chapterId]
   if (!chapter) return <div>Chapter not found</div>
 
+  const { age_selection } = chapter.screens
+
+  const handleAgeSelect = (age: string) => {
+    if (age === 'baby' || age === 'ship') {
+      if (goofAttempts === 0) {
+        setMessage(age_selection.sassy_responses[0])
+        setGoofAttempts(1)
+      } else if (goofAttempts === 1) {
+        setMessage(age_selection.sassy_responses[1])
+        setGoofAttempts(2)
+      }
+      return
+    }
+
+    if (goofAttempts < 2) {
+      setMessage(age_selection.final_warning)
+      return
+    }
+
+    sessionStorage.setItem('ageGroup', age)
+    router.push(`/quiz/${chapterId}/questions`)
+  }
+
   return (
-    <BackgroundPattern pattern={chapter.pattern} tone={chapter.tone}>
+    <BackgroundPattern pattern={age_selection.theme.pattern} tone={age_selection.theme.tone}>
       <main className="relative min-h-screen">
         <Navigation />
         
@@ -118,50 +162,55 @@ export default function AgeSelection() {
         
         <div className="relative max-w-4xl mx-auto pt-24 sm:pt-48 p-4 sm:p-8">
           <div className="bg-white/90 backdrop-blur-sm rounded-lg shadow-lg p-4 sm:p-8">
-            <div className="space-y-3 sm:space-y-4">
-              <h2 className="text-2xl sm:text-3xl font-bold text-center mb-2">{chapter.title}</h2>
-              <p className="text-lg text-center text-gray-700 mb-6">
-                {userName ? `Ah, ${userName}! ${chapter.greeting}` : chapter.greeting}
-              </p>
-              
-              {sassyMessage && (
-                <div className="p-4 bg-yellow-50 border-l-4 border-yellow-400 mb-6">
-                  <p className="text-lg text-yellow-800 italic">{sassyMessage}</p>
-                </div>
-              )}
-
-              <div className="flex flex-col max-w-md mx-auto space-y-3">
-                {/* Real age options - always available */}
-                <button
-                  onClick={() => handleAgeSelection('5-7')}
-                  className="p-3 text-base font-medium text-center rounded-lg border-2 border-blue-200 hover:border-blue-500 hover:bg-blue-50 transition-all"
-                >
-                  {chapter.ageGroups.younger}
-                </button>
-                <button
-                  onClick={() => handleAgeSelection('8-9')}
-                  className="p-3 text-base font-medium text-center rounded-lg border-2 border-blue-200 hover:border-blue-500 hover:bg-blue-50 transition-all"
-                >
-                  {chapter.ageGroups.older}
-                </button>
-
-                {/* Goof options - only show before two goof attempts */}
-                {goofAttempts < 2 && (
-                  <>
-                    <button
-                      onClick={() => handleAgeSelection('baby')}
-                      className="p-3 text-base font-medium text-center rounded-lg border-2 border-blue-200 hover:border-blue-500 hover:bg-blue-50 transition-all"
-                    >
-                      {chapter.ageGroups.baby}
-                    </button>
-                    <button
-                      onClick={() => handleAgeSelection('ship')}
-                      className="p-3 text-base font-medium text-center rounded-lg border-2 border-blue-200 hover:border-blue-500 hover:bg-blue-50 transition-all"
-                    >
-                      {chapter.ageGroups.ship}
-                    </button>
-                  </>
+            <div className="space-y-6">
+              <div className="text-center">
+                <h2 className="text-2xl sm:text-3xl font-bold mb-2">{age_selection.title}</h2>
+                <p className="text-lg text-gray-700">{age_selection.greeting}</p>
+                {message && (
+                  <p className="mt-4 text-lg font-medium text-indigo-600">{message}</p>
                 )}
+              </div>
+              
+              <div className="flex flex-col max-w-md mx-auto space-y-3">
+                <button
+                  onClick={() => handleAgeSelect('5-7')}
+                  className={`p-3 text-base font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors ${
+                    goofAttempts < 2 ? 'opacity-50 cursor-not-allowed' : ''
+                  }`}
+                  disabled={goofAttempts < 2}
+                >
+                  {age_selection.age_groups.younger}
+                </button>
+                
+                <button
+                  onClick={() => handleAgeSelect('8-9')}
+                  className={`p-3 text-base font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors ${
+                    goofAttempts < 2 ? 'opacity-50 cursor-not-allowed' : ''
+                  }`}
+                  disabled={goofAttempts < 2}
+                >
+                  {age_selection.age_groups.older}
+                </button>
+                
+                <button
+                  onClick={() => handleAgeSelect('baby')}
+                  className={`p-3 text-base font-medium text-white bg-pink-500 rounded-lg hover:bg-pink-600 transition-colors ${
+                    goofAttempts >= 2 ? 'opacity-50 cursor-not-allowed' : ''
+                  }`}
+                  disabled={goofAttempts >= 2}
+                >
+                  {age_selection.age_groups.goof_options.baby}
+                </button>
+                
+                <button
+                  onClick={() => handleAgeSelect('ship')}
+                  className={`p-3 text-base font-medium text-white bg-pink-500 rounded-lg hover:bg-pink-600 transition-colors ${
+                    goofAttempts >= 2 ? 'opacity-50 cursor-not-allowed' : ''
+                  }`}
+                  disabled={goofAttempts >= 2}
+                >
+                  {age_selection.age_groups.goof_options.ship}
+                </button>
               </div>
             </div>
           </div>
