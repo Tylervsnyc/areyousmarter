@@ -80,11 +80,7 @@ export default function AgeSelection() {
     
     // Handle goof answers (baby or ship)
     if (selection === 'baby' || selection === 'ship') {
-      if (goofAttempts >= 2) {
-        // On third attempt, force them to choose a real age
-        setSassyMessage(chapter.finalWarning)
-        return
-      }
+      if (goofAttempts >= 2) return // Shouldn't happen due to hidden buttons
       
       // Show appropriate sassy response for first or second goof attempt
       setSassyMessage(chapter.sassyResponses[goofAttempts])
@@ -94,14 +90,7 @@ export default function AgeSelection() {
 
     // Handle real age selections (5-7 or 8-9)
     if (selection === '5-7' || selection === '8-9') {
-      if (goofAttempts < 2) {
-        // If they haven't done two goof attempts yet, encourage them to be silly first
-        setSassyMessage(chapter.sassyResponses[goofAttempts])
-        setGoofAttempts(prev => prev + 1)
-        return
-      }
-      
-      // After two goof attempts, allow proceeding with real age
+      // Always allow proceeding with real age
       sessionStorage.setItem('ageGroup', selection)
       router.push(`/quiz/${chapterId}/questions`)
       return
@@ -142,51 +131,37 @@ export default function AgeSelection() {
               )}
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {/* Real age options - highlighted after two goof attempts */}
+                {/* Real age options - always available */}
                 <button
                   onClick={() => handleAgeSelection('5-7')}
-                  className={`p-4 text-lg font-medium text-center rounded-lg border-2 
-                    ${goofAttempts >= 2 
-                      ? 'border-blue-200 hover:border-blue-500 hover:bg-blue-50' 
-                      : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'} 
-                    transition-all`}
+                  className="p-4 text-lg font-medium text-center rounded-lg border-2 border-blue-200 hover:border-blue-500 hover:bg-blue-50 transition-all"
                 >
                   {chapter.ageGroups.younger}
                 </button>
                 <button
                   onClick={() => handleAgeSelection('8-9')}
-                  className={`p-4 text-lg font-medium text-center rounded-lg border-2 
-                    ${goofAttempts >= 2 
-                      ? 'border-blue-200 hover:border-blue-500 hover:bg-blue-50' 
-                      : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'} 
-                    transition-all`}
+                  className="p-4 text-lg font-medium text-center rounded-lg border-2 border-blue-200 hover:border-blue-500 hover:bg-blue-50 transition-all"
                 >
                   {chapter.ageGroups.older}
                 </button>
 
-                {/* Goof options - highlighted before two goof attempts */}
-                <button
-                  onClick={() => handleAgeSelection('baby')}
-                  className={`p-4 text-lg font-medium text-center rounded-lg border-2 
-                    ${goofAttempts < 2 
-                      ? 'border-blue-200 hover:border-blue-500 hover:bg-blue-50' 
-                      : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'} 
-                    transition-all`}
-                  disabled={goofAttempts >= 2}
-                >
-                  {chapter.ageGroups.baby}
-                </button>
-                <button
-                  onClick={() => handleAgeSelection('ship')}
-                  className={`p-4 text-lg font-medium text-center rounded-lg border-2 
-                    ${goofAttempts < 2 
-                      ? 'border-blue-200 hover:border-blue-500 hover:bg-blue-50' 
-                      : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'} 
-                    transition-all`}
-                  disabled={goofAttempts >= 2}
-                >
-                  {chapter.ageGroups.ship}
-                </button>
+                {/* Goof options - only show before two goof attempts */}
+                {goofAttempts < 2 && (
+                  <>
+                    <button
+                      onClick={() => handleAgeSelection('baby')}
+                      className="p-4 text-lg font-medium text-center rounded-lg border-2 border-blue-200 hover:border-blue-500 hover:bg-blue-50 transition-all"
+                    >
+                      {chapter.ageGroups.baby}
+                    </button>
+                    <button
+                      onClick={() => handleAgeSelection('ship')}
+                      className="p-4 text-lg font-medium text-center rounded-lg border-2 border-blue-200 hover:border-blue-500 hover:bg-blue-50 transition-all"
+                    >
+                      {chapter.ageGroups.ship}
+                    </button>
+                  </>
+                )}
               </div>
             </div>
           </div>
