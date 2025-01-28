@@ -90,10 +90,10 @@ export default function AgeSelection() {
 
     // Handle real age selections (5-7 or 8-9)
     if (selection === '5-7' || selection === '8-9') {
-      // Always allow proceeding with real age
+      // Store age group and proceed to questions
       sessionStorage.setItem('ageGroup', selection)
+      // Ensure we stay on the same chapter's questions
       router.push(`/quiz/${chapterId}/questions`)
-      return
     }
   }
 
@@ -130,17 +130,17 @@ export default function AgeSelection() {
                 </div>
               )}
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="flex flex-col max-w-md mx-auto space-y-3">
                 {/* Real age options - always available */}
                 <button
                   onClick={() => handleAgeSelection('5-7')}
-                  className="p-4 text-lg font-medium text-center rounded-lg border-2 border-blue-200 hover:border-blue-500 hover:bg-blue-50 transition-all"
+                  className="p-3 text-base font-medium text-center rounded-lg border-2 border-blue-200 hover:border-blue-500 hover:bg-blue-50 transition-all"
                 >
                   {chapter.ageGroups.younger}
                 </button>
                 <button
                   onClick={() => handleAgeSelection('8-9')}
-                  className="p-4 text-lg font-medium text-center rounded-lg border-2 border-blue-200 hover:border-blue-500 hover:bg-blue-50 transition-all"
+                  className="p-3 text-base font-medium text-center rounded-lg border-2 border-blue-200 hover:border-blue-500 hover:bg-blue-50 transition-all"
                 >
                   {chapter.ageGroups.older}
                 </button>
@@ -150,13 +150,13 @@ export default function AgeSelection() {
                   <>
                     <button
                       onClick={() => handleAgeSelection('baby')}
-                      className="p-4 text-lg font-medium text-center rounded-lg border-2 border-blue-200 hover:border-blue-500 hover:bg-blue-50 transition-all"
+                      className="p-3 text-base font-medium text-center rounded-lg border-2 border-blue-200 hover:border-blue-500 hover:bg-blue-50 transition-all"
                     >
                       {chapter.ageGroups.baby}
                     </button>
                     <button
                       onClick={() => handleAgeSelection('ship')}
-                      className="p-4 text-lg font-medium text-center rounded-lg border-2 border-blue-200 hover:border-blue-500 hover:bg-blue-50 transition-all"
+                      className="p-3 text-base font-medium text-center rounded-lg border-2 border-blue-200 hover:border-blue-500 hover:bg-blue-50 transition-all"
                     >
                       {chapter.ageGroups.ship}
                     </button>
