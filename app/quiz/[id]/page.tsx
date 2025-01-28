@@ -2,11 +2,11 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import Navigation from '../../components/Navigation'
-import BackgroundPattern from '../../components/BackgroundPattern'
+import Navigation from '@/app/components/Navigation'
 import { useParams } from 'next/navigation'
-import chapter1Data from '../../data/chapter1.json'
-import chapter2Data from '../../data/chapter2.json'
+import chapter1Data from '@/app/data/chapter1.json'
+import chapter2Data from '@/app/data/chapter2.json'
+import { getBackgroundForPath } from '@/app/utils/backgrounds'
 
 type Pattern = 'dots' | 'grid' | 'paper' | 'brush' | 'waves'
 type Tone = 'light' | 'warm' | 'cool'
@@ -115,6 +115,7 @@ export default function ChapterHome() {
   const params = useParams()
   const id = params?.id as string
   const chapter = chapters[id]
+  const backgroundImage = getBackgroundForPath(`/quiz/${id}`)
   
   if (!chapter) {
     return <div>Chapter not found</div>
@@ -124,23 +125,50 @@ export default function ChapterHome() {
   const { intro } = screens
 
   return (
-    <BackgroundPattern pattern={metadata.theme.pattern} tone={metadata.theme.tone}>
-      <main className="relative min-h-screen">
+    <main className="relative min-h-screen">
+      {/* Header Image */}
+      <div className="absolute top-0 left-0 w-full h-32 z-0">
+        <Image
+          src="/images/header.jpg"
+          alt="Chapter Header"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white/70" />
+      </div>
+
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src={backgroundImage}
+          alt="Background Pattern"
+          fill
+          className="object-cover opacity-60"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-white/80" />
+      </div>
+
+      <div className="relative z-50">
         <Navigation />
-        
-        <div className="absolute top-0 left-0 w-full h-32">
-          <Image
-            src="/images/header.jpg"
-            alt="Chapter Header"
-            fill
-            className="object-cover"
-            priority
+      </div>
+      
+      <div className="relative z-10 max-w-4xl mx-auto pt-24 p-8">
+        <div className="relative bg-white/80 backdrop-blur-lg rounded-xl shadow-xl p-8 prose prose-lg max-w-none">
+          {/* Checkered Pattern Overlay */}
+          <div 
+            className="absolute inset-0"
+            style={{
+              backgroundImage: 'url("/tiles.svg")',
+              backgroundSize: '80px 80px',
+              backgroundRepeat: 'repeat',
+              opacity: 0.1
+            }}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white" />
-        </div>
-        
-        <div className="relative max-w-4xl mx-auto pt-48 p-8">
-          <div className="bg-white/90 backdrop-blur-sm rounded-lg shadow-lg p-8 prose prose-lg max-w-none">
+          
+          {/* Content */}
+          <div className="relative z-10">
             <div className="text-center mb-8">
               <h1 className="mb-4">{intro.title}</h1>
               <p className="text-xl text-gray-600">
@@ -148,18 +176,40 @@ export default function ChapterHome() {
               </p>
             </div>
 
-            <div className="mb-8">
-              <h2 className="text-2xl font-semibold mb-4">Meet Your Host: {metadata.host.name}</h2>
-              <p className="text-gray-600 mb-4">{metadata.host.description}</p>
-              <p className="text-gray-600 mb-4">{intro.opening_greeting}</p>
-              <p className="text-gray-600 mb-4">{intro.description}</p>
-              <p className="text-gray-600 mb-4 italic">{intro.progress_message}</p>
+            <div className="relative mb-8">
+              <div className="flex items-start gap-8">
+                <div className="flex-1">
+                  <h2 className="text-2xl font-semibold mb-4">Meet Your Host: {metadata.host.name}</h2>
+                  <p className="text-gray-600 mb-4">{intro.opening_greeting}</p>
+                </div>
+                <div className="w-32 h-32 flex-shrink-0 animate-bounce-gentle">
+                  <Image
+                    src="/images/mrfb.jpg"
+                    alt="Mr. Fluffbutt"
+                    width={128}
+                    height={128}
+                    className="rounded-full border-4 border-amber-400 shadow-lg animate-wiggle"
+                    priority
+                  />
+                </div>
+              </div>
             </div>
 
-            <div className="flex justify-center">
+            <div className="flex flex-col items-center gap-4">
+              <a 
+                href={id === "1" ? "https://learnthroughstories.substack.com/p/help-me-get-this-bike-chapter-1" : "https://substack.com/home/post/p-155624830?source=queue"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-6 py-3 text-lg font-semibold text-gray-900 bg-gradient-to-r from-amber-400 to-yellow-500 rounded-lg hover:from-amber-500 hover:to-yellow-600 transition-colors"
+                role="button"
+                tabIndex={0}
+                aria-label="Read the Story"
+              >
+                Read the Story
+              </a>
               <Link 
                 href={`/quiz/${id}/name`}
-                className="inline-flex items-center px-6 py-3 text-lg font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors"
+                className="inline-flex items-center px-6 py-3 text-lg font-semibold text-white bg-gradient-to-r from-blue-400 to-blue-600 rounded-lg hover:from-blue-500 hover:to-blue-700 transition-colors shadow-[0_0_15px_rgba(59,130,246,0.5)] hover:shadow-[0_0_20px_rgba(59,130,246,0.7)] animate-pulse-subtle"
                 role="button"
                 tabIndex={0}
                 aria-label={intro.button_text}
@@ -169,7 +219,7 @@ export default function ChapterHome() {
             </div>
           </div>
         </div>
-      </main>
-    </BackgroundPattern>
+      </div>
+    </main>
   )
 } 

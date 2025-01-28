@@ -124,24 +124,22 @@ export default function AgePage() {
   const { age_selection } = chapter.screens
 
   const handleAgeSelect = (age: string) => {
+    // If it's a real age group, proceed to quiz immediately
+    if (age === '5-7' || age === '8-9') {
+      sessionStorage.setItem('ageGroup', age)
+      router.push(`/quiz/${chapterId}/questions`)
+      return
+    }
+
+    // Handle goof options
     if (age === 'baby' || age === 'ship') {
+      setGoofAttempts(prev => prev + 1)
       if (goofAttempts === 0) {
         setMessage(age_selection.sassy_responses[0])
-        setGoofAttempts(1)
-      } else if (goofAttempts === 1) {
+      } else {
         setMessage(age_selection.sassy_responses[1])
-        setGoofAttempts(2)
       }
-      return
     }
-
-    if (goofAttempts < 2) {
-      setMessage(age_selection.final_warning)
-      return
-    }
-
-    sessionStorage.setItem('ageGroup', age)
-    router.push(`/quiz/${chapterId}/questions`)
   }
 
   return (
@@ -157,7 +155,7 @@ export default function AgePage() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white/70" />
         </div>
         
         <div className="relative max-w-4xl mx-auto pt-24 sm:pt-48 p-4 sm:p-8">
@@ -174,20 +172,14 @@ export default function AgePage() {
               <div className="flex flex-col max-w-md mx-auto space-y-3">
                 <button
                   onClick={() => handleAgeSelect('5-7')}
-                  className={`p-3 text-base font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors ${
-                    goofAttempts < 2 ? 'opacity-50 cursor-not-allowed' : ''
-                  }`}
-                  disabled={goofAttempts < 2}
+                  className="p-3 text-base font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors"
                 >
                   {age_selection.age_groups.younger}
                 </button>
                 
                 <button
                   onClick={() => handleAgeSelect('8-9')}
-                  className={`p-3 text-base font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors ${
-                    goofAttempts < 2 ? 'opacity-50 cursor-not-allowed' : ''
-                  }`}
-                  disabled={goofAttempts < 2}
+                  className="p-3 text-base font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors"
                 >
                   {age_selection.age_groups.older}
                 </button>

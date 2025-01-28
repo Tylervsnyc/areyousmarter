@@ -58,6 +58,25 @@ export default {
           },
         },
       },
+      animation: {
+        'bounce-gentle': 'bounce 3s ease-in-out infinite',
+        'wiggle': 'wiggle 2s ease-in-out infinite',
+        'pulse-subtle': 'pulse 2s ease-in-out infinite',
+      },
+      keyframes: {
+        bounce: {
+          '0%, 100%': { transform: 'translateY(-5%)' },
+          '50%': { transform: 'translateY(0)' },
+        },
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(-3deg)' },
+          '50%': { transform: 'rotate(3deg)' },
+        },
+        pulse: {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.8' },
+        },
+      },
     },
   },
   plugins: [
