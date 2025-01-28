@@ -90,8 +90,8 @@ export default function AgeSelection() {
 
     // Handle real age selections (5-7 or 8-9)
     if (selection === '5-7' || selection === '8-9') {
-      // Store age group and proceed to questions
-      sessionStorage.setItem('ageGroup', selection)
+      // Store age group with the correct key 'age' instead of 'ageGroup'
+      sessionStorage.setItem('age', selection)
       // Ensure we stay on the same chapter's questions
       router.push(`/quiz/${chapterId}/questions`)
     }
