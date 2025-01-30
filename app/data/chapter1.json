@@ -53,10 +53,9 @@
       "greeting": "And how many years have you been roaming this Earth? Do try to be honest.",
       "age_responses": {
         "6-7": "Ah, a young kitten still. We'll start with the easy numbers.",
-        "8-10": "Getting close to double digits? Let's see if your math skills match your age.",
-        "too_young": "Too young! Come back when you've learned to count past your whiskers!",
-        "too_old": "Oh my, practically ancient for a human! But still no match for feline wisdom.",
-        "silly": "Very funny. I suppose you think you're more clever than a cat? Try again!"
+        "8-9": "Getting close to double digits? Let's see if your math skills match your age.",
+        "baby": "Too young! Come back when you've learned to count past your whiskers!",
+        "ship": "Oh my, practically ancient for a human! But still no match for feline wisdom."
       },
       "sassy_responses": [
         "Oh my whiskers! Are you trying to be funny? Even my afternoon naps are more serious than this. Your REAL age, if you please!",
