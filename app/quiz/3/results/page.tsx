@@ -1,46 +1,46 @@
 'use client'
 
+import { Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import chapter3Data from '../../../data/chapter3.json'
+import chapter3Data from '@/app/data/chapter3.json'
 
-export default function ResultsPage() {
-  const router = useRouter()
+const ResultsContent = () => {
   const searchParams = useSearchParams()
+  const router = useRouter()
   const score = parseInt(searchParams.get('score') || '0')
-  const total = parseInt(searchParams.get('total') || '10')
+  const total = parseInt(searchParams.get('total') || '0')
   const name = searchParams.get('name') || ''
-
-  const { results } = chapter3Data.screens
   const percentage = (score / total) * 100
 
-  const getMessage = () => {
-    if (percentage === 100) return results.messages.perfect
-    if (percentage >= 80) return results.messages.great
-    if (percentage >= 60) return results.messages.good
-    return results.messages.needsPractice
-  }
-
-  const handleTryAgain = () => {
-    router.push('/quiz/3/age')
-  }
-
-  const handleHome = () => {
-    router.push('/')
-  }
-
   return (
-    <div className="p-4">
-      <h1>{results.title}</h1>
-      <p>{name}, you scored {score} out of {total}!</p>
-      <p>{getMessage()}</p>
-      <div>
-        <button onClick={handleTryAgain}>
-          {results.buttons.tryAgain}
-        </button>
-        <button onClick={handleHome}>
-          {results.buttons.home}
+    <div className="min-h-screen flex flex-col items-center justify-center p-4">
+      <div className="bg-white/90 backdrop-blur-sm rounded-lg shadow-xl p-8 max-w-md w-full text-center space-y-6 relative z-10">
+        <h1 className="text-3xl font-bold text-gray-900">{chapter3Data.screens.results.title}</h1>
+        <p className="text-xl text-gray-700">
+          {name}, you scored {score} out of {total}!
+        </p>
+        <p className="text-lg text-gray-600">
+          {percentage >= 70
+            ? chapter3Data.screens.results.messages.great
+            : percentage >= 40
+            ? chapter3Data.screens.results.messages.good
+            : chapter3Data.screens.results.messages.needsPractice}
+        </p>
+        <button
+          onClick={() => router.push('/')}
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-200"
+        >
+          {chapter3Data.screens.results.buttons.home}
         </button>
       </div>
     </div>
+  )
+}
+
+export default function ResultsPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ResultsContent />
+    </Suspense>
   )
 } 
