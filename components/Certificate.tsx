@@ -28,7 +28,7 @@ export default function Certificate({
       {/* Certificate Text Overlay */}
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="relative -top-[3%] w-[45%]">
-          <p className="text-black font-serif text-[6px] sm:text-[10px] md:text-xs text-center whitespace-nowrap overflow-hidden text-ellipsis">
+          <p className="text-black font-serif text-[4px] sm:text-[10px] md:text-xs text-center whitespace-nowrap overflow-hidden text-ellipsis">
             {studentName} • Chapter {chapterNumber} • {date}
           </p>
         </div>

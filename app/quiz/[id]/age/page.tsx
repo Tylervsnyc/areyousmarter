@@ -125,7 +125,7 @@ export default function AgePage() {
 
   const handleAgeSelect = (age: string) => {
     // If it's a real age group, proceed to quiz immediately
-    if (age === '5-7' || age === '8-9') {
+    if (age === '6-7' || age === '8-9') {
       sessionStorage.setItem('ageGroup', age)
       router.push(`/quiz/${chapterId}/questions`)
       return
@@ -171,7 +171,7 @@ export default function AgePage() {
               
               <div className="flex flex-col max-w-md mx-auto space-y-3">
                 <button
-                  onClick={() => handleAgeSelect('5-7')}
+                  onClick={() => handleAgeSelect('6-7')}
                   className="p-3 text-base font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors"
                 >
                   {age_selection.age_groups.younger}
