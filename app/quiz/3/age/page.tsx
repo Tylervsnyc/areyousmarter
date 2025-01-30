@@ -1,10 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import chapter3Data from '@/app/data/chapter3.json'
 
-export default function AgePage() {
+const AgeSelectionContent = () => {
   const router = useRouter()
   const searchParams = useSearchParams()
   const name = searchParams.get('name') || ''
@@ -52,5 +52,13 @@ export default function AgePage() {
         )}
       </div>
     </div>
+  )
+}
+
+export default function AgePage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <AgeSelectionContent />
+    </Suspense>
   )
 } 
