@@ -1,7 +1,7 @@
 'use client'
 
 import { useSearchParams } from 'next/navigation'
-import { Suspense } from 'react'
+import { Suspense, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Certificate from '@/components/Certificate'
@@ -35,6 +35,12 @@ function ResultsContent() {
   const score = parseInt(searchParams.get('score') || '0')
   const name = searchParams.get('name') || ''
   const type = searchParams.get('type') || 'easy'
+
+  useEffect(() => {
+    // Play the appropriate sound based on score
+    const audio = new Audio(score === 10 ? '/sounds/perfect.mp3' : '/sounds/applause.mp3')
+    audio.play().catch(error => console.log('Error playing sound:', error))
+  }, [score]) // Only play once when component mounts
 
   const getScoreCategory = (score: number) => {
     if (score <= 2) return 'low'
