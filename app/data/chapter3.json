@@ -1,1 +1,100 @@
- 
+{
+  "id": "3",
+  "metadata": {
+    "title": "Chapter 3",
+    "theme": {
+      "pattern": "dots",
+      "tone": "warm"
+    }
+  },
+  "screens": {
+    "intro": {
+      "title": "Chapter 3",
+      "subtitle": "Test Flow",
+      "opening_greeting": "Welcome to Chapter 3",
+      "description": "Testing the flow",
+      "progress_message": "Let's go",
+      "host_image": "/images/header.jpg",
+      "button_text": "Start Chapter 3"
+    },
+    "name_selection": {
+      "title": "Enter Name",
+      "greeting": "What's your name?",
+      "button_text": "Continue",
+      "theme": {
+        "pattern": "dots",
+        "tone": "warm"
+      }
+    },
+    "age_selection": {
+      "title": "Select Age",
+      "greeting": "How old are you?",
+      "age_responses": {
+        "6-7": "You selected 6-7",
+        "8-9": "You selected 8-9",
+        "baby": "Too young",
+        "ship": "Too old"
+      },
+      "sassy_responses": [
+        "Try again",
+        "One more time"
+      ],
+      "final_warning": "Last chance",
+      "age_groups": {
+        "younger": "6-7 Years",
+        "older": "8-9 Years",
+        "goof_options": {
+          "baby": "Too young",
+          "ship": "Too old"
+        }
+      },
+      "theme": {
+        "pattern": "dots",
+        "tone": "warm"
+      }
+    },
+    "quiz": {
+      "younger": {
+        "questions": [
+          {
+            "id": 1,
+            "question": "Test Question 1",
+            "options": ["A", "B", "C", "D"],
+            "correct_answer": "A",
+            "host_reactions": {
+              "correct": "Correct!",
+              "incorrect": "Wrong!"
+            }
+          }
+        ]
+      },
+      "older": {
+        "questions": [
+          {
+            "id": 1,
+            "question": "Test Question 1",
+            "options": ["A", "B", "C", "D"],
+            "correct_answer": "A",
+            "host_reactions": {
+              "correct": "Correct!",
+              "incorrect": "Wrong!"
+            }
+          }
+        ]
+      }
+    },
+    "results": {
+      "title": "Results",
+      "messages": {
+        "perfect": "Perfect!",
+        "great": "Great!",
+        "good": "Good!",
+        "needsPractice": "Keep practicing!"
+      },
+      "buttons": {
+        "tryAgain": "Try Again",
+        "home": "Home"
+      }
+    }
+  }
+} 
