@@ -127,7 +127,8 @@ export default function AgePage() {
     if (age === '6-7' || age === '8-9') {
       sessionStorage.setItem('ageGroup', age)
       const name = sessionStorage.getItem('name') || ''
-      router.push(`/quiz/${chapterId}/${age}?name=${name}&version=${age === '6-7' ? 'easy' : 'hard'}`)
+      const timestamp = Date.now()
+      router.push(`/quiz/${chapterId}/${age}?name=${name}&version=${age === '6-7' ? 'easy' : 'hard'}&t=${timestamp}`)
       return
     }
 
