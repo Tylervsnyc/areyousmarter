@@ -48,7 +48,7 @@
       "title": "Declare Your Years of Experience",
       "greeting": "Before we begin our royal lesson, I must know if you're old enough to comprehend my mathematical brilliance. Choose wisely – the fate of your mathematical journey rests upon this decision!",
       "age_responses": {
-        "5-7": "Ah, a young apprentice! Almost as old as I am in cat years.",
+        "6-7": "Ah, a young apprentice! Almost as old as I am in cat years.",
         "8-10": "Old enough to learn, young enough to be trainable.",
         "too_young": "Come back when you can count past the number of treats I get.",
         "too_old": "300 years old? Even I only have nine lives.",

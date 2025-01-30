@@ -56,7 +56,7 @@ interface ChapterData {
       title: string
       greeting: string
       age_responses: {
-        "5-7": string
+        "6-7": string
         "8-10": string
         too_young: string
         too_old: string

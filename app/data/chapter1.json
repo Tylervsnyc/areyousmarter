@@ -52,7 +52,7 @@
       "title": "Reveal Your Years of Wisdom!",
       "greeting": "And how many years have you been roaming this Earth? Do try to be honest.",
       "age_responses": {
-        "5-7": "Ah, a young kitten still. We'll start with the easy numbers.",
+        "6-7": "Ah, a young kitten still. We'll start with the easy numbers.",
         "8-10": "Getting close to double digits? Let's see if your math skills match your age.",
         "too_young": "Too young! Come back when you've learned to count past your whiskers!",
         "too_old": "Oh my, practically ancient for a human! But still no match for feline wisdom.",
@@ -64,7 +64,7 @@
       ],
       "final_warning": "Enough games! Choose your true age now, or it's back to mathematical kindergarten with you!",
       "age_groups": {
-        "younger": "5-7 years of mathematical experience",
+        "younger": "6-7 years of mathematical experience",
         "older": "8-9 years of numerical wisdom",
         "goof_options": {
           "baby": "I'm just a tiny kitten",
