@@ -110,6 +110,9 @@ const chapters: Record<string, ChapterData> = {
   '2': chapter2Data as ChapterData
 }
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 export default function AgePage() {
   const [goofAttempts, setGoofAttempts] = useState(0)
   const [message, setMessage] = useState('')
@@ -127,8 +130,8 @@ export default function AgePage() {
     if (age === '6-7' || age === '8-9') {
       sessionStorage.setItem('ageGroup', age)
       const name = sessionStorage.getItem('name') || ''
-      const timestamp = Date.now()
-      router.push(`/quiz/${chapterId}/${age}?name=${name}&version=${age === '6-7' ? 'easy' : 'hard'}&t=${timestamp}`)
+      const timestamp = new Date().toISOString()
+      router.push(`/quiz/${chapterId}/${age}?name=${name}&version=${age === '6-7' ? 'easy' : 'hard'}&t=${timestamp}`, { scroll: false })
       return
     }
 
