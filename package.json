@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "verify": "node scripts/verify-deployment.js",
+    "deploy": "npm run verify && vercel deploy --prod"
   },
   "dependencies": {
     "next": "15.1.6",
