@@ -108,7 +108,7 @@ export default function QuizPageTemplate({
               <Link href={beginQuizLink}>
                 <button className="w-full py-3 md:py-4 text-lg md:text-xl font-semibold bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg transition-all
                                animate-[pulse_2s_ease-in-out_infinite] hover:animate-none">
-                  Begin Your Adventure
+                  Play the Game
                 </button>
               </Link>
             </div>
