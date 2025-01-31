@@ -11,30 +11,13 @@ interface NameInputTemplateProps {
 
 export default function NameInputTemplate({ chapterNumber }: NameInputTemplateProps) {
   const [name, setName] = useState('')
-  const [error, setError] = useState('')
   const router = useRouter()
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    const trimmedName = name.trim()
-    
-    if (!trimmedName) {
-      setError('Please enter your name')
-      return
+    if (name.trim()) {
+      router.push(`/quiz/${chapterNumber}/age?name=${encodeURIComponent(name.trim())}`)
     }
-    
-    if (trimmedName.length < 2) {
-      setError('Name must be at least 2 characters long')
-      return
-    }
-    
-    setError('')
-    router.push(`/quiz/${chapterNumber}/age?name=${encodeURIComponent(trimmedName)}`)
-  }
-
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value)
-    setError('')
   }
 
   return (
@@ -105,19 +88,11 @@ export default function NameInputTemplate({ chapterNumber }: NameInputTemplatePr
                   type="text"
                   id="name"
                   value={name}
-                  onChange={handleNameChange}
-                  className={`w-full px-4 py-3 text-lg border-2 ${error ? 'border-red-400' : 'border-yellow-400'} rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent`}
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-full px-4 py-3 text-lg border-2 border-yellow-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
                   placeholder="Your name here..."
                   required
-                  minLength={2}
-                  aria-invalid={error ? 'true' : 'false'}
-                  aria-describedby={error ? 'name-error' : undefined}
                 />
-                {error && (
-                  <p id="name-error" className="text-red-500 text-sm text-center">
-                    {error}
-                  </p>
-                )}
               </div>
               
               <button

@@ -62,7 +62,6 @@ export default {
         'bounce-gentle': 'bounce 3s ease-in-out infinite',
         'wiggle': 'wiggle 2s ease-in-out infinite',
         'pulse-subtle': 'pulse 2s ease-in-out infinite',
-        'bounce-slow': 'bounce 2s infinite',
       },
       keyframes: {
         bounce: {
@@ -77,10 +76,6 @@ export default {
           '0%, 100%': { opacity: '1' },
           '50%': { opacity: '0.8' },
         },
-      },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
     },
   },
