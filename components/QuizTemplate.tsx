@@ -4,6 +4,7 @@ import { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
+import QuizProgress from './QuizProgress'
 
 interface QuizQuestion {
   question: string
@@ -86,10 +87,10 @@ function QuizContent({ questions, chapterNumber, quizType }: QuizTemplateProps) 
   const playSound = (isCorrect: boolean) => {
     if (isCorrect && correctSound) {
       correctSound.currentTime = 0
-      correctSound.play()
+      correctSound.play().catch(console.error)
     } else if (!isCorrect && incorrectSound) {
       incorrectSound.currentTime = 0
-      incorrectSound.play()
+      incorrectSound.play().catch(console.error)
     }
   }
 
@@ -179,30 +180,15 @@ function QuizContent({ questions, chapterNumber, quizType }: QuizTemplateProps) 
 
         {/* Content Overlay */}
         <div className="relative z-10 flex flex-col items-center px-4 py-4 md:px-6 md:py-8 space-y-4 md:space-y-8">
-          {/* Progress Bar */}
-          <div className="max-w-lg w-full">
-            <div className="bg-white/90 rounded-xl p-3">
-              <div className="h-8 bg-gray-100 rounded-lg overflow-hidden shadow-inner relative">
-                <div 
-                  className="h-full transition-all duration-700 ease-out relative"
-                  style={{ 
-                    width: `${((currentQuestion) / questions.length) * 100}%`,
-                    background: 'linear-gradient(45deg, #3b82f6, #8b5cf6, #3b82f6)',
-                    backgroundSize: '200% 200%',
-                    animation: 'gradient-x 3s ease infinite'
-                  }}
-                >
-                  <div className="absolute inset-0 bg-[rgba(255,255,255,0.3)] animate-pulse" />
-                  <div className="absolute inset-0 bg-[rgba(255,255,255,0.1)] animate-[gradient-x_2s_ease-in-out_infinite]" />
-                </div>
-              </div>
-              <div className="mt-2 text-center font-bold text-gray-800">
-                Question {currentQuestion + 1} of {questions.length}
-              </div>
-            </div>
-          </div>
+          {/* Progress */}
+          <QuizProgress
+            currentQuestion={currentQuestion + 1}
+            correctAnswers={score}
+            totalQuestions={questions.length}
+            isCorrectAnimation={isAnswered && questions[currentQuestion].options[selectedAnswer!] === questions[currentQuestion].answer}
+          />
 
-          {/* Question Box with Mr. Fluff Butt */}
+          {/* Question Box */}
           <div className="bg-white/90 rounded-xl border-4 border-yellow-400 p-4 md:p-6 max-w-lg w-full mx-auto relative">
             {/* Mr. Fluff Butt Image */}
             <div className="absolute -left-16 top-1/2 -translate-y-1/2 w-24 h-24 rounded-full border-4 border-yellow-400 overflow-hidden hidden md:block">

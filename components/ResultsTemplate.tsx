@@ -41,7 +41,6 @@ function ResultsContent({ chapterNumber }: ResultsTemplateProps) {
   const type = searchParams.get('type') || 'easy'
 
   useEffect(() => {
-    // Play the appropriate sound based on score
     const audio = new Audio(score === 10 ? '/sounds/perfect.mp3' : '/sounds/applause.mp3')
     audio.play().catch(error => console.log('Error playing sound:', error))
   }, [score])
@@ -173,10 +172,10 @@ function ResultsContent({ chapterNumber }: ResultsTemplateProps) {
   )
 }
 
-export default function ResultsTemplate({ chapterNumber }: ResultsTemplateProps) {
+export default function ResultsTemplate(props: ResultsTemplateProps) {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <ResultsContent chapterNumber={chapterNumber} />
+      <ResultsContent {...props} />
     </Suspense>
   )
 } 
