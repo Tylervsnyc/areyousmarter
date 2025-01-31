@@ -6,6 +6,7 @@ import Navigation from '@/app/components/Navigation'
 import { useParams } from 'next/navigation'
 import chapter1Data from '@/app/data/chapter1.json'
 import chapter2Data from '@/app/data/chapter2.json'
+import chapter3Data from '@/app/data/chapter3.json'
 import { getBackgroundForPath } from '@/app/utils/backgrounds'
 
 type Pattern = 'dots' | 'grid' | 'paper' | 'brush' | 'waves'
@@ -107,7 +108,8 @@ interface ChapterData {
 
 const chapters: Record<string, ChapterData> = {
   '1': chapter1Data as ChapterData,
-  '2': chapter2Data as ChapterData
+  '2': chapter2Data as ChapterData,
+  '3': chapter3Data as ChapterData
 }
 
 export default function ChapterHome() {

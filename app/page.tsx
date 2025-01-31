@@ -41,7 +41,7 @@ export default function Home() {
                 subject="Math and Entrepreneurship"
                 ageRange="5-10 years"
                 content="Stories and Interactive Game Show"
-                chaptersAvailable={2}
+                chaptersAvailable={3}
                 chapters={[
                   {
                     title: "Chapter 1: Help Me Get This Bike!",
@@ -52,6 +52,11 @@ export default function Home() {
                     title: "Chapter 2: A Big Three Dollar Gamble",
                     description: "Test your math skills in Mr. Fluffbutt's royal kingdom!",
                     href: "/quiz/2"
+                  },
+                  {
+                    title: "Chapter 3: Let it Roll! Let it Roll!",
+                    description: "Join Mr. Fluffbutt for more money math adventures!",
+                    href: "/quiz/3"
                   }
                 ]}
               />

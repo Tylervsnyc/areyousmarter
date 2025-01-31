@@ -9,6 +9,7 @@ import QuizProgress from '../../../components/QuizProgress'
 import { playCorrectSound, playIncorrectSound } from '../../../components/SoundEffects'
 import chapter1Data from '../../../data/chapter1.json'
 import chapter2Data from '../../../data/chapter2.json'
+import chapter3Data from '../../../data/chapter3.json'
 
 type Pattern = 'dots' | 'grid' | 'paper' | 'brush' | 'waves'
 type Tone = 'light' | 'warm' | 'cool'
@@ -67,7 +68,8 @@ interface ChapterData {
 
 const chapters: Record<string, ChapterData> = {
   '1': chapter1Data as ChapterData,
-  '2': chapter2Data as ChapterData
+  '2': chapter2Data as ChapterData,
+  '3': chapter3Data as ChapterData
 }
 
 export default function QuizQuestions() {

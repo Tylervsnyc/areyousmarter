@@ -39,6 +39,14 @@ export default function ChapterIntro() {
       image: "/images/mrfb.jpg",
       style: "imperial",
       description: "A grumpy Persian cat who considers himself royalty, testing your math skills with imperial flair."
+    },
+    '3': {
+      host: "Mr. Fluffbutt",
+      title: "Let it Roll! Let it Roll!",
+      intro: "Back for more mathematical challenges? Well, well... I suppose your determination is almost as impressive as my whiskers. Let's see if you can handle these money puzzles!",
+      image: "/images/mrfb.jpg",
+      style: "imperial",
+      description: "The royal mathematician returns with more money math challenges and a dash of feline sass!"
     }
   }
 
@@ -105,7 +113,9 @@ export default function ChapterIntro() {
             <a
               href={chapterId === '1' 
                 ? "https://learnthroughstories.substack.com/p/help-me-get-this-bike-chapter-1"
-                : "https://learnthroughstories.substack.com/p/help-me-get-this-bike-chapter-2"
+                : chapterId === '2' 
+                  ? "https://learnthroughstories.substack.com/p/help-me-get-this-bike-chapter-2"
+                  : "https://learnthroughstories.substack.com/p/help-me-get-this-bike-chapter-3"
               }
               target="_blank"
               rel="noopener noreferrer"
