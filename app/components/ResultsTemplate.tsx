@@ -1,10 +1,14 @@
-'use client';
+'use client'
 
 import { useSearchParams } from 'next/navigation'
 import { Suspense, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Certificate from '@/components/Certificate'
+
+interface ResultsTemplateProps {
+  chapterNumber: string
+}
 
 const scoreMessages = {
   low: [
@@ -30,7 +34,7 @@ const progressMessages = [
   "At this rate, Hudson might actually get that bike before I use up all nine lives!"
 ]
 
-function ResultsContent() {
+function ResultsContent({ chapterNumber }: ResultsTemplateProps) {
   const searchParams = useSearchParams()
   const score = parseInt(searchParams.get('score') || '0')
   const name = searchParams.get('name') || ''
@@ -132,21 +136,21 @@ function ResultsContent() {
               </div>
               <Certificate 
                 studentName={name}
-                chapterNumber={3}
+                chapterNumber={chapterNumber}
               />
             </div>
           )}
 
           {/* Navigation Buttons */}
           <div className="flex flex-col w-full max-w-md gap-3 md:gap-4 px-4 mx-auto">
-            <Link href={`/quiz/3/${type === 'easy' ? '6-7' : '8-9'}?name=${encodeURIComponent(name)}`}>
+            <Link href={`/quiz/${chapterNumber}/${type === 'easy' ? '6-7' : '8-9'}?name=${encodeURIComponent(name)}`}>
               <button className="w-full py-3 md:py-4 text-lg md:text-xl font-semibold bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg transition-all">
                 Try Again
               </button>
             </Link>
-            <Link href="/quiz/3">
+            <Link href={`/quiz/${chapterNumber}`}>
               <button className="w-full py-3 md:py-4 text-lg md:text-xl font-semibold bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg transition-all">
-                Back to Chapter 3
+                Back to Chapter {chapterNumber}
               </button>
             </Link>
           </div>
@@ -169,10 +173,10 @@ function ResultsContent() {
   )
 }
 
-export default function ResultsPage() {
+export default function ResultsTemplate({ chapterNumber }: ResultsTemplateProps) {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <ResultsContent />
+      <ResultsContent chapterNumber={chapterNumber} />
     </Suspense>
   )
 } 

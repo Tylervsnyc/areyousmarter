@@ -9,7 +9,7 @@ import chapter1Data from '../../../data/chapter1.json'
 import chapter2Data from '../../../data/chapter2.json'
 import chapter3Data from '../../../data/chapter3.json'
 
-type Pattern = 'dots' | 'grid' | 'paper' | 'brush' | 'waves'
+type Pattern = 'grid' | 'paper' | 'dots' | 'brush' | 'waves'
 type Tone = 'light' | 'warm' | 'cool'
 
 interface ChapterData {
@@ -103,13 +103,26 @@ interface ChapterData {
         }>
       }
     }
+    results: {
+      title: string
+      messages: {
+        perfect: string
+        great: string
+        good: string
+        needsPractice: string
+      }
+      buttons: {
+        tryAgain: string
+        home: string
+      }
+    }
   }
 }
 
 const chapters: Record<string, ChapterData> = {
-  '1': chapter1Data as ChapterData,
-  '2': chapter2Data as ChapterData,
-  '3': chapter3Data as ChapterData
+  '1': chapter1Data as unknown as ChapterData,
+  '2': chapter2Data as unknown as ChapterData,
+  '3': chapter3Data as unknown as ChapterData
 }
 
 export default function NamePage() {
