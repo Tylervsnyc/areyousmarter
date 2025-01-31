@@ -7,7 +7,7 @@ export default function Chapter3Page() {
     <QuizPageTemplate
       title="Are You Smarter Than Mr. Fluffbutt?"
       subtitle="Chapter 3: Let it Roll! Let it Roll!"
-      readStoryLink="https://substack.com/home/post/p-155624830?source=queue"
+      readStoryLink="https://learnthroughstories.substack.com/p/help-me-get-this-bike-chapter-3-a"
       beginQuizLink="/quiz/3/name"
     />
   )

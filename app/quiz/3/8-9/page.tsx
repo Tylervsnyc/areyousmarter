@@ -34,9 +34,9 @@ const chapter3HardQuestions = [
     answer: "$36"
   },
   {
-    question: "Yawn Hudson makes $5 per animal, caring for 4 pets over 5 days, but spends $15 on supplies. Calculate his earnings (I'll wait while you use all your brain cells).",
-    options: ["$85", "$95", "$100", "$105"],
-    answer: "$100"
+    question: "Question 7: Hudson charges $5 per pet visit. If he visits 3 dogs twice a day for 5 days, what are his total earnings?",
+    options: ["$120", "$130", "$150", "$160"],
+    answer: "$150"
   },
   {
     question: "Time to discuss someone truly important - ME! Hudson spent a day attending to my needs (as he should). How much did I generously allow him to earn?",
