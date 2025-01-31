@@ -26,8 +26,7 @@ const scoreMessages = {
 }
 
 const progressMessages = [
-  "Hudson now has $72 in his bike fund! Only $428 to go before he can stop bothering me about that two-wheeled contraption.",
-  "At this rate, Hudson might actually get that bike before I use up all nine lives!"
+  "Meow-velous! $72? Now we're talking! That bike will be yours in no time, kitten!"
 ]
 
 function ResultsContent() {
