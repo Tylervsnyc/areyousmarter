@@ -185,6 +185,30 @@ function QuizContent({ questions, chapterNumber, quizType }: QuizTemplateProps) 
             <div className="text-center text-lg font-medium text-gray-700">
               Question {currentQuestion + 1} of {questions.length}
             </div>
+            {/* 3D Progress Bar */}
+            <div className="mt-2 h-6 bg-gray-200 rounded-lg relative overflow-hidden transform perspective-1000 rotate-x-10 shadow-lg">
+              <div 
+                className="h-full w-full absolute top-0 left-0 transition-all duration-500 ease-out"
+                style={{
+                  width: `${((currentQuestion + 1) / questions.length) * 100}%`,
+                  background: `linear-gradient(45deg, 
+                    #EAB308 0%, 
+                    #22C55E 25%, 
+                    #3B82F6 50%, 
+                    #A855F7 75%, 
+                    #EAB308 100%
+                  )`,
+                  animation: 'liquidFlow 2s linear infinite',
+                  boxShadow: 'inset 0 2px 10px rgba(255,255,255,0.5)'
+                }}
+              />
+              <div 
+                className="absolute inset-0"
+                style={{
+                  background: 'linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%)'
+                }}
+              />
+            </div>
           </div>
 
           {/* Question Box */}
@@ -227,13 +251,13 @@ function QuizContent({ questions, chapterNumber, quizType }: QuizTemplateProps) 
           )}
 
           {/* Mr. Fluff Butt Image */}
-          <div className="w-24 h-24 relative">
-            <div className="absolute inset-0 rounded-full border-4 border-yellow-400 overflow-hidden">
+          <div className="w-24 h-24 relative group">
+            <div className="absolute inset-0 rounded-full border-4 border-yellow-400 overflow-hidden transition-transform duration-300 ease-in-out hover:scale-110 animate-bounce-slow">
               <Image
                 src="/images/mrfb.jpg"
                 alt="Mr. Fluffbutt"
                 fill
-                className="object-cover"
+                className="object-cover transform group-hover:scale-105 transition-transform duration-300"
                 priority
               />
             </div>
@@ -250,4 +274,26 @@ export default function QuizTemplate(props: QuizTemplateProps) {
       <QuizContent {...props} />
     </Suspense>
   )
+}
+
+// Add these styles at the bottom of the file
+const styles = `
+  @keyframes liquidFlow {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+`
+
+// Add style tag to the document
+if (typeof document !== 'undefined') {
+  const styleSheet = document.createElement('style')
+  styleSheet.textContent = styles
+  document.head.appendChild(styleSheet)
 } 

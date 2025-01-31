@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, Suspense } from 'react'
+import { useState, Suspense, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -16,7 +16,19 @@ function AgeInputContent({ chapterNumber }: AgeInputTemplateProps) {
   const searchParams = useSearchParams()
   const name = searchParams.get('name') || ''
 
+  useEffect(() => {
+    // Redirect back to name input if no name is provided
+    if (!name.trim()) {
+      router.push(`/quiz/${chapterNumber}/name`)
+    }
+  }, [name, chapterNumber, router])
+
   const handleAgeSelect = (ageRange: string) => {
+    if (!name.trim()) {
+      router.push(`/quiz/${chapterNumber}/name`)
+      return
+    }
+
     if (ageRange === 'baby' || ageRange === 'ship') {
       setGoofCount(prev => prev + 1)
       
@@ -35,10 +47,15 @@ function AgeInputContent({ chapterNumber }: AgeInputTemplateProps) {
 
     // Route to the appropriate quiz page based on age
     if (ageRange === '6-7') {
-      router.push(`/quiz/${chapterNumber}/6-7?name=${encodeURIComponent(name)}&version=easy`)
+      router.push(`/quiz/${chapterNumber}/6-7?name=${encodeURIComponent(name.trim())}&version=easy`)
     } else if (ageRange === '8-9') {
-      router.push(`/quiz/${chapterNumber}/8-9?name=${encodeURIComponent(name)}&version=hard`)
+      router.push(`/quiz/${chapterNumber}/8-9?name=${encodeURIComponent(name.trim())}&version=hard`)
     }
+  }
+
+  // If no name is provided, show loading while redirecting
+  if (!name.trim()) {
+    return <div className="min-h-screen flex items-center justify-center">Redirecting...</div>
   }
 
   return (

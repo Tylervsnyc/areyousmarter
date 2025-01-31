@@ -51,7 +51,7 @@ export const chapter2EasyQuiz = {
       answer: "$72"
     }
   ]
-}
+};
 
 export const chapter2HardQuiz = {
   questions: [
@@ -106,4 +106,4 @@ export const chapter2HardQuiz = {
       answer: "$72"
     }
   ]
-} 
+}; 
