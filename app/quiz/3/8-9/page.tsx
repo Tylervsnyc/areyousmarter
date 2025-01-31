@@ -4,54 +4,54 @@ import QuizTemplate from '@/components/QuizTemplate'
 
 const chapter3HardQuestions = [
   {
-    question: "Calculate Hudson's starting money precisely: 2 twenty dollar bills, 1 ten dollar bill, 1 five dollar bill, and 7 one dollar bills. What's the total?",
-    options: ["$52", "$62", "$72", "$82"],
-    answer: "$62"
+    question: "Ahem Let's start with something simple for your developing human brains. My servant... er, Hudson, has two $20 bills (probably from admiring my beauty), one $10 bill, three $5 bills, and seven $1 bills. Calculate his total wealth (though nothing compares to my priceless presence).",
+    options: ["$67", "$70", "$72", "$75"],
+    answer: "$72"
   },
   {
-    question: "Hudson invested $12 in new marketing flyers today. What percentage of his starting money ($62) did he spend? Round to the nearest whole percent!",
-    options: ["15%", "19%", "22%", "25%"],
-    answer: "19%"
+    question: "If my human starts with $72 and foolishly spends $12 on flyers (which I will shred) plus $8 on treats (acceptable expense), how much is left in his sad little savings?",
+    options: ["$48", "$52", "$54", "$58"],
+    answer: "$52"
   },
   {
-    question: "Using ratios: If $3 in marketing brought 1 client last week, calculate the potential number of new clients from $12 in marketing!",
-    options: ["2 clients", "3 clients", "4 clients", "5 clients"],
-    answer: "4 clients"
+    question: "Hudson feeds that squawking menace Joseph AND that creepy spider (the things I put up with!) for $5 each per day. Calculate his earnings for 3 days of this questionable career choice.",
+    options: ["$20", "$25", "$30", "$35"],
+    answer: "$30"
   },
   {
-    question: "Hudson earned $10 watching Mr. Fluffbutt today but spent $12 on flyers. Express his net loss as a percentage of his marketing cost!",
-    options: ["10%", "15%", "17%", "20%"],
-    answer: "17%"
+    question: "Pay attention, darlings! If Hudson makes $5 from each animal (none as magnificent as me), and he tends to 4 creatures daily for 3 days, what's his total earnings? Show me your arithmetic prowess!",
+    options: ["$50", "$55", "$60", "$65"],
+    answer: "$60"
   },
   {
-    question: "Today Hudson got calls from 4 new clients, each offering $5 per day. Calculate his potential weekly revenue if they all book him!",
-    options: ["$100", "$120", "$140", "$160"],
-    answer: "$140"
+    question: "My human invested $12 in those paper things and got 4 new clients. If he doubles his paper budget (despite my protests), how many new clients should appear at our door?",
+    options: ["6 clients", "7 clients", "8 clients", "9 clients"],
+    answer: "8 clients"
   },
   {
-    question: "If Hudson's weekly revenue is $140 and his expenses are 15% of revenue, what's his net profit?",
-    options: ["$105", "$119", "$125", "$130"],
-    answer: "$119"
+    question: "Now for some real brain exercise! If Hudson makes $20 daily from his animal adventures but spends $8 on treats (at least he has priorities), calculate his 3-day profits!",
+    options: ["$26", "$32", "$36", "$40"],
+    answer: "$36"
   },
   {
-    question: "Hudson has saved $150. If he continues making $119 in net profit weekly, how many weeks until he reaches $500?",
-    options: ["2 weeks", "3 weeks", "4 weeks", "5 weeks"],
-    answer: "3 weeks"
+    question: "Yawn Hudson makes $5 per animal, caring for 4 pets over 5 days, but spends $15 on supplies. Calculate his earnings (I'll wait while you use all your brain cells).",
+    options: ["$85", "$95", "$100", "$105"],
+    answer: "$100"
   },
   {
-    question: "The bike shop is offering a 10% discount on the $500 bike. Calculate the savings amount!",
-    options: ["$25", "$40", "$50", "$75"],
-    answer: "$50"
+    question: "Time to discuss someone truly important - ME! Hudson spent a day attending to my needs (as he should). How much did I generously allow him to earn?",
+    options: ["$5", "$10", "$15", "$20"],
+    answer: "$10"
   },
   {
-    question: "With the 10% discount applied, what percentage of the new bike price ($450) has Hudson saved with his $150?",
-    options: ["25%", "33%", "40%", "45%"],
-    answer: "33%"
+    question: "How much did my human waste... I mean, invest in those shreddable marketing materials this week?",
+    options: ["$8", "$10", "$12", "$15"],
+    answer: "$12"
   },
   {
-    question: "If Hudson increases his weekly savings by 25% from $119, how many weeks until he saves the remaining $300?",
-    options: ["8 weeks", "9 weeks", "10 weeks", "11 weeks"],
-    answer: "10 weeks"
+    question: "Final question, kittens! If Hudson made $10 from experiencing my magnificence but spent $12 on those paper things I love to destroy, what's the state of his finances?",
+    options: ["He made $2", "He lost $2", "He made $12", "He lost $10"],
+    answer: "He lost $2"
   }
 ]
 

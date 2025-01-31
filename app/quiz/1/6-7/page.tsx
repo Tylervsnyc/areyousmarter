@@ -4,54 +4,54 @@ import QuizTemplate from '@/components/QuizTemplate'
 
 const chapter1EasyQuestions = [
   {
-    question: "Listen up, tiny human! How much money does Hudson have at the start of his journey?",
-    options: ["$0", "$5", "$10", "$15"],
-    answer: "$0"
-  },
-  {
-    question: "If Hudson earns $10 per day under my royal supervision, how much will he earn in 2 days?",
-    options: ["$10", "$15", "$20", "$25"],
-    answer: "$20"
-  },
-  {
-    question: "Pay attention! How much does Hudson earn per hour of cat-sitting in my royal presence?",
-    options: ["$5", "$8", "$10", "$12"],
+    question: "Meow there! Hudson started the day with $10 from cat-sitting me. Count it with me: one $10 bill. How much money does Hudson have?",
+    options: ["$5", "$10", "$15", "$20"],
     answer: "$10"
   },
   {
-    question: "If Hudson has $10 now, how much more does he need for the $500 bike?",
-    options: ["$450", "$470", "$490", "$500"],
-    answer: "$490"
+    question: "If Hudson cat-sits me for 5 days, and I convince my human to pay him $10 each day, how much will Hudson make in total?",
+    options: ["$40", "$45", "$50", "$55"],
+    answer: "$50"
   },
   {
-    question: "If Hudson earns $50 per week in my royal service, how many complete weeks until $500?",
-    options: ["8 weeks", "9 weeks", "10 weeks", "11 weeks"],
-    answer: "10 weeks"
+    question: "Hudson bought some cat treats for me that cost $3, and a toy mouse that costs $2. How much did he spend on my presents in total?",
+    options: ["$4", "$5", "$6", "$7"],
+    answer: "$5"
   },
   {
-    question: "Hudson earned $20 today and spent $5 on cat treats for me. How much did he save?",
-    options: ["$10", "$15", "$20", "$25"],
-    answer: "$15"
+    question: "If Hudson saves $10 each week from cat-sitting me, how much money will he have after 3 weeks?",
+    options: ["$20", "$25", "$30", "$35"],
+    answer: "$30"
   },
   {
-    question: "If Hudson saves $15 per day, how many days until he has $75?",
-    options: ["3 days", "4 days", "5 days", "6 days"],
-    answer: "5 days"
+    question: "Hudson found these bills in his piggy bank: two $5 bills and three $1 bills. How much money did he find?",
+    options: ["$11", "$13", "$15", "$17"],
+    answer: "$13"
   },
   {
-    question: "Hudson has $30 and spends half on cat food. How much money does he have left?",
-    options: ["$10", "$15", "$20", "$25"],
-    answer: "$15"
+    question: "If Hudson spends $4 on Monday and $6 on Tuesday buying snacks, how much did he spend altogether?",
+    options: ["$8", "$10", "$12", "$14"],
+    answer: "$10"
   },
   {
-    question: "If Hudson earns $8 today and $12 tomorrow, how much will he have earned in total?",
-    options: ["$15", "$18", "$20", "$22"],
-    answer: "$20"
+    question: "Hudson earned $10 from cat-sitting and found $8 in his piggy bank. How much money does he have now?",
+    options: ["$16", "$18", "$20", "$22"],
+    answer: "$18"
   },
   {
-    question: "Hudson needs $500 for the bike and has saved $50. How much more does he need?",
-    options: ["$400", "$425", "$450", "$475"],
-    answer: "$450"
+    question: "After a week of work and savings, Hudson has: one $10 bill, two $5 bills, and three $1 bills. What's his total?",
+    options: ["$21", "$23", "$25", "$27"],
+    answer: "$23"
+  },
+  {
+    question: "This week, Hudson spent $5 on snacks and $7 on school supplies. What are his total expenses?",
+    options: ["$10", "$12", "$14", "$16"],
+    answer: "$12"
+  },
+  {
+    question: "If Hudson has $23 and spends $12 on supplies, how much money does he have left?",
+    options: ["$9", "$11", "$13", "$15"],
+    answer: "$11"
   }
 ]
 

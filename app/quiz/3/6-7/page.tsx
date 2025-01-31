@@ -4,54 +4,54 @@ import QuizTemplate from '@/components/QuizTemplate'
 
 const chapter3EasyQuestions = [
   {
-    question: "How much money does Hudson have at the start? Count with me: 2 twenty dollar bills, 1 ten dollar bill, 1 five dollar bill, and 7 one dollar bills!",
-    options: ["$52", "$62", "$72", "$82"],
-    answer: "$62"
+    question: "Meow-thematics time! My human Hudson (yes, I've claimed him) has two $20 bills, one $10 bill, three $5 bills, and seven $1 bills in his little money stash. Use your whiskers to count - how much does my human have?",
+    options: ["$67", "$70", "$72", "$75"],
+    answer: "$72"
   },
   {
-    question: "Hudson spent $12 on making flyers today. If he started with $62, how much money does he have left?",
-    options: ["$40", "$50", "$60", "$70"],
-    answer: "$50"
+    question: "My silly human spent $12 on those ridiculous paper things he calls flyers (I could have shredded them for free!). If he started with $72, how much is left in his treat-buying fund?",
+    options: ["$58", "$60", "$62", "$65"],
+    answer: "$60"
   },
   {
-    question: "Last week, Hudson spent $3 on flyers and got one job. How many jobs might he get with $12 in flyers?",
-    options: ["2 jobs", "3 jobs", "4 jobs", "5 jobs"],
-    answer: "4 jobs"
+    question: "Sigh Hudson insists on walking that overexcited furball Edie for $5 each day (dogs, am I right?). If he does this for 3 days (the poor soul), how much money will he make?",
+    options: ["$10", "$12", "$15", "$18"],
+    answer: "$15"
   },
   {
-    question: "Hudson got $10 for watching me, Mr. Fluffbutt, today. If he spent $12 on flyers, did he make money or lose money? How much?",
-    options: ["Made $2", "Lost $2", "Made $22", "Lost $22"],
-    answer: "Lost $2"
-  },
-  {
-    question: "Today Hudson got 4 new jobs! Each family will pay him $5 per day. How much could he make in one day?",
+    question: "That noisy feather duster Joseph needs feeding (honestly, who keeps a bird when they could have another cat?). If Hudson gets $5 each time he feeds him for 4 days, how much will my human earn?",
     options: ["$15", "$20", "$25", "$30"],
     answer: "$20"
   },
   {
-    question: "If Hudson makes $20 per day from his new jobs, how much will he make in 5 days?",
-    options: ["$80", "$90", "$100", "$110"],
-    answer: "$100"
+    question: "Shudders That eight-legged nightmare needs feeding (and humans think WE'RE scary?). If Hudson makes $5 dealing with that creature each day for 5 days, how much will he make?",
+    options: ["$20", "$25", "$30", "$35"],
+    answer: "$25"
   },
   {
-    question: "Hudson has $50 now. If he saves all his money from one week ($100), how much will he have total?",
-    options: ["$125", "$150", "$175", "$200"],
-    answer: "$150"
+    question: "Another dog? Tail flick of disapproval If Hudson makes $5 walking that oversized puppy 6 times, how much money will he make?",
+    options: ["$25", "$30", "$35", "$40"],
+    answer: "$30"
   },
   {
-    question: "If Hudson needs $500 for his bike and has $150 saved, how much more does he need?",
-    options: ["$300", "$350", "$400", "$450"],
-    answer: "$350"
+    question: "Listen carefully, kittens: If my human spends $3 on those paper toys (which I generously don't always destroy) and gets one client, how many clients should he get with $12 on flyers?",
+    options: ["2 clients", "3 clients", "4 clients", "5 clients"],
+    answer: "4 clients"
   },
   {
-    question: "Hudson found a special deal! The bike is now 10% off from $500. What's the new price?",
-    options: ["$400", "$425", "$450", "$475"],
-    answer: "$450"
+    question: "Ah, now we're talking about someone important - ME! Hudson had the honor of serving... I mean, watching me for one day. How much did I allow him to earn?",
+    options: ["$5", "$10", "$15", "$20"],
+    answer: "$10"
   },
   {
-    question: "With the 10% discount and $150 saved, how much more does Hudson need for the bike?",
-    options: ["$250", "$300", "$350", "$400"],
-    answer: "$300"
+    question: "How much of his treat money did Hudson waste on those crinkly flyer things this week? (Don't worry, I helped him redesign them... with my claws)",
+    options: ["$8", "$10", "$12", "$15"],
+    answer: "$12"
+  },
+  {
+    question: "If Hudson earned $10 for basking in my glorious presence but spent $12 on those silly papers, what happened to his money this week?",
+    options: ["He made $2", "He lost $2", "He made $12", "He lost $10"],
+    answer: "He lost $2"
   }
 ]
 

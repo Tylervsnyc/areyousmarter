@@ -4,54 +4,54 @@ import QuizTemplate from '@/components/QuizTemplate'
 
 const chapter1HardQuestions = [
   {
-    question: "Calculate Hudson's initial savings. If he starts with $0 and earns $10 per day for 3 days, what's his total?",
-    options: ["$20", "$25", "$30", "$35"],
-    answer: "$30"
+    question: "Meow there! Hudson started the day with $10 from cat-sitting me. Count it with me: one $10 bill. How much money does Hudson have?",
+    options: ["$5", "$10", "$15", "$20"],
+    answer: "$10"
   },
   {
-    question: "If Hudson needs $500 for the bike and has earned $30, what percentage of his goal has he reached?",
-    options: ["4%", "6%", "8%", "10%"],
-    answer: "6%"
-  },
-  {
-    question: "Hudson earns $10 per hour cat-sitting. If he works 4 hours today and 5 hours tomorrow, what's his total earnings?",
-    options: ["$80", "$90", "$100", "$110"],
-    answer: "$90"
-  },
-  {
-    question: "If Hudson saves 75% of his $90 earnings, how much money will he have saved?",
-    options: ["$57.50", "$67.50", "$77.50", "$87.50"],
-    answer: "$67.50"
-  },
-  {
-    question: "Hudson earns $50 per week. How many weeks will it take to save $400?",
-    options: ["6 weeks", "7 weeks", "8 weeks", "9 weeks"],
-    answer: "8 weeks"
-  },
-  {
-    question: "If Hudson's weekly earnings increase by 20% from $50, what's his new weekly income?",
+    question: "If Hudson cat-sits me for 5 days, and my human pays him $10 per day, plus a $15 bonus for making me purr, how much will he earn in total?",
     options: ["$55", "$60", "$65", "$70"],
-    answer: "$60"
+    answer: "$65"
   },
   {
-    question: "Hudson spends 30% of his $100 savings on supplies. How much money does he have left?",
-    options: ["$60", "$70", "$80", "$90"],
-    answer: "$70"
+    question: "Hudson bought some cat treats for $3, two toy mice for $4 each, and a bag of catnip for $5. How much did he spend on my presents?",
+    options: ["$14", "$16", "$18", "$20"],
+    answer: "$16"
   },
   {
-    question: "If Hudson saves $20 per day, how many days until he saves $160?",
-    options: ["6 days", "7 days", "8 days", "9 days"],
-    answer: "8 days"
+    question: "If Hudson saves $10 each week from cat-sitting, and his parents add $5 extra allowance each week, how much will he have after 3 weeks?",
+    options: ["$35", "$40", "$45", "$50"],
+    answer: "$45"
   },
   {
-    question: "Hudson's monthly earnings: $200 from cat-sitting, $100 from other jobs. What's his average weekly income?",
-    options: ["$65", "$70", "$75", "$80"],
-    answer: "$75"
+    question: "Hudson found these bills in his room: three $5 bills, four $1 bills, and one $10 bill. How much money did he find?",
+    options: ["$25", "$27", "$29", "$31"],
+    answer: "$29"
   },
   {
-    question: "If Hudson has saved $250 (halfway to his goal) and increases his savings by 25%, what's his new total?",
-    options: ["$287.50", "$312.50", "$337.50", "$362.50"],
-    answer: "$312.50"
+    question: "If Hudson spends $6 on Monday, $8 on Wednesday, and $12 on Friday buying supplies, how much did he spend in total?",
+    options: ["$24", "$26", "$28", "$30"],
+    answer: "$26"
+  },
+  {
+    question: "Hudson earned $10 from cat-sitting, found $15 in his piggy bank, and got $20 from his grandmother. What's his total?",
+    options: ["$40", "$45", "$50", "$55"],
+    answer: "$45"
+  },
+  {
+    question: "After two weeks, Hudson has: two $10 bills, three $5 bills, and six $1 bills. What's his total?",
+    options: ["$41", "$43", "$45", "$47"],
+    answer: "$41"
+  },
+  {
+    question: "This week, Hudson spent $8 on snacks, $12 on school supplies, and $15 on new books. What are his total expenses?",
+    options: ["$33", "$35", "$37", "$39"],
+    answer: "$35"
+  },
+  {
+    question: "If Hudson has $45 and spends $28 on supplies, how much money does he have left?",
+    options: ["$15", "$17", "$19", "$21"],
+    answer: "$17"
   }
 ]
 
