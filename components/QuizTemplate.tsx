@@ -133,7 +133,7 @@ function QuizContent({ questions, chapterNumber, quizType }: QuizTemplateProps) 
   return (
     <div className="min-h-screen w-full flex flex-col">
       {/* Header */}
-      <div className="relative h-32 w-full">
+      <div className="relative h-24 w-full">
         <Image
           src="/images/header.jpg"
           alt="Header Background"
@@ -147,8 +147,8 @@ function QuizContent({ questions, chapterNumber, quizType }: QuizTemplateProps) 
             <Image
               src="/images/logo.png"
               alt="Learn Through Stories"
-              width={120}
-              height={30}
+              width={100}
+              height={25}
               priority
             />
           </Link>
@@ -159,8 +159,8 @@ function QuizContent({ questions, chapterNumber, quizType }: QuizTemplateProps) 
             <Image
               src="/images/substack.jpg"
               alt="Subscribe to Learn Through Stories"
-              width={100}
-              height={25}
+              width={80}
+              height={20}
               priority
             />
           </Link>
@@ -179,64 +179,65 @@ function QuizContent({ questions, chapterNumber, quizType }: QuizTemplateProps) 
         />
 
         {/* Content Overlay */}
-        <div className="relative z-10 flex flex-col items-center px-4 py-4 md:px-6 md:py-8 space-y-4 md:space-y-8">
+        <div className="relative z-10 flex flex-col items-center px-4 py-2 space-y-3">
           {/* Progress */}
-          <QuizProgress
-            currentQuestion={currentQuestion + 1}
-            correctAnswers={score}
-            totalQuestions={questions.length}
-            isCorrectAnimation={isAnswered && questions[currentQuestion].options[selectedAnswer!] === questions[currentQuestion].answer}
-          />
+          <div className="bg-white/90 rounded-xl border-4 border-yellow-400 p-3 max-w-lg w-full mx-auto">
+            <div className="text-center text-lg font-medium text-gray-700">
+              Question {currentQuestion + 1} of {questions.length}
+            </div>
+          </div>
 
           {/* Question Box */}
-          <div className="bg-white/90 rounded-xl border-4 border-yellow-400 p-4 md:p-6 max-w-lg w-full mx-auto relative">
-            {/* Mr. Fluff Butt Image */}
-            <div className="absolute -left-16 top-1/2 -translate-y-1/2 w-24 h-24 rounded-full border-4 border-yellow-400 overflow-hidden hidden md:block">
-              <div className="w-full h-full transform hover:scale-110 transition-transform duration-300">
-                <Image
-                  src="/images/mrfb.jpg"
-                  alt="Mr. Fluff Butt"
-                  fill
-                  className="object-cover animate-[wiggle_3s_ease-in-out_infinite]"
-                  priority
-                />
-              </div>
-            </div>
-            <h1 className="text-xl md:text-3xl font-bold text-gray-900 text-center">
+          <div className="bg-white/90 rounded-xl border-4 border-yellow-400 p-3 max-w-lg w-full mx-auto">
+            <h1 className="text-lg md:text-xl font-bold text-gray-900 text-center">
               {questions[currentQuestion].question}
             </h1>
           </div>
 
           {/* Answer Options */}
-          <div className="bg-white rounded-lg p-6 max-w-md w-full shadow-md mx-auto">
-            <div className="grid grid-cols-1 gap-4">
-              {questions[currentQuestion].options.map((option, index) => (
-                <button
-                  key={index}
-                  onClick={() => handleAnswer(index)}
-                  disabled={isAnswered}
-                  className={`w-full py-4 text-lg md:text-xl font-semibold text-white rounded-full shadow-lg transition-all
-                    ${isAnswered 
-                      ? questions[currentQuestion].options[index] === questions[currentQuestion].answer
-                        ? 'bg-green-500'
-                        : selectedAnswer === index
-                          ? 'bg-red-500'
-                          : 'bg-gray-400'
-                      : 'bg-blue-600 hover:bg-blue-700'
-                    }`}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
+          <div className="w-full max-w-md mx-auto space-y-2">
+            {questions[currentQuestion].options.map((option, index) => (
+              <button
+                key={index}
+                onClick={() => handleAnswer(index)}
+                disabled={isAnswered}
+                className={`w-full py-2 text-base md:text-lg font-semibold text-white rounded-full shadow-md transition-all
+                  ${isAnswered 
+                    ? questions[currentQuestion].options[index] === questions[currentQuestion].answer
+                      ? 'bg-green-500'
+                      : selectedAnswer === index
+                        ? 'bg-red-500'
+                        : 'bg-gray-400'
+                    : index === 0 ? 'bg-yellow-500 hover:bg-yellow-600'
+                      : index === 1 ? 'bg-green-500 hover:bg-green-600'
+                      : index === 2 ? 'bg-blue-500 hover:bg-blue-600'
+                      : 'bg-purple-500 hover:bg-purple-600'
+                  }`}
+              >
+                {option}
+              </button>
+            ))}
           </div>
 
           {/* Quip Display */}
           {showQuip && (
-            <div className="bg-white/90 rounded-xl p-4 max-w-md w-full text-center text-xl font-bold animate-bounce">
+            <div className="bg-white/90 rounded-xl p-3 max-w-md w-full text-center text-lg font-bold animate-bounce">
               {quip}
             </div>
           )}
+
+          {/* Mr. Fluff Butt Image */}
+          <div className="w-24 h-24 relative">
+            <div className="absolute inset-0 rounded-full border-4 border-yellow-400 overflow-hidden">
+              <Image
+                src="/images/mrfb.jpg"
+                alt="Mr. Fluffbutt"
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
