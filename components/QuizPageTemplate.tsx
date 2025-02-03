@@ -31,8 +31,8 @@ export default function QuizPageTemplate({
 
   return (
     <div className="min-h-screen w-full flex flex-col">
-      {/* Header */}
-      <div className="relative h-32 w-full">
+      {/* Header - Reduced height */}
+      <div className="relative h-20 w-full">
         <Image
           src="/images/header.jpg"
           alt="Header Background"
@@ -46,8 +46,8 @@ export default function QuizPageTemplate({
             <Image
               src="/images/logo.png"
               alt="Learn Through Stories"
-              width={120}
-              height={30}
+              width={100}
+              height={25}
               priority
             />
           </Link>
@@ -58,8 +58,8 @@ export default function QuizPageTemplate({
             <Image
               src="/images/substack.jpg"
               alt="Subscribe to Learn Through Stories"
-              width={100}
-              height={25}
+              width={80}
+              height={20}
               priority
             />
           </Link>
@@ -77,24 +77,24 @@ export default function QuizPageTemplate({
           priority
         />
 
-        {/* Content Overlay */}
-        <div className="relative z-10 flex flex-col items-center px-4 py-4 md:px-6 md:py-8 space-y-4 md:space-y-8">
-          {/* Title Box */}
-          <div className="bg-white/90 rounded-xl border-4 border-yellow-400 p-4 md:p-6 max-w-lg w-full mx-auto">
-            <h1 className="text-2xl md:text-4xl font-bold text-gray-900 text-center">
+        {/* Content Overlay - Reduced padding and spacing */}
+        <div className="relative z-10 flex flex-col items-center px-4 py-2 md:px-6 md:py-4 space-y-3 md:space-y-4">
+          {/* Title Box - More compact */}
+          <div className="bg-white/90 rounded-xl border-4 border-yellow-400 p-3 md:p-4 max-w-lg w-full mx-auto">
+            <h1 className="text-xl md:text-3xl font-bold text-gray-900 text-center">
               {title}
             </h1>
           </div>
 
-          {/* Subtitle */}
-          <div className="bg-white rounded-lg p-3 md:p-4 max-w-md w-full shadow-md mx-auto">
-            <h2 className="text-xl md:text-3xl text-gray-800 text-center">
+          {/* Subtitle - More compact */}
+          <div className="bg-white rounded-lg p-2 md:p-3 max-w-md w-full shadow-md mx-auto">
+            <h2 className="text-lg md:text-2xl text-gray-800 text-center">
               {subtitle}
             </h2>
           </div>
 
-          {/* Mr. Fluff Butt Image */}
-          <div className="w-36 h-36 md:w-64 md:h-64 relative animate-[bounce_3s_ease-in-out_infinite] mx-auto">
+          {/* Mr. Fluff Butt Image - Smaller on desktop */}
+          <div className="w-32 h-32 md:w-48 md:h-48 relative animate-[bounce_3s_ease-in-out_infinite] mx-auto">
             <div className="absolute inset-0 rounded-full border-4 border-yellow-400 overflow-hidden">
               <Image
                 src="/images/mrfb.jpg"
@@ -106,19 +106,19 @@ export default function QuizPageTemplate({
             </div>
           </div>
 
-          {/* Buttons */}
+          {/* Buttons - More compact spacing */}
           {customButtons ? (
             customButtons
           ) : (
-            <div className="flex flex-col w-full max-w-md gap-3 md:gap-4 mt-4 md:mt-8 px-4 mx-auto">
+            <div className="flex flex-col w-full max-w-md gap-2 md:gap-3 mt-2 md:mt-4 px-4 mx-auto">
               <Link href={readStoryLink}>
-                <button className="w-full py-3 md:py-4 text-lg md:text-xl font-semibold bg-yellow-500 hover:bg-yellow-600 text-white rounded-full shadow-lg transition-all">
+                <button className="w-full py-2 md:py-3 text-base md:text-lg font-semibold bg-yellow-500 hover:bg-yellow-600 text-white rounded-full shadow-lg transition-all">
                   Read the Story
                 </button>
               </Link>
               <button 
                 onClick={handleStartQuiz}
-                className="w-full py-3 md:py-4 text-lg md:text-xl font-semibold bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg transition-all animate-[pulse_2s_ease-in-out_infinite] hover:animate-none"
+                className="w-full py-2 md:py-3 text-base md:text-lg font-semibold bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg transition-all animate-[pulse_2s_ease-in-out_infinite] hover:animate-none"
               >
                 Play the Game
               </button>
