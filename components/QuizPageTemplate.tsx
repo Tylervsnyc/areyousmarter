@@ -2,6 +2,8 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { trackUserProgress } from '@/app/utils/analytics'
 
 interface QuizPageTemplateProps {
   title: string
@@ -18,6 +20,15 @@ export default function QuizPageTemplate({
   beginQuizLink = '/quiz',
   customButtons,
 }: QuizPageTemplateProps) {
+  const router = useRouter()
+
+  const handleStartQuiz = () => {
+    // Extract chapter number from beginQuizLink (e.g., "/quiz/1/name" -> "1")
+    const chapter = beginQuizLink.split('/')[2]
+    trackUserProgress('start_quiz', chapter)
+    router.push(beginQuizLink)
+  }
+
   return (
     <div className="min-h-screen w-full flex flex-col">
       {/* Header */}
@@ -105,12 +116,12 @@ export default function QuizPageTemplate({
                   Read the Story
                 </button>
               </Link>
-              <Link href={beginQuizLink}>
-                <button className="w-full py-3 md:py-4 text-lg md:text-xl font-semibold bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg transition-all
-                               animate-[pulse_2s_ease-in-out_infinite] hover:animate-none">
-                  Play the Game
-                </button>
-              </Link>
+              <button 
+                onClick={handleStartQuiz}
+                className="w-full py-3 md:py-4 text-lg md:text-xl font-semibold bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg transition-all animate-[pulse_2s_ease-in-out_infinite] hover:animate-none"
+              >
+                Play the Game
+              </button>
             </div>
           )}
         </div>
