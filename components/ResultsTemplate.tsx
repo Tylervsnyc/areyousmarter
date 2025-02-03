@@ -5,6 +5,8 @@ import { Suspense, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Certificate from './Certificate'
+import { trackUserProgress, trackCertificate } from '@/app/utils/analytics'
+import { useRouter } from 'next/navigation'
 
 interface ResultsTemplateProps {
   chapterNumber: string
@@ -39,11 +41,27 @@ function ResultsContent({ chapterNumber }: ResultsTemplateProps) {
   const score = parseInt(searchParams.get('score') || '0')
   const name = searchParams.get('name') || ''
   const type = searchParams.get('type') || 'easy'
+  const router = useRouter()
 
   useEffect(() => {
     const audio = new Audio(score === 10 ? '/sounds/perfect.mp3' : '/sounds/applause.mp3')
     audio.play().catch(error => console.log('Error playing sound:', error))
-  }, [score])
+    
+    trackUserProgress('results_view', chapterNumber)
+    if (score >= 8) {
+      trackCertificate(score, chapterNumber)
+    }
+  }, [score, chapterNumber])
+
+  const handleTryAgain = () => {
+    trackUserProgress('try_again_clicked', chapterNumber)
+    router.push(`/quiz/${chapterNumber}/age`)
+  }
+
+  const handleHomeClick = () => {
+    trackUserProgress('return_home_clicked', chapterNumber)
+    router.push('/')
+  }
 
   const getScoreCategory = (score: number) => {
     if (score <= 2) return 'low'
@@ -141,17 +159,19 @@ function ResultsContent({ chapterNumber }: ResultsTemplateProps) {
           )}
 
           {/* Navigation Buttons */}
-          <div className="flex flex-col w-full max-w-md gap-3 md:gap-4 px-4 mx-auto">
-            <Link href={`/quiz/${chapterNumber}/${type === 'easy' ? '6-7' : '8-9'}?name=${encodeURIComponent(name)}`}>
-              <button className="w-full py-3 md:py-4 text-lg md:text-xl font-semibold bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg transition-all">
-                Try Again
-              </button>
-            </Link>
-            <Link href={`/quiz/${chapterNumber}`}>
-              <button className="w-full py-3 md:py-4 text-lg md:text-xl font-semibold bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg transition-all">
-                Back to Chapter {chapterNumber}
-              </button>
-            </Link>
+          <div className="flex flex-col w-full max-w-md gap-3 md:gap-4 mt-4 md:mt-8 px-4 mx-auto">
+            <button
+              onClick={handleTryAgain}
+              className="w-full py-3 md:py-4 text-lg md:text-xl font-semibold bg-blue-500 hover:bg-blue-600 text-white rounded-full shadow-lg transition-all"
+            >
+              Try Again
+            </button>
+            <button
+              onClick={handleHomeClick}
+              className="w-full py-3 md:py-4 text-lg md:text-xl font-semibold bg-yellow-500 hover:bg-yellow-600 text-white rounded-full shadow-lg transition-all"
+            >
+              Return Home
+            </button>
           </div>
 
           {/* Mr. Fluffbutt Image */}
