@@ -10,9 +10,25 @@ interface NameInputTemplateProps {
   chapterNumber: string | number
 }
 
+const nameQuips = [
+  "Your name, if you please?",
+  "Who dares challenge me?",
+  "And you are...?",
+  "State your name, young one.",
+  "Tell me what to call you.",
+  "What's your name, brave one?",
+  "Your name, challenger?",
+  "Who stands before me?",
+  "Name, please!",
+  "You are called...?"
+]
+
 export default function NameInputTemplate({ chapterNumber }: NameInputTemplateProps) {
   const [name, setName] = useState('')
   const router = useRouter()
+  const [randomQuip] = useState(() => 
+    nameQuips[Math.floor(Math.random() * nameQuips.length)]
+  )
 
   useEffect(() => {
     // Track page view when component mounts
@@ -31,7 +47,7 @@ export default function NameInputTemplate({ chapterNumber }: NameInputTemplatePr
   return (
     <div className="min-h-screen w-full flex flex-col">
       {/* Header */}
-      <div className="relative h-32 w-full">
+      <div className="relative h-20 w-full">
         <Image
           src="/images/header.jpg"
           alt="Header Background"
@@ -45,8 +61,8 @@ export default function NameInputTemplate({ chapterNumber }: NameInputTemplatePr
             <Image
               src="/images/logo.png"
               alt="Learn Through Stories"
-              width={120}
-              height={30}
+              width={100}
+              height={25}
               priority
             />
           </Link>
@@ -57,8 +73,8 @@ export default function NameInputTemplate({ chapterNumber }: NameInputTemplatePr
             <Image
               src="/images/substack.jpg"
               alt="Subscribe to Learn Through Stories"
-              width={100}
-              height={25}
+              width={80}
+              height={20}
               priority
             />
           </Link>
@@ -77,10 +93,10 @@ export default function NameInputTemplate({ chapterNumber }: NameInputTemplatePr
         />
 
         {/* Content Overlay */}
-        <div className="relative z-10 flex flex-col items-center px-4 py-4 md:px-6 md:py-8 space-y-4 md:space-y-8">
+        <div className="relative z-10 flex flex-col items-center px-4 py-2 md:px-6 md:py-4 space-y-3 md:space-y-4">
           {/* Title Box */}
-          <div className="bg-white/90 rounded-xl border-4 border-yellow-400 p-4 md:p-6 max-w-lg w-full mx-auto">
-            <h1 className="text-2xl md:text-4xl font-bold text-gray-900 text-center">
+          <div className="bg-white/90 rounded-xl border-4 border-yellow-400 p-3 md:p-4 max-w-lg w-full mx-auto">
+            <h1 className="text-xl md:text-3xl font-bold text-gray-900 text-center">
               What&apos;s Your Name?
             </h1>
           </div>
@@ -90,7 +106,7 @@ export default function NameInputTemplate({ chapterNumber }: NameInputTemplatePr
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-4">
                 <label htmlFor="name" className="block text-xl text-gray-700 text-center">
-                  Enter your name to begin the adventure
+                  {randomQuip}
                 </label>
                 <input
                   type="text"
@@ -105,8 +121,7 @@ export default function NameInputTemplate({ chapterNumber }: NameInputTemplatePr
               
               <button
                 type="submit"
-                className="w-full py-3 md:py-4 text-lg md:text-xl font-semibold bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg transition-all
-                         animate-[pulse_2s_ease-in-out_infinite] hover:animate-none"
+                className="w-full py-2 md:py-3 text-base md:text-lg font-semibold bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg transition-all animate-[pulse_2s_ease-in-out_infinite] hover:animate-none"
               >
                 Continue to Age Selection
               </button>
@@ -114,7 +129,7 @@ export default function NameInputTemplate({ chapterNumber }: NameInputTemplatePr
           </div>
 
           {/* Mr. Fluffbutt Image */}
-          <div className="w-36 h-36 md:w-64 md:h-64 relative animate-[bounce_3s_ease-in-out_infinite] mx-auto">
+          <div className="w-32 h-32 md:w-48 md:h-48 relative animate-[bounce_3s_ease-in-out_infinite] mx-auto">
             <div className="absolute inset-0 rounded-full border-4 border-yellow-400 overflow-hidden">
               <Image
                 src="/images/mrfb.jpg"
