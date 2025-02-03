@@ -8,17 +8,15 @@ import { trackUserProgress } from '@/app/utils/analytics'
 interface QuizPageTemplateProps {
   title: string
   subtitle: string
-  readStoryLink?: string
-  beginQuizLink?: string
-  customButtons?: React.ReactNode
+  readStoryLink: string
+  beginQuizLink: string
 }
 
 export default function QuizPageTemplate({
   title,
   subtitle,
-  readStoryLink = '/story',
-  beginQuizLink = '/quiz',
-  customButtons,
+  readStoryLink,
+  beginQuizLink,
 }: QuizPageTemplateProps) {
   const router = useRouter()
 
@@ -30,101 +28,55 @@ export default function QuizPageTemplate({
   }
 
   return (
-    <div className="min-h-screen w-full flex flex-col">
-      {/* Header - Reduced height */}
-      <div className="relative h-20 w-full">
-        <Image
-          src="/images/header.jpg"
-          alt="Header Background"
-          fill
-          className="object-cover object-top"
-          priority
-        />
-        {/* Logo */}
-        <div className="absolute left-4 top-1/2 -translate-y-1/2">
-          <Link href="https://www.learnthroughstories.com/">
-            <Image
-              src="/images/logo.png"
-              alt="Learn Through Stories"
-              width={100}
-              height={25}
-              priority
-            />
-          </Link>
-        </div>
-        {/* Substack */}
-        <div className="absolute top-1/2 right-4 -translate-y-1/2">
-          <Link href="https://learnthroughstories.substack.com/">
+    <div className="min-h-screen bg-[url('/images/backgrounds/bg1.jpg')] bg-cover bg-center">
+      <div className="min-h-screen bg-white/30 flex flex-col items-center justify-start">
+        <header className="w-full h-20 flex items-center justify-between px-4 md:px-8">
+          <Image
+            src="/images/logo.png"
+            alt="Are You Smarter Than Mr. Fluffbutt?"
+            width={48}
+            height={48}
+            className="w-12 h-12"
+          />
+          <Link href={readStoryLink} target="_blank">
             <Image
               src="/images/substack.jpg"
-              alt="Subscribe to Learn Through Stories"
-              width={80}
-              height={20}
-              priority
+              alt="Read on Substack"
+              width={48}
+              height={48}
+              className="w-12 h-12"
             />
           </Link>
-        </div>
-      </div>
+        </header>
 
-      {/* Main Content */}
-      <div className="flex-1 relative">
-        {/* Background Image */}
-        <Image
-          src="/images/backgrounds/bg1.jpg"
-          alt="Watercolor Background"
-          fill
-          className="object-cover"
-          priority
-        />
+        <main className="flex-1 w-full max-w-4xl mx-auto px-4 md:px-8 flex flex-col items-center justify-start space-y-3 pt-4">
+          <h1 className="text-2xl md:text-3xl font-bold text-center">{title}</h1>
+          <h2 className="text-xl md:text-2xl font-semibold text-center">{subtitle}</h2>
 
-        {/* Content Overlay - Reduced padding and spacing */}
-        <div className="relative z-10 flex flex-col items-center px-4 py-2 md:px-6 md:py-4 space-y-3 md:space-y-4">
-          {/* Title Box - More compact */}
-          <div className="bg-white/90 rounded-xl border-4 border-yellow-400 p-3 md:p-4 max-w-lg w-full mx-auto">
-            <h1 className="text-xl md:text-3xl font-bold text-gray-900 text-center">
-              {title}
-            </h1>
-          </div>
+          <div className="flex flex-col items-center space-y-6 mt-4">
+            <Image
+              src="/images/mrfb.jpg"
+              alt="Mr. Fluffbutt"
+              width={48}
+              height={48}
+              className="w-48 h-48 rounded-full"
+            />
 
-          {/* Subtitle - More compact */}
-          <div className="bg-white rounded-lg p-2 md:p-3 max-w-md w-full shadow-md mx-auto">
-            <h2 className="text-lg md:text-2xl text-gray-800 text-center">
-              {subtitle}
-            </h2>
-          </div>
-
-          {/* Mr. Fluff Butt Image - Smaller on desktop */}
-          <div className="w-32 h-32 md:w-48 md:h-48 relative animate-[bounce_3s_ease-in-out_infinite] mx-auto">
-            <div className="absolute inset-0 rounded-full border-4 border-yellow-400 overflow-hidden">
-              <Image
-                src="/images/mrfb.jpg"
-                alt="Mr. Fluffbutt"
-                fill
-                className="object-cover animate-[wiggle_2s_ease-in-out_infinite]"
-                priority
-              />
-            </div>
-          </div>
-
-          {/* Buttons - More compact spacing */}
-          {customButtons ? (
-            customButtons
-          ) : (
-            <div className="flex flex-col w-full max-w-md gap-2 md:gap-3 mt-2 md:mt-4 px-4 mx-auto">
-              <Link href={readStoryLink}>
-                <button className="w-full py-2 md:py-3 text-base md:text-lg font-semibold bg-yellow-500 hover:bg-yellow-600 text-white rounded-full shadow-lg transition-all">
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link href={readStoryLink} target="_blank">
+                <button className="w-full sm:w-auto px-6 py-2 text-sm font-semibold bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg shadow-md transition-all">
                   Read the Story
                 </button>
               </Link>
-              <button 
+              <button
                 onClick={handleStartQuiz}
-                className="w-full py-2 md:py-3 text-base md:text-lg font-semibold bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg transition-all animate-[pulse_2s_ease-in-out_infinite] hover:animate-none"
+                className="w-full sm:w-auto px-6 py-2 text-sm font-semibold bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-md transition-all"
               >
-                Play the Game
+                Begin the Quiz
               </button>
             </div>
-          )}
-        </div>
+          </div>
+        </main>
       </div>
     </div>
   )

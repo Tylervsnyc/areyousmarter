@@ -4,7 +4,7 @@ import { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
-import QuizProgress from './QuizProgress'
+import MagicProgressBar from './MagicProgressBar'
 import { trackUserProgress, trackQuestionAnswer } from '@/app/utils/analytics'
 
 interface QuizQuestion {
@@ -195,11 +195,10 @@ function QuizContent({ questions, chapterNumber, quizType }: QuizTemplateProps) 
         {/* Content Overlay */}
         <div className="relative z-10 flex flex-col items-center px-4 py-2 space-y-3">
           {/* Progress */}
-          <div className="bg-white/90 rounded-xl border-4 border-yellow-400 p-3 max-w-lg w-full mx-auto">
-            <div className="text-center text-lg font-medium text-gray-700">
-              Question {currentQuestion + 1} of {questions.length}
-            </div>
-          </div>
+          <MagicProgressBar
+            currentQuestion={currentQuestion + 1}
+            totalQuestions={questions.length}
+          />
 
           {/* Question Box */}
           <div className="bg-white/90 rounded-xl border-4 border-yellow-400 p-3 max-w-lg w-full mx-auto">
