@@ -1,9 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
+import { trackUserProgress } from '@/app/utils/analytics'
 
 interface NameInputTemplateProps {
   chapterNumber: string | number
@@ -13,9 +14,16 @@ export default function NameInputTemplate({ chapterNumber }: NameInputTemplatePr
   const [name, setName] = useState('')
   const router = useRouter()
 
+  useEffect(() => {
+    // Track page view when component mounts
+    trackUserProgress('view_name_page', chapterNumber.toString())
+  }, [chapterNumber])
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (name.trim()) {
+      // Track name submission
+      trackUserProgress('submit_name', chapterNumber.toString())
       router.push(`/quiz/${chapterNumber}/age?name=${encodeURIComponent(name.trim())}`)
     }
   }

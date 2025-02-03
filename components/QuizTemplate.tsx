@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import QuizProgress from './QuizProgress'
+import { trackUserProgress, trackQuestionAnswer } from '@/app/utils/analytics'
 
 interface QuizQuestion {
   question: string
@@ -82,7 +83,10 @@ function QuizContent({ questions, chapterNumber, quizType }: QuizTemplateProps) 
     // Initialize audio elements
     setCorrectSound(new Audio('/sounds/correct.wav'))
     setIncorrectSound(new Audio('/sounds/incorrect.wav'))
-  }, [])
+    
+    // Track quiz start
+    trackUserProgress('quiz_started', chapterNumber.toString())
+  }, [chapterNumber])
 
   const playSound = (isCorrect: boolean) => {
     if (isCorrect && correctSound) {
@@ -106,6 +110,14 @@ function QuizContent({ questions, chapterNumber, quizType }: QuizTemplateProps) 
     setIsAnswered(true)
     
     const isCorrect = questions[currentQuestion].options[selectedIndex] === questions[currentQuestion].answer
+    
+    // Track question answer
+    trackQuestionAnswer(
+      currentQuestion.toString(),
+      isCorrect,
+      chapterNumber.toString()
+    )
+    
     if (isCorrect) {
       setScore(score + 1)
       playSound(true)
@@ -119,6 +131,8 @@ function QuizContent({ questions, chapterNumber, quizType }: QuizTemplateProps) 
 
     setTimeout(() => {
       if (currentQuestion === questions.length - 1) {
+        // Track quiz completion before navigating
+        trackUserProgress('quiz_completed', chapterNumber.toString())
         // Quiz completed, navigate to results
         router.push(`/quiz/${chapterNumber}/results?name=${encodeURIComponent(name)}&score=${score + (isCorrect ? 1 : 0)}&type=${quizType}`)
       } else {
