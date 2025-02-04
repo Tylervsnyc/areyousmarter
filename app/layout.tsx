@@ -1,15 +1,12 @@
+'use client'
+
 import './globals.css'
-import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Script from 'next/script'
 import BackgroundPattern from './components/BackgroundPattern'
+import ScrollToTop from './components/ScrollToTop'
 
 const inter = Inter({ subsets: ['latin'] })
-
-export const metadata: Metadata = {
-  title: 'Are You Smarter Than Mr. Fluffbutt?',
-  description: 'A fun and educational game show hosted by Mr. Fluffbutt',
-}
 
 export default function RootLayout({
   children,
@@ -17,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="h-full">
       <head>
         {/* Google tag (gtag.js) */}
         <Script
@@ -33,9 +30,12 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body className={inter.className}>
+      <body className={`${inter.className} h-full`}>
+        <ScrollToTop />
         <BackgroundPattern pattern="paper" tone="warm">
-          {children}
+          <div className="min-h-full flex flex-col">
+            {children}
+          </div>
         </BackgroundPattern>
       </body>
     </html>

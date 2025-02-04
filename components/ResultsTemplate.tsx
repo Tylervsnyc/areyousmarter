@@ -124,7 +124,7 @@ function ResultsContent({ chapterNumber }: ResultsTemplateProps) {
         />
 
         {/* Content Overlay */}
-        <div className="relative z-10 flex flex-col items-center px-4 py-4 md:px-6 md:py-8 space-y-4 md:space-y-8">
+        <div className="relative z-10 h-full flex flex-col items-center justify-center px-4 space-y-4" style={{ backgroundColor: 'rgb(252, 250, 245, 0.8)' }}>
           {/* Score Box */}
           <div className="bg-white/90 rounded-xl border-4 border-yellow-400 p-4 md:p-6 max-w-lg w-full mx-auto">
             <h1 className="text-2xl md:text-4xl font-bold text-gray-900 text-center mb-4">

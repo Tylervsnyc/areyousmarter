@@ -1,6 +1,30 @@
 'use client'
 
 import QuizTemplate from '@/components/QuizTemplate'
+import MatchingQuestion from '@/components/MatchingQuestion'
+
+const matchingPairs = [
+  {
+    id: 1,
+    leftText: "Flyers cost",
+    rightText: "$12"
+  },
+  {
+    id: 2,
+    leftText: "Dog walk pay",
+    rightText: "$5"
+  },
+  {
+    id: 3,
+    leftText: "Bird and Spider Pay",
+    rightText: "$10"
+  },
+  {
+    id: 4,
+    leftText: "New dog name",
+    rightText: "Edie"
+  }
+]
 
 const chapter3EasyQuestions = [
   {
@@ -52,10 +76,20 @@ const chapter3EasyQuestions = [
     question: "If Hudson earned $10 for basking in my glorious presence but spent $12 on those silly papers, what happened to his money this week?",
     options: ["He made $2", "He lost $2", "He made $12", "He lost $10"],
     answer: "He lost $2"
+  },
+  {
+    question: "",
+    type: "matching" as const,
+    hideQuestionBox: true,
+    component: MatchingQuestion,
+    componentProps: {
+      pairs: matchingPairs
+    },
+    explanation: "Great job matching all the facts!"
   }
 ]
 
-export default function Chapter3EasyQuiz() {
+export default function Quiz3Ages6To7() {
   return (
     <QuizTemplate
       questions={chapter3EasyQuestions}

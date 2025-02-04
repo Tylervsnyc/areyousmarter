@@ -45,14 +45,14 @@ export default function NameInputTemplate({ chapterNumber }: NameInputTemplatePr
   }
 
   return (
-    <div className="min-h-screen w-full flex flex-col">
+    <div className="h-screen w-full flex flex-col">
       {/* Header */}
-      <div className="relative h-20 w-full">
+      <div className="relative h-[20vh] w-full">
         <Image
           src="/images/header.jpg"
           alt="Header Background"
           fill
-          className="object-cover object-top"
+          className="object-cover object-center"
           priority
         />
         {/* Logo */}
@@ -93,7 +93,7 @@ export default function NameInputTemplate({ chapterNumber }: NameInputTemplatePr
         />
 
         {/* Content Overlay */}
-        <div className="relative z-10 flex flex-col items-center px-4 py-2 md:px-6 md:py-4 space-y-3 md:space-y-4">
+        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center px-4 space-y-4" style={{ backgroundColor: 'rgb(252, 250, 245, 0.8)' }}>
           {/* Title Box */}
           <div className="bg-white/90 rounded-xl border-4 border-yellow-400 p-3 md:p-4 max-w-lg w-full mx-auto">
             <h1 className="text-xl md:text-3xl font-bold text-gray-900 text-center">
@@ -102,7 +102,7 @@ export default function NameInputTemplate({ chapterNumber }: NameInputTemplatePr
           </div>
 
           {/* Name Input Form */}
-          <div className="bg-white rounded-lg p-6 max-w-md w-full shadow-md mx-auto">
+          <div className="bg-white/90 rounded-xl p-6 max-w-md w-full mx-auto shadow-lg">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-4">
                 <label htmlFor="name" className="block text-xl text-gray-700 text-center">
@@ -129,7 +129,7 @@ export default function NameInputTemplate({ chapterNumber }: NameInputTemplatePr
           </div>
 
           {/* Mr. Fluffbutt Image */}
-          <div className="w-32 h-32 md:w-48 md:h-48 relative animate-[bounce_3s_ease-in-out_infinite] mx-auto">
+          <div className="w-32 h-32 relative animate-[bounce_3s_ease-in-out_infinite] mx-auto">
             <div className="absolute inset-0 rounded-full border-4 border-yellow-400 overflow-hidden">
               <Image
                 src="/images/mrfb.jpg"

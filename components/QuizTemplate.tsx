@@ -7,11 +7,26 @@ import Link from 'next/link'
 import MagicProgressBar from './MagicProgressBar'
 import { trackUserProgress, trackQuestionAnswer } from '@/app/utils/analytics'
 
-interface QuizQuestion {
+interface BaseQuizQuestion {
   question: string
+  explanation?: string
+  type?: string
+  hideQuestionBox?: boolean
+}
+
+interface StandardQuizQuestion extends BaseQuizQuestion {
+  type?: 'standard'
   options: string[]
   answer: string
 }
+
+interface MatchingQuizQuestion extends BaseQuizQuestion {
+  type: 'matching'
+  component: React.ComponentType<any>
+  componentProps: any
+}
+
+type QuizQuestion = StandardQuizQuestion | MatchingQuizQuestion
 
 interface QuizTemplateProps {
   questions: QuizQuestion[]
@@ -144,15 +159,84 @@ function QuizContent({ questions, chapterNumber, quizType }: QuizTemplateProps) 
     }, 2000)
   }
 
+  const renderQuestion = () => {
+    const currentQ = questions[currentQuestion]
+    
+    if (currentQ.type === 'matching') {
+      const CustomComponent = currentQ.component
+      return (
+        <CustomComponent
+          {...currentQ.componentProps}
+          onAnswer={(isCorrect: boolean) => {
+            if (isAnswered) return
+            setIsAnswered(true)
+            
+            if (isCorrect) {
+              setScore(score + 1)
+              playSound(true)
+            } else {
+              playSound(false)
+            }
+            
+            const newQuip = getRandomQuip(isCorrect)
+            setQuip(newQuip)
+            setShowQuip(true)
+
+            setTimeout(() => {
+              if (currentQuestion === questions.length - 1) {
+                trackUserProgress('quiz_completed', chapterNumber.toString())
+                router.push(`/quiz/${chapterNumber}/results?name=${encodeURIComponent(name)}&score=${score + (isCorrect ? 1 : 0)}&type=${quizType}`)
+              } else {
+                setCurrentQuestion(currentQuestion + 1)
+                setIsAnswered(false)
+                setSelectedAnswer(null)
+                setShowQuip(false)
+              }
+            }, 2000)
+          }}
+          isAnswered={isAnswered}
+        />
+      )
+    }
+
+    // If not a matching question, treat as standard question
+    const standardQ = currentQ as StandardQuizQuestion
+    return (
+      <div className="w-full max-w-md mx-auto space-y-2">
+        {standardQ.options.map((option, index) => (
+          <button
+            key={index}
+            onClick={() => handleAnswer(index)}
+            disabled={isAnswered}
+            className={`w-full py-2 text-base md:text-lg font-semibold text-white rounded-full shadow-md transition-all
+              ${isAnswered 
+                ? standardQ.options[index] === standardQ.answer
+                  ? 'bg-green-500'
+                  : selectedAnswer === index
+                    ? 'bg-red-500'
+                    : 'bg-gray-400'
+                : index === 0 ? 'bg-yellow-500 hover:bg-yellow-600'
+                  : index === 1 ? 'bg-green-500 hover:bg-green-600'
+                  : index === 2 ? 'bg-blue-500 hover:bg-blue-600'
+                  : 'bg-purple-500 hover:bg-purple-600'
+              }`}
+          >
+            {option}
+          </button>
+        ))}
+      </div>
+    )
+  }
+
   return (
     <div className="min-h-screen w-full flex flex-col">
       {/* Header */}
-      <div className="relative h-24 w-full">
+      <div className="relative h-[20vh] w-full">
         <Image
           src="/images/header.jpg"
           alt="Header Background"
           fill
-          className="object-cover object-top"
+          className="object-cover object-center"
           priority
         />
         {/* Logo */}
@@ -193,7 +277,7 @@ function QuizContent({ questions, chapterNumber, quizType }: QuizTemplateProps) 
         />
 
         {/* Content Overlay */}
-        <div className="relative z-10 flex flex-col items-center px-4 py-2 space-y-3">
+        <div className="absolute inset-0 z-10 flex flex-col items-center px-4 py-2 space-y-3" style={{ backgroundColor: 'rgb(252, 250, 245, 0.8)' }}>
           {/* Progress */}
           <MagicProgressBar
             currentQuestion={currentQuestion + 1}
@@ -201,36 +285,16 @@ function QuizContent({ questions, chapterNumber, quizType }: QuizTemplateProps) 
           />
 
           {/* Question Box */}
-          <div className="bg-white/90 rounded-xl border-4 border-yellow-400 p-3 max-w-lg w-full mx-auto">
-            <h1 className="text-lg md:text-xl font-bold text-gray-900 text-center">
-              {questions[currentQuestion].question}
-            </h1>
-          </div>
+          {!questions[currentQuestion].hideQuestionBox && questions[currentQuestion].question && (
+            <div className="bg-white/90 rounded-xl border-4 border-yellow-400 p-3 max-w-lg w-full mx-auto">
+              <h1 className="text-lg md:text-xl font-bold text-gray-900 text-center">
+                {questions[currentQuestion].question}
+              </h1>
+            </div>
+          )}
 
-          {/* Answer Options */}
-          <div className="w-full max-w-md mx-auto space-y-2">
-            {questions[currentQuestion].options.map((option, index) => (
-              <button
-                key={index}
-                onClick={() => handleAnswer(index)}
-                disabled={isAnswered}
-                className={`w-full py-2 text-base md:text-lg font-semibold text-white rounded-full shadow-md transition-all
-                  ${isAnswered 
-                    ? questions[currentQuestion].options[index] === questions[currentQuestion].answer
-                      ? 'bg-green-500'
-                      : selectedAnswer === index
-                        ? 'bg-red-500'
-                        : 'bg-gray-400'
-                    : index === 0 ? 'bg-yellow-500 hover:bg-yellow-600'
-                      : index === 1 ? 'bg-green-500 hover:bg-green-600'
-                      : index === 2 ? 'bg-blue-500 hover:bg-blue-600'
-                      : 'bg-purple-500 hover:bg-purple-600'
-                  }`}
-              >
-                {option}
-              </button>
-            ))}
-          </div>
+          {/* Question Content */}
+          {renderQuestion()}
 
           {/* Quip Display */}
           {showQuip && (
