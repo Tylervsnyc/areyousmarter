@@ -28,11 +28,11 @@ const matchingPairs = [
 ]
 
 const safeAnimals = [
-  { id: 'trex', name: 'T Rex', emoji: '🦖', isCorrectlySafe: false },
   { id: 'mouse', name: 'Mouse', emoji: '🐭', isCorrectlySafe: true },
-  { id: 'crocodile', name: 'Crocodile', emoji: '🐊', isCorrectlySafe: false },
   { id: 'goldfish', name: 'Goldfish', emoji: '🐠', isCorrectlySafe: true },
   { id: 'hamster', name: 'Hamster', emoji: '🐹', isCorrectlySafe: true },
+  { id: 'trex', name: 'T Rex', emoji: '🦖', isCorrectlySafe: false },
+  { id: 'crocodile', name: 'Crocodile', emoji: '🐊', isCorrectlySafe: false },
   { id: 'wolf', name: 'Wolf', emoji: '🐺', isCorrectlySafe: false }
 ]
 
@@ -71,28 +71,28 @@ const questions = [
     }
   },
   {
-    question: "How much did Hudson make from watching all the pets on Tuesday?",
-    options: ["$20", "$25", "$30", "$35"],
-    answer: "$25"
+    question: "How much does Hudson make for walking Drew-boo twice?",
+    options: ["$5", "$10", "$15", "$20"],
+    answer: "$10"
   },
   {
-    question: "If Hudson's scoop cost $30 and his bandaids cost $10, what's the total cost?",
-    options: ["$35", "$40", "$45", "$50"],
-    answer: "$40"
-  },
-  {
-    question: "Let's add up Hudson's earnings: Dog walking ($5), Feeding Joseph ($20), Feeding Johnny ($20), Walking Edie ($20), Pet sitting Mr. Fluffbutt ($40). What's the total amount Hudson earned?",
-    options: ["$95", "$100", "$105", "$110"],
+    question: "purr purr Let's count Hudson's pet care money: Walking services: $25, Feeding services: $40, Pet sitting: $40. How much did Hudson make?",
+    options: ["$100", "$105", "$110", "$115"],
     answer: "$105"
   },
   {
-    question: "meow meow Joseph and Johnny are curious about Hudson's shopping spree! Let's count his purchases: First Aid Kit (bandaids and cream): $30, Pet Care Tools (ear plugs and scoop): $35, Adventure backpack: $50. What's the total of Hudson's pet care shopping?",
-    options: ["$105", "$115", "$125", "$135"],
+    question: "meow meow Time to add Hudson's shopping expenses: Pet First Aid Kit: $30, Pet Care Tools: $35, Adventure Backpack: $50. What's the total?",
+    options: ["$105", "$115", "$120", "$125"],
     answer: "$115"
   },
   {
-    question: "Hudson had $60, earned $105, and spent $115. What's left?",
-    options: ["$40", "$50", "$60", "$70"],
+    question: "tail swishing Let's check Hudson's money situation from this chapter. Made: $105, Spent: $115. Did Hudson make or lose money?",
+    options: ["Made money", "Lost money", "Broke even", "Not sure"],
+    answer: "Lost money"
+  },
+  {
+    question: "whiskers twitching Hudson started with $60 and lost $10. How much does he have now?",
+    options: ["$40", "$50", "$60", "Potato"],
     answer: "$50"
   }
 ]

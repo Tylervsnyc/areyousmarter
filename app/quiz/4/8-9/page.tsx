@@ -28,11 +28,11 @@ const matchingPairs = [
 ]
 
 const safeAnimals = [
-  { id: 'trex', name: 'T Rex', emoji: '🦖', isCorrectlySafe: false },
   { id: 'mouse', name: 'Mouse', emoji: '🐭', isCorrectlySafe: true },
-  { id: 'crocodile', name: 'Crocodile', emoji: '🐊', isCorrectlySafe: false },
   { id: 'goldfish', name: 'Goldfish', emoji: '🐠', isCorrectlySafe: true },
   { id: 'hamster', name: 'Hamster', emoji: '🐹', isCorrectlySafe: true },
+  { id: 'trex', name: 'T Rex', emoji: '🦖', isCorrectlySafe: false },
+  { id: 'crocodile', name: 'Crocodile', emoji: '🐊', isCorrectlySafe: false },
   { id: 'wolf', name: 'Wolf', emoji: '🐺', isCorrectlySafe: false }
 ]
 
@@ -76,22 +76,22 @@ const questions = [
     answer: "$25"
   },
   {
-    question: "Hudson bought a scoop with an extendable arm ($30) and bandaids ($10). Calculate their combined cost.",
-    options: ["$35", "$40", "$45", "$50"],
-    answer: "$40"
-  },
-  {
-    question: "Calculate Hudson's total revenue: Dog walking service: $5, Cat feeding (Joseph): $20 (4 visits), Cat feeding (Johnny): $20 (4 visits), Dog walking (Edie): $20 (4 walks), Pet sitting (Mr. Fluffbutt): $40 (4 visits). What's Hudson's total revenue?",
-    options: ["$95", "$100", "$105", "$110"],
+    question: "paws at calculator Calculate Hudson's daily earnings: Dog walking service ($5 × 3 walks): $15, Cat feeding ($20 × 2 cats): $40, Dog walking (Edie): $20, Pet sitting (Mr. Fluffbutt): $30. What's the total?",
+    options: ["$100", "$105", "$110", "$115"],
     answer: "$105"
   },
   {
-    question: "paws at calculator Mr. Fluffbutt, our feline financial advisor, needs to audit Hudson's expenses! Let's review: First Aid Supplies (bandaids and cream): $30, Safety Equipment (ear plugs): $5, Deluxe Extended Litterbox Scoop: $30, Professional Pet Sitter Backpack: $50. What's the grand total of Hudson's pet care investments?",
-    options: ["$105", "$115", "$125", "$135"],
+    question: "whiskers twitching Let's review Hudson's expenses: First Aid Kit (bandaids + cream): $30, Safety Equipment (ear plugs): $5, Pet Care Tools (scoop): $30, Professional Backpack: $50. What's the total cost?",
+    options: ["$105", "$115", "$120", "$125"],
     answer: "$115"
   },
   {
-    question: "If Hudson started with $60, made $105, and spent $115, what's his final amount?",
+    question: "tail swishing Time for our weekly calculation: Pet care earnings: $105, Supply expenses: $115, Extra treats bought: $0. Did Hudson's business make or lose money?",
+    options: ["Made money", "Lost money", "Broke even", "Need more info"],
+    answer: "Lost money"
+  },
+  {
+    question: "meow meow Final money check: Started with: $60, Lost this week: $10, Extra allowance: $0, Birthday money: $0. What's Hudson's final amount?",
     options: ["$40", "$50", "$60", "$70"],
     answer: "$50"
   }

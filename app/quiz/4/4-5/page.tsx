@@ -28,11 +28,11 @@ const matchingPairs = [
 ]
 
 const safeAnimals = [
-  { id: 'trex', name: 'T Rex', emoji: '🦖', isCorrectlySafe: false },
   { id: 'mouse', name: 'Mouse', emoji: '🐭', isCorrectlySafe: true },
-  { id: 'crocodile', name: 'Crocodile', emoji: '🐊', isCorrectlySafe: false },
   { id: 'goldfish', name: 'Goldfish', emoji: '🐠', isCorrectlySafe: true },
   { id: 'hamster', name: 'Hamster', emoji: '🐹', isCorrectlySafe: true },
+  { id: 'trex', name: 'T Rex', emoji: '🦖', isCorrectlySafe: false },
+  { id: 'crocodile', name: 'Crocodile', emoji: '🐊', isCorrectlySafe: false },
   { id: 'wolf', name: 'Wolf', emoji: '🐺', isCorrectlySafe: false }
 ]
 
@@ -52,9 +52,9 @@ const questions = [
     }
   },
   {
-    question: "meow meow Hudson got paid $5 for walking Drew-boo. If he walks Drew-boo again, how much more money will he get?",
+    question: "meow meow Hudson got paid $5 for walking Drew-boo. If he walks Drew-boo again, how much money will he have total?",
     options: ["$5", "$10", "$15", "$20"],
-    answer: "$5"
+    answer: "$10"
   },
   {
     question: "Meow-ch! Hudson bought bandaids for $10. Then he bought earplugs. The earplugs cost $5. How much did he spend?",
@@ -76,11 +76,6 @@ const questions = [
     answer: "$20"
   },
   {
-    question: "purr Hudson bought a scoop for $30 and bandaids for $10. How much did they cost together?",
-    options: ["$35", "$40", "$45", "$50"],
-    answer: "$40"
-  },
-  {
     question: "Hudson made: $25 walking Drew-boo and Edie, $60 feeding pets (Joseph and Johnny), $40 watching Mr. Fluffbutt. How much did Hudson make in total?",
     options: ["Potato", "$100", "$105", "$110"],
     answer: "$105"
@@ -91,7 +86,12 @@ const questions = [
     answer: "$115"
   },
   {
-    question: "yawn Hudson started with $60 and lost $10. How much does he have now?",
+    question: "meow meow Hudson made $105 and spent $115. Did Hudson make money or lose money this chapter?",
+    options: ["Made money", "Lost money", "Stayed the same", "Not sure"],
+    answer: "Lost money"
+  },
+  {
+    question: "Hudson started with $60 and lost $10. How much does he have now?",
     options: ["$40", "$50", "$60", "$70"],
     answer: "$50"
   }
