@@ -28,12 +28,12 @@ const matchingPairs = [
 ]
 
 const safeAnimals = [
-  { id: 'mouse', name: 'Mouse', emoji: '🐭', isCorrectlySafe: true },
   { id: 'goldfish', name: 'Goldfish', emoji: '🐠', isCorrectlySafe: true },
-  { id: 'hamster', name: 'Hamster', emoji: '🐹', isCorrectlySafe: true },
   { id: 'trex', name: 'T Rex', emoji: '🦖', isCorrectlySafe: false },
+  { id: 'mouse', name: 'Mouse', emoji: '🐭', isCorrectlySafe: true },
+  { id: 'wolf', name: 'Wolf', emoji: '🐺', isCorrectlySafe: false },
   { id: 'crocodile', name: 'Crocodile', emoji: '🐊', isCorrectlySafe: false },
-  { id: 'wolf', name: 'Wolf', emoji: '🐺', isCorrectlySafe: false }
+  { id: 'hamster', name: 'Hamster', emoji: '🐹', isCorrectlySafe: true }
 ]
 
 const questions = [
