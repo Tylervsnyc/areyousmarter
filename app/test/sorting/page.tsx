@@ -46,18 +46,16 @@ export default function SortingTest() {
       {/* Main Content */}
       <div className="p-1.5">
         {/* Main container */}
-        <div className="max-w-lg mx-auto flex flex-col gap-1.5">
+        <div className="w-[90%] sm:w-[512px] mx-auto flex flex-col gap-1.5">
           
           {/* Progress Bar */}
-          <div className="scale-90 origin-top">
-            <MagicProgressBar
-              currentQuestion={1}
-              totalQuestions={6}
-            />
-          </div>
+          <MagicProgressBar
+            currentQuestion={1}
+            totalQuestions={6}
+          />
 
           {/* Question Box */}
-          <div className="bg-white/90 rounded-lg border-2 border-yellow-400 py-1 px-2">
+          <div className="bg-white/90 rounded-lg border-2 border-yellow-400 py-1">
             <h1 className="text-sm font-bold text-gray-900 text-center whitespace-nowrap">
               Sort the Animals : Drag and Drop
             </h1>
@@ -66,7 +64,7 @@ export default function SortingTest() {
           {/* Top section with two columns */}
           <div className="flex flex-col sm:flex-row justify-between gap-1.5">
             {/* Left Column - Safe Animals */}
-            <div className="w-full sm:w-[45%] border-2 border-green-400 rounded-lg bg-white/80 p-1">
+            <div className="w-full sm:w-[250px] border-2 border-green-400 rounded-lg bg-white/80 p-1">
               <h2 className="text-sm font-bold text-green-600 text-center mb-1">
                 Safe Animals
               </h2>
@@ -79,7 +77,7 @@ export default function SortingTest() {
             </div>
 
             {/* Right Column - Danger Zone */}
-            <div className="w-full sm:w-[45%] border-2 border-red-400 rounded-lg bg-white/80 p-1">
+            <div className="w-full sm:w-[250px] border-2 border-red-400 rounded-lg bg-white/80 p-1">
               <h2 className="text-sm font-bold text-red-600 text-center mb-1">
                 Danger Zone
               </h2>
