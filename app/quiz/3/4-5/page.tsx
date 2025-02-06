@@ -116,17 +116,6 @@ const questions = [
     explanation: "If Hudson spends $4 from $9, he has $5 left!"
   },
   {
-    question: "Meow-velous counting! Hudson has five $1 bills. How much money is that?",
-    options: [
-      "$4",
-      "$6",
-      "$5",
-      "$3"
-    ],
-    answer: "$5",
-    explanation: "Five $1 bills equals $5!"
-  },
-  {
     question: "Last one! Hudson has $6. If he gets $2 more, how much will he have?",
     options: [
       "$7",

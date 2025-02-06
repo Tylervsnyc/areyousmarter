@@ -68,11 +68,6 @@ const chapter1HardQuestions = [
     answer: "$41"
   },
   {
-    question: "This week, Hudson spent $8 on snacks, $12 on school supplies, and $15 on new books. What are his total expenses?",
-    options: ["$33", "$35", "$37", "$39"],
-    answer: "$35"
-  },
-  {
     question: "If Hudson has $45 and spends $28 on supplies, how much money does he have left?",
     options: ["$15", "$17", "$19", "$21"],
     answer: "$17"

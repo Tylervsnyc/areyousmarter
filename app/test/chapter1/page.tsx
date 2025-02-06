@@ -33,7 +33,11 @@ const initialAnimals: Animal[] = [
   { id: 'wolf', name: 'Wolf', emoji: '🐺', isCorrectlySafe: false },
 ]
 
-function DraggableAnimal({ animal }: { animal: Animal }) {
+function DraggableAnimal({ animal, isCorrectlyPlaced, isDragging }: { 
+  animal: Animal, 
+  isCorrectlyPlaced?: boolean,
+  isDragging?: boolean 
+}) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: animal.id,
   });
@@ -41,6 +45,14 @@ function DraggableAnimal({ animal }: { animal: Animal }) {
   const style = transform ? {
     transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
   } : undefined;
+
+  if (isCorrectlyPlaced || isDragging) {
+    return (
+      <div className="h-5 sm:h-8 bg-gray-100 rounded border border-gray-300 flex items-center justify-center text-[10px] sm:text-sm font-medium p-0.5 text-center text-gray-400">
+        {animal.name} {animal.emoji}
+      </div>
+    );
+  }
 
   return (
     <div
@@ -94,7 +106,7 @@ function DroppableZone({ id, title, animals, color, placeholderColor }: {
   );
 }
 
-export default function SortingTest() {
+export default function TestChapter1() {
   const [unplacedAnimals, setUnplacedAnimals] = useState<Animal[]>(initialAnimals)
   const [safeAnimals, setSafeAnimals] = useState<Animal[]>([])
   const [dangerAnimals, setDangerAnimals] = useState<Animal[]>([])
@@ -102,11 +114,27 @@ export default function SortingTest() {
   const [hasWrongGuess, setHasWrongGuess] = useState(false)
   const [correctSound, setCorrectSound] = useState<HTMLAudioElement | null>(null)
   const [incorrectSound, setIncorrectSound] = useState<HTMLAudioElement | null>(null)
+  const [isComplete, setIsComplete] = useState(false)
 
   useEffect(() => {
     setCorrectSound(new Audio('/sounds/matchcorrect.wav'))
     setIncorrectSound(new Audio('/sounds/matchincorrect.wav'))
   }, [])
+
+  useEffect(() => {
+    // Check if all animals are correctly sorted
+    const correctSafe = safeAnimals.every(animal => animal.isCorrectlySafe)
+    const correctDanger = dangerAnimals.every(animal => !animal.isCorrectlySafe)
+    const allSorted = safeAnimals.length + dangerAnimals.length === initialAnimals.length
+
+    if (allSorted && correctSafe && correctDanger) {
+      setIsComplete(true)
+      // Wait a moment before proceeding to next question
+      setTimeout(() => {
+        // Navigate to next question or results
+      }, 1500)
+    }
+  }, [safeAnimals, dangerAnimals])
 
   const playSound = (isCorrect: boolean) => {
     if (isCorrect) {
@@ -257,9 +285,21 @@ export default function SortingTest() {
 
             <div className="h-14 sm:h-20 bg-white/90 rounded-lg border-2 border-yellow-400 p-0.5 sm:p-2">
               <div className="grid grid-cols-3 sm:grid-cols-6 gap-0.5 sm:gap-2 h-full items-center">
-                {unplacedAnimals.map((animal) => (
-                  <DraggableAnimal key={animal.id} animal={animal} />
-                ))}
+                {initialAnimals.map((animal) => {
+                  const isCorrectlyPlaced = (
+                    (safeAnimals.find(a => a.id === animal.id) && animal.isCorrectlySafe) ||
+                    (dangerAnimals.find(a => a.id === animal.id) && !animal.isCorrectlySafe)
+                  );
+                  const isDragging = activeId === animal.id;
+                  return (
+                    <DraggableAnimal 
+                      key={animal.id} 
+                      animal={animal} 
+                      isCorrectlyPlaced={isCorrectlyPlaced}
+                      isDragging={isDragging}
+                    />
+                  );
+                })}
               </div>
             </div>
 

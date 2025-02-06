@@ -68,11 +68,6 @@ const chapter3EasyQuestions = [
     answer: "$10"
   },
   {
-    question: "How much of his treat money did Hudson waste on those crinkly flyer things this week? (Don't worry, I helped him redesign them... with my claws)",
-    options: ["$8", "$10", "$12", "$15"],
-    answer: "$12"
-  },
-  {
     question: "If Hudson earned $10 for basking in my glorious presence but spent $12 on those silly papers, what happened to his money this week?",
     options: ["He made $2", "He lost $2", "He made $12", "He lost $10"],
     answer: "He lost $2"

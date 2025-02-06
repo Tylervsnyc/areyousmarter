@@ -12,21 +12,28 @@ export const chapters: ChapterConfig[] = [
     title: 'Are You Smarter Than Mr. Fluffbutt?',
     subtitle: 'Chapter 1: Help Me Get This Bike!',
     readStoryLink: 'https://learnthroughstories.substack.com/p/help-me-get-this-bike-chapter-1',
-    quizLink: '/quiz/1/name'
+    quizLink: '/quiz/1'
   },
   {
     id: '2',
     title: 'Are You Smarter Than Mr. Fluffbutt?',
     subtitle: 'Chapter 2: A Big Three Dollar Gamble',
     readStoryLink: 'https://learnthroughstories.substack.com/p/help-me-get-this-bike-chapter-2',
-    quizLink: '/quiz/2/name'
+    quizLink: '/quiz/2'
   },
   {
     id: '3',
     title: 'Are You Smarter Than Mr. Fluffbutt?',
     subtitle: 'Chapter 3: Let it Roll! Let it Roll!',
     readStoryLink: 'https://learnthroughstories.substack.com/p/help-me-get-this-bike-chapter-3-a',
-    quizLink: '/quiz/3/name'
+    quizLink: '/quiz/3'
+  },
+  {
+    id: '4',
+    title: 'Are You Smarter Than Mr. Fluffbutt?',
+    subtitle: 'Chapter 4: The Worst Week EVER!',
+    readStoryLink: 'https://learnthroughstories.substack.com/p/help-me-get-this-bike-chapter-4',
+    quizLink: '/quiz/4'
   }
 ]
 

@@ -68,11 +68,6 @@ const chapter1EasyQuestions = [
     answer: "$23"
   },
   {
-    question: "This week, Hudson spent $5 on snacks and $7 on school supplies. What are his total expenses?",
-    options: ["$10", "$12", "$14", "$16"],
-    answer: "$12"
-  },
-  {
     question: "If Hudson has $23 and spends $12 on supplies, how much money does he have left?",
     options: ["$9", "$11", "$13", "$15"],
     answer: "$11"

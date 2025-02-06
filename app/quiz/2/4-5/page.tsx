@@ -135,17 +135,6 @@ const questions = [
     ],
     answer: "$4",
     explanation: "If Hudson spends $4 from $8, he has $4 left!"
-  },
-  {
-    question: "Last counting task! Hudson has one $5 bill and three $1 bills. How much is that?",
-    options: [
-      "$7",
-      "$9",
-      "$8",
-      "$6"
-    ],
-    answer: "$8",
-    explanation: "One $5 bill plus three $1 bills equals $8!"
   }
 ]
 

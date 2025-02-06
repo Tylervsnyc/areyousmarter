@@ -26,7 +26,20 @@ interface MatchingQuizQuestion extends BaseQuizQuestion {
   componentProps: any
 }
 
-type QuizQuestion = StandardQuizQuestion | MatchingQuizQuestion
+interface SortingQuizQuestion extends BaseQuizQuestion {
+  type: 'sorting'
+  component: React.ComponentType<any>
+  componentProps: {
+    animals: Array<{
+      id: string
+      name: string
+      emoji: string
+      isCorrectlySafe: boolean
+    }>
+  }
+}
+
+type QuizQuestion = StandardQuizQuestion | MatchingQuizQuestion | SortingQuizQuestion
 
 interface QuizTemplateProps {
   questions: QuizQuestion[]
@@ -162,7 +175,7 @@ function QuizContent({ questions, chapterNumber, quizType }: QuizTemplateProps) 
   const renderQuestion = () => {
     const currentQ = questions[currentQuestion]
     
-    if (currentQ.type === 'matching') {
+    if (currentQ.type === 'matching' || currentQ.type === 'sorting') {
       const CustomComponent = currentQ.component
       return (
         <CustomComponent
@@ -199,7 +212,12 @@ function QuizContent({ questions, chapterNumber, quizType }: QuizTemplateProps) 
       )
     }
 
-    // If not a matching question, treat as standard question
+    // If not a matching or sorting question, treat as standard question
+    if (!('options' in currentQ) || !('answer' in currentQ)) {
+      console.error('Invalid question type:', currentQ)
+      return null
+    }
+
     const standardQ = currentQ as StandardQuizQuestion
     return (
       <div className="w-full max-w-md mx-auto space-y-2">

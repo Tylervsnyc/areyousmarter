@@ -1,9 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
-import MagicProgressBar from '@/components/MagicProgressBar'
 import {
   DndContext,
   DragOverlay,
@@ -24,16 +21,17 @@ interface Animal {
   isCorrectlySafe: boolean
 }
 
-const initialAnimals: Animal[] = [
-  { id: 'trex', name: 'T-Rex', emoji: '🦖', isCorrectlySafe: false },
-  { id: 'mouse', name: 'Mouse', emoji: '🐭', isCorrectlySafe: true },
-  { id: 'crocodile', name: 'Crocodile', emoji: '🐊', isCorrectlySafe: false },
-  { id: 'goldfish', name: 'Goldfish', emoji: '🐠', isCorrectlySafe: true },
-  { id: 'hamster', name: 'Hamster', emoji: '🐹', isCorrectlySafe: true },
-  { id: 'wolf', name: 'Wolf', emoji: '🐺', isCorrectlySafe: false },
-]
+interface SortingQuestionProps {
+  animals: Animal[]
+  onAnswer: (isCorrect: boolean) => void
+  isAnswered: boolean
+}
 
-function DraggableAnimal({ animal }: { animal: Animal }) {
+function DraggableAnimal({ animal, isCorrectlyPlaced, isDragging }: { 
+  animal: Animal
+  isCorrectlyPlaced?: boolean
+  isDragging?: boolean 
+}) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: animal.id,
   });
@@ -41,6 +39,14 @@ function DraggableAnimal({ animal }: { animal: Animal }) {
   const style = transform ? {
     transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
   } : undefined;
+
+  if (isCorrectlyPlaced || isDragging) {
+    return (
+      <div className="h-5 sm:h-8 bg-gray-100 rounded border border-gray-300 flex items-center justify-center text-[10px] sm:text-sm font-medium p-0.5 text-center text-gray-400">
+        {animal.name} {animal.emoji}
+      </div>
+    );
+  }
 
   return (
     <div
@@ -94,8 +100,8 @@ function DroppableZone({ id, title, animals, color, placeholderColor }: {
   );
 }
 
-export default function SortingTest() {
-  const [unplacedAnimals, setUnplacedAnimals] = useState<Animal[]>(initialAnimals)
+export default function SortingQuestion({ animals, onAnswer, isAnswered }: SortingQuestionProps) {
+  const [unplacedAnimals, setUnplacedAnimals] = useState<Animal[]>(animals)
   const [safeAnimals, setSafeAnimals] = useState<Animal[]>([])
   const [dangerAnimals, setDangerAnimals] = useState<Animal[]>([])
   const [activeId, setActiveId] = useState<string | null>(null)
@@ -114,7 +120,7 @@ export default function SortingTest() {
       const totalCorrectAnswers = safeAnimals.filter(a => a.isCorrectlySafe).length + 
         dangerAnimals.filter(a => !a.isCorrectlySafe).length
       
-      if (totalCorrectAnswers < 5 && correctSound) { // Only play if not the last answer
+      if (totalCorrectAnswers < animals.length - 1 && correctSound) { // Only play if not the last answer
         correctSound.currentTime = 0
         correctSound.play()
       }
@@ -150,7 +156,7 @@ export default function SortingTest() {
       return
     }
 
-    const activeAnimal = initialAnimals.find(animal => animal.id === active.id)
+    const activeAnimal = animals.find(animal => animal.id === active.id)
     if (!activeAnimal) return
 
     const isCorrectPlacement = (
@@ -168,8 +174,21 @@ export default function SortingTest() {
       } else if (over.id === 'danger-zone') {
         setDangerAnimals(prev => [...prev, activeAnimal])
       }
+
+      // Check if all animals are correctly placed
+      const newTotalCorrect = (
+        safeAnimals.filter(a => a.isCorrectlySafe).length + 
+        dangerAnimals.filter(a => !a.isCorrectlySafe).length + 
+        (activeAnimal.isCorrectlySafe && over.id === 'safe-zone' ? 1 : 0) +
+        (!activeAnimal.isCorrectlySafe && over.id === 'danger-zone' ? 1 : 0)
+      )
+
+      if (newTotalCorrect === animals.length) {
+        onAnswer(true)
+      }
     } else {
       setHasWrongGuess(true)
+      onAnswer(false)
     }
 
     playSound(isCorrectPlacement)
@@ -181,98 +200,63 @@ export default function SortingTest() {
   }
 
   return (
-    <div className="min-h-screen bg-[rgb(252,250,245)]">
-      {/* Header */}
-      <div className="relative h-[12vh] w-full">
-        <Image
-          src="/images/header.jpg"
-          alt="Header Background"
-          fill
-          className="object-cover object-center"
-          priority
-        />
-        {/* Logo */}
-        <div className="absolute left-4 top-1/2 -translate-y-1/2">
-          <Link href="https://www.learnthroughstories.com/">
-            <Image
-              src="/images/logo.png"
-              alt="Learn Through Stories"
-              width={80}
-              height={20}
-              priority
-            />
-          </Link>
-        </div>
-        {/* Substack */}
-        <div className="absolute top-1/2 right-4 -translate-y-1/2">
-          <Link href="https://learnthroughstories.substack.com/">
-            <Image
-              src="/images/substack.jpg"
-              alt="Subscribe to Learn Through Stories"
-              width={60}
-              height={15}
-              priority
-            />
-          </Link>
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="p-1">
-        <div className="w-[90%] sm:w-[512px] mx-auto flex flex-col gap-1 sm:gap-2">
-          <MagicProgressBar
-            currentQuestion={1}
-            totalQuestions={6}
+    <div className="max-w-lg mx-auto bg-white/90 rounded-xl border-4 border-yellow-400 p-4 shadow-lg">
+      <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 text-center">
+        Sort the Animals!
+      </h2>
+      
+      <DndContext
+        sensors={sensors}
+        collisionDetection={closestCorners}
+        onDragStart={handleDragStart}
+        onDragEnd={handleDragEnd}
+        onDragCancel={handleDragCancel}
+      >
+        <div className="flex flex-col sm:flex-row justify-between gap-1 sm:gap-2">
+          <DroppableZone
+            id="safe-zone"
+            title="Safe Animals"
+            animals={safeAnimals}
+            color="border-green-400"
+            placeholderColor="border-green-300"
           />
-
-          <div className="bg-white/90 rounded-lg border-2 border-yellow-400 py-0.5 sm:py-2">
-            <h1 className="text-xs sm:text-lg font-bold text-gray-900 text-center whitespace-nowrap">
-              Sort the Animals : Drag and Drop
-            </h1>
-          </div>
-          
-          <DndContext
-            sensors={sensors}
-            collisionDetection={closestCorners}
-            onDragStart={handleDragStart}
-            onDragEnd={handleDragEnd}
-            onDragCancel={handleDragCancel}
-          >
-            <div className="flex flex-col sm:flex-row justify-between gap-1 sm:gap-2">
-              <DroppableZone
-                id="safe-zone"
-                title="Safe Animals"
-                animals={safeAnimals}
-                color="border-green-400"
-                placeholderColor="border-green-300"
-              />
-              <DroppableZone
-                id="danger-zone"
-                title="Danger Zone"
-                animals={dangerAnimals}
-                color="border-red-400"
-                placeholderColor="border-red-300"
-              />
-            </div>
-
-            <div className="h-14 sm:h-20 bg-white/90 rounded-lg border-2 border-yellow-400 p-0.5 sm:p-2">
-              <div className="grid grid-cols-3 sm:grid-cols-6 gap-0.5 sm:gap-2 h-full items-center">
-                {unplacedAnimals.map((animal) => (
-                  <DraggableAnimal key={animal.id} animal={animal} />
-                ))}
-              </div>
-            </div>
-
-            <DragOverlay>
-              {activeId ? (
-                <div className="h-5 sm:h-8 bg-blue-200 rounded border border-blue-400 flex items-center justify-center text-[10px] sm:text-sm font-medium p-0.5 text-center">
-                  {initialAnimals.find(a => a.id === activeId)?.name} {initialAnimals.find(a => a.id === activeId)?.emoji}
-                </div>
-              ) : null}
-            </DragOverlay>
-          </DndContext>
+          <DroppableZone
+            id="danger-zone"
+            title="Danger Zone"
+            animals={dangerAnimals}
+            color="border-red-400"
+            placeholderColor="border-red-300"
+          />
         </div>
-      </div>
+
+        <div className="h-14 sm:h-20 bg-white/90 rounded-lg border-2 border-yellow-400 p-0.5 sm:p-2 mt-4">
+          <div className="grid grid-cols-3 sm:grid-cols-6 gap-0.5 sm:gap-2 h-full items-center">
+            {animals.map((animal) => {
+              const isCorrectlyPlaced = (
+                (safeAnimals.find(a => a.id === animal.id) && animal.isCorrectlySafe) ||
+                (dangerAnimals.find(a => a.id === animal.id) && !animal.isCorrectlySafe)
+              );
+              const isDragging = activeId === animal.id;
+              return (
+                <DraggableAnimal 
+                  key={animal.id} 
+                  animal={animal} 
+                  isCorrectlyPlaced={isCorrectlyPlaced}
+                  isDragging={isDragging}
+                />
+              );
+            })}
+          </div>
+        </div>
+
+        <DragOverlay>
+          {activeId ? (
+            <div className="h-5 sm:h-8 bg-blue-200 rounded border border-blue-400 flex items-center justify-center text-[10px] sm:text-sm font-medium p-0.5 text-center">
+              {animals.find(a => a.id === activeId)?.name} {animals.find(a => a.id === activeId)?.emoji}
+            </div>
+          ) : null}
+        </DragOverlay>
+      </DndContext>
     </div>
   )
 } 
