@@ -44,9 +44,9 @@ export default function SortingTest() {
       </div>
 
       {/* Main Content */}
-      <div className="p-2">
+      <div className="p-1.5">
         {/* Main container */}
-        <div className="max-w-3xl mx-auto flex flex-col gap-2">
+        <div className="max-w-2xl mx-auto flex flex-col gap-1.5">
           
           {/* Progress Bar */}
           <div className="scale-90 origin-top">
@@ -57,61 +57,61 @@ export default function SortingTest() {
           </div>
 
           {/* Question Box */}
-          <div className="bg-white/90 rounded-lg border-2 border-yellow-400 p-2 max-w-lg w-full mx-auto">
-            <h1 className="text-base font-bold text-gray-900 text-center">
+          <div className="bg-white/90 rounded-lg border-2 border-yellow-400 p-1.5 max-w-lg w-full mx-auto">
+            <h1 className="text-sm font-bold text-gray-900 text-center">
               Sort the Animals
             </h1>
           </div>
           
           {/* Top section with two columns */}
-          <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-6">
+          <div className="flex flex-col sm:flex-row justify-center gap-1.5 sm:gap-4">
             {/* Left Column - Safe Animals */}
-            <div className="w-full sm:w-56 border-2 border-green-400 rounded-lg bg-white/80 p-1.5">
-              <h2 className="text-base font-bold text-green-600 text-center mb-1.5">
+            <div className="w-full sm:w-44 border-2 border-green-400 rounded-lg bg-white/80 p-1">
+              <h2 className="text-sm font-bold text-green-600 text-center mb-1">
                 Safe Animals
               </h2>
-              <div className="flex flex-col gap-1.5">
+              <div className="flex flex-col gap-1">
                 {/* Placeholder boxes for dropped items */}
-                <div className="h-8 border border-dashed border-green-300 rounded-md"></div>
-                <div className="h-8 border border-dashed border-green-300 rounded-md"></div>
-                <div className="h-8 border border-dashed border-green-300 rounded-md"></div>
+                <div className="h-7 border border-dashed border-green-300 rounded"></div>
+                <div className="h-7 border border-dashed border-green-300 rounded"></div>
+                <div className="h-7 border border-dashed border-green-300 rounded"></div>
               </div>
             </div>
 
             {/* Right Column - Danger Zone */}
-            <div className="w-full sm:w-56 border-2 border-red-400 rounded-lg bg-white/80 p-1.5">
-              <h2 className="text-base font-bold text-red-600 text-center mb-1.5">
+            <div className="w-full sm:w-44 border-2 border-red-400 rounded-lg bg-white/80 p-1">
+              <h2 className="text-sm font-bold text-red-600 text-center mb-1">
                 Danger Zone
               </h2>
-              <div className="flex flex-col gap-1.5">
+              <div className="flex flex-col gap-1">
                 {/* Placeholder boxes for dropped items */}
-                <div className="h-8 border border-dashed border-red-300 rounded-md"></div>
-                <div className="h-8 border border-dashed border-red-300 rounded-md"></div>
-                <div className="h-8 border border-dashed border-red-300 rounded-md"></div>
+                <div className="h-7 border border-dashed border-red-300 rounded"></div>
+                <div className="h-7 border border-dashed border-red-300 rounded"></div>
+                <div className="h-7 border border-dashed border-red-300 rounded"></div>
               </div>
             </div>
           </div>
 
           {/* Bottom section with draggable items */}
-          <div className="h-28 bg-white/90 rounded-lg border-2 border-yellow-400 p-1.5">
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5 h-full">
+          <div className="h-20 bg-white/90 rounded-lg border-2 border-yellow-400 p-1">
+            <div className="grid grid-cols-3 gap-1 h-full">
               {/* Draggable items - all in blue theme */}
-              <div className="h-8 bg-blue-100 rounded-md border border-blue-300 flex items-center justify-center text-sm font-medium p-1 text-center">
+              <div className="h-7 bg-blue-100 rounded border border-blue-300 flex items-center justify-center text-xs font-medium p-0.5 text-center">
                 T-Rex 🦖
               </div>
-              <div className="h-8 bg-blue-100 rounded-md border border-blue-300 flex items-center justify-center text-sm font-medium p-1 text-center">
+              <div className="h-7 bg-blue-100 rounded border border-blue-300 flex items-center justify-center text-xs font-medium p-0.5 text-center">
                 Mouse 🐭
               </div>
-              <div className="h-8 bg-blue-100 rounded-md border border-blue-300 flex items-center justify-center text-sm font-medium p-1 text-center">
+              <div className="h-7 bg-blue-100 rounded border border-blue-300 flex items-center justify-center text-xs font-medium p-0.5 text-center">
                 Crocodile 🐊
               </div>
-              <div className="h-8 bg-blue-100 rounded-md border border-blue-300 flex items-center justify-center text-sm font-medium p-1 text-center">
+              <div className="h-7 bg-blue-100 rounded border border-blue-300 flex items-center justify-center text-xs font-medium p-0.5 text-center">
                 Goldfish 🐠
               </div>
-              <div className="h-8 bg-blue-100 rounded-md border border-blue-300 flex items-center justify-center text-sm font-medium p-1 text-center">
+              <div className="h-7 bg-blue-100 rounded border border-blue-300 flex items-center justify-center text-xs font-medium p-0.5 text-center">
                 Hamster 🐹
               </div>
-              <div className="h-8 bg-blue-100 rounded-md border border-blue-300 flex items-center justify-center text-sm font-medium p-1 text-center">
+              <div className="h-7 bg-blue-100 rounded border border-blue-300 flex items-center justify-center text-xs font-medium p-0.5 text-center">
                 Wolf 🐺
               </div>
             </div>
