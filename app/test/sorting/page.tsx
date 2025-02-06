@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import MagicProgressBar from '@/components/MagicProgressBar'
 
 export default function SortingTest() {
   return (
@@ -47,6 +48,19 @@ export default function SortingTest() {
         {/* Main container */}
         <div className="max-w-4xl mx-auto flex flex-col gap-2 sm:gap-4">
           
+          {/* Progress Bar */}
+          <MagicProgressBar
+            currentQuestion={1}
+            totalQuestions={6}
+          />
+
+          {/* Question Box */}
+          <div className="bg-white/90 rounded-xl border-4 border-yellow-400 p-3 max-w-lg w-full mx-auto">
+            <h1 className="text-lg md:text-xl font-bold text-gray-900 text-center">
+              Sort the animals into Safe and Dangerous groups!
+            </h1>
+          </div>
+          
           {/* Top section with two columns */}
           <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-8">
             {/* Left Column - Safe Animals */}
@@ -77,25 +91,25 @@ export default function SortingTest() {
           </div>
 
           {/* Bottom section with draggable items */}
-          <div className="h-40 sm:h-48 bg-white/90 rounded-xl border-4 border-yellow-400 p-2 sm:p-4">
+          <div className="h-32 sm:h-36 bg-white/90 rounded-xl border-4 border-yellow-400 p-2 sm:p-4">
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 h-full">
               {/* Draggable items - all in blue theme */}
-              <div className="h-full bg-blue-100 rounded-lg border-2 border-blue-300 flex items-center justify-center text-sm sm:text-base font-semibold p-1 text-center">
+              <div className="h-10 sm:h-12 bg-blue-100 rounded-lg border-2 border-blue-300 flex items-center justify-center text-sm sm:text-base font-semibold p-1 text-center">
                 T-Rex 🦖
               </div>
-              <div className="h-full bg-blue-100 rounded-lg border-2 border-blue-300 flex items-center justify-center text-sm sm:text-base font-semibold p-1 text-center">
+              <div className="h-10 sm:h-12 bg-blue-100 rounded-lg border-2 border-blue-300 flex items-center justify-center text-sm sm:text-base font-semibold p-1 text-center">
                 Mouse 🐭
               </div>
-              <div className="h-full bg-blue-100 rounded-lg border-2 border-blue-300 flex items-center justify-center text-sm sm:text-base font-semibold p-1 text-center">
+              <div className="h-10 sm:h-12 bg-blue-100 rounded-lg border-2 border-blue-300 flex items-center justify-center text-sm sm:text-base font-semibold p-1 text-center">
                 Crocodile 🐊
               </div>
-              <div className="h-full bg-blue-100 rounded-lg border-2 border-blue-300 flex items-center justify-center text-sm sm:text-base font-semibold p-1 text-center">
+              <div className="h-10 sm:h-12 bg-blue-100 rounded-lg border-2 border-blue-300 flex items-center justify-center text-sm sm:text-base font-semibold p-1 text-center">
                 Goldfish 🐠
               </div>
-              <div className="h-full bg-blue-100 rounded-lg border-2 border-blue-300 flex items-center justify-center text-sm sm:text-base font-semibold p-1 text-center">
+              <div className="h-10 sm:h-12 bg-blue-100 rounded-lg border-2 border-blue-300 flex items-center justify-center text-sm sm:text-base font-semibold p-1 text-center">
                 Hamster 🐹
               </div>
-              <div className="h-full bg-blue-100 rounded-lg border-2 border-blue-300 flex items-center justify-center text-sm sm:text-base font-semibold p-1 text-center">
+              <div className="h-10 sm:h-12 bg-blue-100 rounded-lg border-2 border-blue-300 flex items-center justify-center text-sm sm:text-base font-semibold p-1 text-center">
                 Wolf 🐺
               </div>
             </div>
