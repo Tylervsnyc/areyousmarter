@@ -4,32 +4,26 @@ import QuizTemplate from '@/components/QuizTemplate'
 import MatchingQuestion from '@/components/MatchingQuestion'
 import SortingQuestion from '@/components/SortingQuestion'
 
-const matchingPairs = [
-  {
-    id: 1,
-    leftText: "Squirrel!",
-    rightText: "A. Fluffbutt",
-    correctMatch: "D"
-  },
-  {
-    id: 2,
-    leftText: "Loud noise!",
-    rightText: "B. Edie",
-    correctMatch: "C"
-  },
-  {
-    id: 3,
-    leftText: "Small pup",
-    rightText: "C. Joseph",
-    correctMatch: "B"
-  },
-  {
-    id: 4,
-    leftText: "Best Animal",
-    rightText: "D. Drew-boo",
-    correctMatch: "A"
-  }
-]
+const matchingPairs = {
+  leftColumn: [
+    { id: 1, text: "Squirrel!" },
+    { id: 2, text: "Loud noise!" },
+    { id: 3, text: "Small pup" },
+    { id: 4, text: "Best Animal" }
+  ],
+  rightColumn: [
+    { id: "A", text: "Fluffbutt" },
+    { id: "B", text: "Edie" },
+    { id: "C", text: "Joseph" },
+    { id: "D", text: "Drew-boo" }
+  ],
+  correctMatches: [
+    { left: 1, right: "D" },  // Squirrel! -> Drew-boo
+    { left: 2, right: "C" },  // Loud noise! -> Joseph
+    { left: 3, right: "B" },  // Small pup -> Edie
+    { left: 4, right: "A" }   // Best Animal -> Fluffbutt
+  ]
+}
 
 const safeAnimals = [
   { id: 'goldfish', name: 'Goldfish', emoji: '🐠', isCorrectlySafe: true },
