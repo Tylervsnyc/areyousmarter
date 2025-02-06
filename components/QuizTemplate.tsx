@@ -137,7 +137,13 @@ function QuizContent({ questions, chapterNumber, quizType }: QuizTemplateProps) 
     setSelectedAnswer(selectedIndex)
     setIsAnswered(true)
     
-    const isCorrect = questions[currentQuestion].options[selectedIndex] === questions[currentQuestion].answer
+    const currentQ = questions[currentQuestion]
+    if (!('options' in currentQ) || !('answer' in currentQ)) {
+      console.error('Invalid question type for standard answer handling:', currentQ)
+      return
+    }
+    
+    const isCorrect = currentQ.options[selectedIndex] === currentQ.answer
     
     // Track question answer
     trackQuestionAnswer(
@@ -159,10 +165,12 @@ function QuizContent({ questions, chapterNumber, quizType }: QuizTemplateProps) 
 
     setTimeout(() => {
       if (currentQuestion === questions.length - 1) {
+        // Calculate final score including the current question
+        const finalScore = score + (isCorrect ? 1 : 0)
         // Track quiz completion before navigating
         trackUserProgress('quiz_completed', chapterNumber.toString())
-        // Quiz completed, navigate to results
-        router.push(`/quiz/${chapterNumber}/results?name=${encodeURIComponent(name)}&score=${score + (isCorrect ? 1 : 0)}&type=${quizType}`)
+        // Quiz completed, navigate to results with the correct final score
+        router.push(`/quiz/${chapterNumber}/results?name=${encodeURIComponent(name)}&score=${finalScore}&type=${quizType}`)
       } else {
         setCurrentQuestion(currentQuestion + 1)
         setIsAnswered(false)
@@ -197,8 +205,10 @@ function QuizContent({ questions, chapterNumber, quizType }: QuizTemplateProps) 
 
             setTimeout(() => {
               if (currentQuestion === questions.length - 1) {
+                // Calculate final score including the current question
+                const finalScore = score + (isCorrect ? 1 : 0)
                 trackUserProgress('quiz_completed', chapterNumber.toString())
-                router.push(`/quiz/${chapterNumber}/results?name=${encodeURIComponent(name)}&score=${score + (isCorrect ? 1 : 0)}&type=${quizType}`)
+                router.push(`/quiz/${chapterNumber}/results?name=${encodeURIComponent(name)}&score=${finalScore}&type=${quizType}`)
               } else {
                 setCurrentQuestion(currentQuestion + 1)
                 setIsAnswered(false)

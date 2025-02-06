@@ -43,7 +43,7 @@ const questions = [
     answer: "$100"
   },
   {
-    question: "Hisssss! Sort these animals!",
+    question: "Hisssss! Let's sort these animals into safe ones and scary ones!",
     type: "sorting" as const,
     hideQuestionBox: true,
     component: SortingQuestion,
