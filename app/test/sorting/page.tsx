@@ -45,58 +45,58 @@ export default function SortingTest() {
       {/* Main Content */}
       <div className="p-2 sm:p-4">
         {/* Main container */}
-        <div className="max-w-3xl mx-auto flex flex-col gap-2 sm:gap-4">
+        <div className="max-w-4xl mx-auto flex flex-col gap-2 sm:gap-4">
           
           {/* Top section with two columns */}
-          <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
+          <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-8">
             {/* Left Column - Safe Animals */}
-            <div className="flex-1 border-4 border-green-400 rounded-xl bg-white/80 p-2 sm:p-4">
+            <div className="w-full sm:w-64 border-4 border-green-400 rounded-xl bg-white/80 p-2">
               <h2 className="text-lg sm:text-xl font-bold text-green-600 text-center mb-2">
                 Safe Animals
               </h2>
               <div className="flex flex-col gap-2">
                 {/* Placeholder boxes for dropped items */}
-                <div className="h-12 sm:h-14 border-2 border-dashed border-green-300 rounded-lg"></div>
-                <div className="h-12 sm:h-14 border-2 border-dashed border-green-300 rounded-lg"></div>
-                <div className="h-12 sm:h-14 border-2 border-dashed border-green-300 rounded-lg"></div>
+                <div className="h-10 sm:h-12 border-2 border-dashed border-green-300 rounded-lg"></div>
+                <div className="h-10 sm:h-12 border-2 border-dashed border-green-300 rounded-lg"></div>
+                <div className="h-10 sm:h-12 border-2 border-dashed border-green-300 rounded-lg"></div>
               </div>
             </div>
 
             {/* Right Column - Danger Zone */}
-            <div className="flex-1 border-4 border-red-400 rounded-xl bg-white/80 p-2 sm:p-4">
+            <div className="w-full sm:w-64 border-4 border-red-400 rounded-xl bg-white/80 p-2">
               <h2 className="text-lg sm:text-xl font-bold text-red-600 text-center mb-2">
                 Danger Zone Animals
               </h2>
               <div className="flex flex-col gap-2">
                 {/* Placeholder boxes for dropped items */}
-                <div className="h-12 sm:h-14 border-2 border-dashed border-red-300 rounded-lg"></div>
-                <div className="h-12 sm:h-14 border-2 border-dashed border-red-300 rounded-lg"></div>
-                <div className="h-12 sm:h-14 border-2 border-dashed border-red-300 rounded-lg"></div>
+                <div className="h-10 sm:h-12 border-2 border-dashed border-red-300 rounded-lg"></div>
+                <div className="h-10 sm:h-12 border-2 border-dashed border-red-300 rounded-lg"></div>
+                <div className="h-10 sm:h-12 border-2 border-dashed border-red-300 rounded-lg"></div>
               </div>
             </div>
           </div>
 
           {/* Bottom section with draggable items */}
-          <div className="h-32 sm:h-40 bg-white/90 rounded-xl border-4 border-yellow-400 p-2 sm:p-4">
-            <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 h-full">
+          <div className="h-40 sm:h-48 bg-white/90 rounded-xl border-4 border-yellow-400 p-2 sm:p-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 h-full">
               {/* Draggable items - all in blue theme */}
               <div className="h-full bg-blue-100 rounded-lg border-2 border-blue-300 flex items-center justify-center text-sm sm:text-base font-semibold p-1 text-center">
-                Left 1
+                T-Rex 🦖
               </div>
               <div className="h-full bg-blue-100 rounded-lg border-2 border-blue-300 flex items-center justify-center text-sm sm:text-base font-semibold p-1 text-center">
-                Left 2
+                Mouse 🐭
               </div>
               <div className="h-full bg-blue-100 rounded-lg border-2 border-blue-300 flex items-center justify-center text-sm sm:text-base font-semibold p-1 text-center">
-                Left 3
+                Crocodile 🐊
               </div>
               <div className="h-full bg-blue-100 rounded-lg border-2 border-blue-300 flex items-center justify-center text-sm sm:text-base font-semibold p-1 text-center">
-                Right 1
+                Goldfish 🐠
               </div>
               <div className="h-full bg-blue-100 rounded-lg border-2 border-blue-300 flex items-center justify-center text-sm sm:text-base font-semibold p-1 text-center">
-                Right 2
+                Hamster 🐹
               </div>
               <div className="h-full bg-blue-100 rounded-lg border-2 border-blue-300 flex items-center justify-center text-sm sm:text-base font-semibold p-1 text-center">
-                Right 3
+                Wolf 🐺
               </div>
             </div>
           </div>
