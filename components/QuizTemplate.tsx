@@ -259,7 +259,7 @@ function QuizContent({ questions, chapterNumber, quizType }: QuizTemplateProps) 
   return (
     <div className="min-h-screen w-full flex flex-col">
       {/* Header */}
-      <div className="relative h-[20vh] w-full">
+      <div className="relative h-[15vh] w-full">
         <Image
           src="/images/header.jpg"
           alt="Header Background"
