@@ -8,22 +8,22 @@ const matchingPairs = [
   {
     id: 1,
     leftText: "$10",
-    rightText: "Dog Walk"
+    rightText: "Joseph"
   },
   {
     id: 2,
     leftText: "I disagree",
-    rightText: "Drew-boo"
+    rightText: "Dog Walk"
   },
   {
     id: 3,
     leftText: "Squirrel!",
-    rightText: "Joseph"
+    rightText: "Cat-Sit"
   },
   {
     id: 4,
     leftText: "$5",
-    rightText: "Cat-Sit"
+    rightText: "Drew-boo"
   }
 ]
 
