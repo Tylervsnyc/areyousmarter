@@ -7,23 +7,23 @@ import SortingQuestion from '@/components/SortingQuestion'
 const matchingPairs = [
   {
     id: 1,
-    leftText: "Squirrel!",
-    rightText: "Drew-boo"
+    leftText: "$10",
+    rightText: "Dog Walk"
   },
   {
     id: 2,
-    leftText: "Loud noise!",
-    rightText: "Joseph"
+    leftText: "I disagree",
+    rightText: "Drew-boo"
   },
   {
     id: 3,
-    leftText: "Small pup",
-    rightText: "Edie"
+    leftText: "Squirrel!",
+    rightText: "Joseph"
   },
   {
     id: 4,
-    leftText: "Best Animal",
-    rightText: "Fluffbutt"
+    leftText: "$5",
+    rightText: "Cat-Sit"
   }
 ]
 
