@@ -3,10 +3,12 @@ const nextConfig = {
   // Basic settings only
   reactStrictMode: false,
   
-  // Simplified image config
+  // Image optimization settings
   images: {
-    unoptimized: true,
+    unoptimized: false,
     domains: [],
+    formats: ['image/webp'],
+    quality: 100
   },
 
   // Disable features that might cause issues

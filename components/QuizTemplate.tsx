@@ -266,6 +266,8 @@ function QuizContent({ questions, chapterNumber, quizType }: QuizTemplateProps) 
           fill
           className="object-cover object-center"
           priority
+          quality={100}
+          sizes="100vw"
         />
         {/* Logo */}
         <div className="absolute left-4 top-1/2 -translate-y-1/2">
