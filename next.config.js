@@ -7,8 +7,7 @@ const nextConfig = {
   images: {
     unoptimized: false,
     domains: [],
-    formats: ['image/webp'],
-    quality: 100
+    formats: ['image/webp']
   },
 
   // Disable features that might cause issues
