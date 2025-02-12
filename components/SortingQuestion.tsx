@@ -12,7 +12,10 @@ import {
   useDroppable,
   useDraggable,
 } from '@dnd-kit/core'
-import { arrayMove, sortableKeyboardCoordinates } from '@dnd-kit/sortable'
+import Image from 'next/image'
+import { useButtonSound } from '../app/hooks/useButtonSound'
+import { duoDefaultTheme } from '../app/test/duo-template/styles'
+import { DuoTemplateButton } from '../app/test/duo-template/buttons/page'
 
 interface Animal {
   id: string
@@ -30,23 +33,15 @@ interface SortingQuestionProps {
 function DraggableAnimal({ animal, isCorrectlyPlaced, isDragging }: { 
   animal: Animal
   isCorrectlyPlaced?: boolean
-  isDragging?: boolean 
+  isDragging?: boolean
 }) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: animal.id,
-  });
+  })
   
   const style = transform ? {
     transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
-  } : undefined;
-
-  if (isCorrectlyPlaced || isDragging) {
-    return (
-      <div className="h-5 sm:h-8 bg-gray-100 rounded border border-gray-300 flex items-center justify-center text-[10px] sm:text-sm font-medium p-0.5 text-center text-gray-400">
-        {animal.name} {animal.emoji}
-      </div>
-    );
-  }
+  } : undefined
 
   return (
     <div
@@ -54,50 +49,43 @@ function DraggableAnimal({ animal, isCorrectlyPlaced, isDragging }: {
       style={style}
       {...listeners}
       {...attributes}
-      className="h-5 sm:h-8 bg-blue-100 rounded border border-blue-300 flex items-center justify-center text-[10px] sm:text-sm font-medium p-0.5 text-center cursor-move touch-none"
+      className={`h-10 sm:h-12 w-[120px] sm:w-[150px] rounded-xl flex items-center justify-center text-sm sm:text-base font-medium p-2 text-center cursor-move touch-none
+        ${isDragging ? 'opacity-50' : ''}
+        ${isCorrectlyPlaced ? 'bg-gray-100 text-gray-400 border-2 border-gray-300' : 'bg-blue-500 text-white border-2 border-blue-600 hover:bg-blue-600 transition-colors'}`}
     >
       {animal.name} {animal.emoji}
     </div>
-  );
+  )
 }
 
-function DroppableZone({ id, title, animals, color, placeholderColor }: { 
+function DroppableZone({ id, title, animals, color }: { 
   id: string
   title: string
   animals: Animal[]
   color: string
-  placeholderColor: string
 }) {
   const { setNodeRef } = useDroppable({
     id: id,
-  });
+  })
 
   return (
-    <div 
-      ref={setNodeRef}
-      className={`w-full sm:w-[250px] border-2 ${color} rounded-lg bg-white/80 p-0.5 sm:p-2`}
-    >
-      <h2 className={`text-xs sm:text-base font-bold ${color.replace('border', 'text')} text-center mb-0.5 sm:mb-2`}>
-        {title}
-      </h2>
-      <div className="flex flex-col gap-0.5 sm:gap-2">
+    <div className="flex flex-col items-center gap-2">
+      <h3 className="text-base sm:text-lg font-semibold text-gray-700">{title}</h3>
+      <div
+        ref={setNodeRef}
+        className={`w-[140px] sm:w-[180px] h-[150px] sm:h-[180px] rounded-xl ${color} p-3 flex flex-wrap content-start gap-3 overflow-y-auto`}
+      >
         {animals.map((animal) => (
           <div 
-            key={animal.id}
-            className={`h-6 sm:h-10 ${color.replace('border', 'bg').replace('400', '100')} rounded border ${color.replace('400', '300')} flex items-center justify-center text-[10px] sm:text-base font-medium`}
+            key={animal.id} 
+            className={`h-10 sm:h-12 w-full ${color.replace('bg-', 'bg-').replace('100', '200')} ${color.replace('bg-', 'text-').replace('100', '800')} rounded-xl border-2 ${color.replace('bg-', 'border-').replace('100', '300')} flex items-center justify-center text-sm sm:text-base font-medium p-2 text-center`}
           >
             {animal.name} {animal.emoji}
           </div>
         ))}
-        {animals.length < 3 && Array.from({ length: 3 - animals.length }).map((_, i) => (
-          <div 
-            key={`${id}-placeholder-${i}`} 
-            className={`h-6 sm:h-10 border border-dashed ${placeholderColor} rounded`} 
-          />
-        ))}
       </div>
     </div>
-  );
+  )
 }
 
 export default function SortingQuestion({ animals, onAnswer, isAnswered }: SortingQuestionProps) {
@@ -105,22 +93,30 @@ export default function SortingQuestion({ animals, onAnswer, isAnswered }: Sorti
   const [safeAnimals, setSafeAnimals] = useState<Animal[]>([])
   const [dangerAnimals, setDangerAnimals] = useState<Animal[]>([])
   const [activeId, setActiveId] = useState<string | null>(null)
-  const [hasWrongGuess, setHasWrongGuess] = useState(false)
-  const [correctSound, setCorrectSound] = useState<HTMLAudioElement | null>(null)
+  const [hasError, setHasError] = useState(false)
+  const [showSuccess, setShowSuccess] = useState(false)
+  const [correctSound] = useState(() => typeof Audio !== 'undefined' ? new Audio('/sounds/Correct/correct.wav') : null)
   const [incorrectSound, setIncorrectSound] = useState<HTMLAudioElement | null>(null)
 
   useEffect(() => {
-    setCorrectSound(new Audio('/sounds/matchcorrect.wav'))
-    setIncorrectSound(new Audio('/sounds/matchincorrect.wav'))
+    setIncorrectSound(new Audio('/sounds/incorrect.wav'))
   }, [])
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 8,
+      },
+    }),
+    useSensor(KeyboardSensor)
+  )
 
   const playSound = (isCorrect: boolean) => {
     if (isCorrect) {
-      // Don't play sound if this is the last correct answer
       const totalCorrectAnswers = safeAnimals.filter(a => a.isCorrectlySafe).length + 
         dangerAnimals.filter(a => !a.isCorrectlySafe).length
       
-      if (totalCorrectAnswers < animals.length - 1 && correctSound) { // Only play if not the last answer
+      if (totalCorrectAnswers < animals.length - 1 && correctSound) {
         correctSound.currentTime = 0
         correctSound.play()
       }
@@ -132,20 +128,8 @@ export default function SortingQuestion({ animals, onAnswer, isAnswered }: Sorti
     }
   }
 
-  const sensors = useSensors(
-    useSensor(PointerSensor, {
-      activationConstraint: {
-        distance: 8,
-      },
-    }),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
-    })
-  )
-
   const handleDragStart = (event: any) => {
-    const { active } = event
-    setActiveId(active.id)
+    setActiveId(event.active.id)
   }
 
   const handleDragEnd = (event: any) => {
@@ -165,33 +149,35 @@ export default function SortingQuestion({ animals, onAnswer, isAnswered }: Sorti
     )
 
     if (isCorrectPlacement) {
-      // Remove from unplaced only if correct
       setUnplacedAnimals(prev => prev.filter(a => a.id !== active.id))
       
-      // Add to correct zone
       if (over.id === 'safe-zone') {
         setSafeAnimals(prev => [...prev, activeAnimal])
       } else if (over.id === 'danger-zone') {
         setDangerAnimals(prev => [...prev, activeAnimal])
       }
 
-      // Check if all animals are correctly placed
-      const newTotalCorrect = (
-        safeAnimals.filter(a => a.isCorrectlySafe).length + 
-        dangerAnimals.filter(a => !a.isCorrectlySafe).length + 
-        (activeAnimal.isCorrectlySafe && over.id === 'safe-zone' ? 1 : 0) +
-        (!activeAnimal.isCorrectlySafe && over.id === 'danger-zone' ? 1 : 0)
-      )
+      // Play correct sound
+      playSound(true)
 
-      if (newTotalCorrect === animals.length) {
-        onAnswer(true)
+      // Check if this was the last animal to be correctly placed
+      const remainingAnimals = unplacedAnimals.length - 1 // Subtract 1 for the current animal
+      if (remainingAnimals === 0) {
+        if (!hasError) {
+          // Show success popup for perfect sorting
+          setShowSuccess(true)
+        } else {
+          // If there were errors, just notify parent
+          onAnswer(false)
+        }
       }
     } else {
-      setHasWrongGuess(true)
+      // Play incorrect sound and mark error
+      playSound(false)
+      setHasError(true)
       onAnswer(false)
     }
 
-    playSound(isCorrectPlacement)
     setActiveId(null)
   }
 
@@ -200,63 +186,106 @@ export default function SortingQuestion({ animals, onAnswer, isAnswered }: Sorti
   }
 
   return (
-    <div className="max-w-lg mx-auto bg-white/90 rounded-xl border-4 border-yellow-400 p-4 shadow-lg">
-      <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 text-center">
-        Sort the Animals!
-      </h2>
-      
-      <DndContext
-        sensors={sensors}
-        collisionDetection={closestCorners}
-        onDragStart={handleDragStart}
-        onDragEnd={handleDragEnd}
-        onDragCancel={handleDragCancel}
+    <div className="w-full max-w-lg mx-auto">
+      {/* Question Box */}
+      <div 
+        className="rounded-xl border-4 p-4 sm:p-6 mb-6"
+        style={{
+          borderColor: duoDefaultTheme.titleBoxBorderColor,
+          backgroundColor: duoDefaultTheme.titleBoxBackgroundColor
+        }}
       >
-        <div className="flex flex-col sm:flex-row justify-between gap-1 sm:gap-2">
-          <DroppableZone
-            id="safe-zone"
-            title="Safe Animals"
-            animals={safeAnimals}
-            color="border-green-400"
-            placeholderColor="border-green-300"
-          />
-          <DroppableZone
-            id="danger-zone"
-            title="Danger Zone"
-            animals={dangerAnimals}
-            color="border-red-400"
-            placeholderColor="border-red-300"
-          />
-        </div>
+        <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 text-center title-text">
+          Sort these animals from safest to most dangerous!
+        </h1>
+        <p className="text-gray-600 text-center mt-2 sm:mt-4 text-sm sm:text-base">
+          Drag and drop to reorder the animals
+        </p>
+      </div>
 
-        <div className="h-14 sm:h-20 bg-white/90 rounded-lg border-2 border-yellow-400 p-0.5 sm:p-2 mt-4">
-          <div className="grid grid-cols-3 sm:grid-cols-6 gap-0.5 sm:gap-2 h-full items-center">
-            {animals.map((animal) => {
-              const isCorrectlyPlaced = (
-                (safeAnimals.find(a => a.id === animal.id) && animal.isCorrectlySafe) ||
-                (dangerAnimals.find(a => a.id === animal.id) && !animal.isCorrectlySafe)
-              );
-              const isDragging = activeId === animal.id;
-              return (
-                <DraggableAnimal 
-                  key={animal.id} 
-                  animal={animal} 
-                  isCorrectlyPlaced={isCorrectlyPlaced}
-                  isDragging={isDragging}
-                />
-              );
-            })}
+      <div className="relative">
+        <DndContext
+          sensors={sensors}
+          collisionDetection={closestCorners}
+          onDragStart={handleDragStart}
+          onDragEnd={handleDragEnd}
+          onDragCancel={handleDragCancel}
+        >
+          {/* Zones Container */}
+          <div className="flex flex-row justify-center gap-4">
+            <DroppableZone
+              id="safe-zone"
+              title="Safe Animals"
+              animals={safeAnimals}
+              color="bg-green-100"
+            />
+            <DroppableZone
+              id="danger-zone"
+              title="Danger Zone"
+              animals={dangerAnimals}
+              color="bg-red-100"
+            />
           </div>
-        </div>
 
-        <DragOverlay>
-          {activeId ? (
-            <div className="h-5 sm:h-8 bg-blue-200 rounded border border-blue-400 flex items-center justify-center text-[10px] sm:text-sm font-medium p-0.5 text-center">
-              {animals.find(a => a.id === activeId)?.name} {animals.find(a => a.id === activeId)?.emoji}
+          {/* Animal Choices */}
+          <div className="flex flex-wrap justify-center gap-3 mt-4">
+            {unplacedAnimals.map((animal) => (
+              <DraggableAnimal
+                key={animal.id}
+                animal={animal}
+                isDragging={activeId === animal.id}
+              />
+            ))}
+          </div>
+
+          <DragOverlay>
+            {activeId ? (
+              <div className="h-10 sm:h-12 w-[120px] sm:w-[150px] bg-blue-200 text-blue-800 rounded-xl border-2 border-blue-300 flex items-center justify-center text-sm sm:text-base font-medium p-2 text-center">
+                {animals.find(a => a.id === activeId)?.name} {animals.find(a => a.id === activeId)?.emoji}
+              </div>
+            ) : null}
+          </DragOverlay>
+        </DndContext>
+
+        {/* Success Message */}
+        {showSuccess && (
+          <div className="fixed inset-x-0 bottom-0 p-4 z-50">
+            <div className="bg-white rounded-xl p-6 max-w-md mx-auto shadow-lg border-4 border-yellow-400">
+              <div className="flex items-start gap-4">
+                <div className="w-16 h-16 relative flex-shrink-0">
+                  <div className="absolute inset-0 rounded-full border-4 border-yellow-400 overflow-hidden">
+                    <Image
+                      src="/images/mrfb.jpg"
+                      alt="Mr. Fluffbutt"
+                      fill
+                      className="object-cover"
+                      priority
+                    />
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <div className="text-xl font-bold text-gray-900 mb-1">
+                    Purr-fect!
+                  </div>
+                  <div className="text-lg text-gray-700">
+                    You've sorted all the animals correctly! My whiskers are tingling with approval!
+                  </div>
+                  <div className="text-sm text-gray-600 mt-2">
+                    Now you know which animals are safe to pet and which ones to avoid!
+                  </div>
+                </div>
+              </div>
+              <DuoTemplateButton
+                variant="blue"
+                onClick={() => onAnswer(true)}
+                className="mt-6"
+              >
+                Continue
+              </DuoTemplateButton>
             </div>
-          ) : null}
-        </DragOverlay>
-      </DndContext>
+          </div>
+        )}
+      </div>
     </div>
   )
 } 

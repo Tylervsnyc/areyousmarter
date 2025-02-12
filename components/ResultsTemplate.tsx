@@ -55,7 +55,7 @@ function ResultsContent({ chapterNumber }: ResultsTemplateProps) {
 
   const handleTryAgain = () => {
     trackUserProgress('try_again_clicked', chapterNumber)
-    router.push(`/quiz/${chapterNumber}/age`)
+    router.push(`/quiz/${chapterNumber}/age?name=${encodeURIComponent(name)}`)
   }
 
   const handleHomeClick = () => {

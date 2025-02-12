@@ -1,13 +1,23 @@
 'use client'
 
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, useRouter } from 'next/navigation'
 import { Suspense, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Certificate from './Certificate'
+import { trackUserProgress, trackCertificate } from '@/app/utils/analytics'
 
 interface ResultsTemplateProps {
-  chapterNumber: string
+  /**
+   * The chapter ID (used for routing and analytics)
+   */
+  id: string
+
+  /**
+   * @deprecated Use id instead
+   * The chapter number (used for analytics and routing)
+   */
+  chapterNumber?: string
 }
 
 const scoreMessages = {
@@ -36,17 +46,40 @@ const progressMessages = [
   "Oh dear, Hudson lost money two chapters in a row! But don't worry, this cat's got nine lives worth of financial wisdom to share!"
 ]
 
-function ResultsContent({ chapterNumber }: ResultsTemplateProps) {
+function ResultsContent({ id, chapterNumber }: ResultsTemplateProps) {
   const searchParams = useSearchParams()
   const score = parseInt(searchParams.get('score') || '0')
   const name = searchParams.get('name') || ''
   const type = searchParams.get('type') || 'easy'
+  const router = useRouter()
+
+  // Support both id and chapterNumber for backwards compatibility
+  const chapterId = id || chapterNumber || ''
+
+  if (!chapterId) {
+    console.warn('ResultsTemplate: Either id or chapterNumber must be provided')
+    return null
+  }
 
   useEffect(() => {
-    // Play the appropriate sound based on score
     const audio = new Audio(score === 10 ? '/sounds/perfect.mp3' : '/sounds/applause.mp3')
     audio.play().catch(error => console.log('Error playing sound:', error))
-  }, [score])
+    
+    trackUserProgress('results_view', chapterId)
+    if (score >= 8) {
+      trackCertificate(score, chapterId)
+    }
+  }, [score, chapterId])
+
+  const handleTryAgain = () => {
+    trackUserProgress('try_again_clicked', chapterId)
+    router.push(`/quiz/${chapterId}/age?name=${encodeURIComponent(name)}`)
+  }
+
+  const handleHomeClick = () => {
+    trackUserProgress('return_home_clicked', chapterId)
+    router.push('/')
+  }
 
   const getScoreCategory = (score: number) => {
     if (score <= 2) return 'low'
@@ -116,15 +149,19 @@ function ResultsContent({ chapterNumber }: ResultsTemplateProps) {
               Quiz Complete!
             </h1>
             <div className="text-xl md:text-2xl text-center">
-              {name}, you got <span className="font-bold text-blue-600">{score} out of 10</span> questions correct!
+              {name ? `${name.toUpperCase()}, you` : "You"} got <span className="font-bold text-blue-600">{score} out of 10</span> questions correct!
             </div>
           </div>
 
           {/* Message Box */}
-          <div className="bg-white rounded-lg p-6 max-w-md w-full shadow-md mx-auto">
-            <div className="text-xl text-gray-700 text-center space-y-4">
-              <p>{randomMessage}</p>
-              <p className="text-blue-600">{progressMessage}</p>
+          <div className="max-w-2xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold mb-4">
+                {randomMessage}
+              </h2>
+              <p className="text-lg text-gray-600">
+                {progressMessage}
+              </p>
             </div>
           </div>
 
@@ -138,23 +175,25 @@ function ResultsContent({ chapterNumber }: ResultsTemplateProps) {
               </div>
               <Certificate 
                 studentName={name}
-                chapterNumber={chapterNumber}
+                chapterNumber={chapterId}
               />
             </div>
           )}
 
           {/* Navigation Buttons */}
           <div className="flex flex-col w-full max-w-md gap-3 md:gap-4 px-4 mx-auto">
-            <Link href={`/quiz/${chapterNumber}/${type === 'easy' ? '6-7' : '8-9'}?name=${encodeURIComponent(name)}`}>
-              <button className="w-full py-3 md:py-4 text-lg md:text-xl font-semibold bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg transition-all">
-                Try Again
-              </button>
-            </Link>
-            <Link href={`/quiz/${chapterNumber}`}>
-              <button className="w-full py-3 md:py-4 text-lg md:text-xl font-semibold bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg transition-all">
-                Back to Chapter {chapterNumber}
-              </button>
-            </Link>
+            <button
+              onClick={handleTryAgain}
+              className="w-full py-3 md:py-4 text-lg md:text-xl font-semibold bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg transition-all"
+            >
+              Try Again
+            </button>
+            <button
+              onClick={handleHomeClick}
+              className="w-full py-3 md:py-4 text-lg md:text-xl font-semibold bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg transition-all"
+            >
+              Back to Chapter {chapterId}
+            </button>
           </div>
 
           {/* Mr. Fluffbutt Image */}
@@ -175,10 +214,10 @@ function ResultsContent({ chapterNumber }: ResultsTemplateProps) {
   )
 }
 
-export default function ResultsTemplate({ chapterNumber }: ResultsTemplateProps) {
+export default function ResultsTemplate({ id, chapterNumber }: ResultsTemplateProps) {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <ResultsContent chapterNumber={chapterNumber} />
+      <ResultsContent id={id} chapterNumber={chapterNumber} />
     </Suspense>
   )
 } 

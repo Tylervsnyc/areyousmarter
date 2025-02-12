@@ -1,28 +1,26 @@
 'use client'
 
 import { useSearchParams } from 'next/navigation'
-import ResultsTemplate from '@/components/ResultsTemplate'
+import QuizTemplate from '@/components/QuizTemplate'
 import { notFound } from 'next/navigation'
 import { getChapter } from '@/lib/chapters'
 
-export default function ResultsPage({ params }: { params: { id: string } }) {
+export default function QuizPage({ params }: { params: { id: string } }) {
   const searchParams = useSearchParams()
-  const score = searchParams.get('score')
-  const name = searchParams.get('name')
   const age = searchParams.get('age')
+  const name = searchParams.get('name')
 
-  if (!score || !name || !age) {
+  if (!age || !name) {
     notFound()
   }
 
-  // For legacy chapters (1-4), we use the score directly
+  // For legacy chapters (1-4), we use the age range directly
   if (parseInt(params.id) <= 4) {
     return (
-      <ResultsTemplate
+      <QuizTemplate
         id={params.id}
-        score={parseInt(score)}
-        name={name}
         ageRange={age}
+        name={name}
       />
     )
   }
@@ -34,11 +32,10 @@ export default function ResultsPage({ params }: { params: { id: string } }) {
   }
 
   return (
-    <ResultsTemplate
+    <QuizTemplate
       id={params.id}
-      score={parseInt(score)}
-      name={name}
       ageRange={age}
+      name={name}
       chapter={chapter}
     />
   )

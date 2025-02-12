@@ -1,120 +1,68 @@
 'use client'
 
+import { useEffect, useState } from 'react'
+
 interface MagicProgressBarProps {
   currentQuestion: number
   totalQuestions: number
 }
 
-export default function MagicProgressBar({ currentQuestion, totalQuestions }: MagicProgressBarProps) {
-  // Calculate stops for each question (percentage where each number sits)
-  const getQuestionStop = (questionNumber: number) => {
-    // If it's the last question, fill completely
-    if (questionNumber === totalQuestions) return 100
-    
-    // Otherwise, calculate stops with first number at 10%
-    const gap = 80 / (totalQuestions - 1) // 80% divided by gaps between numbers
-    return 10 + (questionNumber - 1) * gap // Start at 10%, increment by gap
-  }
+// Predefined bubble positions and sizes for consistent rendering
+const bubbleConfigs = [
+  { left: 20, width: 5, height: 5, delay: 0.2, duration: 2.0 },
+  { left: 35, width: 6, height: 6, delay: 0.4, duration: 2.2 },
+  { left: 50, width: 7, height: 7, delay: 0.6, duration: 2.4 },
+  { left: 65, width: 5, height: 5, delay: 0.8, duration: 2.6 },
+  { left: 80, width: 6, height: 6, delay: 1.0, duration: 2.8 },
+  { left: 25, width: 7, height: 7, delay: 1.2, duration: 2.0 },
+  { left: 40, width: 5, height: 5, delay: 1.4, duration: 2.2 },
+  { left: 55, width: 6, height: 6, delay: 1.6, duration: 2.4 },
+  { left: 70, width: 7, height: 7, delay: 1.8, duration: 2.6 },
+  { left: 85, width: 5, height: 5, delay: 2.0, duration: 2.8 },
+  { left: 30, width: 6, height: 6, delay: 2.2, duration: 2.0 },
+  { left: 45, width: 7, height: 7, delay: 2.4, duration: 2.2 },
+  { left: 60, width: 5, height: 5, delay: 2.6, duration: 2.4 },
+  { left: 75, width: 6, height: 6, delay: 2.8, duration: 2.6 },
+  { left: 90, width: 7, height: 7, delay: 3.0, duration: 2.8 }
+]
 
-  // Get the progress width based on current question
-  const progress = getQuestionStop(currentQuestion)
-  const isFinalQuestion = currentQuestion === totalQuestions
+export default function MagicProgressBar({ currentQuestion, totalQuestions }: MagicProgressBarProps) {
+  const progress = (currentQuestion / totalQuestions) * 100
 
   return (
     <div className="w-full max-w-lg mx-auto">
-      <div className="bg-white/90 rounded-xl border-4 border-yellow-400 p-3">
-        {/* Question Numbers */}
-        <div className="flex justify-between items-center px-4 mb-2">
-          {Array.from({ length: totalQuestions }).map((_, i) => (
+      <div className="h-2 bg-gray-200 rounded-full overflow-hidden relative">
+        <div className="relative h-full w-full">
+          {/* Bubbles */}
+          {bubbleConfigs.map((config, index) => (
             <div
-              key={i}
-              className={`text-sm font-bold transition-all duration-300 ${
-                i + 1 < currentQuestion
-                  ? 'text-purple-600 scale-110'
-                  : i + 1 === currentQuestion
-                  ? 'text-yellow-500 scale-125'
-                  : 'text-gray-400'
-              }`}
+              key={index}
               style={{
-                width: '20px',
-                textAlign: 'center'
+                left: `${config.left}%`,
+                width: `${config.width}px`,
+                height: `${config.height}px`,
+                animationDelay: `${config.delay}s`,
+                animationDuration: `${config.duration}s`
               }}
-            >
-              {i + 1}
-            </div>
+              className="absolute rounded-full bg-white/60 animate-bubble"
+            />
           ))}
-        </div>
-
-        {/* Progress Container */}
-        <div className={`relative h-12 bg-gradient-to-r from-purple-100 to-blue-100 rounded-full overflow-hidden shadow-[inset_0_2px_4px_rgba(0,0,0,0.1)] ${
-          isFinalQuestion ? 'animate-glow' : ''
-        }`}>
-          {/* 3D Tube Effect */}
-          <div className="absolute inset-0 bg-gradient-to-b from-white/40 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
           
-          {/* Magical Liquid */}
+          {/* Progress Fill */}
           <div
-            className="absolute h-full bg-gradient-to-r from-yellow-400 via-blue-500 to-purple-500 transition-all duration-1000 ease-out"
-            style={{ width: `${progress}%` }}
+            className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
+            style={{
+              width: `${progress}%`,
+              transition: 'width 0.5s ease-out'
+            }}
           >
-            {/* Bubbling Effect */}
-            <div className="absolute inset-0 overflow-hidden">
-              {Array.from({ length: 15 }).map((_, i) => (
-                <div
-                  key={i}
-                  className="absolute rounded-full bg-white/60 animate-bubble"
-                  style={{
-                    left: `${Math.random() * 100}%`,
-                    width: `${4 + Math.random() * 8}px`,
-                    height: `${4 + Math.random() * 8}px`,
-                    animationDelay: `${Math.random() * 2}s`,
-                    animationDuration: `${1 + Math.random() * 2}s`
-                  }}
-                />
-              ))}
-            </div>
+            {/* Final Question Glow Effect */}
+            {currentQuestion === totalQuestions && (
+              <div className="absolute inset-0 animate-pulse bg-yellow-400/30" />
+            )}
           </div>
         </div>
       </div>
-
-      {/* Animations */}
-      <style jsx global>{`
-        @keyframes bubble {
-          0% {
-            transform: translateY(48px) scale(0);
-            opacity: 0;
-          }
-          50% {
-            opacity: 0.8;
-          }
-          100% {
-            transform: translateY(-8px) scale(1);
-            opacity: 0;
-          }
-        }
-
-        @keyframes glow {
-          0%, 100% {
-            box-shadow: 0 0 5px #ffd700,
-                      0 0 10px #ffd700,
-                      0 0 15px #ffd700;
-          }
-          50% {
-            box-shadow: 0 0 10px #ffd700,
-                      0 0 20px #ffd700,
-                      0 0 30px #ffd700;
-          }
-        }
-        
-        .animate-bubble {
-          animation: bubble 2s ease-in infinite;
-        }
-
-        .animate-glow {
-          animation: glow 2s ease-in-out infinite;
-        }
-      `}</style>
     </div>
   )
 } 

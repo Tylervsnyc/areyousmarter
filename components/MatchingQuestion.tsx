@@ -15,6 +15,16 @@ interface MatchingQuestionProps {
   isAnswered: boolean
 }
 
+// Fisher-Yates shuffle algorithm
+const shuffleArray = <T,>(array: T[]): T[] => {
+  const newArray = [...array]
+  for (let i = newArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]]
+  }
+  return newArray
+}
+
 export default function MatchingQuestion({ pairs, onAnswer, isAnswered }: MatchingQuestionProps) {
   const [selectedLeft, setSelectedLeft] = useState<number | null>(null)
   const [selectedRight, setSelectedRight] = useState<number | null>(null)
@@ -22,6 +32,10 @@ export default function MatchingQuestion({ pairs, onAnswer, isAnswered }: Matchi
   const [isIncorrect, setIsIncorrect] = useState(false)
   const [correctSound, setCorrectSound] = useState<HTMLAudioElement | null>(null)
   const [incorrectSound, setIncorrectSound] = useState<HTMLAudioElement | null>(null)
+  
+  // Create randomized arrays for both columns while preserving matching pairs
+  const [randomizedLeftPairs] = useState(() => shuffleArray([...pairs]))
+  const [randomizedRightPairs] = useState(() => shuffleArray([...pairs]))
 
   useEffect(() => {
     setCorrectSound(new Audio('/sounds/matchcorrect.wav'))
@@ -70,57 +84,77 @@ export default function MatchingQuestion({ pairs, onAnswer, isAnswered }: Matchi
     }
   }
 
-  const getCellStyle = (id: number, isLeft: boolean) => {
-    const isSelected = isLeft ? selectedLeft === id : selectedRight === id
-    const isMatched = matchedPairs.includes(id)
-    
-    if (isMatched) {
-      return "bg-gray-100 text-gray-400 border-gray-200 shadow-sm"
-    }
-    if (isSelected && isIncorrect) {
-      return "bg-red-100 text-red-500 border-red-300 shadow-md"
-    }
-    if (isSelected) {
-      return "bg-blue-100 text-blue-500 border-blue-300 shadow-md"
-    }
-    return "bg-white text-gray-700 border-gray-300 hover:bg-gray-50 shadow-sm hover:shadow-md"
-  }
-
   return (
-    <div className="max-w-lg mx-auto bg-white/90 rounded-xl border-4 border-yellow-400 p-4 shadow-lg">
-      <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 text-center">
+    <div className="w-full max-w-lg mx-auto bg-white/90 rounded-xl border-4 border-yellow-400 p-4 shadow-lg">
+      <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 text-center title-text">
         Match or MEOW!
       </h2>
       
-      <div className="grid grid-cols-2 gap-3 sm:gap-4">
+      <div className="grid grid-cols-2 gap-4 sm:gap-6">
         {/* Left Column */}
-        <div className="space-y-3">
-          {pairs.map((pair, index) => (
-            <motion.button
-              key={`left-${pair.id}`}
-              onClick={() => handleLeftSelect(pair.id)}
-              className={`w-full h-16 sm:h-20 p-2 sm:p-3 rounded-xl border-2 transition-colors duration-200 flex items-center justify-center text-center text-sm sm:text-base ${getCellStyle(pair.id, true)}`}
-              whileTap={{ scale: 0.98 }}
-              style={{ gridRow: index + 1 }}
-            >
-              {pair.leftText}
-            </motion.button>
-          ))}
+        <div className="space-y-4">
+          {randomizedLeftPairs.map((pair) => {
+            const isMatched = matchedPairs.includes(pair.id);
+            const isSelected = selectedLeft === pair.id;
+            const isWrong = isIncorrect && isSelected;
+            
+            return (
+              <motion.button
+                key={`left-${pair.id}`}
+                onClick={() => handleLeftSelect(pair.id)}
+                disabled={isMatched || isAnswered}
+                className={`
+                  w-full h-16 sm:h-20 p-2 sm:p-3 rounded-xl border-2 
+                  flex items-center justify-center text-center text-sm sm:text-base font-semibold
+                  transition-all duration-200 button-3d
+                  ${isMatched 
+                    ? 'bg-gray-100 text-gray-400 border-gray-200 cursor-default'
+                    : isWrong
+                      ? 'bg-yellow-500 text-white border-yellow-600'
+                      : isSelected
+                        ? 'bg-blue-500 text-white border-blue-600 blue-3d'
+                        : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+                  }
+                `}
+                whileTap={{ scale: isMatched ? 1 : 0.98 }}
+              >
+                {pair.leftText}
+              </motion.button>
+            );
+          })}
         </div>
         
         {/* Right Column */}
-        <div className="space-y-3">
-          {pairs.map((pair, index) => (
-            <motion.button
-              key={`right-${pair.id}`}
-              onClick={() => handleRightSelect(pair.id)}
-              className={`w-full h-16 sm:h-20 p-2 sm:p-3 rounded-xl border-2 transition-colors duration-200 flex items-center justify-center text-center text-sm sm:text-base ${getCellStyle(pair.id, false)}`}
-              whileTap={{ scale: 0.98 }}
-              style={{ gridRow: index + 1 }}
-            >
-              {pair.rightText}
-            </motion.button>
-          ))}
+        <div className="space-y-4">
+          {randomizedRightPairs.map((pair) => {
+            const isMatched = matchedPairs.includes(pair.id);
+            const isSelected = selectedRight === pair.id;
+            const isWrong = isIncorrect && isSelected;
+            
+            return (
+              <motion.button
+                key={`right-${pair.id}`}
+                onClick={() => handleRightSelect(pair.id)}
+                disabled={isMatched || isAnswered}
+                className={`
+                  w-full h-16 sm:h-20 p-2 sm:p-3 rounded-xl border-2 
+                  flex items-center justify-center text-center text-sm sm:text-base font-semibold
+                  transition-all duration-200 button-3d
+                  ${isMatched 
+                    ? 'bg-gray-100 text-gray-400 border-gray-200 cursor-default'
+                    : isWrong
+                      ? 'bg-yellow-500 text-white border-yellow-600'
+                      : isSelected
+                        ? 'bg-blue-500 text-white border-blue-600 blue-3d'
+                        : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+                  }
+                `}
+                whileTap={{ scale: isMatched ? 1 : 0.98 }}
+              >
+                {pair.rightText}
+              </motion.button>
+            );
+          })}
         </div>
       </div>
     </div>

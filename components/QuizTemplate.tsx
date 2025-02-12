@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import MagicProgressBar from './MagicProgressBar'
 import { trackUserProgress, trackQuestionAnswer } from '@/app/utils/analytics'
+import { useButtonSound } from '@/app/hooks/useButtonSound'
 
 interface BaseQuizQuestion {
   question: string
@@ -93,12 +94,67 @@ const wrongAnswerQuips = [
   "The royal court is not impressed!"
 ]
 
+interface FeedbackPopupProps {
+  isCorrect: boolean
+  message: string
+  explanation?: string
+  onContinue: () => void
+}
+
+function FeedbackPopup({ isCorrect, message, explanation, onContinue }: FeedbackPopupProps) {
+  const playButtonSound = useButtonSound()
+  
+  const handleClick = () => {
+    playButtonSound()
+    onContinue()
+  }
+
+  return (
+    <div className="fixed inset-x-0 bottom-0 transform transition-transform duration-300 ease-out z-50 p-4">
+      <div className="bg-white rounded-xl p-6 max-w-md w-full mx-auto shadow-lg border-4 border-yellow-400">
+        <div className="flex items-start gap-4">
+          <div className="w-16 h-16 relative flex-shrink-0">
+            <div className="absolute inset-0 rounded-full border-4 border-yellow-400 overflow-hidden">
+              <Image
+                src="/images/mrfb.jpg"
+                alt="Mr. Fluffbutt"
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
+          </div>
+          <div className="flex-1">
+            <div className="text-xl font-bold text-gray-900 mb-1">
+              {isCorrect ? 'Purr-fect!' : 'Meow No!'}
+            </div>
+            <div className="text-lg text-gray-700">
+              {message}
+            </div>
+            {explanation && (
+              <div className="text-sm text-gray-600 mt-2">
+                {explanation}
+              </div>
+            )}
+          </div>
+        </div>
+        <button
+          onClick={handleClick}
+          className="w-full py-3 text-lg font-semibold bg-blue-500 hover:bg-blue-600 text-white rounded-xl mt-6 transition-colors button-3d border-b-4 border-blue-600"
+        >
+          Continue
+        </button>
+      </div>
+    </div>
+  )
+}
+
 function QuizContent({ questions, chapterNumber, quizType }: QuizTemplateProps) {
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [score, setScore] = useState(0)
-  const [quip, setQuip] = useState('')
-  const [showQuip, setShowQuip] = useState(false)
-  const [isAnswered, setIsAnswered] = useState(false)
+  const [showFeedback, setShowFeedback] = useState(false)
+  const [feedbackMessage, setFeedbackMessage] = useState('')
+  const [isAnswerCorrect, setIsAnswerCorrect] = useState(false)
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null)
   const [correctSound, setCorrectSound] = useState<HTMLAudioElement | null>(null)
   const [incorrectSound, setIncorrectSound] = useState<HTMLAudioElement | null>(null)
@@ -106,6 +162,7 @@ function QuizContent({ questions, chapterNumber, quizType }: QuizTemplateProps) 
   const router = useRouter()
   const searchParams = useSearchParams()
   const name = searchParams.get('name') || ''
+  const playButtonSound = useButtonSound()
 
   useEffect(() => {
     // Initialize audio elements
@@ -117,13 +174,24 @@ function QuizContent({ questions, chapterNumber, quizType }: QuizTemplateProps) 
   }, [chapterNumber])
 
   const playSound = (isCorrect: boolean) => {
-    if (isCorrect && correctSound) {
-      correctSound.currentTime = 0
-      correctSound.play().catch(console.error)
-    } else if (!isCorrect && incorrectSound) {
-      incorrectSound.currentTime = 0
-      incorrectSound.play().catch(console.error)
+    const audio = new Audio()
+    audio.volume = 0.4 // Set volume to 40%
+
+    if (isCorrect) {
+      // Randomly select one of the correct sounds
+      const correctSounds = [
+        '/sounds/Correct/correct.wav',
+        '/sounds/Correct/correctcat1.mp3',
+        '/sounds/Correct/correctcat2.mp3',
+        '/sounds/Correct/correctcat3.mp3'
+      ]
+      const randomIndex = Math.floor(Math.random() * correctSounds.length)
+      audio.src = correctSounds[randomIndex]
+    } else {
+      audio.src = '/sounds/incorrect.wav'
     }
+
+    audio.play().catch(error => console.log('Error playing sound:', error))
   }
 
   const getRandomQuip = (isCorrect: boolean) => {
@@ -132,10 +200,10 @@ function QuizContent({ questions, chapterNumber, quizType }: QuizTemplateProps) 
   }
 
   const handleAnswer = (selectedIndex: number) => {
-    if (isAnswered) return
+    playButtonSound()
+    if (showFeedback) return
     
     setSelectedAnswer(selectedIndex)
-    setIsAnswered(true)
     
     const currentQ = questions[currentQuestion]
     if (!('options' in currentQ) || !('answer' in currentQ)) {
@@ -144,6 +212,7 @@ function QuizContent({ questions, chapterNumber, quizType }: QuizTemplateProps) 
     }
     
     const isCorrect = currentQ.options[selectedIndex] === currentQ.answer
+    setIsAnswerCorrect(isCorrect)
     
     // Track question answer
     trackQuestionAnswer(
@@ -160,24 +229,24 @@ function QuizContent({ questions, chapterNumber, quizType }: QuizTemplateProps) 
     }
     
     const newQuip = getRandomQuip(isCorrect)
-    setQuip(newQuip)
-    setShowQuip(true)
+    setFeedbackMessage(newQuip)
+    setShowFeedback(true)
+  }
 
-    setTimeout(() => {
-      if (currentQuestion === questions.length - 1) {
-        // Calculate final score including the current question
-        const finalScore = score + (isCorrect ? 1 : 0)
-        // Track quiz completion before navigating
-        trackUserProgress('quiz_completed', chapterNumber.toString())
-        // Quiz completed, navigate to results with the correct final score
-        router.push(`/quiz/${chapterNumber}/results?name=${encodeURIComponent(name)}&score=${finalScore}&type=${quizType}`)
-      } else {
-        setCurrentQuestion(currentQuestion + 1)
-        setIsAnswered(false)
-        setSelectedAnswer(null)
-        setShowQuip(false)
-      }
-    }, 2000)
+  const handleContinue = () => {
+    playButtonSound()
+    if (currentQuestion === questions.length - 1) {
+      // Calculate final score including the current question
+      const finalScore = score + (isAnswerCorrect ? 1 : 0)
+      // Track quiz completion before navigating
+      trackUserProgress('quiz_completed', chapterNumber.toString())
+      // Quiz completed, navigate to results
+      router.push(`/quiz/${chapterNumber}/results?name=${encodeURIComponent(name)}&score=${finalScore}&type=${quizType}`)
+    } else {
+      setCurrentQuestion(currentQuestion + 1)
+      setSelectedAnswer(null)
+      setShowFeedback(false)
+    }
   }
 
   const renderQuestion = () => {
@@ -189,8 +258,8 @@ function QuizContent({ questions, chapterNumber, quizType }: QuizTemplateProps) 
         <CustomComponent
           {...currentQ.componentProps}
           onAnswer={(isCorrect: boolean) => {
-            if (isAnswered) return
-            setIsAnswered(true)
+            if (showFeedback) return
+            setIsAnswerCorrect(isCorrect)
             
             if (isCorrect) {
               setScore(score + 1)
@@ -200,24 +269,10 @@ function QuizContent({ questions, chapterNumber, quizType }: QuizTemplateProps) 
             }
             
             const newQuip = getRandomQuip(isCorrect)
-            setQuip(newQuip)
-            setShowQuip(true)
-
-            setTimeout(() => {
-              if (currentQuestion === questions.length - 1) {
-                // Calculate final score including the current question
-                const finalScore = score + (isCorrect ? 1 : 0)
-                trackUserProgress('quiz_completed', chapterNumber.toString())
-                router.push(`/quiz/${chapterNumber}/results?name=${encodeURIComponent(name)}&score=${finalScore}&type=${quizType}`)
-              } else {
-                setCurrentQuestion(currentQuestion + 1)
-                setIsAnswered(false)
-                setSelectedAnswer(null)
-                setShowQuip(false)
-              }
-            }, 2000)
+            setFeedbackMessage(newQuip)
+            setShowFeedback(true)
           }}
-          isAnswered={isAnswered}
+          isAnswered={showFeedback}
         />
       )
     }
@@ -228,46 +283,99 @@ function QuizContent({ questions, chapterNumber, quizType }: QuizTemplateProps) 
       return null
     }
 
-    const standardQ = currentQ as StandardQuizQuestion
     return (
       <div className="w-full max-w-md mx-auto space-y-2">
-        {standardQ.options.map((option, index) => (
-          <button
-            key={index}
-            onClick={() => handleAnswer(index)}
-            disabled={isAnswered}
-            className={`w-full py-2 text-base md:text-lg font-semibold text-white rounded-full shadow-md transition-all
-              ${isAnswered 
-                ? standardQ.options[index] === standardQ.answer
-                  ? 'bg-green-500'
-                  : selectedAnswer === index
-                    ? 'bg-red-500'
-                    : 'bg-gray-400'
-                : index === 0 ? 'bg-yellow-500 hover:bg-yellow-600'
-                  : index === 1 ? 'bg-green-500 hover:bg-green-600'
-                  : index === 2 ? 'bg-blue-500 hover:bg-blue-600'
-                  : 'bg-purple-500 hover:bg-purple-600'
-              }`}
-          >
-            {option}
-          </button>
-        ))}
+        {/* Answer Buttons */}
+        <div className="flex flex-col gap-4 mt-6">
+          {currentQ.options.map((option, index) => {
+            // Determine button color based on index
+            const buttonColors = showFeedback && index === selectedAnswer
+              ? isAnswerCorrect
+                ? 'bg-emerald-400 hover:bg-emerald-500 border-b-4 border-emerald-500'
+                : 'bg-rose-400 hover:bg-rose-500 border-b-4 border-rose-500'
+              : index % 5 === 0
+                ? 'bg-rose-400 hover:bg-rose-500 border-b-4 border-rose-500'
+                : index % 5 === 1
+                  ? 'bg-emerald-400 hover:bg-emerald-500 border-b-4 border-emerald-500'
+                  : index % 5 === 2
+                    ? 'bg-amber-400 hover:bg-amber-500 border-b-4 border-amber-500'
+                    : index % 5 === 3
+                      ? 'bg-blue-500 hover:bg-blue-600 border-b-4 border-blue-600'
+                      : 'bg-purple-500 hover:bg-purple-600 border-b-4 border-purple-600';
+
+            return (
+              <button
+                key={index}
+                onClick={() => handleAnswer(index)}
+                disabled={showFeedback}
+                className={`
+                  w-full py-4 px-6 text-lg font-bold rounded-xl button-3d
+                  ${buttonColors}
+                  text-white transition-all
+                `}
+              >
+                {option}
+              </button>
+            );
+          })}
+        </div>
+        
+        {/* Feedback Popup */}
+        {showFeedback && (
+          <FeedbackPopup
+            isCorrect={isAnswerCorrect}
+            message={feedbackMessage}
+            explanation={currentQ.explanation}
+            onContinue={handleContinue}
+          />
+        )}
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen w-full flex flex-col">
-      {/* Header */}
-      <div className="relative h-[15vh] w-full">
+    <div className="h-screen max-h-screen flex flex-col overflow-hidden">
+      <style jsx global>{`
+        .button-3d {
+          position: relative;
+          transform: translateY(0);
+          transition: all 0.2s;
+        }
+
+        .button-3d:active {
+          transform: translateY(4px);
+        }
+
+        .button-3d:active .border-b-4 {
+          border-bottom-width: 0;
+        }
+
+        .button-3d:hover {
+          filter: brightness(1.1);
+        }
+
+        .title-text {
+          font-family: din-round, sans-serif;
+          letter-spacing: 0.5px;
+        }
+
+        .blue-3d:after {
+          background-color: rgb(37, 99, 235);
+        }
+
+        .green-3d:after {
+          background-color: rgb(34, 197, 94);
+        }
+      `}</style>
+
+      {/* Header - 15vh */}
+      <div className="relative h-[12vh] w-full flex-shrink-0">
         <Image
           src="/images/header.jpg"
           alt="Header Background"
           fill
           className="object-cover object-center"
           priority
-          quality={100}
-          sizes="100vw"
         />
         {/* Logo */}
         <div className="absolute left-4 top-1/2 -translate-y-1/2">
@@ -295,54 +403,25 @@ function QuizContent({ questions, chapterNumber, quizType }: QuizTemplateProps) 
         </div>
       </div>
 
-      {/* Main Content */}
+      {/* Main Content - 85vh */}
       <div className="flex-1 relative">
-        {/* Background Image */}
-        <Image
-          src="/images/backgrounds/bg1.jpg"
-          alt="Watercolor Background"
-          fill
-          className="object-cover"
-          priority
-        />
-
         {/* Content Overlay */}
-        <div className="absolute inset-0 z-10 flex flex-col items-center px-4 py-2 space-y-3" style={{ backgroundColor: 'rgb(252, 250, 245, 0.8)' }}>
-          {/* Progress */}
-          <MagicProgressBar
-            currentQuestion={currentQuestion + 1}
-            totalQuestions={questions.length}
-          />
+        <div className="absolute inset-0" style={{ backgroundColor: '#FFFDD0' }}>
+          {/* Main Container */}
+          <div className="h-full flex flex-col px-4 pt-6">
+            {/* Question Content */}
+            <div className="w-full max-w-lg mx-auto">
+              {/* Question Box */}
+              {!questions[currentQuestion].hideQuestionBox && (
+                <div className="bg-white/90 rounded-xl border-4 border-yellow-400 p-4 mb-6">
+                  <h2 className="text-lg sm:text-xl font-bold text-gray-900 text-center title-text">
+                    {questions[currentQuestion].question}
+                  </h2>
+                </div>
+              )}
 
-          {/* Question Box */}
-          {!questions[currentQuestion].hideQuestionBox && questions[currentQuestion].question && (
-            <div className="bg-white/90 rounded-xl border-4 border-yellow-400 p-3 max-w-lg w-full mx-auto">
-              <h1 className="text-lg md:text-xl font-bold text-gray-900 text-center">
-                {questions[currentQuestion].question}
-              </h1>
-            </div>
-          )}
-
-          {/* Question Content */}
-          {renderQuestion()}
-
-          {/* Quip Display */}
-          {showQuip && (
-            <div className="bg-white/90 rounded-xl p-3 max-w-md w-full text-center text-lg font-bold animate-bounce">
-              {quip}
-            </div>
-          )}
-
-          {/* Mr. Fluff Butt Image */}
-          <div className="w-24 h-24 relative">
-            <div className="absolute inset-0 rounded-full border-4 border-yellow-400 overflow-hidden">
-              <Image
-                src="/images/mrfb.jpg"
-                alt="Mr. Fluffbutt"
-                fill
-                className="object-cover"
-                priority
-              />
+              {/* Question Content */}
+              {renderQuestion()}
             </div>
           </div>
         </div>

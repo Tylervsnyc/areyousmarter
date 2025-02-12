@@ -3,9 +3,17 @@
 import { useState, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Image from 'next/image'
-import { duoFontStyles, duoDefaultTheme } from '@/app/test/duo-template/styles'
-import { DuoTemplateButton } from '@/app/test/duo-template/buttons/page'
-import DuoHeader from '@/app/test/duo-template/components/DuoHeader'
+import { duoFontStyles, duoDefaultTheme } from '../styles'
+import { DuoTemplateButton } from '../buttons/page'
+import DuoHeader from '../components/DuoHeader'
+
+interface DuoAgeTemplateProps {
+  theme?: {
+    backgroundColor?: string
+    titleBoxBorderColor?: string
+    titleBoxBackgroundColor?: string
+  }
+}
 
 const ageQuips = [
   "How old are you, tiny human?",
@@ -20,7 +28,7 @@ const ageQuips = [
   "Your years?"
 ]
 
-export default function AgePage({ params }: { params: { id: string } }) {
+export default function DuoAgeTemplate() {
   const [message, setMessage] = useState('')
   const [goofCount, setGoofCount] = useState(0)
   const [quip, setQuip] = useState(ageQuips[0])
@@ -33,6 +41,10 @@ export default function AgePage({ params }: { params: { id: string } }) {
     const randomIndex = Math.floor(Math.random() * ageQuips.length)
     setQuip(ageQuips[randomIndex])
   }, [])
+
+  const [settings] = useState<DuoAgeTemplateProps>({
+    theme: duoDefaultTheme
+  })
 
   // Prevent scrolling
   useEffect(() => {
@@ -59,7 +71,7 @@ export default function AgePage({ params }: { params: { id: string } }) {
       return
     }
 
-    router.push(`/quiz/${params.id}/quiz?age=${ageRange}&name=${encodeURIComponent(name)}`)
+    router.push(`/quiz/1/${ageRange}?name=${encodeURIComponent(name)}`)
   }
 
   return (
@@ -72,7 +84,7 @@ export default function AgePage({ params }: { params: { id: string } }) {
       {/* Main Content - 85vh */}
       <div className="flex-1 relative">
         {/* Content Overlay */}
-        <div className="absolute inset-0" style={{ backgroundColor: duoDefaultTheme.backgroundColor }}>
+        <div className="absolute inset-0" style={{ backgroundColor: settings.theme?.backgroundColor }}>
           {/* Main Container */}
           <div className="h-full flex flex-col px-4">
             {/* Content Section */}
@@ -81,8 +93,8 @@ export default function AgePage({ params }: { params: { id: string } }) {
               <div 
                 className="rounded-xl border-4 p-6 sm:p-8 mb-8"
                 style={{
-                  borderColor: duoDefaultTheme.titleBoxBorderColor,
-                  backgroundColor: duoDefaultTheme.titleBoxBackgroundColor
+                  borderColor: settings.theme?.titleBoxBorderColor,
+                  backgroundColor: settings.theme?.titleBoxBackgroundColor
                 }}
               >
                 <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 text-center title-text">

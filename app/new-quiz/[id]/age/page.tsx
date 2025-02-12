@@ -3,9 +3,11 @@
 import { useState, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Image from 'next/image'
-import { duoFontStyles, duoDefaultTheme } from '@/app/test/duo-template/styles'
-import { DuoTemplateButton } from '@/app/test/duo-template/buttons/page'
-import DuoHeader from '@/app/test/duo-template/components/DuoHeader'
+import { notFound } from 'next/navigation'
+import { getChapter } from '../../data'
+import { DuoTemplateButton } from '../../components/DuoTemplateButton'
+import DuoHeader from '../../components/DuoHeader'
+import { duoFontStyles, duoDefaultTheme } from '../../styles'
 
 const ageQuips = [
   "How old are you, tiny human?",
@@ -23,16 +25,17 @@ const ageQuips = [
 export default function AgePage({ params }: { params: { id: string } }) {
   const [message, setMessage] = useState('')
   const [goofCount, setGoofCount] = useState(0)
-  const [quip, setQuip] = useState(ageQuips[0])
+  const [quip] = useState(() => 
+    ageQuips[Math.floor(Math.random() * ageQuips.length)]
+  )
   const router = useRouter()
   const searchParams = useSearchParams()
   const name = searchParams.get('name') || ''
 
-  // Set random quip after initial client-side render
-  useEffect(() => {
-    const randomIndex = Math.floor(Math.random() * ageQuips.length)
-    setQuip(ageQuips[randomIndex])
-  }, [])
+  const chapter = getChapter(params.id)
+  if (!chapter) {
+    notFound()
+  }
 
   // Prevent scrolling
   useEffect(() => {
@@ -59,7 +62,7 @@ export default function AgePage({ params }: { params: { id: string } }) {
       return
     }
 
-    router.push(`/quiz/${params.id}/quiz?age=${ageRange}&name=${encodeURIComponent(name)}`)
+    router.push(`/new-quiz/${params.id}/quiz?age=${ageRange}&name=${encodeURIComponent(name)}`)
   }
 
   return (
