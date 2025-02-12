@@ -43,28 +43,14 @@ interface Question {
 
 interface QuizTemplateProps {
   /**
-   * The chapter ID (used for routing and analytics)
+   * The quiz ID (used for routing and analytics)
    */
   id: string
-
-  /**
-   * @deprecated Use id instead
-   * The chapter number (used for analytics and routing)
-   */
-  chapterNumber?: string
-
-  /**
-   * The questions for this quiz
-   */
   questions: Question[]
-
-  /**
-   * The quiz type (e.g., 'easy', 'hard')
-   */
   quizType: string
 }
 
-function QuizContent({ id, chapterNumber, questions, quizType }: QuizTemplateProps) {
+function QuizContent({ id, questions, quizType }: QuizTemplateProps) {
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [score, setScore] = useState(0)
   const [showFeedback, setShowFeedback] = useState(false)
@@ -79,17 +65,14 @@ function QuizContent({ id, chapterNumber, questions, quizType }: QuizTemplatePro
   const name = searchParams.get('name') || ''
   const playButtonSound = useButtonSound()
 
-  // Support both id and chapterNumber for backwards compatibility
-  const chapterId = id || chapterNumber?.toString() || ''
-
   useEffect(() => {
     // Initialize audio elements
     setCorrectSound(new Audio('/sounds/correct.wav'))
     setIncorrectSound(new Audio('/sounds/incorrect.wav'))
     
     // Track quiz start
-    trackUserProgress('quiz_started', chapterId)
-  }, [chapterId])
+    trackUserProgress('quiz_started', id)
+  }, [id])
 
   const playSound = (isCorrect: boolean) => {
     const audio = new Audio()
@@ -136,7 +119,7 @@ function QuizContent({ id, chapterNumber, questions, quizType }: QuizTemplatePro
     trackQuestionAnswer(
       currentQuestion.toString(),
       isCorrect,
-      chapterId
+      id
     )
     
     if (isCorrect) {
@@ -157,9 +140,9 @@ function QuizContent({ id, chapterNumber, questions, quizType }: QuizTemplatePro
       // Calculate final score including the current question
       const finalScore = score + (isAnswerCorrect ? 1 : 0)
       // Track quiz completion before navigating
-      trackUserProgress('quiz_completed', chapterId)
+      trackUserProgress('quiz_completed', id)
       // Quiz completed, navigate to results
-      router.push(`/quiz/${chapterId}/results?name=${encodeURIComponent(name)}&score=${finalScore}&type=${quizType}`)
+      router.push(`/quiz/${id}/results?name=${encodeURIComponent(name)}&score=${finalScore}&type=${quizType}`)
     } else {
       setCurrentQuestion(currentQuestion + 1)
       setSelectedAnswer(null)
@@ -297,10 +280,14 @@ function QuizContent({ id, chapterNumber, questions, quizType }: QuizTemplatePro
   )
 }
 
-export default function QuizTemplate(props: QuizTemplateProps) {
+export default function QuizTemplate({
+  id,
+  questions,
+  quizType
+}: QuizTemplateProps) {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <QuizContent {...props} />
+      <QuizContent id={id} questions={questions} quizType={quizType} />
     </Suspense>
   )
 } 
