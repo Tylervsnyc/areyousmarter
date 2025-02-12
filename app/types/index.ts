@@ -2,9 +2,11 @@ export type Pattern = 'paper' | 'grid' | 'dots' | 'brush' | 'waves'
 export type Tone = 'warm' | 'cool' | 'light'
 
 export interface Chapter {
+  id: string
   title: string
-  subtitle: string
+  description: string
   questions: Question[]
+  difficulty: 'easy' | 'medium' | 'hard'
   readStoryLink: string
   theme?: {
     pattern?: Pattern
@@ -44,7 +46,29 @@ export interface MatchingQuestion extends BaseQuestion {
   }>
 }
 
-export type Question = MultipleChoiceQuestion | SortingQuestion | MatchingQuestion
+export type QuestionType = 'multiple-choice' | 'matching' | 'sorting'
+
+export interface Question {
+  id: string
+  type: QuestionType
+  question: string
+  options: string[]
+  answer: string
+}
+
+export interface ChapterProgress {
+  chapterId: string
+  score: number
+  completed: boolean
+  timestamp: number
+}
+
+export interface UserState {
+  name: string
+  age: string
+  currentChapter: string
+  progress: ChapterProgress[]
+}
 
 export interface NameInputTemplateProps {
   id: string

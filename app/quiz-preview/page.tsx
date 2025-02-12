@@ -1,7 +1,7 @@
 'use client'
 
 import QuizTemplate from '@/components/QuizTemplate'
-import MatchingQuestion from '@/components/MatchingQuestion'
+import MatchingQuestion from '../../components/MatchingQuestion'
 
 const matchingPairs = [
   {

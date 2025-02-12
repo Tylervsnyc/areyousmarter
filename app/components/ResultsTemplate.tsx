@@ -5,7 +5,7 @@ import { Suspense, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Certificate from './Certificate'
-import { trackUserProgress, trackCertificate } from '@/app/utils/analytics'
+import { trackUserProgress, trackCertificate } from '../utils/analytics'
 
 interface ResultsTemplateProps {
   /**

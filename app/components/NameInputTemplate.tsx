@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
-import { trackUserProgress } from '@/app/utils/analytics'
+import { trackUserProgress } from '../utils/analytics'
 
 interface NameInputTemplateProps {
   /**

@@ -3,9 +3,9 @@
 import { useState, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Image from 'next/image'
-import { duoFontStyles, duoDefaultTheme } from '@/app/test/duo-template/styles'
-import { DuoTemplateButton } from '@/app/test/duo-template/buttons/page'
-import DuoHeader from '@/app/test/duo-template/components/DuoHeader'
+import { duoFontStyles, duoDefaultTheme } from '../../../test/duo-template/styles'
+import { DuoButton } from '../../../test/duo-template/buttons/page'
+import DuoHeader from '../../../test/duo-template/components/DuoHeader'
 
 const ageQuips = [
   "How old are you, tiny human?",
@@ -101,24 +101,24 @@ export default function AgePage({ params }: { params: { id: string } }) {
 
               {/* Age Selection Buttons */}
               <div className="flex flex-col gap-8 w-full max-w-md mx-auto px-4">
-                <DuoTemplateButton
+                <DuoButton
                   variant="pink"
                   onClick={() => handleAgeSelect('4-5')}
                 >
                   AGES 4-5
-                </DuoTemplateButton>
-                <DuoTemplateButton
+                </DuoButton>
+                <DuoButton
                   variant="green"
                   onClick={() => handleAgeSelect('6-7')}
                 >
                   AGES 6-7
-                </DuoTemplateButton>
-                <DuoTemplateButton
+                </DuoButton>
+                <DuoButton
                   variant="yellow"
                   onClick={() => handleAgeSelect('8-9')}
                 >
                   AGES 8-9
-                </DuoTemplateButton>
+                </DuoButton>
               </div>
             </div>
           </div>

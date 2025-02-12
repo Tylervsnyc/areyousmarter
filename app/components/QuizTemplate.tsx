@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
-import { trackUserProgress, trackQuestionAnswer } from '@/app/utils/analytics'
-import { useButtonSound } from '@/app/hooks/useButtonSound'
+import { trackUserProgress, trackQuestionAnswer } from '../utils/analytics'
+import { useButtonSound } from '../hooks/useButtonSound'
 import { Suspense } from 'react'
 
 const rightAnswerQuips = [

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import MagicProgressBar from '@/components/MagicProgressBar'
+import MagicProgressBar from '../../components/MagicProgressBar'
 
 export default function ProgressTestPage() {
   const [currentQuestion, setCurrentQuestion] = useState(1)
