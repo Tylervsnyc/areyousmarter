@@ -9,7 +9,7 @@ import { duoFontStyles, duoDefaultTheme } from '../styles';
 const buttonVariants = ['feather', 'macaw', 'lilac', 'bee'] as const;
 type ButtonVariant = typeof buttonVariants[number];
 
-export default function AdminDashboard() {
+export default function AdminPage() {
   // Convert chapters object to array and sort by ID
   const chapterList = Object.values(chapters).sort((a, b) => 
     a.id.localeCompare(b.id, undefined, { numeric: true })
@@ -25,7 +25,7 @@ export default function AdminDashboard() {
       {/* Main Content */}
       <div className="flex-1 relative">
         <div className="absolute inset-0" style={{ backgroundColor: duoDefaultTheme.backgroundColor }}>
-          <div className="h-full flex flex-col px-4">
+          <div className="h-full flex flex-col px-4 overflow-y-auto pb-8">
             <div className="w-full max-w-lg mx-auto pt-8">
               {/* Title Box */}
               <div 
