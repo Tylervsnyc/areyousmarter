@@ -1,17 +1,37 @@
 export type Pattern = 'paper' | 'grid' | 'dots' | 'brush' | 'waves'
 export type Tone = 'warm' | 'cool' | 'light'
 
-export interface Chapter {
+export interface Question {
   id: string
+  type: 'multiple-choice' | 'matching' | 'sorting'
+  question: string
+  options: string[]
+  answer: string
+  explanation?: string
+}
+
+export interface Chapter {
   title: string
-  description: string
+  subtitle: string
   questions: Question[]
-  difficulty: 'easy' | 'medium' | 'hard'
   readStoryLink: string
   theme?: {
     pattern?: Pattern
     tone?: Tone
   }
+}
+
+export interface ChapterData extends Chapter {
+  id: string
+}
+
+export interface QuizState {
+  currentQuestionIndex: number
+  score: number
+  answers: string[]
+  isAnswered: boolean
+  message: string
+  messageType: 'correct' | 'incorrect' | null
 }
 
 export interface BaseQuestion {
@@ -47,14 +67,6 @@ export interface MatchingQuestion extends BaseQuestion {
 }
 
 export type QuestionType = 'multiple-choice' | 'matching' | 'sorting'
-
-export interface Question {
-  id: string
-  type: QuestionType
-  question: string
-  options: string[]
-  answer: string
-}
 
 export interface ChapterProgress {
   chapterId: string
@@ -94,34 +106,6 @@ export interface QuizTemplateProps {
 }
 
 export interface ResultsTemplateProps {
-  id: string
-  score: number
-  name: string
-  ageRange: string
-  chapter: Chapter
-}
-
-export interface ChapterData extends Chapter {
-  id: string
-}
-
-export interface QuizState {
-  currentQuestionIndex: number
-  score: number
-  answers: string[]
-  isAnswered: boolean
-  message: string
-  messageType: 'correct' | 'incorrect' | null
-}
-
-export interface QuizProps {
-  id: string
-  ageRange: string
-  name: string
-  chapter: Chapter
-}
-
-export interface ResultsProps {
   id: string
   score: number
   name: string

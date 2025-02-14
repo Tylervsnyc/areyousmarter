@@ -54,3 +54,87 @@ Follow these rules when you write code:
 - Use descriptive variable and function/const names. Also, event functions should be named with a "handle" prefix, like "handleClick" for onClick and "handleKeyDown" for onKeyDown.
 - Implement accessibility features on elements. For example, a tag should have a tabindex="0", aria-label, on:click, and on:keydown, and similar attributes.
 - Use consts instead of functions, for example, "const toggle = () =>". Also, define a type if possible.
+
+### Data Structure Validation Rules
+- Verify quiz structure consistency across chapters:
+  1. Each chapter must have exactly 3 quizzes (one for each age group: 4-5, 6-7, 8-9)
+  2. Each quiz must have exactly 10 questions
+  3. All questions must follow the same structure:
+     - Must have an id, type, question, options, answer, and explanation
+     - IDs must follow the pattern: 'cX.Y.Z' where X is chapter number, Y is quiz number, Z is question number
+  4. Alert if any chapter deviates from this structure
+  5. Alert if question counts are inconsistent between chapters
+  6. Alert if age group targeting is missing or inconsistent
+  7. Alert if question difficulty doesn't match target age group
+
+### Quiz Content Guidelines
+- Questions for ages 4-5 should:
+  - Use simple arithmetic (addition/subtraction under 20)
+  - Include visual elements (emojis)
+  - Have straightforward language
+- Questions for ages 6-7 should:
+  - Use intermediate arithmetic (addition/subtraction under 100, simple multiplication)
+  - Include word problems
+  - Have clear context
+- Questions for ages 8-9 should:
+  - Use advanced arithmetic (all operations, larger numbers)
+  - Include multi-step problems
+  - Incorporate business concepts
+
+### Data Management Guidelines
+- Always keep data in a SINGLE source of truth
+- Prefer flat file structures over nested directories for simple data
+- When handling quiz/educational content:
+  1. ONE main data file that exports everything
+  2. Clear template structure that's easy to copy/paste
+  3. No splitting data across multiple files unless absolutely necessary
+  4. Validate data structure but don't overcomplicate it
+
+### Implementation Priority Order
+1. Make it work (get the basic structure right)
+2. Make it maintainable (ensure easy updates)
+3. Make it efficient (optimize only if needed)
+4. Make it perfect (refine only when core functionality is solid)
+
+### Content Management Rules
+- For educational/quiz content:
+  1. Keep all chapter data in ONE file
+  2. Use a clear template for new chapters
+  3. Make adding content as simple as copy/paste
+  4. Validate content structure AFTER it's working
+
+### New-Quiz Project Structure
+- File Organization:
+  1. ONE data file: `app/new-quiz/data/chapters.ts` containing all chapter content
+  2. ONE types file: `app/new-quiz/types.ts` for all type definitions
+  3. ONE utils file per function group (e.g., `sounds.ts`, `validation.ts`)
+  4. ONE components directory with clear component names
+
+- Chapter Structure:
+  1. Each chapter follows exact same format:
+     - id: 'chapterX' (where X is 1-10)
+     - title: 'Are You Smarter than Mr. Fluffbutt?'
+     - subtitle: [unique chapter subtitle]
+     - questions: Organized by age groups (4-5, 6-7, 8-9)
+     - 10 questions per age group
+     - Each question has: id, type, question, options, answer, explanation
+
+- Content Guidelines:
+  1. Ages 4-5: Simple arithmetic, visual elements (emojis), straightforward language
+  2. Ages 6-7: Intermediate arithmetic, word problems, clear context
+  3. Ages 8-9: Advanced arithmetic, multi-step problems, business concepts
+  4. All questions must include emojis for visual engagement
+  5. All explanations should be encouraging and educational
+
+- UI/UX Standards:
+  1. Use DuoTemplateButton for all interactive elements
+  2. Maintain consistent spacing and layout across all pages
+  3. Include Mr. Fluffbutt image in standard locations
+  4. Use provided color schemes and animations
+  5. Ensure all pages are fully responsive
+
+- Navigation Flow:
+  1. Chapter Selection → Name Entry → Age Selection → Quiz → Results
+  2. Clear progress indicators
+  3. Consistent back/forward navigation
+  4. Proper state management between pages

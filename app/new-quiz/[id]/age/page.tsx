@@ -4,10 +4,12 @@ import { useState, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
-import { getChapter } from '../../data'
+import { getChapter } from '../../data/chapters'
 import { DuoTemplateButton } from '../../components/DuoTemplateButton'
 import DuoHeader from '../../components/DuoHeader'
 import { duoFontStyles, duoDefaultTheme } from '../../styles'
+import { playButtonPress } from '../../utils/sounds'
+import Link from 'next/link'
 
 const ageQuips = [
   "How old are you, tiny human?",
@@ -46,6 +48,7 @@ export default function AgePage({ params }: { params: { id: string } }) {
   }, [])
 
   const handleAgeSelect = (ageRange: string) => {
+    playButtonPress()
     if (ageRange === 'baby' || ageRange === 'ship') {
       setGoofCount(prev => prev + 1)
       
@@ -63,6 +66,12 @@ export default function AgePage({ params }: { params: { id: string } }) {
     }
 
     router.push(`/new-quiz/${params.id}/quiz?age=${ageRange}&name=${encodeURIComponent(name)}`)
+  }
+
+  const handleBackButtonPress = (e: React.MouseEvent) => {
+    e.preventDefault()
+    playButtonPress()
+    router.push(`/new-quiz/${params.id}/name`)
   }
 
   return (
@@ -103,25 +112,27 @@ export default function AgePage({ params }: { params: { id: string } }) {
               )}
 
               {/* Age Selection Buttons */}
-              <div className="flex flex-col gap-8 w-full max-w-md mx-auto px-4">
-                <DuoTemplateButton
-                  variant="pink"
-                  onClick={() => handleAgeSelect('4-5')}
-                >
-                  AGES 4-5
-                </DuoTemplateButton>
-                <DuoTemplateButton
-                  variant="green"
-                  onClick={() => handleAgeSelect('6-7')}
-                >
-                  AGES 6-7
-                </DuoTemplateButton>
-                <DuoTemplateButton
-                  variant="yellow"
-                  onClick={() => handleAgeSelect('8-9')}
-                >
-                  AGES 8-9
-                </DuoTemplateButton>
+              <div className="w-full max-w-md mx-auto space-y-4">
+                <div className="grid grid-cols-1 gap-4">
+                  <DuoTemplateButton
+                    variant="feather"
+                    onClick={() => handleAgeSelect('4-5')}
+                  >
+                    AGES 4-5
+                  </DuoTemplateButton>
+                  <DuoTemplateButton
+                    variant="macaw"
+                    onClick={() => handleAgeSelect('6-7')}
+                  >
+                    AGES 6-7
+                  </DuoTemplateButton>
+                  <DuoTemplateButton
+                    variant="lilac"
+                    onClick={() => handleAgeSelect('8-9')}
+                  >
+                    AGES 8-9
+                  </DuoTemplateButton>
+                </div>
               </div>
             </div>
           </div>

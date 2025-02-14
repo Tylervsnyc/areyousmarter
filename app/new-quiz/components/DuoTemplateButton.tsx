@@ -1,79 +1,57 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { ButtonHTMLAttributes } from 'react'
+import clsx from 'clsx'
 
-export const DuoTemplateButton = ({ 
+interface DuoTemplateButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: 'blue' | 'emerald' | 'rose' | 'amber' | 'feather' | 'cardinal' | 'macaw' | 'bee' | 'lilac'
+  size?: 'sm' | 'md' | 'lg'
+  fullWidth?: boolean
+}
+
+const variantStyles = {
+  blue: "bg-blue-600 hover:bg-blue-700 border-blue-700 button-3d",
+  emerald: "bg-emerald-500 hover:bg-emerald-600 border-emerald-600 button-3d",
+  rose: "bg-rose-500 hover:bg-rose-600 border-rose-600 button-3d",
+  amber: "bg-amber-500 hover:bg-amber-600 border-amber-600 button-3d",
+  feather: "bg-[#89e219] hover:bg-[#7ac717] border-[#7ac717] button-3d",
+  cardinal: "bg-[#ff4b4b] hover:bg-[#e64343] border-[#e64343] button-3d",
+  macaw: "bg-[#1cb0f6] hover:bg-[#199edc] border-[#199edc] button-3d",
+  bee: "bg-[#ffc800] hover:bg-[#e6b400] border-[#e6b400] button-3d",
+  lilac: "bg-[#ce82ff] hover:bg-[#b974e6] border-[#b974e6] button-3d"
+}
+
+const sizeStyles = {
+  sm: 'py-2 px-4 text-sm',
+  md: 'py-3 px-6 text-base',
+  lg: 'py-4 px-8 text-lg'
+}
+
+export const DuoTemplateButton = ({
   children,
-  onClick, 
-  variant = 'pink',
-  className = '',
-  disabled = false,
-  type = 'button'
-}: {
-  children: React.ReactNode;
-  onClick?: () => void;
-  variant?: 'pink' | 'green' | 'yellow' | 'blue';
-  className?: string;
-  disabled?: boolean;
-  type?: 'button' | 'submit' | 'reset';
-}) => {
-  const [buttonSound, setButtonSound] = useState<HTMLAudioElement | null>(null);
-
-  useEffect(() => {
-    setButtonSound(new Audio('/sounds/buttonpress.mp3'));
-  }, []);
-
-  // Exact colors from the image with their darker variants for bottom border
-  const colorSchemes = {
-    pink: {
-      bg: 'bg-[#FF6B8A]',
-      border: 'border-b-[#E85F7B]',
-      hover: 'hover:opacity-95'
-    },
-    green: {
-      bg: 'bg-[#4ADE80]',
-      border: 'border-b-[#3FC772]',
-      hover: 'hover:opacity-95'
-    },
-    yellow: {
-      bg: 'bg-[#FFB020]',
-      border: 'border-b-[#E69E1D]',
-      hover: 'hover:opacity-95'
-    },
-    blue: {
-      bg: 'bg-[#3C82F6]',
-      border: 'border-b-[#3575DD]',
-      hover: 'hover:opacity-95'
-    }
-  };
-
-  const scheme = colorSchemes[variant];
-
-  const handleClick = () => {
-    if (buttonSound && !disabled) {
-      buttonSound.currentTime = 0;
-      buttonSound.play();
-    }
-    onClick?.();
-  };
-
+  variant = 'blue',
+  size = 'md',
+  fullWidth = true,
+  className,
+  disabled,
+  ...props
+}: DuoTemplateButtonProps) => {
   return (
     <button
-      onClick={handleClick}
+      className={clsx(
+        'font-bold rounded-xl shadow-lg transition-all text-white border-b-4',
+        variantStyles[variant],
+        sizeStyles[size],
+        fullWidth ? 'w-full' : 'w-auto',
+        disabled && 'opacity-50 cursor-not-allowed',
+        className
+      )}
       disabled={disabled}
-      type={type}
-      className={`
-        w-full p-6 rounded-[24px] transition-all duration-200
-        ${scheme.bg} ${scheme.border} ${scheme.hover}
-        text-white text-center text-3xl font-bold
-        shadow-lg border-b-[6px]
-        active:translate-y-[2px] active:border-b-[4px]
-        active:shadow-md
-        disabled:opacity-50 disabled:cursor-not-allowed
-        ${className}
-      `}
+      {...props}
     >
       {children}
     </button>
-  );
-}; 
+  )
+}
+
+export default DuoTemplateButton 
