@@ -1,3 +1,6 @@
+'use client';
+
+import React from 'react';
 import { Analytics } from '@vercel/analytics/react'
 
 // Event names for consistent tracking
@@ -13,7 +16,9 @@ export const ANALYTICS_EVENTS = {
 } as const
 
 // Analytics wrapper component
-export const AnalyticsWrapper = Analytics
+export function AnalyticsWrapper() {
+  return <Analytics />
+}
 
 // Helper function to track events
 export function trackEvent(
