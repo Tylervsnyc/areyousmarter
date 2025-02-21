@@ -1,7 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { chapters } from '../data/chapters';
+import chapters from '../data/new-chapters';
+import type { ChapterData } from '../types';
 import { DuoTemplateButton } from '../components/DuoTemplateButton';
 import DuoHeader from '../components/DuoHeader';
 import { duoFontStyles, duoDefaultTheme } from '../styles';
@@ -11,7 +12,7 @@ type ButtonVariant = typeof buttonVariants[number];
 
 export default function AdminPage() {
   // Convert chapters object to array and sort by ID, with null check
-  const chapterList = (chapters ? Object.values(chapters) : []).sort((a, b) => 
+  const chapterList = (chapters ? Object.values(chapters) : []).sort((a: ChapterData, b: ChapterData) => 
     a.id.localeCompare(b.id, undefined, { numeric: true })
   );
 
