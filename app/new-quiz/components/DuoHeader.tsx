@@ -37,6 +37,14 @@ export default function DuoHeader() {
           />
         </Link>
       </div>
+      <div className="flex items-center gap-4">
+        <Link href="/new-quiz/chapters" className="text-gray-600 hover:text-gray-900">
+          Chapters
+        </Link>
+        <Link href="/new-quiz" className="text-gray-600 hover:text-gray-900">
+          Home
+        </Link>
+      </div>
     </div>
   )
 } 
