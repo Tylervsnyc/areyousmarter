@@ -775,8 +775,8 @@ const chapter3: ChapterData = {
         id: 'c3.3.2',
         type: 'multiple-choice',
         question: '⏰ If each animal visit takes 30 minutes and travel takes 15 minutes, how long for 3 animals? ⌛',
-        options: ['90 minutes', '105 minutes', '120 minutes', '135 minutes'],
-        answer: '120 minutes',
+        options: ['90 mins', '105 mins', '120 mins', '135 mins'],
+        answer: '120 mins',
         explanation: '🕒 (30 mins × 3 pets) + (15 mins travel × 2 trips between pets) = 90 + 30 = 120 minutes! Time pro! ⭐'
       },
       {
@@ -790,7 +790,7 @@ const chapter3: ChapterData = {
       {
         id: 'c3.3.4',
         type: 'multiple-choice',
-        question: '⏰ How many hours in a week if Hudson spends 2 hours daily with animals? 🕒',
+        question: '⏱️ How many hours in a week if Hudson spends 2 hours daily with animals? 🕒',
         options: ['8 hours', '10 hours', '12 hours', '14 hours'],
         answer: '10 hours',
         explanation: '⏰ 2 hours × 5 days = 10 hours! Time calculation master! ⌛'
@@ -883,7 +883,7 @@ const chapter4: ChapterData = {
       {
         id: 'c4.1.4',
         type: 'multiple-choice',
-        question: '🐕 What happens when Drew-bo sees a squirrel? 🐿️',
+        question: '🐕 What happens when Drew-boo sees a squirrel? 🐿️',
         options: ['Sits quietly', 'Runs away', 'Pulls on leash', 'Takes a nap'],
         answer: 'Pulls on leash',
         explanation: '🌟 Drew-bo pulls on the leash when he sees squirrels! Strong husky! 🐾'
@@ -1095,10 +1095,10 @@ const chapter4: ChapterData = {
       {
         id: 'c4.3.10',
         type: 'multiple-choice',
-        question: '💰 Starting $62, Net loss $10. Final balance? 🎯',
+        question: '💰 Starting $60, Net loss $10. Final balance? 🎯',
         options: ['$40', '$45', '$50', '$55'],
         answer: '$50',
-        explanation: '📊 $62 - $10 = $50! Final balance expert! 🌟'
+        explanation: '📊 $60 - $10 = $50! Final balance expert! 🌟'
       }
     ]
   }
@@ -1355,7 +1355,7 @@ const chapter5: ChapterData = {
         question: '💰 Calculate final balance: Starting $50 + Profit $29 = ? 🎯',
         options: ['$69', '$75', '$79', '$85'],
         answer: '$79',
-        explanation: '🌟 $50 + $29 = $79! Enough for the bike! Congratulations! 🚲'
+        explanation: '📊 $50 + $29 = $79! Excellent progress! 🐾'
       }
     ]
   }
@@ -1373,246 +1373,246 @@ const chapter6: ChapterData = {
       {
         id: 'c6.1.1',
         type: 'multiple-choice',
-        question: '🐱 How much money has Hudson saved so far? 💰',
-        options: ['$50', '$60', '$70', '$79'],
-        answer: '$79',
-        explanation: '🌟 Hudson has saved $79 from all his hard work! Purr-fect counting! 🐾'
+        question: '🐱 What kind of dogs did Mrs. Chen have? 🐕',
+        options: ['Corgis', 'Poodles', 'Bulldogs', 'Huskies'],
+        answer: 'Corgis',
+        explanation: '🌟 That\'s right! Mrs. Chen had four adorable corgi dogs! 🐾'
       },
       {
         id: 'c6.1.2',
         type: 'multiple-choice',
-        question: '🚲 How much more money does Hudson need for the bike? 💵',
-        options: ['$421', '$431', '$441', '$451'],
-        answer: '$421',
-        explanation: '🎯 $500 - $79 = $421 more needed! Keep going! 💪'
+        question: '🐱 How many corgi dogs did Mrs. Chen have? 🐕',
+        options: ['4', '2', '3', '5'],
+        answer: '4',
+        explanation: '🌟 Purr-fect counting! Mrs. Chen had 4 corgis: Dumpling, Noodle, Bao, and Mochi! 🐾'
       },
       {
         id: 'c6.1.3',
         type: 'multiple-choice',
-        question: '🐕 How many small dogs can Hudson walk at once now? 🦮',
-        options: ['2 dogs', '3 dogs', '4 dogs', '5 dogs'],
-        answer: '4 dogs',
-        explanation: '🌟 Hudson can now handle 4 small dogs at once! Such progress! 🐾'
+        question: '🐱 Who helped Hudson by walking the corgis? 🚶',
+        options: ['Jimmy', 'Mom', 'Dad', 'Mrs. Chen'],
+        answer: 'Jimmy',
+        explanation: '🌟 Yes! Jimmy helped Hudson by walking the corgis after school! 🐾'
       },
       {
         id: 'c6.1.4',
         type: 'multiple-choice',
-        question: '💰 If Hudson makes $5 per dog, how much for walking 4 dogs? 🐕',
-        options: ['$15', '$20', '$25', '$30'],
-        answer: '$20',
-        explanation: '🧮 $5 × 4 dogs = $20! Excellent multiplication! ⭐'
+        question: '🐱 What did Hudson learn was easier to walk? 🐕',
+        options: ['Small dogs', 'Big dogs', 'Cats', 'Birds'],
+        answer: 'Small dogs',
+        explanation: '🌟 That\'s right! Hudson learned that small dogs were easier to walk! 🐾'
       },
       {
         id: 'c6.1.5',
         type: 'multiple-choice',
-        question: '⏰ How long does Hudson spend with each dog? ⌛',
-        options: ['15 minutes', '20 minutes', '25 minutes', '30 minutes'],
-        answer: '20 minutes',
-        explanation: '🕒 Each dog gets 20 minutes of Hudson\'s time! Perfect scheduling! ⭐'
+        question: '🐱 What is Joseph in the story? 🦜',
+        options: ['A cockatoo', 'A dog', 'A cat', 'A fish'],
+        answer: 'A cockatoo',
+        explanation: '🌟 Purr-fect! Joseph is the cockatoo that Hudson takes care of! 🐾'
       },
       {
         id: 'c6.1.6',
         type: 'multiple-choice',
-        question: '📅 How many days per week does Hudson walk dogs? 🗓️',
-        options: ['3 days', '4 days', '5 days', '6 days'],
-        answer: '5 days',
-        explanation: '📆 Hudson walks dogs Monday through Friday = 5 days! 🌟'
+        question: '🐱 What did Hudson have to pay for this week? 💰',
+        options: ['Jimmy\'s help', 'Dog food', 'New leashes', 'Pet toys'],
+        answer: 'Jimmy\'s help',
+        explanation: '🌟 That\'s right! Hudson had to pay Jimmy for helping walk the corgi dogs! 🐾'
       },
       {
         id: 'c6.1.7',
         type: 'multiple-choice',
-        question: '🐱 Who still gets special treatment from Hudson? 😺',
-        options: ['Drew-bo', 'Joseph', 'Edie', 'Mr. Fluffbutt'],
-        answer: 'Mr. Fluffbutt',
-        explanation: '👑 Of course I still get the royal treatment! I am the star! ⭐'
+        question: '🐱 If the corgi walks made $80 total and Hudson split it evenly with Jimmy, how much did Jimmy get? 💰',
+        options: ['$40', '$20', '$60', '$80'],
+        answer: '$40',
+        explanation: '🌟 That\'s right! Since they split $80 evenly, Jimmy got half, which is $40! 🐾'
       },
       {
         id: 'c6.1.8',
         type: 'multiple-choice',
-        question: '💵 How much does Hudson make from walking dogs in one day? 💰',
-        options: ['$15', '$20', '$25', '$30'],
-        answer: '$20',
-        explanation: '💫 $5 × 4 dogs = $20 per day! Great business! 🐾'
+        question: '🐱 Hudson made $200 from walking dogs and $20 from feeding pets. How much money did he make in total? 💰',
+        options: ['$220', '$200', '$180', '$240'],
+        answer: '$220',
+        explanation: '🌟 That\'s right! $200 + $20 = $220 total earnings! 🐾'
       },
       {
         id: 'c6.1.9',
         type: 'multiple-choice',
-        question: '🎯 If Hudson makes $20 per day, how much in 5 days? 💭',
-        options: ['$80', '$90', '$100', '$110'],
-        answer: '$100',
-        explanation: '🧮 $20 × 5 days = $100! Amazing progress! 💫'
+        question: '🐱 Hudson made $220 this week and paid Jimmy $40 for helping with the corgis. How much profit did Hudson keep? 💰',
+        options: ['$180', '$160', '$200', '$140'],
+        answer: '$180',
+        explanation: '🌟 Purr-fect! When we subtract Jimmy\'s payment ($40) from Hudson\'s total earnings ($220), Hudson kept $180 as profit! 🐾'
       },
       {
         id: 'c6.1.10',
         type: 'multiple-choice',
-        question: '💰 Starting with $79, adding $100, what\'s the total? 🎯',
-        options: ['$169', '$179', '$189', '$199'],
-        answer: '$179',
-        explanation: '🌟 $79 + $100 = $179! Getting closer to that bike! 🚲'
+        question: '🐱 Hudson started with $79 and made $180 in profit this week. How much money does he have now? 💰',
+        options: ['$259', '$239', '$249', '$269'],
+        answer: '$259',
+        explanation: '🌟 Me-WOW! When we add Hudson\'s starting money ($79) to his profit ($180), he now has $259 in total! That\'s a lot of savings! 🐾'
       }
     ],
     age6to7: [
       {
         id: 'c6.2.1',
         type: 'multiple-choice',
-        question: '💰 If Hudson has $79 saved and makes $100 this week, how much total? 🎯',
-        options: ['$169', '$179', '$189', '$199'],
-        answer: '$179',
-        explanation: '🧮 $79 + $100 = $179! Great addition! 💫'
+        question: '🐱 What did Mrs. Chen\'s neighbor ask Jimmy for? 💼',
+        options: ['His business card', 'His phone number', 'His address', 'His email'],
+        answer: 'His business card',
+        explanation: '🌟 That\'s right! The neighbor was so impressed with Jimmy\'s dog walking that they asked for his card! 🐾'
       },
       {
         id: 'c6.2.2',
         type: 'multiple-choice',
-        question: '🚲 The bike costs $500. If Hudson has $179, how much more needed? 💵',
-        options: ['$311', '$321', '$331', '$341'],
-        answer: '$321',
-        explanation: '🎯 $500 - $179 = $321! Keep saving! 💪'
+        question: '🐱 What time did Hudson need to be at Mr. Fluff Butt\'s house? ⏰',
+        options: ['3:30', '3:00', '4:00', '2:30'],
+        answer: '3:30',
+        explanation: '🌟 Exactly! Hudson had to be at Mr. Fluff Butt\'s house at 3:30, which is why he couldn\'t walk the corgis! 🐾'
       },
       {
         id: 'c6.2.3',
         type: 'multiple-choice',
-        question: '⏰ If each dog walk takes 20 minutes, how long for 4 dogs? ⌛',
-        options: ['60 minutes', '70 minutes', '80 minutes', '90 minutes'],
-        answer: '80 minutes',
-        explanation: '🕒 20 minutes × 4 dogs = 80 minutes! Time master! ⭐'
+        question: '🐱 If Mrs. Chen paid $20 per day, and Jimmy and Hudson split the money evenly, how much did each person get per day? 💰',
+        options: ['$10', '$20', '$15', '$5'],
+        answer: '$10',
+        explanation: '🌟 Purr-fect math! $20 ÷ 2 = $10 each per day! 🐾'
       },
       {
         id: 'c6.2.4',
         type: 'multiple-choice',
-        question: '📊 If Hudson makes $20 daily walking dogs, how much in 2 weeks? 💰',
-        options: ['$180', '$190', '$200', '$210'],
-        answer: '$200',
-        explanation: '💫 $20 × 5 days × 2 weeks = $200! Excellent calculation! 📈'
+        question: '🐱 How much did Hudson earn each day from walking Edie, Midnight, and Riley? 💰',
+        options: ['$15', '$20', '$10', '$25'],
+        answer: '$15',
+        explanation: '🌟 Great math! Hudson made $60 over 4 days, so $60 ÷ 4 = $15 per day! 🐾'
       },
       {
         id: 'c6.2.5',
         type: 'multiple-choice',
-        question: '🐕 Walking 4 dogs twice daily at $5 each, total earnings? 💵',
-        options: ['$30', '$35', '$40', '$45'],
-        answer: '$40',
-        explanation: '🧮 $5 × 4 dogs × 2 times = $40! Smart business! ⭐'
+        question: '🐱 If Hudson made $40 from Mr. Fluff Butt in 4 days, how much did he make per visit? 💰',
+        options: ['$10', '$15', '$20', '$5'],
+        answer: '$10',
+        explanation: '🌟 Perfect calculation! $40 ÷ 4 days = $10 per visit to Mr. Fluff Butt! 🐾'
       },
       {
         id: 'c6.2.6',
         type: 'multiple-choice',
-        question: '⏱️ Total minutes walking dogs in 5 days? (80 mins/day) ⌛',
-        options: ['380 minutes', '400 minutes', '420 minutes', '440 minutes'],
-        answer: '400 minutes',
-        explanation: '⏰ 80 minutes × 5 days = 400 minutes! Time tracking pro! 🌟'
+        question: '🐱 What was Hudson\'s biggest business expense this week? 💰',
+        options: ['Paying Jimmy', 'Buying pet food', 'New leashes', 'Pet toys'],
+        answer: 'Paying Jimmy',
+        explanation: '🌟 That\'s right! Hudson\'s biggest (and only) expense was paying his employee Jimmy 🐾'
       },
       {
         id: 'c6.2.7',
         type: 'multiple-choice',
-        question: '💰 Weekly income: Dogs ($100) + Fluffbutt ($20) + Allowance ($10) = ? 💵',
-        options: ['$120', '$130', '$140', '$150'],
-        answer: '$130',
-        explanation: '🎯 $100 + $20 + $10 = $130! Adding master! ⭐'
+        question: '🐱 How much money did Jimmy earn each day from walking the corgis? 💰',
+        options: ['$10', '$20', '$5', '$15'],
+        answer: '$10',
+        explanation: '🌟 Perfect! Jimmy got $40 for 4 days of walking, so that\'s $10 each day! 🐾'
       },
       {
         id: 'c6.2.8',
         type: 'multiple-choice',
-        question: '📊 If Hudson saves $130 weekly, how many weeks to reach $500? 🤔',
-        options: ['3 weeks', '4 weeks', '5 weeks', '6 weeks'],
-        answer: '4 weeks',
-        explanation: '🧮 $500 ÷ $130 ≈ 3.85, so 4 weeks needed! Smart planning! 📈'
+        question: '🐱 Calculate Hudson\'s total revenue this week: Mr. Fluff Butt ($40) + Three dogs ($60) + Corgi crew total before splitting ($80) + Bird and spider ($20) = ? 💰',
+        options: ['$200', '$180', '$220', '$240'],
+        answer: '$200',
+        explanation: '🌟 Great math! Adding all revenue streams: $40 + $60 + $80 + $20 = $200 total revenue before paying Jimmy! 🐾'
       },
       {
         id: 'c6.2.9',
         type: 'multiple-choice',
-        question: '🐕 If one dog cancels, daily earnings drop by how much? (2 walks) 💵',
-        options: ['$5', '$10', '$15', '$20'],
-        answer: '$10',
-        explanation: '💰 $5 × 2 walks = $10 less per day! Good calculation! 🌟'
+        question: '🐱 Hudson earned $220 this week and paid Jimmy $40. How much money did Hudson get to keep? 💰',
+        options: ['$180', '$160', '$200', '$140'],
+        answer: '$180',
+        explanation: '🌟 Great math! When we subtract Jimmy\'s payment ($40) from the total earnings ($220), Hudson kept $180! 🐾'
       },
       {
         id: 'c6.2.10',
         type: 'multiple-choice',
-        question: '💭 After 2 weeks ($260), plus current savings ($179), total? 🎯',
-        options: ['$429', '$439', '$449', '$459'],
-        answer: '$439',
-        explanation: '🌟 $260 + $179 = $439! Almost there! 🚲'
+        question: '🐱 Hudson started with $79 and added $180 in profit. How much money does he have now? 💰',
+        options: ['$259', '$240', '$200', '$279'],
+        answer: '$259',
+        explanation: '🌟 Great adding! $79 + $180 = $259 total savings! 🐾'
       }
     ],
     age8to9: [
       {
         id: 'c6.3.1',
         type: 'multiple-choice',
-        question: '📊 Calculate: Starting balance ($179) + 2 weeks income ($260) = ? 💰',
-        options: ['$429', '$439', '$449', '$459'],
-        answer: '$439',
-        explanation: '🧮 $179 + $260 = $439! Expert addition! 💫'
+        question: '📊 What business strategy did Hudson discover works best for his pet-sitting service?',
+        options: ['Focusing on small dogs', 'Taking care of multiple pets at once', 'Walking large dogs', 'Only doing house visits'],
+        answer: 'Focusing on small dogs',
+        explanation: '🌟 Correct! Hudson learned that specializing in small dogs (finding his niche) was the most efficient business strategy! 📈'
       },
       {
         id: 'c6.3.2',
         type: 'multiple-choice',
-        question: '⏰ Convert 400 minutes of weekly dog walking to hours: 💭',
-        options: ['6.5 hours', '6.67 hours', '6.75 hours', '7 hours'],
-        answer: '6.67 hours',
-        explanation: '🕒 400 ÷ 60 = 6.67 hours! Time conversion master! ⭐'
+        question: '💼 What business term did Mom use to describe Hudson\'s focus on small dogs?',
+        options: ['Finding his niche', 'Market research', 'Business plan', 'Target market'],
+        answer: 'Finding his niche',
+        explanation: '🌟 Exactly! A niche is a specialized segment of the market that a business focuses on! 📊'
       },
       {
         id: 'c6.3.3',
         type: 'multiple-choice',
-        question: '💵 Daily earnings $40 ÷ 1.33 hours = hourly rate? 💰',
-        options: ['$25/hr', '$30/hr', '$35/hr', '$40/hr'],
-        answer: '$30/hr',
-        explanation: '📊 $40 ÷ 1.33 hours = $30 per hour! Business math! 💫'
+        question: '💰 If Hudson makes $10 from Mr. Fluff Butt and $5 from Joseph and Johnny combined each visit, how much does he make in total from all three pets per visit?',
+        options: ['$15', '$20', '$12', '$18'],
+        answer: '$15',
+        explanation: '🌟 Correct! $10 + $5 = $15 total per visit! 📊'
       },
       {
         id: 'c6.3.4',
         type: 'multiple-choice',
-        question: '🎯 How much more needed for $500 bike if Hudson has $439? 💵',
-        options: ['$51', '$61', '$71', '$81'],
-        answer: '$61',
-        explanation: '🧮 $500 - $439 = $61! Almost there! 🚲'
+        question: '📈 What was Hudson\'s average daily revenue from all his pet services this week? (Total revenue $220 divided by 4 days)',
+        options: ['$55', '$45', '$50', '$60'],
+        answer: '$55',
+        explanation: '🌟 Right! $220 ÷ 4 days = $55 average daily revenue! 💰'
       },
       {
         id: 'c6.3.5',
         type: 'multiple-choice',
-        question: '📊 With $130 weekly income, how many days to earn remaining $61? 💭',
-        options: ['2 days', '3 days', '4 days', '5 days'],
-        answer: '3 days',
-        explanation: '💰 $130 ÷ 5 = $26 daily, so 3 days needed! Smart planning! 📈'
+        question: '💼 What business relationship did Dad say Hudson and Jimmy had?',
+        options: ['Employer-employee', 'Business partners', 'Contractors', 'Volunteers'],
+        answer: 'Employer-employee',
+        explanation: '🌟 Correct! When Hudson paid Jimmy to help with the business, Jimmy became Hudson\'s employee! 📊'
       },
       {
         id: 'c6.3.6',
         type: 'multiple-choice',
-        question: '⏱️ If Hudson walks 4 dogs twice daily, total dogs walked in 2 weeks? 🐕',
-        options: ['70 dogs', '80 dogs', '90 dogs', '100 dogs'],
-        answer: '80 dogs',
-        explanation: '🧮 4 dogs × 2 times × 5 days × 2 weeks = 80 dogs! Amazing! 🌟'
+        question: '📊 What was Hudson\'s largest business expense this week, and how much was it?',
+        options: ['Employee wages - $40', 'Pet supplies - $25', 'Marketing costs - $30', 'Transportation - $35'],
+        answer: 'Employee wages - $40',
+        explanation: '🌟 Correct! Hudson\'s biggest expense was paying Jimmy for walking the corgis! 💰'
       },
       {
         id: 'c6.3.7',
         type: 'multiple-choice',
-        question: '💵 Calculate monthly income potential: $130 weekly × 4 weeks = ? 💰',
-        options: ['$490', '$510', '$520', '$540'],
-        answer: '$520',
-        explanation: '📊 $130 × 4 = $520 monthly potential! Business expert! 💫'
+        question: '💰 If the corgi-walking service earned $80 total and Jimmy received half, how much did Jimmy earn per day over the 4 days?',
+        options: ['$10', '$20', '$15', '$8'],
+        answer: '$10',
+        explanation: '🌟 Perfect! $80 ÷ 2 = $40 for Jimmy\'s share, then $40 ÷ 4 days = $10 per day! 📊'
       },
       {
         id: 'c6.3.8',
         type: 'multiple-choice',
-        question: '🕒 Monthly time: 400 mins weekly × 4 weeks = ? (in hours) ⏰',
-        options: ['24 hours', '26.67 hours', '28 hours', '30 hours'],
-        answer: '26.67 hours',
-        explanation: '⏱️ (400 × 4) ÷ 60 = 26.67 hours! Time management pro! ⭐'
+        question: '📈 Calculate Hudson\'s total weekly revenue from all services: Mr. Fluff Butt ($40) + Three dogs ($60) + Corgi crew ($80) + Bird and spider ($20) = ?',
+        options: ['$220', '$200', '$240', '$180'],
+        answer: '$220',
+        explanation: '🌟 Correct! $40 + $60 + $80 + $20 = $220 total revenue! 💰'
       },
       {
         id: 'c6.3.9',
         type: 'multiple-choice',
-        question: '📊 Calculate net profit: Revenue $35 - Expenses $6 = ? 💭',
-        options: ['$27', '$29', '$31', '$33'],
-        answer: '$29',
-        explanation: '📈 $35 - $6 = $29 net profit! Business math! 💫'
+        question: '💼 If Hudson\'s total earnings were $220 and his business costs (Jimmy\'s wages) were $40, how much profit did he make?',
+        options: ['$180', '$160', '$200', '$140'],
+        answer: '$180',
+        explanation: '🌟 Perfect! Total earnings ($220) - Costs ($40) = Profit ($180)! 📊'
       },
       {
         id: 'c6.3.10',
         type: 'multiple-choice',
-        question: '🎯 Final calculation: $439 saved + 3 days income ($78) = ? 💵',
-        options: ['$507', '$517', '$527', '$537'],
-        answer: '$517',
-        explanation: '🌟 $439 + $78 = $517! Enough for the bike! Congratulations! 🚲'
+        question: '📊 If Hudson started with $79 and added $180 in profit, what is his new total savings?',
+        options: ['$259', '$249', '$269', '$279'],
+        answer: '$259',
+        explanation: '🌟 Excellent! Starting money ($79) + Profit ($180) = Total savings ($259)! 💰'
       }
     ]
   }
