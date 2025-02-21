@@ -1511,10 +1511,10 @@ const chapter6: ChapterData = {
       {
         id: 'c6.2.8',
         type: 'multiple-choice',
-        question: '🐱 Calculate Hudson\'s total revenue this week: Mr. Fluff Butt ($40) + Three dogs ($60) + Corgi crew total before splitting ($80) + Bird and spider ($20) = ? 💰',
-        options: ['$200', '$180', '$220', '$240'],
-        answer: '$200',
-        explanation: '🌟 Great math! Adding all revenue streams: $40 + $60 + $80 + $20 = $200 total revenue before paying Jimmy! 🐾'
+        question: '🐱 Calculate Hudson\'s total revenue: Mr. Fluff Butt ($40) + Three dogs ($60) + Corgi crew ($80) + Bird and spider ($40) = ? 💰',
+        options: ['$220', '$200', '$180', '$240'],
+        answer: '$220',
+        explanation: '🌟 Great math! Adding all revenue streams: $40 + $60 + $80 + $40 = $220 total revenue! 🐾'
       },
       {
         id: 'c6.2.9',
@@ -1593,10 +1593,10 @@ const chapter6: ChapterData = {
       {
         id: 'c6.3.8',
         type: 'multiple-choice',
-        question: '📈 Calculate Hudson\'s total weekly revenue from all services: Mr. Fluff Butt ($40) + Three dogs ($60) + Corgi crew ($80) + Bird and spider ($20) = ?',
+        question: '📈 Calculate Hudson\'s total weekly revenue from all services: Mr. Fluff Butt ($40) + Three dogs ($60) + Corgi crew ($80) + Bird and spider ($40) = ?',
         options: ['$220', '$200', '$240', '$180'],
         answer: '$220',
-        explanation: '🌟 Correct! $40 + $60 + $80 + $20 = $220 total revenue! 💰'
+        explanation: '🌟 Correct! $40 + $60 + $80 + $40 = $220 total revenue! 💰'
       },
       {
         id: 'c6.3.9',
