@@ -10,8 +10,8 @@ const buttonVariants = ['feather', 'macaw', 'lilac', 'bee'] as const;
 type ButtonVariant = typeof buttonVariants[number];
 
 export default function AdminPage() {
-  // Convert chapters object to array and sort by ID
-  const chapterList = Object.values(chapters).sort((a, b) => 
+  // Convert chapters object to array and sort by ID, with null check
+  const chapterList = (chapters ? Object.values(chapters) : []).sort((a, b) => 
     a.id.localeCompare(b.id, undefined, { numeric: true })
   );
 

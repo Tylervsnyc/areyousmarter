@@ -288,11 +288,9 @@ const chapter1: ChapterData = {
 }
 
 // Export all chapters
-const chapters: Record<string, ChapterData> = {
+export const chapters: Record<string, ChapterData> = {
   chapter1
 }
-
-export default chapters
 
 // Helper functions
 export const getChapter = (id: string): ChapterData | undefined => chapters[id]
