@@ -25,15 +25,6 @@ export default function DuoHeader() {
           />
         </Link>
       </div>
-      {/* Admin Link */}
-      <div className="absolute top-1/2 left-32 -translate-y-1/2">
-        <Link 
-          href="/new-quiz/admin"
-          className="text-white text-sm hover:text-yellow-300 transition-colors duration-200"
-        >
-          Admin
-        </Link>
-      </div>
       {/* Substack */}
       <div className="absolute top-1/2 right-4 -translate-y-1/2">
         <Link href="https://learnthroughstories.substack.com/">
