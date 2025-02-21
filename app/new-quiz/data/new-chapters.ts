@@ -1585,26 +1585,26 @@ const chapter6: ChapterData = {
       {
         id: 'c6.3.7',
         type: 'multiple-choice',
-        question: '💰 If the corgi-walking service earned $80 total and Jimmy received half, how much did Jimmy earn per day over the 4 days?',
-        options: ['$10', '$20', '$15', '$8'],
-        answer: '$10',
-        explanation: '🌟 Perfect! $80 ÷ 2 = $40 for Jimmy\'s share, then $40 ÷ 4 days = $10 per day! 📊'
+        question: '💰 If the corgi-walking service earned $80 total and Jimmy received half, how much did Jimmy earn in total? 💵',
+        options: ['$40', '$30', '$35', '$45'],
+        answer: '$40',
+        explanation: '🌟 Perfect! $80 ÷ 2 = $40 for Jimmy\'s total earnings! 📊'
       },
       {
         id: 'c6.3.8',
         type: 'multiple-choice',
-        question: '📈 Calculate Hudson\'s total weekly revenue from all services: Mr. Fluff Butt ($40) + Three dogs ($60) + Corgi crew ($80) + Bird and spider ($40) = ?',
+        question: '💰 Total weekly revenue: Mr. Fluff Butt ($40) + Dogs ($60) + Corgis ($80) + Pets ($40) = ? 📈',
         options: ['$220', '$200', '$240', '$180'],
         answer: '$220',
-        explanation: '🌟 Correct! $40 + $60 + $80 + $40 = $220 total revenue! 💰'
+        explanation: '🌟 $40 + $60 + $80 + $40 = $220 total revenue! 💰'
       },
       {
         id: 'c6.3.9',
         type: 'multiple-choice',
-        question: '💼 If Hudson\'s total earnings were $220 and his business costs (Jimmy\'s wages) were $40, how much profit did he make?',
+        question: '💼 Revenue $220, costs (Jimmy\'s wages) $40. Total profit? 💰',
         options: ['$180', '$160', '$200', '$140'],
         answer: '$180',
-        explanation: '🌟 Perfect! Total earnings ($220) - Costs ($40) = Profit ($180)! 📊'
+        explanation: '🌟 Revenue ($220) - Costs ($40) = Profit ($180)! 📊'
       },
       {
         id: 'c6.3.10',
