@@ -1504,9 +1504,9 @@ const chapter6: ChapterData = {
         id: 'c6.2.7',
         type: 'multiple-choice',
         question: '🐱 How much money did Jimmy earn each day from walking the corgis? 💰',
-        options: ['$10', '$20', '$5', '$15'],
-        answer: '$10',
-        explanation: '🌟 Perfect! Jimmy got $40 for 4 days of walking, so that\'s $10 each day! 🐾'
+        options: ['$20', '$10', '$15', '$25'],
+        answer: '$20',
+        explanation: '🌟 Perfect! Jimmy got $80 for 4 days of walking, so that\'s $20 each day! 🐾'
       },
       {
         id: 'c6.2.8',
