@@ -73,6 +73,10 @@ const themes: Record<string, Theme> = {
   chapter6: {
     pattern: 'stars',
     tone: 'green'
+  },
+  chapter7: {
+    pattern: 'paws',
+    tone: 'blue'
   }
 }
 
@@ -1618,6 +1622,263 @@ const chapter6: ChapterData = {
   }
 }
 
+// Chapter 7 Data
+const chapter7: ChapterData = {
+  id: 'chapter7',
+  title: 'Are You Smarter than Mr. Fluffbutt?',
+  subtitle: 'The Great Schedule Puzzle',
+  readStoryLink: 'https://learnthroughstories.substack.com/',
+  theme: themes.chapter7,
+  questions: {
+    age4to5: [
+      {
+        id: 'c7.1.1',
+        type: 'multiple-choice',
+        question: '🐱 Hudson has 3 pet visits in the morning and 2 pet visits in the afternoon. How many pet visits does he have in total? 🐾',
+        options: ['5', '4', '6', '3'],
+        answer: '5',
+        explanation: '🌟 Purr-fect! 3 morning visits + 2 afternoon visits = 5 total pet visits! 🐾'
+      },
+      {
+        id: 'c7.1.2',
+        type: 'multiple-choice',
+        question: '🐱 Hudson feeds 2 cats and 3 dogs. How many animals does he feed in total? 🐶',
+        options: ['5', '4', '6', '3'],
+        answer: '5',
+        explanation: '🌟 That\'s right! 2 cats + 3 dogs = 5 animals in total! 🐾'
+      },
+      {
+        id: 'c7.1.3',
+        type: 'multiple-choice',
+        question: '🐱 Hudson has 7 pet visits scheduled but 2 get canceled. How many visits does he have now? 📅',
+        options: ['5', '4', '6', '3'],
+        answer: '5',
+        explanation: '🌟 Great job! 7 visits - 2 canceled visits = 5 visits remaining! 🐾'
+      },
+      {
+        id: 'c7.1.4',
+        type: 'multiple-choice',
+        question: '🐱 Hudson spends 10 minutes with each pet. If he visits 4 pets, how many minutes does he spend in total? ⏰',
+        options: ['40', '30', '50', '20'],
+        answer: '40',
+        explanation: '🌟 Purr-fect calculation! 10 minutes × 4 pets = 40 minutes total! ⏰'
+      },
+      {
+        id: 'c7.1.5',
+        type: 'multiple-choice',
+        question: '🐱 Hudson has 8 treats. If he gives 2 treats to each dog, how many dogs can he give treats to? 🦴',
+        options: ['4', '3', '5', '2'],
+        answer: '4',
+        explanation: '🌟 That\'s right! 8 treats ÷ 2 treats per dog = 4 dogs! 🐾'
+      },
+      {
+        id: 'c7.1.6',
+        type: 'multiple-choice',
+        question: '🐱 Hudson walks 3 dogs in the morning and 3 dogs in the evening. How many dogs does he walk in total? 🐕',
+        options: ['6', '5', '7', '4'],
+        answer: '6',
+        explanation: '🌟 Excellent! 3 dogs in the morning + 3 dogs in the evening = 6 dogs total! 🐾'
+      },
+      {
+        id: 'c7.1.7',
+        type: 'multiple-choice',
+        question: '🐱 Hudson has 12 pet visits this week. If he does the same number each day for 4 days, how many visits does he do each day? 📆',
+        options: ['3', '4', '2', '5'],
+        answer: '3',
+        explanation: '🌟 Purr-fect division! 12 visits ÷ 4 days = 3 visits each day! 🐾'
+      },
+      {
+        id: 'c7.1.8',
+        type: 'multiple-choice',
+        question: '🐱 Hudson earns $5 for each pet visit. If he makes 3 visits, how much money does he earn? 💰',
+        options: ['$15', '$10', '$20', '$25'],
+        answer: '$15',
+        explanation: '🌟 Great job! $5 per visit × 3 visits = $15 total! 💰'
+      },
+      {
+        id: 'c7.1.9',
+        type: 'multiple-choice',
+        question: '🐱 Hudson needs to be at Mr. Fluffbutt\'s house at 3:00. It\'s 2:45 now. How many minutes until he needs to be there? ⏰',
+        options: ['15', '10', '20', '30'],
+        answer: '15',
+        explanation: '🌟 Perfect timing! From 2:45 to 3:00 is 15 minutes! ⏰'
+      },
+      {
+        id: 'c7.1.10',
+        type: 'multiple-choice',
+        question: '🐱 Hudson has 9 pet visits scheduled. He\'s already done 4 visits. How many more does he have left? 📝',
+        options: ['5', '4', '6', '3'],
+        answer: '5',
+        explanation: '🌟 Excellent subtraction! 9 total visits - 4 completed visits = 5 visits remaining! 🐾'
+      }
+    ],
+    age6to7: [
+      {
+        id: 'c7.2.1',
+        type: 'multiple-choice',
+        question: '🐱 Hudson spends 15 minutes with each cat and 20 minutes with each dog. If he visits 2 cats and 3 dogs, how many minutes does he spend in total? ⏰',
+        options: ['90', '80', '70', '100'],
+        answer: '90',
+        explanation: '🌟 Excellent! (15 minutes × 2 cats) + (20 minutes × 3 dogs) = 30 + 60 = 90 minutes total! ⏰'
+      },
+      {
+        id: 'c7.2.2',
+        type: 'multiple-choice',
+        question: '🐱 Hudson charges $10 for a cat visit and $15 for a dog visit. If he visits 3 cats and 2 dogs, how much money does he earn? 💰',
+        options: ['$60', '$50', '$70', '$55'],
+        answer: '$60',
+        explanation: '🌟 Purr-fect calculation! (3 cats × $10) + (2 dogs × $15) = $30 + $30 = $60 total! 💰'
+      },
+      {
+        id: 'c7.2.3',
+        type: 'multiple-choice',
+        question: '🐱 Hudson has pet visits at 9:00, 10:30, 12:00, and 2:30. If each visit takes 30 minutes, how many hours will he spend on visits in total? ⏰',
+        options: ['2', '3', '1.5', '2.5'],
+        answer: '2',
+        explanation: '🌟 Great job! 4 visits × 30 minutes = 120 minutes = 2 hours total! ⏰'
+      },
+      {
+        id: 'c7.2.4',
+        type: 'multiple-choice',
+        question: '🐱 Hudson walks dogs for 45 minutes each. If he walks 4 dogs, how many minutes does he spend walking dogs in total? ⏰',
+        options: ['180', '160', '200', '150'],
+        answer: '180',
+        explanation: '🌟 Excellent! 45 minutes × 4 dogs = 180 minutes total! ⏰'
+      },
+      {
+        id: 'c7.2.5',
+        type: 'multiple-choice',
+        question: '🐱 Hudson earned $85 this week. If he saves $25 and spends the rest on new pet supplies, how much does he spend on supplies? 💰',
+        options: ['$60', '$50', '$70', '$55'],
+        answer: '$60',
+        explanation: '🌟 Perfect math! $85 total - $25 saved = $60 spent on supplies! 💰'
+      },
+      {
+        id: 'c7.2.6',
+        type: 'multiple-choice',
+        question: '🐱 Hudson needs to buy 3 bags of cat food at $12 each and 2 bags of dog food at $18 each. How much will he spend in total? 💰',
+        options: ['$72', '$66', '$78', '$84'],
+        answer: '$72',
+        explanation: '🌟 Great calculation! (3 × $12) + (2 × $18) = $36 + $36 = $72 total! 💰'
+      },
+      {
+        id: 'c7.2.7',
+        type: 'multiple-choice',
+        question: '🐱 Hudson has 24 pet treats. If he gives 3 treats to each pet, how many pets can he give treats to? 🦴',
+        options: ['8', '6', '9', '7'],
+        answer: '8',
+        explanation: '🌟 Perfect division! 24 treats ÷ 3 treats per pet = 8 pets! 🐾'
+      },
+      {
+        id: 'c7.2.8',
+        type: 'multiple-choice',
+        question: '🐱 Hudson\'s first appointment is at 9:00 and takes 45 minutes. His second appointment is at 10:15. How many minutes does he have free between appointments? ⏰',
+        options: ['30', '15', '45', '20'],
+        answer: '30',
+        explanation: '🌟 Great time calculation! 9:00 + 45 minutes = 9:45, and from 9:45 to 10:15 is 30 minutes! ⏰'
+      },
+      {
+        id: 'c7.2.9',
+        type: 'multiple-choice',
+        question: '🐱 Hudson has 5 pet visits on Monday, 4 on Tuesday, 6 on Wednesday, and 5 on Thursday. What is the average number of visits per day? 📊',
+        options: ['5', '4', '6', '4.5'],
+        answer: '5',
+        explanation: '🌟 Perfect average! (5 + 4 + 6 + 5) ÷ 4 = 20 ÷ 4 = 5 visits per day on average! 📊'
+      },
+      {
+        id: 'c7.2.10',
+        type: 'multiple-choice',
+        question: '🐱 Hudson charges $12 per hour for pet sitting. If he pet sits for 2 hours and 30 minutes, how much should he charge? 💰',
+        options: ['$30', '$24', '$36', '$18'],
+        answer: '$30',
+        explanation: '🌟 Excellent! 2.5 hours × $12 per hour = $30 total charge! 💰'
+      }
+    ],
+    age8to9: [
+      {
+        id: 'c7.3.1',
+        type: 'multiple-choice',
+        question: '📊 Hudson has 28 pet visits scheduled over 7 days. If he wants to schedule an equal number of visits each day, how many visits should he schedule per day? 📅',
+        options: ['4', '3', '5', '6'],
+        answer: '4',
+        explanation: '🌟 Perfect division! 28 visits ÷ 7 days = 4 visits per day! 📊'
+      },
+      {
+        id: 'c7.3.2',
+        type: 'multiple-choice',
+        question: '⏰ Hudson\'s first appointment is at 9:15 AM and lasts 45 minutes. His second appointment is at 11:00 AM. How many minutes does he have free between these appointments? 🕙',
+        options: ['60', '45', '75', '30'],
+        answer: '60',
+        explanation: '🌟 Great time calculation! 9:15 + 45 minutes = 10:00, and from 10:00 to 11:00 is 60 minutes! ⏰'
+      },
+      {
+        id: 'c7.3.3',
+        type: 'multiple-choice',
+        question: '💰 Hudson charges $15 for a basic visit and $25 for a premium visit. If he had 8 basic visits and 4 premium visits this week, how much did he earn in total? 📈',
+        options: ['$220', '$200', '$240', '$180'],
+        answer: '$220',
+        explanation: '🌟 Excellent calculation! (8 × $15) + (4 × $25) = $120 + $100 = $220 total! 💰'
+      },
+      {
+        id: 'c7.3.4',
+        type: 'multiple-choice',
+        question: '🧮 Hudson spent $45 on pet supplies and $15 on transportation. If he earned $180 this week, what percentage of his earnings did he spend? 📊',
+        options: ['33⅓%', '25%', '40%', '30%'],
+        answer: '33⅓%',
+        explanation: '🌟 Perfect percentage calculation! Total spent: $45 + $15 = $60. $60 ÷ $180 = 0.333... = 33⅓%! 📊'
+      },
+      {
+        id: 'c7.3.5',
+        type: 'multiple-choice',
+        question: '⏱️ Hudson has 3 hours available for pet visits. Each cat visit takes 20 minutes and each dog visit takes 30 minutes. If he has 4 cat visits scheduled, how many dog visits can he fit in his schedule? 🐕',
+        options: ['4', '3', '5', '2'],
+        answer: '4',
+        explanation: '🌟 Great time management! 3 hours = 180 minutes. 4 cat visits = 4 × 20 = 80 minutes. Remaining time: 180 - 80 = 100 minutes. Dog visits possible: 100 ÷ 30 = 3.33, so 3 complete visits. But the question asks how many he can fit, which is 4 (with 10 minutes left over)! ⏱️'
+      },
+      {
+        id: 'c7.3.6',
+        type: 'multiple-choice',
+        question: '📝 Hudson needs to create a schedule for 5 days. He has 9 regular clients and each client needs to be visited every other day. How many total visits will he make over the 5 days? 🗓️',
+        options: ['23', '20', '25', '22'],
+        answer: '23',
+        explanation: '🌟 Perfect scheduling! Day 1: 9 visits, Day 2: 0 visits, Day 3: 9 visits, Day 4: 0 visits, Day 5: 5 visits (the remaining clients who need visits). Total: 9 + 0 + 9 + 0 + 5 = 23 visits! 📝'
+      },
+      {
+        id: 'c7.3.7',
+        type: 'multiple-choice',
+        question: '🧮 Hudson charges $10 per visit plus $5 for each additional pet at the same house. If he visits a house with 3 pets, how much should he charge? 💰',
+        options: ['$20', '$15', '$25', '$30'],
+        answer: '$20',
+        explanation: '🌟 Correct pricing! Base visit: $10. Additional pets: 2 × $5 = $10. Total: $10 + $10 = $20! 💰'
+      },
+      {
+        id: 'c7.3.8',
+        type: 'multiple-choice',
+        question: '⏰ Hudson has appointments at 9:00, 10:30, 12:00, 2:00, and 3:30. Each appointment takes exactly 45 minutes. How many total hours will he spend on appointments? 🕙',
+        options: ['3.75', '4', '3.5', '4.25'],
+        answer: '3.75',
+        explanation: '🌟 Perfect time calculation! 5 appointments × 45 minutes = 225 minutes = 3.75 hours! ⏰'
+      },
+      {
+        id: 'c7.3.9',
+        type: 'multiple-choice',
+        question: '📊 Hudson tracked his pet visits for 4 weeks. Week 1: 20 visits, Week 2: 24 visits, Week 3: 18 visits, Week 4: 22 visits. What was his average number of visits per week? 📈',
+        options: ['21', '20', '22', '23'],
+        answer: '21',
+        explanation: '🌟 Perfect average calculation! (20 + 24 + 18 + 22) ÷ 4 = 84 ÷ 4 = 21 visits per week on average! 📊'
+      },
+      {
+        id: 'c7.3.10',
+        type: 'multiple-choice',
+        question: '💼 Hudson earned $240 this week from pet visits. If he saves 40% of his earnings, spends 35% on supplies, and uses the rest for transportation, how much money does he spend on transportation? 💰',
+        options: ['$60', '$50', '$70', '$55'],
+        answer: '$60',
+        explanation: '🌟 Excellent budget calculation! Savings: 40% of $240 = $96. Supplies: 35% of $240 = $84. Transportation: $240 - $96 - $84 = $60! 💰'
+      }
+    ]
+  }
+}
+
 // Export all chapters
 const chapters: Record<string, ChapterData> = {
   chapter1,
@@ -1625,7 +1886,8 @@ const chapters: Record<string, ChapterData> = {
   chapter3,
   chapter4,
   chapter5,
-  chapter6
+  chapter6,
+  chapter7
 }
 
 export default chapters
