@@ -80,7 +80,7 @@ const themes: Record<string, Theme> = {
   },
   chapter8: {
     pattern: 'hearts',
-    tone: 'green'
+    tone: 'red'
   }
 }
 
@@ -486,7 +486,7 @@ const chapter2: ChapterData = {
         question: '📊 What\'s Hudson\'s total money after paying for flyers? 💵',
         options: ['$62', '$65', '$67', '$70'],
         answer: '$62',
-        explanation: '🎯 $65 - $3 = $62! Perfect calculation! 💪'
+        explanation: '🎯 $65 - $3 = $62! Perfect calculation! 💫'
       },
       {
         id: 'c2.2.8',
@@ -1884,12 +1884,11 @@ const chapter7: ChapterData = {
 }
 
 // Chapter 8 Data
-// Chapter 8 Data
 const chapter8: ChapterData = {
   id: 'chapter8',
   title: 'Are You Smarter than Mr. Fluffbutt?',
   subtitle: 'How Do You Like These PAWS?',
-  readStoryLink: '/stories/chapter8',
+  readStoryLink: 'https://substack.com/home/post/p-158614340',
   theme: themes.chapter8,
   questions: {
     age4to5: [
@@ -2139,7 +2138,8 @@ const chapter8: ChapterData = {
       }
     ]
   }
-} 
+}
+
 // Export all chapters
 const chapters: Record<string, ChapterData> = {
   chapter1,
