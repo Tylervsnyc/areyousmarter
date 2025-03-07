@@ -77,6 +77,10 @@ const themes: Record<string, Theme> = {
   chapter7: {
     pattern: 'paws',
     tone: 'blue'
+  },
+  chapter8: {
+    pattern: 'hearts',
+    tone: 'green'
   }
 }
 
@@ -1879,6 +1883,263 @@ const chapter7: ChapterData = {
   }
 }
 
+// Chapter 8 Data
+// Chapter 8 Data
+const chapter8: ChapterData = {
+  id: 'chapter8',
+  title: 'Are You Smarter than Mr. Fluffbutt?',
+  subtitle: 'How Do You Like These PAWS?',
+  readStoryLink: '/stories/chapter8',
+  theme: themes.chapter8,
+  questions: {
+    age4to5: [
+      {
+        id: 'c8.1.1',
+        type: 'multiple-choice',
+        question: '🐱 purr purr Hudson got paid $10 for watching Mr. Fluffbutt. If he watched Mr. Fluffbutt twice, how much money did he make? 💭',
+        options: ['$10', '$15', '$20', '$25'],
+        answer: '$20',
+        explanation: '🌟 Paw-some! 2 visits × $10 each = $20 total. You counted with your paws just right! 😺',
+      },
+      {
+        id: 'c8.1.2',
+        type: 'multiple-choice',
+        question: '🐱 whiskers twitching If Hudson walks 3 dogs and gets $5 for each dog, how much money does he make? 🐕',
+        options: ['$10', '$15', '$20', '$25'],
+        answer: '$15',
+        explanation: '🌟 Purr-fect calculation! 3 dogs × $5 each = $15. That\'s a lot of walkies! 🐾',
+      },
+      {
+        id: 'c8.1.3',
+        type: 'multiple-choice',
+        question: '🐱 tail swishing If Hudson walks 4 dogs and each dog pays $5, how much money will he get? 🦮',
+        options: ['$15', '$20', '$25', '$30'],
+        answer: '$20',
+        explanation: '🌟 Me-WOW! 4 dogs × $5 = $20. You\'re getting really good at this! 🐕',
+      },
+      {
+        id: 'c8.1.4',
+        type: 'multiple-choice',
+        question: '🐱 meow meow Hudson made $5 each feeding Joseph and Johnny. How much did he make feeding them both? 🐹',
+        options: ['$5', '$10', '$15', '$20'],
+        answer: '$10',
+        explanation: '🌟 Paw-some work! 2 pets × $5 each = $10 total. You\'re becoming a great pet sitter! 🌟',
+      },
+      {
+        id: 'c8.1.5',
+        type: 'multiple-choice',
+        question: '🐱 purr purr If Hudson walks 6 dogs at once, and each dog pays $5, how much money is that? 🐕',
+        options: ['$20', '$25', '$30', '$35'],
+        answer: '$30',
+        explanation: '🌟 Purr-fect! 6 dogs × $5 = $30. That\'s a lot of happy dogs! 🐾',
+      },
+      {
+        id: 'c8.1.6',
+        type: 'multiple-choice',
+        question: '🐱 whiskers twitching Hudson started with $279 in his bike fund. If he adds $20, how much will he have? 💰',
+        options: ['$279', '$289', '$299', '$309'],
+        answer: '$299',
+        explanation: '🌟 Amazing cat-culation! $279 + $20 = $299. Your bike fund is growing! 🚲',
+      },
+      {
+        id: 'c8.1.7',
+        type: 'multiple-choice',
+        question: '🐱 paws at calculator Let\'s count Hudson\'s total income! How much did Hudson make from all his jobs? (Mr. Fluffbutt $20, feeding pets $20, dog walks $70) 💰',
+        options: ['$90', '$100', '$110', '$120'],
+        answer: '$110',
+        explanation: '🌟 Purr-fect revenue counting! $20 + $20 + $70 = $110 total income! 🐱',
+      },
+      {
+        id: 'c8.1.8',
+        type: 'multiple-choice',
+        question: '🐱 whiskers twitching How much did Hudson spend paying Jimmy for help with the $40 of dog walks? 💸',
+        options: ['$10', '$15', '$20', '$25'],
+        answer: '$20',
+        explanation: '🌟 Good expense tracking! Jimmy made $40 from the 4-dog walks, and they split it 50-50, so Hudson paid Jimmy $20! 💰',
+      },
+      {
+        id: 'c8.1.9',
+        type: 'multiple-choice',
+        question: '🐱 tail swishing What was Hudson\'s profit? (Total income $110 - Expenses $20) 📊',
+        options: ['$70', '$80', '$90', '$100'],
+        answer: '$90',
+        explanation: '🌟 Purr-fect profit calculation! $110 - $20 = $90 profit! 💫',
+      },
+      {
+        id: 'c8.1.10',
+        type: 'multiple-choice',
+        question: '🐱 meow meow What is Hudson\'s new total cash on hand? (Started with $279 + $90 profit) 💰',
+        options: ['$349', '$359', '$369', '$379'],
+        answer: '$369',
+        explanation: '🌟 Me-WOW! $279 + $90 = $369 total cash on hand! Your bike fund is growing! 🚲',
+      }
+    ],
+    age6to7: [
+      {
+        id: 'c8.2.1',
+        type: 'multiple-choice',
+        question: '🐱 purr purr If Hudson makes $10 watching Mr. Fluffbutt twice and $5 each for feeding Joseph and Johnny twice, how much did he make from pet sitting? 💭',
+        options: ['$25', '$30', '$40', '$45'],
+        answer: '$40',
+        explanation: '🌟 Paw-some! Mr. Fluffbutt: $10 × 2 = $20, Joseph and Johnny: $5 × 2 × 2 = $20. Total: $20 + $20 = $40! 😺',
+      },
+      {
+        id: 'c8.2.2',
+        type: 'multiple-choice',
+        question: '🐱 whiskers twitching Hudson walked 3 dogs in the morning and 4 dogs in the afternoon. At $5 per dog, how much did he make that day? 🐕',
+        options: ['$25', '$30', '$35', '$40'],
+        answer: '$35',
+        explanation: '🌟 Purr-fect! Morning: 3 × $5 = $15, Afternoon: 4 × $5 = $20. Total: $15 + $20 = $35! 🐾',
+      },
+      {
+        id: 'c8.2.3',
+        type: 'multiple-choice',
+        question: '🐱 tail swishing If Hudson can walk 6 dogs at once, how much would he make from three walks at $5 per dog? 🦮',
+        options: ['$60', '$80', '$90', '$100'],
+        answer: '$90',
+        explanation: '🌟 Me-WOW! 6 dogs × $5 = $30 per walk. 3 walks × $30 = $90 total! 🐕',
+      },
+      {
+        id: 'c8.2.4',
+        type: 'multiple-choice',
+        question: '🐱 meow meow Hudson did two 3-dog walks and two 4-dog walks. How many dogs did he walk in total? 🐕',
+        options: ['10 dogs', '12 dogs', '14 dogs', '16 dogs'],
+        answer: '14 dogs',
+        explanation: '🌟 Paw-some work! Two 3-dog walks = 6 dogs, Two 4-dog walks = 8 dogs. Total: 6 + 8 = 14 dogs! 🌟',
+      },
+      {
+        id: 'c8.2.5',
+        type: 'multiple-choice',
+        question: '🐱 purr purr If Hudson makes $30 from a 6-dog walk and does this twice a day for 3 days, how much money would he make? 💰',
+        options: ['$120', '$150', '$180', '$200'],
+        answer: '$180',
+        explanation: '🌟 Purr-fect! $30 × 2 walks = $60 per day. $60 × 3 days = $180 total! 🐾',
+      },
+      {
+        id: 'c8.2.6',
+        type: 'multiple-choice',
+        question: '🐱 whiskers twitching Hudson needs $500 for his bike. If he has $369 now, how much more does he need? 💰',
+        options: ['$121', '$131', '$141', '$151'],
+        answer: '$131',
+        explanation: '🌟 Amazing cat-culation! $500 - $369 = $131 more needed for the bike! 🚲',
+      },
+      {
+        id: 'c8.2.7',
+        type: 'multiple-choice',
+        question: '🐱 paws at calculator Let\'s add up Hudson\'s total income! Mr. Fluffbutt ($20) + feeding pets ($20) + three-dog walks ($30) + four-dog walks ($40) = ? 💰',
+        options: ['$100', '$110', '$120', '$130'],
+        answer: '$110',
+        explanation: '🌟 Purr-fect adding! $20 + $20 + $30 + $40 = $110 total income! 🐱',
+      },
+      {
+        id: 'c8.2.8',
+        type: 'multiple-choice',
+        question: '🐱 whiskers twitching Hudson and Jimmy split $40 from the four-dog walks. If they split it equally and Hudson also paid for treats ($5), what were his total expenses? 💸',
+        options: ['$15', '$20', '$25', '$30'],
+        answer: '$20',
+        explanation: '🌟 Good expense tracking! Split money to Jimmy: $20 + Treats: $0 = $20 total expenses! 💰',
+      },
+      {
+        id: 'c8.2.9',
+        type: 'multiple-choice',
+        question: '🐱 tail swishing If Hudson\'s income was $110 and expenses were $20, what was his profit? Then add the three-dog walk money of $15! 📊',
+        options: ['$85', '$90', '$105', '$125'],
+        answer: '$90',
+        explanation: '🌟 Perfect profit math! $110 - $20 = $90 total profit! 💫',
+      },
+      {
+        id: 'c8.2.10',
+        type: 'multiple-choice',
+        question: '🐱 meow meow Hudson started with $279. If he adds his profit of $90, what\'s his new total? Then subtract $0 for supplies! 💰',
+        options: ['$349', '$359', '$369', '$379'],
+        answer: '$369',
+        explanation: '🌟 Me-WOW! $279 + $90 = $369 final cash on hand! Your bike fund is growing! 🚲',
+      }
+    ],
+    age8to9: [
+      {
+        id: 'c8.3.1',
+        type: 'multiple-choice',
+        question: '🐱 purr purr If Hudson charges $10 for each Mr. Fluffbutt visit and $5 for each other pet visit, how much will he make from 2 Mr. Fluffbutt visits and 4 other pet visits this week? 💭',
+        options: ['$35', '$40', '$45', '$50'],
+        answer: '$40',
+        explanation: '🌟 Paw-some! Mr. Fluffbutt: $10 × 2 = $20, Other pets: $5 × 4 = $20. Total: $20 + $20 = $40! 😺',
+      },
+      {
+        id: 'c8.3.2',
+        type: 'multiple-choice',
+        question: '🐱 whiskers twitching Hudson does two walks: one with 3 dogs and one with 4 dogs. If he charges $5 per dog and does these walks three times this week, how much will he make? 🐕',
+        options: ['$85', '$95', '$105', '$115'],
+        answer: '$105',
+        explanation: '🌟 Purr-fect! Each day: (3 dogs × $5) + (4 dogs × $5) = $35. Three days: $35 × 3 = $105! 🐾',
+      },
+      {
+        id: 'c8.3.3',
+        type: 'multiple-choice',
+        question: '🐱 tail swishing If Hudson can walk 6 dogs at $5 each and does 2 walks per day for 4 days, what\'s his total income from dog walking? 🦮',
+        options: ['$200', '$220', '$240', '$260'],
+        answer: '$240',
+        explanation: '🌟 Me-WOW! 6 dogs × $5 = $30 per walk. 2 walks = $60 per day. 4 days × $60 = $240! 🐕',
+      },
+      {
+        id: 'c8.3.4',
+        type: 'multiple-choice',
+        question: '🐱 meow meow Hudson does 2 three-dog walks ($15 each) and 2 four-dog walks ($20 each). If he does this twice, what\'s his total earnings? 🐕',
+        options: ['$120', '$130', '$140', '$150'],
+        answer: '$140',
+        explanation: '🌟 Paw-some work! One set: ($15 × 2) + ($20 × 2) = $70. Two sets: $70 × 2 = $140! 🌟',
+      },
+      {
+        id: 'c8.3.5',
+        type: 'multiple-choice',
+        question: '🐱 purr purr If Hudson saves $90 per week from his current jobs, how many weeks will it take him to save the remaining $131 needed for his bike? 💰',
+        options: ['1 week', '2 weeks', '3 weeks', '4 weeks'],
+        answer: '2 weeks',
+        explanation: '🌟 Purr-fect! $131 ÷ $90 = 1.46 weeks, so he needs 2 full weeks to save enough! 🚲',
+      },
+      {
+        id: 'c8.3.6',
+        type: 'multiple-choice',
+        question: '🐱 whiskers twitching If Hudson and Jimmy each walk 6 dogs twice a day at $5 per dog, what\'s their combined income for one day? 💰',
+        options: ['$100', '$120', '$140', '$160'],
+        answer: '$120',
+        explanation: '🌟 Amazing! Each walk: 6 dogs × $5 = $30. Each person: $30 × 2 = $60. Combined: $60 × 2 = $120! 🐾',
+      },
+      {
+        id: 'c8.3.7',
+        type: 'multiple-choice',
+        question: '🐱 paws at calculator Calculate Hudson\'s total weekly income! Mr. Fluffbutt ($20) + feeding pets ($20) + three-dog walks ($30) + four-dog walks ($40) + extra weekend walk ($30) = ? 💰',
+        options: ['$120', '$130', '$140', '$150'],
+        answer: '$140',
+        explanation: '🌟 Purr-fect revenue tracking! $20 + $20 + $30 + $40 + $30 = $140 total weekly income! 🐱',
+      },
+      {
+        id: 'c8.3.8',
+        type: 'multiple-choice',
+        question: '🐱 whiskers twitching Calculate Hudson\'s expenses! Jimmy\'s share ($20) + new leashes ($15) + treat bags ($5) + water bottles ($10) = ? 💸',
+        options: ['$40', '$45', '$50', '$55'],
+        answer: '$50',
+        explanation: '🌟 Good expense tracking! $20 + $15 + $5 + $10 = $50 total weekly expenses! 💰',
+      },
+      {
+        id: 'c8.3.9',
+        type: 'multiple-choice',
+        question: '🐱 tail swishing What\'s Hudson\'s profit if he made $140 in income but had $50 in expenses? Then subtract his savings account fee of $0! 📊',
+        options: ['$80', '$90', '$90', '$100'],
+        answer: '$90',
+        explanation: '🌟 Perfect profit math! $140 - $50 = $90. No fees to subtract, so profit stays $90! 💫',
+      },
+      {
+        id: 'c8.3.10',
+        type: 'multiple-choice',
+        question: '🐱 meow meow Hudson started with $279, added $90 profit, and needs $500 for his bike. How much more money does he need? 💰',
+        options: ['$121', '$131', '$141', '$151'],
+        answer: '$131',
+        explanation: '🌟 Me-WOW! Current total: $279 + $90 = $369. Still needed: $500 - $369 = $131! 🚲',
+      }
+    ]
+  }
+} 
 // Export all chapters
 const chapters: Record<string, ChapterData> = {
   chapter1,
@@ -1887,7 +2148,8 @@ const chapters: Record<string, ChapterData> = {
   chapter4,
   chapter5,
   chapter6,
-  chapter7
+  chapter7,
+  chapter8
 }
 
 export default chapters
