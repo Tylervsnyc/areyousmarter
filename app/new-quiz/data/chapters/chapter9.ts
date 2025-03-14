@@ -3,8 +3,8 @@ import type { ChapterData } from '../../types'
 const chapter9: ChapterData = {
   id: 'chapter9',
   title: 'Are You Smarter Than Mr. Fluffbutt?',
-  subtitle: 'Hudson\'s Business Empire',
-  readStoryLink: '/stories/chapter9',
+  subtitle: 'I Can Show You This Town',
+  readStoryLink: 'https://areyousmarter.substack.com/',
   theme: {
     pattern: 'stars',
     tone: 'blue'

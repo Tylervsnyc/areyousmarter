@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import { getChapter } from '../../data/new-chapters'
+import { getChapter } from '../../data/combined-chapters'
 import { QuizPage } from '../../components/QuizPage'
 
 interface PageParams {
