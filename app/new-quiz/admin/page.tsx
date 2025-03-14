@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import chapters from '../data/new-chapters';
+import chapters from '../data/combined-chapters';
 import type { ChapterData } from '../types';
 import { DuoTemplateButton } from '../components/DuoTemplateButton';
 import DuoHeader from '../components/DuoHeader';

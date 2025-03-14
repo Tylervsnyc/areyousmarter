@@ -10,7 +10,7 @@ import DuoHeader from './DuoHeader'
 import { duoDefaultTheme } from '../styles'
 import { playButtonPress, playPerfectSound } from '../utils/sounds'
 import type { ChapterData } from '../types'
-import { getNextChapterId } from '../data/new-chapters'
+import { getNextChapterId } from '../data/combined-chapters'
 import { trackEvent, ANALYTICS_EVENTS } from '../utils/analytics'
 
 // Dynamically import react-confetti to avoid SSR issues

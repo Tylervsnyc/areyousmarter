@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { getChapter } from '../data/new-chapters'
+import { getChapter } from '../data/combined-chapters'
 import { DuoTemplateButton } from '../components/DuoTemplateButton'
 import DuoHeader from '../components/DuoHeader'
 import { duoFontStyles, duoDefaultTheme } from '../styles'

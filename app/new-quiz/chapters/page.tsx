@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import chapters from '../data/new-chapters'
+import chapters from '../data/combined-chapters'
 import type { ChapterData } from '../types'
 import { DuoTemplateButton } from '../components/DuoTemplateButton'
 import DuoHeader from '../components/DuoHeader'
