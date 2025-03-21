@@ -38,7 +38,7 @@ export default function ChaptersPage() {
                 }}
               >
                 <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 text-center title-text mb-2">
-                  Mr. Fluffbutt's Chapters
+                  Are You Smarter Than Mr. Fluffbutt?
                 </h1>
                 <p className="text-lg sm:text-xl text-gray-600 text-center">
                   Choose a chapter to begin your adventure! 🐱
