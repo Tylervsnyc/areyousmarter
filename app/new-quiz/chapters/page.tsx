@@ -53,7 +53,7 @@ export default function ChaptersPage() {
                       <DuoTemplateButton 
                         variant={buttonVariants[index % buttonVariants.length]}
                       >
-                        <div className="text-left">
+                        <div className="text-center w-full">
                           <div className="font-bold text-lg">Chapter {index + 1}</div>
                           <div className="text-base mt-1">{chapter.subtitle}</div>
                         </div>

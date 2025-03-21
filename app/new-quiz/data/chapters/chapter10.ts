@@ -3,7 +3,7 @@ import type { ChapterData } from '../../types'
 const chapter10: ChapterData = {
   id: 'chapter10',
   title: 'Are You Smarter Than Mr. Fluffbutt?',
-  subtitle: 'The Big Bike Adventure',
+  subtitle: 'The Big Decision',
   readStoryLink: 'https://learnthroughstories.substack.com/',
   theme: {
     pattern: 'hearts',
