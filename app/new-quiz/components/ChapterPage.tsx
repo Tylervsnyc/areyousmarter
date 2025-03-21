@@ -62,7 +62,7 @@ export function ChapterPage({ chapter }: ChapterPageProps) {
                   {chapter.title}
                 </h1>
                 <h2 className="text-xl sm:text-2xl text-gray-600 text-center title-text">
-                  {chapter.subtitle}
+                  Chapter {chapter.id.replace('chapter', '')} - {chapter.subtitle}
                 </h2>
               </div>
 
