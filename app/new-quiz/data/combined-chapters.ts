@@ -1,11 +1,13 @@
 import type { ChapterData } from '../types'
 import chapters from './new-chapters'
 import chapter9 from './chapters/chapter9'
+import chapter10 from './chapters/chapter10'
 
 // Create a combined chapters object
 const combinedChapters: Record<string, ChapterData> = {
   ...chapters,
-  chapter9
+  chapter9,
+  chapter10
 }
 
 export default combinedChapters
