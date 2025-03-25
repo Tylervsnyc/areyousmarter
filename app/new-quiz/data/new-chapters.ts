@@ -89,7 +89,7 @@ const chapter1: ChapterData = {
   id: 'chapter1',
   title: 'Are You Smarter than Mr. Fluffbutt?',
   subtitle: 'Help Me Get This Bike',
-  readStoryLink: '/stories/chapter1',
+  readStoryLink: 'https://learnthroughstories.substack.com/p/help-me-get-this-bike-chapter-1',
   theme: themes.chapter1,
   questions: {
     age4to5: [
@@ -345,8 +345,8 @@ const chapter1: ChapterData = {
 const chapter2: ChapterData = {
   id: 'chapter2',
   title: 'Are You Smarter than Mr. Fluffbutt?',
-  subtitle: 'A Big Three Dollar Gamble',
-  readStoryLink: '/stories/chapter2',
+  subtitle: 'How Much Do We Have?',
+  readStoryLink: 'https://learnthroughstories.substack.com/p/help-me-get-this-bike-chapter-2',
   theme: themes.chapter2,
   questions: {
     age4to5: [
@@ -602,8 +602,8 @@ const chapter2: ChapterData = {
 const chapter3: ChapterData = {
   id: 'chapter3',
   title: 'Are You Smarter than Mr. Fluffbutt?',
-  subtitle: 'Let It Roll',
-  readStoryLink: '/stories/chapter3',
+  subtitle: 'Lemonade Stand',
+  readStoryLink: 'https://learnthroughstories.substack.com/p/help-me-get-this-bike-chapter-3',
   theme: themes.chapter3,
   questions: {
     age4to5: [
@@ -859,8 +859,8 @@ const chapter3: ChapterData = {
 const chapter4: ChapterData = {
   id: 'chapter4',
   title: 'Are You Smarter than Mr. Fluffbutt?',
-  subtitle: 'The Worst Week Ever',
-  readStoryLink: '/stories/chapter4',
+  subtitle: 'Garage Sale',
+  readStoryLink: 'https://learnthroughstories.substack.com/p/help-me-get-this-bike-chapter-4',
   theme: themes.chapter4,
   questions: {
     age4to5: [
@@ -1116,8 +1116,8 @@ const chapter4: ChapterData = {
 const chapter5: ChapterData = {
   id: 'chapter5',
   title: 'Are You Smarter than Mr. Fluffbutt?',
-  subtitle: 'A New Business Strategy',
-  readStoryLink: '/stories/chapter5',
+  subtitle: 'Chores Around Town',
+  readStoryLink: 'https://learnthroughstories.substack.com/p/help-me-get-this-bike-chapter-5',
   theme: themes.chapter5,
   questions: {
     age4to5: [
@@ -1374,7 +1374,7 @@ const chapter6: ChapterData = {
   id: 'chapter6',
   title: 'Are You Smarter than Mr. Fluffbutt?',
   subtitle: 'What\'s an Employee?',
-  readStoryLink: '/stories/chapter6',
+  readStoryLink: 'https://learnthroughstories.substack.com/p/help-me-get-this-bike-chapter-6',
   theme: themes.chapter6,
   questions: {
     age4to5: [
@@ -1630,8 +1630,8 @@ const chapter6: ChapterData = {
 const chapter7: ChapterData = {
   id: 'chapter7',
   title: 'Are You Smarter than Mr. Fluffbutt?',
-  subtitle: 'The Great Schedule Puzzle',
-  readStoryLink: 'https://learnthroughstories.substack.com/',
+  subtitle: 'Smart Shopping',
+  readStoryLink: 'https://learnthroughstories.substack.com/p/help-me-get-this-bike-chapter-7',
   theme: themes.chapter7,
   questions: {
     age4to5: [
@@ -1887,8 +1887,8 @@ const chapter7: ChapterData = {
 const chapter8: ChapterData = {
   id: 'chapter8',
   title: 'Are You Smarter than Mr. Fluffbutt?',
-  subtitle: 'How Do You Like These PAWS?',
-  readStoryLink: 'https://substack.com/home/post/p-158614340',
+  subtitle: 'Final Countdown',
+  readStoryLink: 'https://learnthroughstories.substack.com/p/help-me-get-this-bike-chapter-8',
   theme: themes.chapter8,
   questions: {
     age4to5: [
