@@ -4,7 +4,7 @@ const chapter9: ChapterData = {
   id: 'chapter9',
   title: 'Are You Smarter Than Mr. Fluffbutt?',
   subtitle: 'I Can Show You This Town',
-  readStoryLink: 'https://open.substack.com/pub/learnthroughstories/p/help-me-get-this-bike-chapter-9?r=32md32&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true',
+  readStoryLink: 'https://learnthroughstories.substack.com/p/help-me-get-this-bike-chapter-9',
   theme: {
     pattern: 'stars',
     tone: 'blue'
