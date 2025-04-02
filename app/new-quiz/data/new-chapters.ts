@@ -345,7 +345,7 @@ const chapter1: ChapterData = {
 const chapter2: ChapterData = {
   id: 'chapter2',
   title: 'Are You Smarter than Mr. Fluffbutt?',
-  subtitle: 'How Much Do We Have?',
+  subtitle: 'A Big Three Dollar Gamble',
   readStoryLink: 'https://learnthroughstories.substack.com/p/help-me-get-this-bike-chapter-2',
   theme: themes.chapter2,
   questions: {
@@ -602,7 +602,7 @@ const chapter2: ChapterData = {
 const chapter3: ChapterData = {
   id: 'chapter3',
   title: 'Are You Smarter than Mr. Fluffbutt?',
-  subtitle: 'Lemonade Stand',
+  subtitle: 'Let it Roll! Let it Roll!',
   readStoryLink: 'https://learnthroughstories.substack.com/p/help-me-get-this-bike-chapter-3',
   theme: themes.chapter3,
   questions: {
@@ -859,7 +859,7 @@ const chapter3: ChapterData = {
 const chapter4: ChapterData = {
   id: 'chapter4',
   title: 'Are You Smarter than Mr. Fluffbutt?',
-  subtitle: 'Garage Sale',
+  subtitle: 'The Worst Week EVER',
   readStoryLink: 'https://learnthroughstories.substack.com/p/help-me-get-this-bike-chapter-4',
   theme: themes.chapter4,
   questions: {
@@ -1116,7 +1116,7 @@ const chapter4: ChapterData = {
 const chapter5: ChapterData = {
   id: 'chapter5',
   title: 'Are You Smarter than Mr. Fluffbutt?',
-  subtitle: 'Chores Around Town',
+  subtitle: 'A New Business Strategy',
   readStoryLink: 'https://learnthroughstories.substack.com/p/help-me-get-this-bike-chapter-5',
   theme: themes.chapter5,
   questions: {
