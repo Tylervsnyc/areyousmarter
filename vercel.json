@@ -9,5 +9,8 @@
       "main": true,
       "feature/*": true
     }
+  },
+  "env": {
+    "NEXT_PUBLIC_SKIP_VALIDATION": "true"
   }
 } 
